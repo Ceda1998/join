@@ -1,0 +1,8 @@
+@font-face {
+    font-family: Inter;
+    src: url(join/fonts/static/Inter-Regular.ttf);
+  }
+
+body {
+  font-family: 'Inter', sans-serif;
+}
