@@ -84,6 +84,7 @@
 #loginButton:hover {
     cursor: pointer;
     background-color: #0d99ff;
+    box-shadow: 8px 8px 2px 1px #ededed;
 }
 
 #guestLoginButton {
@@ -95,6 +96,13 @@
   background-color: white;
   font-size: 21px;
   font-weight: 700;
+}
+
+#guestLoginButton:hover {
+  cursor: pointer;
+  color: #0d99ff;
+  border: 1px solid #0d99ff;
+  box-shadow: 8px 8px 2px 1px #ededed;
 }
 
 .loginButtons_container {
