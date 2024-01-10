@@ -122,6 +122,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    margin-left: 39px;
 }
 #rememberMe {
     height: 16px;
