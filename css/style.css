@@ -2,3 +2,25 @@ body {
     margin: 0;
     font-family: inter;
 }
+
+.headerLogin {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logoSmall {
+    width: 100.03px;
+    height: 121.97px;
+    margin-top:
+    80px ;
+    margin-left:
+    77px ;
+}
+
+.headerLoginRight {
+    display: flex;
+    gap: 35px;
+    margin-top: 67px;
+    margin-left: 1039px ;
+}
