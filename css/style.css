@@ -1,26 +1,37 @@
 body {
     margin: 0;
-    font-family: inter;
+    font-family: 'Inter';
 }
 
 .headerLogin {
-    width: 100%;
     display: flex;
-    justify-content: space-between;
+    position: relative;
 }
 
 .logoSmall {
     width: 100.03px;
     height: 121.97px;
-    margin-top:
-    80px ;
-    margin-left:
-    77px ;
+    margin-top: 80px ;
+    margin-left: 77px ;
+    position: absolute;
 }
 
 .headerLoginRight {
     display: flex;
+    align-items: center;
+    width: 279px;
     gap: 35px;
     margin-top: 67px;
     margin-left: 1039px ;
+}
+
+.signUpButton {
+    width: 91px;
+    height: 49px;
+    background-color: #2A3647;
+    color: #FFFFFF;
+    border: unset;
+    border-radius: 8px;
+    font-weight: bold;
+    padding: 15px 16px;
 }
