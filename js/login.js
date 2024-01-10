@@ -1,0 +1,7 @@
+function openSignUpWindow() {
+
+}
+
+function renderSignUpWindow() {
+    
+}
