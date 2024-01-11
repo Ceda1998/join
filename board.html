@@ -8,11 +8,14 @@
 
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/fonts.css" />
+
     <!-- This is used for the main App Container when logged in -->
     <link rel="stylesheet" href="./css/mainMenu.css" />
+
+    <script src="./js/includeHtml.js"></script>
 </head>
 
-<body>
+<body onload="includeHTML()">
     <div class="board">
         <div class="nav-left">
             <div class="nav-left-top">
@@ -32,11 +35,23 @@
             </div>
         </div>
         <div class="board-content">
-            <div class="content-header">Content Header</div>
-            <div class="content-main">Content Main</div>
+            <div class="content-header">
+                <div class="header-left">
+                    <span class="menu-header-text">Kanban Project Management Tool</span>
+                </div>
+                <div class="header-right">
+                    <img src="./assets/img/question.png" class="header-question-icon">
+                    <div class="header-profile-icon">SM</div>
+                </div>
+            </div>
+            <div class="content-main">
+
+                <!-- Include Board Template -->
+                <div w3-include-html="./templates/board_template.html"></div>
+
+            </div>
         </div>
     </div>
-
 </body>
 
 </html>
