@@ -1,0 +1,23 @@
+body {
+    /* display: flex; */
+}
+
+.board {
+    display: flex;
+}
+
+.nav-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 232px;
+    min-width: 232px;
+    height: 100vh;
+    background: rgba(42, 54, 71, 1);
+    padding: 64px 0;
+}
+
+.nlt-img {
+    display: flex;
+    justify-content: center;
+}

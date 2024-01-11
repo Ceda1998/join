@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Join</title>
-    <link rel="stylesheet" href="./css/login.css" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/fonts.css" />
-  </head>
-  <body>
-    <div class="headerLogin">
-      <img
-        src="./assets/img/LogoSmall.png"
-        alt="logo small"
-        class="logoSmall"
-      />
-      <div class="headerLoginRight">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join</title>
+  <link rel="stylesheet" href="./css/login.css" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/fonts.css" />
+</head>
+
+<body>
+  <div class="headerLogin">
+    <img src="./assets/img/LogoSmall.png" alt="logo small" class="logoSmall" />
+    <div class="headerLoginRight">
+      <div class="signUpContainer">
         <span>Not a Join user?</span>
         <button class="signUpButton" onclick="openSignUpWindow()">Sign up</button>
       </div>
     </div>
+  </div>
 
-    <div class="login_container">
-      <div id="loginWindow">
-        <h1 class="loginHeadline">Log in</h1>
-        <form action="#" id="loginForm">
-          <div class="inputIcon_container">
-            <input type="email" required class="loginInputField" placeholder="Email"/>
-            <img src="./assets/img/mail.png" alt="mailicon" class="loginIcons">
-          </div>
-          <div class="inputIcon_container">
+  <div class="login_container">
+    <div id="loginWindow">
+      <h1 class="loginHeadline">Log in</h1>
+      <form action="#" id="loginForm">
+        <div class="inputIcon_container">
+          <input type="email" required class="loginInputField" placeholder="Email" />
+          <img src="./assets/img/mail.png" alt="mailicon" class="loginIcons">
+        </div>
+        <div class="inputIcon_container">
           <input type="password" required class="loginInputField" placeholder="Password" />
           <img src="./assets/img/lock.png" alt="passwordIcon" class="loginIcons">
         </div>
-          <div class="rememberMe_container">
-            <input type="checkbox" id="rememberMe"><label for="rememberMe" class="rememberMeLabel">Remember me</label>
-          </div>
-          <div class="loginButtons_container">
-            <button id="loginButton">Log in</button>
-            <button id="guestLoginButton">Guest Log in</button>
-          </div>
-        </form>
-      </div>
+        <div class="rememberMe_container">
+          <input type="checkbox" id="rememberMe"><label for="rememberMe" class="rememberMeLabel">Remember me</label>
+        </div>
+        <div class="loginButtons_container">
+          <button id="loginButton">Log in</button>
+          <button id="guestLoginButton">Guest Log in</button>
+        </div>
+      </form>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
