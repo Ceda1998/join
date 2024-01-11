@@ -4,3 +4,11 @@ body {
     font-family: 'Inter';
 }
 
+.blueLinks {
+    text-decoration: none;
+    color: #0d99ff;
+}
+
+.blueLinks:hover {
+    text-decoration: underline;
+}

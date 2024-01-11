@@ -173,7 +173,7 @@
   border-radius: 30px;
 }
 
-.signUpArrowLeft {
+#signUpArrowLeft {
   height: 64px;
   width: 64px;
   position: absolute;
@@ -181,7 +181,7 @@
   right: 480px;
 }
 
-.signUpArrowLeft:hover {
+#signUpArrowLeft:hover {
   cursor: pointer;
 }
 
