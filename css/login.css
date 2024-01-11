@@ -159,3 +159,53 @@
     height: 24px;
     width: 24px;
 }
+
+/* sign-Up  */
+
+#signUpWindow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background-color: white;
+  width: 598px;
+  height: 630px;
+  border-radius: 30px;
+}
+
+.signUpArrowLeft {
+  height: 64px;
+  width: 64px;
+  position: absolute;
+  top: 20px;
+  right: 480px;
+}
+
+.signUpArrowLeft:hover {
+  cursor: pointer;
+}
+
+#SignUpForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.SignUpPrivacy_container {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.privacyLabel {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+#privacyCheckbox {
+  height: 16px;
+  width: 16px;
+  border-radius: 3px;
+  border: 2px;
+}
