@@ -1,1 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../css/addTask.css">
+</head>
+<body>
+    <h1>Add Task</h1>
+    <div class="atContainer">
+        <div class="aTContainerLeft">
+            <label>Title*<br>
+                <input type="text">
+            </label>
+            <br>
+            <label>Description<br>
+                <textarea></textarea>
+            </label>
+            <br>
+            <label>Assigned to<br>
+                <input list="contacts">
+            </label>
+        </div>
 
+        <div>------------------------</div>
+
+        <div class="aTContainerRight">
+            <label>Due date*<br>
+                <input type="date">
+            </label>
+            <br>
+            <label>Prio<br>
+                <button>Urgent</button>
+                <button>Medium</button>
+                <button>Low</button>
+            </label>
+            <br>
+            <label>Category*<br>
+                <input list="category">
+            </label>
+            <br>
+            <label>Subtasks<br>
+                <input type="text">
+            </label>
+        </div>
+    </div>
+
+    <div class="atButtonsContainer">
+        <span>This field is required</span>
+        <div class="buttonsContainer">
+            <button>Clear</button>
+            <button>Create Task</button>
+        </div>
+    </div>
+
+</body>
+</html>
