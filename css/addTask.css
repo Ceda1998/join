@@ -2,10 +2,27 @@ body {
     font-family: Inter;
 }
 
+/* title */
+
+h1 {
+    font-weight: 700px;
+    font-size: 61px;
+    margin-left: 328px;
+    margin-top: 206px;
+}
+
 /* atContainer */
 
 .atContainer {
     display: flex;
+}
+
+.seperator {
+    background-color: #D9D9D9;
+    width: 1px;
+    height: 424px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 /* atButtonsContainer */
