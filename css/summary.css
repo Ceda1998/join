@@ -49,6 +49,8 @@
 }
 
 .smallToDo_containeer {
+    display: flex;
+    justify-content: center;
     background-color: white;
     border-radius: 30px;
     width: 264px;
@@ -56,6 +58,8 @@
 }
 
 .bigToDo_container {
+    display: flex;
+    justify-content: center;
     margin-top: 30px;
     background-color: white;
     border-radius: 30px;
@@ -71,6 +75,10 @@
 }
 
 .smallTask_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     background-color: white;
     border-radius: 30px;
     width: 168px;
@@ -86,5 +94,91 @@
 
 #greetUserHeadline {
     font-size: 47px;
-    font-weight: 500px;
+    font-weight: 500;
+}
+
+
+/* innerContent */
+
+.dflexRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 30px;
+    
+}
+
+.dflexColumn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.summaryToDoTaskHeadlines {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-size: 64px;
+    font-weight: 600;
+}
+
+.summarySmallSpan {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.urgenTaskContent_container {
+    display: flex;
+    align-items: center;
+    gap: 55px;
+}
+
+.urgentTask {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.summaryImg {
+    height: 60px;
+    width: 60px;
+}
+
+.dividerUrgentTask {
+    height: 102.02px;
+    width: 3px;
+    background-color: #D1D1D1;
+    border: 2px;
+}
+
+.deadlineToDateStyle {
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.summarySmallSpan {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+/* hovereffects */
+
+.smallToDo_containeer:hover {
+    cursor: pointer;
+    background-color: #2a3647;
+    color: white;
+}
+
+.bigToDo_container:hover {
+    cursor: pointer;
+    background-color: #2a3647;
+    color: white;
+}
+
+.smallTask_container:hover {
+    cursor: pointer;
+    background-color: #2a3647;
+    color: white;
 }
