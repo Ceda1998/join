@@ -7,10 +7,21 @@
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/mainMenu.css">
+    <link rel="stylesheet" href="css/summary.css">
     <script src="./js/includeHtml.js"></script>
     <script src="./script.js"></script>
 </head>
 <body onload="includeHTML()">
-    <div w3-include-html="./templates/menu_template.html"></div>
+    <div class="mainContent_container">
+    <div w3-include-html="./templates/sidbar_template.html"></div>
+    <div class="summaryContent_container">
+        <div w3-include-html="./templates/mainHeader_template.html"></div>
+            <div class="summaryHeader">
+                <h1 class="summaryHeadline">Join 360</h1>
+                <div class="dividerSummaryHeader"></div> 
+                <span class="summarySpan">Key Metrics at Glance</span>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

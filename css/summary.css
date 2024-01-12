@@ -1,0 +1,30 @@
+.mainContent_container {
+    display: flex;
+}
+
+
+.summaryHeader {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-left: 50px;
+    margin-top: 59px;
+}
+
+.summaryHeadline {
+    font-size: 61px;
+    font-weight: 700;
+    color: black;
+}
+
+.dividerSummaryHeader {
+    border: 3px;
+    width: 3px;
+    height: 59px;
+    background-color: #0d99ff;
+}
+
+.summarySpan {
+    font-size: 27px;
+    font-weight: 400;
+}
