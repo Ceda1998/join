@@ -2,6 +2,11 @@
     display: flex;
 }
 
+.summaryContent_container {
+    position: relative;
+}
+
+/* header */
 
 .summaryHeader {
     display: flex;
@@ -27,4 +32,59 @@
 .summarySpan {
     font-size: 27px;
     font-weight: 400;
+}
+
+/* toDoContent */
+
+.toDoContent_container {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.smallToDo_container {
+    display: flex;
+    gap: 30px;
+    margin-left: 38px;
+}
+
+.smallToDo_containeer {
+    background-color: white;
+    border-radius: 30px;
+    width: 264px;
+    height: 168px;
+}
+
+.bigToDo_container {
+    margin-top: 30px;
+    background-color: white;
+    border-radius: 30px;
+    width: 560px;
+    height: 168px;
+    margin-left: 38px;
+}
+
+.taskOverview_container {
+    display: flex;
+    gap: 30px;
+    margin-left: 38px;
+}
+
+.smallTask_container {
+    background-color: white;
+    border-radius: 30px;
+    width: 168px;
+    height: 168px;
+    margin-top: 30px;
+}
+
+.bigToDoAndGreetUser_container {
+    display: flex;
+    align-items: center;
+    gap: 59px;
+}
+
+#greetUserHeadline {
+    font-size: 47px;
+    font-weight: 500px;
 }
