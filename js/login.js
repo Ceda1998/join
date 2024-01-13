@@ -10,6 +10,10 @@ function backToLogin() {
     loginContainer.innerHTML = renderLogin();
 }
 
+function openWithGuestLogin() {
+  window.open("summary.html", "_self");
+}
+
 function renderSignUpWindow() {
     return `
     <div id="signUpWindow">
