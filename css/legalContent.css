@@ -1,0 +1,8 @@
+.mainLegalContent_container {
+    display: flex;
+}
+
+.legalContent_container {
+    display: flex;
+    flex-direction: column;
+}
