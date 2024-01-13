@@ -115,8 +115,10 @@
 .sidebarLinksBtm:hover { 
     color: #29abe2;
     font-weight: 700;
+    cursor: pointer;
 }
 
 .nav-tab:hover {
     background-color: #091931;
+    cursor: pointer;
  }
