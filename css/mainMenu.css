@@ -81,11 +81,14 @@
 .nav-tab {
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 100%;
     gap: 8px;
     color: white;
     font-size: 16px;
     font-weight: 400;
     padding: 8px, 56px, 8px, 56px;
+    height: 46px;
 }
 
 .sidebarIcons {
@@ -106,3 +109,14 @@
     font-size: 16px;
     font-weight: 400;
 }
+
+/* hover-Effects */
+
+.sidebarLinksBtm:hover { 
+    color: #29abe2;
+    font-weight: 700;
+}
+
+.nav-tab:hover {
+    background-color: #091931;
+ }
