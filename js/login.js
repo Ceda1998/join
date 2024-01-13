@@ -11,7 +11,7 @@ function backToLogin() {
 }
 
 function openWithGuestLogin() {
-  window.open("summary.html", "_self");
+  window.location.href = 'summary.html';
 }
 
 function renderSignUpWindow() {

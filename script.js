@@ -1,0 +1,1 @@
+const GUEST_USER = "GU";
