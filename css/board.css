@@ -27,6 +27,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 32px;
 }
 
 .col-head span {
@@ -34,10 +35,25 @@
     font-size: 20px;
     line-height: 24px;
     font-weight: 700;
+    white-space: nowrap;
 }
 
 .col-head img:hover {
     cursor: pointer;
+}
+
+.todo-empty {
+    background-color: #e7e7e7;
+    color: #a8a8a8;
+    border: 1px dashed #a8a8a8;
+    height: 65px;
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 /* Board Column Flex Layout */
