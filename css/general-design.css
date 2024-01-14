@@ -1,0 +1,47 @@
+.button-dark {
+    height: 48px;
+    padding: 0 16px;
+    border-radius: 8px;
+    background: #2a3647;
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.button-dark:hover {
+    cursor: pointer;
+    background-color: #0d99ff;
+    box-shadow: 8px 8px 2px 1px #ededed;
+}
+
+.button-light {
+    height: 48px;
+    border-radius: 8px;
+    border: 1px solid #2A3647;
+    background-color: white;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.button-light:hover {
+    cursor: pointer;
+    color: #0d99ff;
+    border: 1px solid #0d99ff;
+    box-shadow: 8px 8px 2px 1px #ededed;
+}
+
+.inputField {
+    color: #D1D1D1;  ;
+    height: 48px;
+    border-radius: 10px;
+    border: 1px solid #ededed;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.inputField::placeholder {
+    color: #D1D1D1;
+    font-size: 20px;
+    padding-left: 16px;
+}

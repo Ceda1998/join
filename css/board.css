@@ -1,0 +1,16 @@
+.board-inner-head {
+    background-color: #F6F7F8;
+    margin: 96px 64px 0 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.board-inner-head span {
+    font-size: 61px;
+    font-weight: 700;
+}
+
+.board-inner-head input {
+    margin-right: 32px;
+}
