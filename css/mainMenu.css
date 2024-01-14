@@ -22,6 +22,7 @@
 .board-content {
     display: flex;
     flex-direction: column;
+    background-color: #F6F7F8;
 }
 
 .content-header {
@@ -81,14 +82,15 @@
 .nav-tab {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     width: 100%;
-    gap: 8px;
+    gap: 24px;
     color: white;
     font-size: 16px;
     font-weight: 400;
-    padding: 8px, 56px, 8px, 56px;
+    padding: 0 0 0 15%;
     height: 46px;
+    box-sizing: border-box;
 }
 
 .sidebarIcons {
@@ -100,7 +102,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 24px;
+}
+
+.nav-left-btm a {
+    color: #a8a8a8;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
 }
 
 .sidebarLinksBtm {

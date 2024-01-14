@@ -13,4 +13,56 @@
 
 .board-inner-head input {
     margin-right: 32px;
+    background-color: white;
+    background-image: url('../assets/img/input-divider-grey.png'), url('../assets/img/search-dark.png');
+    background-position:
+        right 45px center,
+        right 5px center;
+    background-repeat:
+        no-repeat,
+        no-repeat;
+}
+
+.col-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.col-head span {
+    color: #42526E;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 700;
+}
+
+.col-head img:hover {
+    cursor: pointer;
+}
+
+/* Board Column Flex Layout */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 40px;
+}
+
+.column {
+    flex: 25%;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+/* On screens that are 992px wide or less, go from four columns to two columns */
+@media screen and (max-width: 992px) {
+    .column {
+        flex: 50%;
+    }
+}
+
+/* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .row {
+        flex-direction: column;
+    }
 }
