@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/fonts.css">
+    <link rel="stylesheet" href="./css/mainMenu.css">
+    <link rel="stylesheet" href="./css/general-design.css">
+
+    <!-- This is used for the main App Container when logged in -->
+    <link rel="stylesheet" href="./css/mainMenu.css" />
+
+    <!-- This CSS ist used for the addTask-Part -->
+    <link rel="stylesheet" href="./css/addTask.css">
+
+    <script src="./js/includeHtml.js"></script>
+    <script src="./js/script.js"></script>
+</head>
+
+<body>
+    <div class="board">
+        <div class="nav-left">
+            <div class="nav-left-top">
+                <div class="nlt-img">
+                    <img src="./assets/img/LogoSmallWhite.png">
+                </div>
+                <div class="nlt-links">
+                    <div class="nav-tab">
+                        <img src="./assets/img/summaryIcon.png">
+                        Summary
+                    </div>
+                    <div class="nav-tab">
+                        <img src="./assets/img/addTaskIcon.png">
+                        Add Task
+                    </div>
+                    <div class="nav-tab">
+                        <img src="./assets/img/boardIcon.png">
+                        Board
+                    </div>
+                    <div class="nav-tab">
+                        <img src="./assets/img/contactsIcon.png">
+                        Contacts
+                    </div>
+                </div>
+            </div>
+            <div class="nav-left-btm">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Legal Notice</a>
+            </div>
+        </div>
+        <div class="board-content">
+            <div class="content-header">
+                <div class="header-left">
+                    <span class="menu-header-text">Kanban Project Management Tool</span>
+                </div>
+                <div class="header-right">
+                    <img src="./assets/img/question.png" class="header-question-icon">
+                    <div class="header-profile-icon">SM</div>
+                </div>
+            </div>
+            <div class="content-main">
+
+                <h1>Add Task</h1>
+                <div class="aTContainer">
+                    <div class="aTContainerLeft">
+                        <div class="aTTitle">
+                            <label>Title<span>*</span><br>
+                                <input type="text" placeholder="Enter a title">
+                            </label>
+                        </div>
+                        <div class="aTDescription">
+                        <br>
+                        <label>Description<br>
+                            <textarea></textarea>
+                        </label>
+                        </div>
+                        <br>
+                        <label>Assigned to<br>
+                            <input list="contacts">
+                        </label>
+                    </div>
+
+                    <div class="seperator"></div>
+
+                    <div class="aTContainerRight">
+                        <label>Due date*<br>
+                            <input type="date">
+                        </label>
+                        <br>
+                        <label>Prio<br>
+                            <button>Urgent</button>
+                            <button>Medium</button>
+                            <button>Low</button>
+                        </label>
+                        <br>
+                        <label>Category*<br>
+                            <input list="category">
+                        </label>
+                        <br>
+                        <label>Subtasks<br>
+                            <input type="text">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="atButtonsContainer">
+                    <span>This field is required</span>
+                    <div class="buttonsContainer">
+                        <button>Clear</button>
+                        <button>Create Task</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

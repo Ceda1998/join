@@ -1,21 +1,76 @@
-body {
-    font-family: Inter;
-}
-
 /* title */
 
 h1 {
+    margin-top: 110px;
+    margin-left: 96px;
+    gap: 1px;
     font-weight: 700px;
     font-size: 61px;
-    margin-left: 328px;
-    margin-top: 206px;
+    line-height: 73.2px;
+    color: #000000;
 }
 
 /* atContainer */
 
-.atContainer {
+.aTContainer {
+    top: 327px;
+    margin-left: 96px;
     display: flex;
+    justify-content: space-between;
 }
+
+/* atContainerLeft */
+
+.aTContainerLeft {
+    width: 440px;
+    height: 376px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.aTContainer label {
+    width: 440px;
+    height: 24px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #2A3647;
+}
+
+.aTContainer span {
+    color: #FF8190;
+}
+
+.aTContainer input{
+    width: 440px;
+    height: 48px;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    background-color: #FFFFFF;
+    color: #D1D1D1;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    margin-top: 8px;
+}
+
+::placeholder {
+    color:#D1D1D1;
+}
+
+.aTTitle {
+    width: 440px;
+    height: 96px;
+    padding-bottom: 12px;
+}
+
+.aTDescription {
+    width: 440px;
+    height: 168px;
+}
+
+/* separator */
 
 .seperator {
     background-color: #D9D9D9;
@@ -23,6 +78,12 @@ h1 {
     height: 424px;
     margin-left: 20px;
     margin-right: 20px;
+}
+
+/* atContainerRight */
+
+.aTContainerRight {
+    width: 440px;
 }
 
 /* atButtonsContainer */
