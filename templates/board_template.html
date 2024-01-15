@@ -3,7 +3,7 @@
     <div>
         <input class="inputField" placeholder="Find task">
         <button class="button-dark">Add task<img class="button-img pl-24" src="./assets/img/plus-white2.png"></button>
-    </div>    
+    </div>
 </div>
 <div class="row">
     <div class="column">
@@ -18,7 +18,39 @@
             <span>In Progress</span>
             <img src="./assets/img/plusbutton.png">
         </div>
-        <div id="" class="todo-empty">No tasks To do</div>
+        <div id="" class="todo-empty d-none">No tasks To do</div>
+        <div id="" class="todo">
+            <span class="category">User Story</span>
+            <span class="todo-header">Kochwelt Page & recipe Reccomender</span>
+            <p class="todo-description">As there doesnt exist a well css solution to add multiline ellipse text
+                truncation
+                we need to shorten text on js side and render it directly with dots.
+            </p>
+            <div class="subtasks">
+                <div class="subtasks-bar-outer">
+                    <div class="subtasks-bar-inner"></div>
+                </div>
+                <span class="subtasks-text">10/20 Subtasks</span>
+            </div>
+            <div class="todo-footer">
+                <div class="todo-members">
+                    <div class="todo-member">AM</div>
+                    <div class="todo-member">EM</div>
+                    <div class="todo-member">MB</div>
+                    <div class="todo-member">AM</div>
+                    <!-- <div class="todo-member">EM</div>
+                    <div class="todo-member">MB</div>
+                    <div class="todo-member">MB</div>
+                    <div class="todo-member">AM</div>
+                    <div class="todo-member">EM</div>
+                    <div class="todo-member">MB</div> -->
+                    <!-- Actually buggy because todo card expands when there are more members -->
+                </div>
+                <div class="priority">
+                    <img src="./assets/img/prio-media.png">
+                </div>
+            </div>
+        </div>
     </div>
     <div class="column">
         <div class="col-head">

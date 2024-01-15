@@ -1,3 +1,7 @@
+.d-none {
+    display: none !important;
+}
+
 .board-inner-head {
     background-color: #F6F7F8;
     margin: 96px 64px 0 64px;
@@ -54,6 +58,99 @@
     justify-content: center;
     font-size: 16px;
     font-weight: 400;
+}
+
+.todo {
+    background: #fff;
+    border-radius: 24px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.category {
+    align-self: flex-start;
+    background-color: #0038ff;
+    padding: 4px 16px;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.todo-header {
+    font-weight: 700;
+    color: #2a3647;
+}
+
+.todo-description {
+    height: 40px;
+    overflow: hidden;
+}
+
+.subtasks {
+    display: flex;
+    align-items: center;
+}
+
+.subtasks-bar-outer {
+    width: 100%;
+    margin-right: 16px;
+    border-radius: 8px;
+    height: 8px;
+    background-color: #f4f4f4;
+}
+
+.subtasks-bar-inner {
+    width: 50%;
+    background-color: #4589ff;
+    height: 8px;
+    border-radius: 8px;
+}
+
+.subtasks-text {
+    white-space: nowrap;
+    font-size: 12px;
+}
+
+.todo-members {
+    display: flex;
+}
+
+.todo-member:nth-child(n + 2) {
+    margin-left: -10px;
+}
+
+.todo-member:nth-child(1n) {
+    background-color: #FF7A00;
+}
+
+.todo-member:nth-child(2n) {
+    background-color: #1FD7C1;
+}
+
+.todo-member:nth-child(3n) {
+    background-color: #462F8A;
+}
+
+.todo-member {
+    padding: 8px;
+    border-radius: 50%;
+    color: #fff;
+    border: 1px solid #fff;
+    background-color: #462f8a;
+}
+
+.todo-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.priority img{
+    width: 18px;
 }
 
 /* Board Column Flex Layout */
