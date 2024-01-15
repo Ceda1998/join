@@ -52,7 +52,7 @@
 }
 
 .inputField:hover {
-    cursor: pointer;
+    cursor: text;
 }
 
 .todoContainer {

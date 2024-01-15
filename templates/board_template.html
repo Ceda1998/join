@@ -6,20 +6,20 @@
     </div>
 </div>
 <div class="row">
-    <div class="column">
+    <div id="toDo" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
         <div class="col-head">
             <span>To do</span>
             <img src="./assets/img/plusbutton.png">
         </div>
         <div id="emptyTodo" class="todo-empty">No tasks To do</div>
     </div>
-    <div class="column">
+    <div id="inProgress" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
         <div class="col-head">
             <span>In Progress</span>
             <img src="./assets/img/plusbutton.png">
         </div>
         <div id="" class="todo-empty d-none">No tasks To do</div>
-        <div id="" class="todo">
+        <div id="someid" class="todo" draggable="true" ondragstart="drag(event)">
             <span class="category">User Story</span>
             <span class="todo-header">Kochwelt Page & recipe Reccomender</span>
             <p class="todo-description">As there doesnt exist a well css solution to add multiline ellipse text
@@ -52,14 +52,14 @@
             </div>
         </div>
     </div>
-    <div class="column">
+    <div id="awaitFeedback" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
         <div class="col-head">
             <span>Await Feedback</span>
             <img src="./assets/img/plusbutton.png">
         </div>
         <div id="" class="todo-empty">No tasks To do</div>
     </div>
-    <div class="column">
+    <div id="done" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
         <div class="col-head">
             <span>Done</span>
         </div>

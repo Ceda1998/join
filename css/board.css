@@ -69,6 +69,10 @@
     gap: 24px;
 }
 
+.todo:hover {
+    cursor: grab;
+}
+
 .category {
     align-self: flex-start;
     background-color: #0038ff;
