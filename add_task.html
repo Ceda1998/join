@@ -64,28 +64,30 @@
             <div class="content-main">
 
                 <h1>Add Task</h1>
-                <div class="aTContainer">
-                    <div class="aTContainerLeft">
-                        <div class="aTTitle">
+                <div class="add-task-container">
+                    <div class="container-left">
+                        <div class="title">
                             <label>Title<span>*</span><br>
-                                <input type="text" placeholder="Enter a title">
+                                <input class="inputField" type="text" placeholder="Enter a title">
                             </label>
                         </div>
-                        <div class="aTDescription">
                         <br>
-                        <label>Description<br>
-                            <textarea></textarea>
-                        </label>
+                        <div class="description">
+                            <label>Description<br>
+                                <textarea placeholder="Enter a Description"></textarea>
+                            </label>
                         </div>
                         <br>
-                        <label>Assigned to<br>
-                            <input list="contacts">
-                        </label>
+                        <div class="assigned-to">
+                            <label>Assigned to<br>
+                                <input class="inputField" placeholder="Select contacts to assign" list="contacts">
+                            </label>
+                        </div>
                     </div>
 
                     <div class="seperator"></div>
 
-                    <div class="aTContainerRight">
+                    <div class="container-right">
                         <label>Due date*<br>
                             <input type="date">
                         </label>
@@ -106,9 +108,9 @@
                     </div>
                 </div>
 
-                <div class="atButtonsContainer">
+                <div class="bottom-container">
                     <span>This field is required</span>
-                    <div class="buttonsContainer">
+                    <div class="buttons-container">
                         <button>Clear</button>
                         <button>Create Task</button>
                     </div>
