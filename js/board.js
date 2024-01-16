@@ -33,17 +33,32 @@ function renderToDo() {
 
 function renderInProgress() {
     let inprogress_tasks = filterTasksByProgress(tasks, 'inprogress');
-    let container = document.getElementById('inProgressTasks');
+    let containerid = 'inProgressTasks';
+    if (inprogress_tasks) {
+        renderTasks(inprogress_tasks, containerid);
+    } else {
+        renderEmptyTodo();
+    }
 }
 
 function renderAwaitFeedback() {
     let awaitfeedback_tasks = filterTasksByProgress(tasks, 'awaitfeedback');
-    let container = document.getElementById('awaitFeedbackTasks');
+    let containerid = 'awaitFeedbackTasks';
+    if (awaitfeedback_tasks) {
+        renderTasks(awaitfeedback_tasks, containerid);
+    } else {
+        renderEmptyTodo();
+    }
 }
 
 function renderDone() {
     let done_tasks = filterTasksByProgress(tasks, 'done');
-    let container = document.getElementById('doneTasks');
+    let containerid = 'doneTasks';
+    if (done_tasks) {
+        renderTasks(done_tasks, containerid);
+    } else {
+        renderEmptyTodo();
+    }
 }
 
 function filterTasksByProgress(obj, query) {
@@ -60,14 +75,12 @@ function renderTasks(tasks, id) {
     let el = document.getElementById(id);
     el.innerHTML = '';
     tasks.forEach((task) => {
-
-        console.log(task);
         
         const coworkersHTML = task['coworkerIds'].map(coworker => `<div class="todo-coworker">${coworker}</div>`).join('');
         const subtasksQty = task['subtaskIds'].length;
 
         el.innerHTML += `
-        <div id="someid" class="todo" draggable="true" ondragstart="drag(event)">
+        <div id="${task['id']}" class="todo" draggable="true" ondragstart="drag(event)">
             <span class="category">${task['category']}</span>
             <span class="todo-header">${task['title']}</span>
             <p class="todo-description">${task['description']}</p>

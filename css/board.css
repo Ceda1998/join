@@ -2,9 +2,23 @@
     display: none !important;
 }
 
+.sticky {
+    position: fixed;
+    top: 0;
+    width: calc(100%-232px);
+    margin-left: 232px;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .board-container {
+    margin-top: 96px;
+  }
+
 .board-inner-head {
     background-color: #F6F7F8;
-    margin: 96px 64px 0 64px;
+    margin: 0 64px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -81,6 +95,13 @@
     border-radius: 8px;
     font-size: 16px;
     font-weight: 400;
+}
+
+.task-holder {
+    min-height: 300px;
+    gap: 16px;
+    display: flex;
+    flex-direction: column;
 }
 
 .todo-header {

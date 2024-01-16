@@ -1,4 +1,4 @@
-<div class="board-inner-head">
+<div id="board-header" class="board-inner-head">
     <span>Board</span>
     <div>
         <input class="inputField" placeholder="Find task">
@@ -9,20 +9,20 @@
     </div>
 </div>
 <div class="row">
-    <div id="toDoContainer" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div id="toDoContainer" class="column"">
         <div class="col-head">
             <span>To do</span>
             <img src="./assets/img/plusbutton.png">
         </div>
-        <div id="todoTasks"></div>
+        <div class="task-holder" id="todoTasks" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
     </div>
-    <div id="inProgressContainer" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div id="inProgressContainer" class="column">
         <div class="col-head">
             <span>In Progress</span>
             <img src="./assets/img/plusbutton.png">
         </div>
-        <div id="inPrograssTasks"></div>
-        <div id="someid" class="todo" draggable="true" ondragstart="drag(event)">
+        <div class="task-holder" id="inProgressTasks" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <!-- <div id="someid" class="todo" draggable="true" ondragstart="drag(event)">
             <span class="category">User Story</span>
             <span class="todo-header">Kochwelt Page & recipe Reccomender</span>
             <p class="todo-description">As there doesnt exist a well css solution to add multiline ellipse text
@@ -46,19 +46,19 @@
                     <img src="./assets/img/prio-media.png">
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
-    <div id="awaitFeedbackContainer" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div id="awaitFeedbackContainer" class="column">
         <div class="col-head">
             <span>Await Feedback</span>
             <img src="./assets/img/plusbutton.png">
         </div>
-        <div id="awaitFeedbackTasks"></div>
+        <div class="task-holder" id="awaitFeedbackTasks" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
     </div>
-    <div id="doneContainer" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div id="doneContainer" class="column">
         <div class="col-head">
             <span>Done</span>
         </div>
-        <div id="doneTasks"></div>
+        <div class="task-holder" id="doneTasks" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
     </div>
 </div>
