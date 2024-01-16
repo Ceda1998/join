@@ -118,27 +118,27 @@
     font-size: 12px;
 }
 
-.todo-members {
+.todo-coworkers {
     display: flex;
 }
 
-.todo-member:nth-child(n + 2) {
+.todo-coworker:nth-child(n + 2) {
     margin-left: -10px;
 }
 
-.todo-member:nth-child(1n) {
+.todo-coworker:nth-child(1n) {
     background-color: #FF7A00;
 }
 
-.todo-member:nth-child(2n) {
+.todo-coworker:nth-child(2n) {
     background-color: #1FD7C1;
 }
 
-.todo-member:nth-child(3n) {
+.todo-coworker:nth-child(3n) {
     background-color: #462F8A;
 }
 
-.todo-member {
+.todo-coworker {
     padding: 8px;
     border-radius: 50%;
     color: #fff;

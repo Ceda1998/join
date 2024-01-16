@@ -2,23 +2,26 @@
     <span>Board</span>
     <div>
         <input class="inputField" placeholder="Find task">
-        <button class="button-dark">Add task<img class="button-img pl-24" src="./assets/img/plus-white2.png"></button>
+        <button class="button-dark" onclick="location.href='add_task.html';">
+            Add task
+            <img class="button-img pl-24" src="./assets/img/plus-white2.png">
+        </button>
     </div>
 </div>
 <div class="row">
-    <div id="toDo" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div id="toDoContainer" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
         <div class="col-head">
             <span>To do</span>
             <img src="./assets/img/plusbutton.png">
         </div>
-        <div id="emptyTodo" class="todo-empty">No tasks To do</div>
+        <div id="todoTasks"></div>
     </div>
-    <div id="inProgress" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div id="inProgressContainer" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
         <div class="col-head">
             <span>In Progress</span>
             <img src="./assets/img/plusbutton.png">
         </div>
-        <div id="" class="todo-empty d-none">No tasks To do</div>
+        <div id="inPrograssTasks"></div>
         <div id="someid" class="todo" draggable="true" ondragstart="drag(event)">
             <span class="category">User Story</span>
             <span class="todo-header">Kochwelt Page & recipe Reccomender</span>
@@ -33,18 +36,11 @@
                 <span class="subtasks-text">10/20 Subtasks</span>
             </div>
             <div class="todo-footer">
-                <div class="todo-members">
-                    <div class="todo-member">AM</div>
-                    <div class="todo-member">EM</div>
-                    <div class="todo-member">MB</div>
-                    <div class="todo-member">AM</div>
-                    <!-- <div class="todo-member">EM</div>
-                    <div class="todo-member">MB</div>
-                    <div class="todo-member">MB</div>
-                    <div class="todo-member">AM</div>
-                    <div class="todo-member">EM</div>
-                    <div class="todo-member">MB</div> -->
-                    <!-- Actually buggy because todo card expands when there are more members -->
+                <div class="todo-coworkers">
+                    <div class="todo-coworker">AM</div>
+                    <div class="todo-coworker">EM</div>
+                    <div class="todo-coworker">MB</div>
+                    <div class="todo-coworker">AM</div>
                 </div>
                 <div class="priority">
                     <img src="./assets/img/prio-media.png">
@@ -52,17 +48,17 @@
             </div>
         </div>
     </div>
-    <div id="awaitFeedback" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div id="awaitFeedbackContainer" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
         <div class="col-head">
             <span>Await Feedback</span>
             <img src="./assets/img/plusbutton.png">
         </div>
-        <div id="" class="todo-empty">No tasks To do</div>
+        <div id="awaitFeedbackTasks"></div>
     </div>
-    <div id="done" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div id="doneContainer" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
         <div class="col-head">
             <span>Done</span>
         </div>
-        <div id="" class="todo-empty">No tasks To do</div>
+        <div id="doneTasks"></div>
     </div>
 </div>
