@@ -1,3 +1,9 @@
+/* general CSS */
+
+.d-none {
+    display: none;
+}
+
 /* title */
 
 h1 {
@@ -10,16 +16,16 @@ h1 {
     color: #000000;
 }
 
-/* atContainer */
+/* Add-Task-Container */
 
 .add-task-container {
-    top: 327px;
+    margin-top: 48px;
     margin-left: 96px;
+    height: 424px;
     display: flex;
-    justify-content: space-between;
 }
 
-/* atContainerLeft */
+/* Container-Left */
 
 .container-left {
     width: 440px;
@@ -94,26 +100,88 @@ textarea::placeholder {
     color: #000000;
 }
 
-
+.assigned-to datalist {
+    width: 100%;
+}
 
 /* separator */
 
 .seperator {
-    background-color: #D9D9D9;
+    background-color: #D1D1D1;
     width: 1px;
     height: 424px;
     margin-left: 20px;
     margin-right: 20px;
 }
 
-/* atContainerRight */
+/* Container-Right */
 
 .container-right {
     width: 440px;
+    height: 416px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-/* atButtonsContainer */
+/* Buttons-Container */
 
 .bottom-container {
     display: flex;
+    justify-content: space-between;
+    margin-left: 96px;
+    margin-top: 138px;
+    width: 921px;
+}
+
+.text-required {
+    width: 170px;
+    height: 27px;
+    margin-top: 37px;
+    font-size: 16px;
+    line-height: 19.2px;
+}
+
+.star-text-required {
+    color: #FF8190;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.buttons-container {
+    height: 56px;
+    width: 309px;
+    gap: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-clear {
+    height: 100%;
+    width: 110px;
+    border-radius: 10px;
+    border: 1px solid #2A3647;
+    padding: 16px;
+    box-sizing: border-box;
+    gap: 4px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    background-color: #F6F7F8;
+    color:#2A3647;
+}
+
+.button-create {
+    height: 100%;
+    width: 183px;
+    border-radius: 10px;
+    border: unset;
+    background-color: #2A3647;
+    color: #FFFFFF;
+    padding: 16px;
+    box-sizing: border-box;
+    gap: 4px;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 25.2px;
 }

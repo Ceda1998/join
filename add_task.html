@@ -81,6 +81,10 @@
                         <div class="assigned-to">
                             <label>Assigned to<br>
                                 <input class="inputField" placeholder="Select contacts to assign" list="contacts">
+                                    <div id="contacts" class="d-none">
+                                        <option>Anna</option>
+                                        <option>Peter</option>
+                                    </div>
                             </label>
                         </div>
                     </div>
@@ -88,31 +92,40 @@
                     <div class="seperator"></div>
 
                     <div class="container-right">
-                        <label>Due date*<br>
-                            <input type="date">
-                        </label>
+                        <div class="due-date">
+                            <label>Due date<span>*</span><br>
+                                <input type="date" class="inputField">
+                            </label>
+                        </div>
                         <br>
-                        <label>Prio<br>
-                            <button>Urgent</button>
-                            <button>Medium</button>
-                            <button>Low</button>
-                        </label>
+                        <div class="prio">
+                            <label>Prio<br>
+                                <button class="inputField">Urgent</button>
+                                <button class="inputField">Medium</button>
+                                <button clas="inputField">Low</button>
+                            </label>
+                        </div>
                         <br>
-                        <label>Category*<br>
-                            <input list="category">
-                        </label>
+                        <div class="category">
+                            <label>Category<span>*</span><br>
+                                <input list="category" class="inputField">
+                            </label>
+                        </div>
                         <br>
-                        <label>Subtasks<br>
-                            <input type="text">
-                        </label>
+                        <div class="subtasks">
+                            <label>Subtasks<br>
+                                <input type="text" class="inputField">
+                            </label>
+                        </div>
                     </div>
+
                 </div>
 
                 <div class="bottom-container">
-                    <span>This field is required</span>
+                    <span class="text-required"><span class="star-text-required">*</span>This field is required</span>
                     <div class="buttons-container">
-                        <button>Clear</button>
-                        <button>Create Task</button>
+                        <button class="button-clear">Clear</button>
+                        <button class="button-create">Create Task</button>
                     </div>
                 </div>
 
