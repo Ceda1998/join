@@ -1,5 +1,6 @@
 /* Global Data */
 let tasks;
+let toDo = 0;
 
 
 window.onload = async () => {
@@ -26,6 +27,7 @@ function renderToDo() {
     let containerid = 'todoTasks';
     if (todo_tasks) {
         renderTasks(todo_tasks, containerid);
+        console.log(toDo);
     } else {
         renderEmptyTodo();
     }

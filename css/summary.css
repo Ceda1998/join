@@ -2,7 +2,7 @@
     display: flex;
 }
 
-.summaryContent_container {
+#summaryContent_container {
     position: relative;
     width: 100%;
     margin-left: 232px;
