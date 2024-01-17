@@ -1,9 +1,17 @@
-.mainContent_container {
+.mainContentSummary_container {
     display: flex;
 }
 
 .summaryContent_container {
     position: relative;
+    width: 100%;
+    margin-left: 232px;
+}
+
+/* fix header Pos */
+
+.content-header {
+    margin-left: 0 !important;
 }
 
 /* header */
