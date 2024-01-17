@@ -5,4 +5,18 @@
 .legalContent_container {
     display: flex;
     flex-direction: column;
+    margin-left: 232px;
+}
+
+.content-header{
+    margin: 0 !important;
+}
+
+h1 {
+    margin: 0;
+}
+
+.legalNoticeHeader {
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
