@@ -1,12 +1,19 @@
 const currentTime = new Date();
 let currentHour = currentTime.getHours();
-let currentToDos = {};
+
+async function getTaskData() {
+    let data = fetch('./tasks.json');
+    return resp = (await data).json();
+   
+}
+
 
  async function initSummary() {
     await includeHTML();
     let renderContainer = document.getElementById('summaryContent_container');
     renderContainer.innerHTML += renderSummaryPageHtml();
     changeGreetingMessage();
+    changeCurrentTodos();
 }
 
 function changeGreetingMessage() {
@@ -19,6 +26,14 @@ function changeGreetingMessage() {
     changeMessage.innerHTML = `Good Evening`
    }
 
+}
+
+async function changeCurrentTodos() {
+    const tasks = await getTaskData();
+    const todoCount = tasks.filter(task => task.progress === 'todo').length;
+    let currentToDo = document.getElementById('currentToDoNumber');
+    currentToDo.innerHTML = '';
+    currentToDo.innerHTML = todoCount;
 }
 
 
