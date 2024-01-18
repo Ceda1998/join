@@ -1,0 +1,13 @@
+.contacts-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.ctc-left {
+    width: 456px;
+}
+
+.ctc-right {
+    flex: 2;
+}

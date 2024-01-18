@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Board</title>
+    <title>Contacts</title>
 
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/fonts.css" />
@@ -14,23 +14,23 @@
     <link rel="stylesheet" href="./css/mainMenu.css" />
 
     <!-- This CSS is used for the Board -->
-    <link rel="stylesheet" href="./css/board.css" />
+    <link rel="stylesheet" href="./css/contacts.css" />
 
     <script src="./js/includeHtml.js"></script>
-    <script src="./js/board.js"></script>
-    <script src="./js/draganddrop.js"></script>
+    <script src="./js/contacts.js"></script>
 </head>
 
-<body>
+<body onload="init()">
+
     <!-- Include Header Template -->
     <div class="" w3-include-html="./templates/sidebar_template.html"></div>
+    
     <div class="board-content">
         <!-- Include Main Header Template -->
         <div w3-include-html="./templates/mainHeader_template.html"></div>
-        <div class="content-main">
-            <!-- Include Board Template -->
-            <div class="board-container" w3-include-html="./templates/board_template.html"></div>
-        </div>
+
+        <!-- Include Contacts Template -->
+        <div class="contacts-container content-main" w3-include-html="./templates/contacts_template.html"></div>
     </div>
 </body>
 
