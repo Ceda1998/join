@@ -1,10 +1,8 @@
-let contacts = {};
+let contacts;
 
 async function init() {
     await includeHTML();
-    console.log('included');
-    fetchContacts();
-    console.log(contacts);
+    await fetchContacts();
 }
 
 async function fetchContacts() {
