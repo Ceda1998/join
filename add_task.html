@@ -18,6 +18,7 @@
 
     <script src="./js/includeHtml.js"></script>
     <script src="./js/script.js"></script>
+    <script src="./js/addTask.js"></script>
 </head>
 
 <body>
@@ -65,6 +66,7 @@
 
                 <h1>Add Task</h1>
                 <div class="add-task-container">
+
                     <div class="container-left">
                         <div class="title">
                             <label>Title<span>*</span><br>
@@ -72,21 +74,26 @@
                             </label>
                         </div>
                         <br>
+
                         <div class="description">
                             <label>Description<br>
-                                <textarea placeholder="Enter a Description"></textarea>
+                                <div class="desc-input-container">
+                                    <textarea placeholder="Enter a Description"></textarea>
+                                    <img src="./assets/img/recurso.png" class="recurso">
+                                </div>
                             </label>
                         </div>
                         <br>
+
                         <div class="assigned-to">
                             <label>Assigned to<br>
-                                <input class="inputField" placeholder="Select contacts to assign" list="contacts">
-                                    <div id="contacts" class="d-none">
-                                        <option>Anna</option>
-                                        <option>Peter</option>
-                                    </div>
+                                <div class="a-t-input-container">
+                                    <input class="inputField" placeholder="Select contacts to assign" list="contacts">
+                                    <img src="./assets/img/arrow-drop-down.png" class="arrow-drop-down">
+                                </div>
                             </label>
                         </div>
+
                     </div>
 
                     <div class="seperator"></div>
@@ -94,29 +101,44 @@
                     <div class="container-right">
                         <div class="due-date">
                             <label>Due date<span>*</span><br>
-                                <input type="date" class="inputField">
+                                <div class="d-d-input-container">
+                                    <input type="date" class="inputField"> 
+                                    <img src="./assets/img/event.png" class="event">
+                                </div>
                             </label>
                         </div>
                         <br>
+
                         <div class="prio">
                             <label>Prio<br>
-                                <button class="inputField">Urgent</button>
-                                <button class="inputField">Medium</button>
-                                <button clas="inputField">Low</button>
+                                <div class="button-prio-container">
+                                    <div class="button-prio" id="urgent" onclick="addPrio()">Urgent<img src="./assets/img/img-urgent.png"><img class="d-none" src="./assets/img/img-urgent-white.png"></div>
+                                    <div class="button-prio">Medium<img src="./assets/img/img-medium.png"><img class="d-none" src="./assets/img/img-medium-white.png"></div>
+                                    <div class="button-prio">Low<img src="./assets/img/img-low.png"><img class="d-none" src="./assets/img/img-low-white.png"></div>
+                                </div>
                             </label>
                         </div>
                         <br>
+
                         <div class="category">
                             <label>Category<span>*</span><br>
-                                <input list="category" class="inputField">
+                                <div class="category-container">
+                                <input list="category" placeholder="Select task category" class="inputField">
+                                <img src="./assets/img/arrow-drop-down.png" class="arrow-drop-down">
+                                </div>
                             </label>
                         </div>
                         <br>
+
                         <div class="subtasks">
                             <label>Subtasks<br>
-                                <input type="text" class="inputField">
+                                <div class="subtasks-container">
+                                <input type="text" placeholder="Add new Subtask" class="inputField">
+                                <img src="./assets/img/plus-black.png" class="plus-img">
+                                </div>
                             </label>
                         </div>
+
                     </div>
 
                 </div>
@@ -124,8 +146,8 @@
                 <div class="bottom-container">
                     <span class="text-required"><span class="star-text-required">*</span>This field is required</span>
                     <div class="buttons-container">
-                        <button class="button-clear">Clear</button>
-                        <button class="button-create">Create Task</button>
+                        <button class="button-clear button-center">Clear<img src="./assets/img/close-img.png"></button>
+                        <button class="button-create button-center">Create Task<img src="./assets/img/check.png"></button>
                     </div>
                 </div>
 
