@@ -17,6 +17,16 @@ h1 {
 }
 
 .legalNoticeHeader {
-    margin-top: 30px;
-    margin-bottom: 30px;
+   margin: 30px;
+    display: flex;
+    justify-content: space-between;
 }
+
+.backwardsArrow {
+    height: 37px;
+    width: 37px;
+}
+.backwardsArrow:hover {
+    cursor: pointer;
+}
+
