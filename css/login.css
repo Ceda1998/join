@@ -244,11 +244,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.bigLoginLogo {
   animation-name: logo-animation;
-  animation-fill-mode: backwards;
+  animation-fill-mode: forwards;
   animation-timing-function: ease-in-out;
   animation-duration: 1s;
   animation-delay: 0.75s;
@@ -269,12 +266,15 @@
 
 @keyframes logo-animation {
   from {
+    left: 0;
+    top:0;
+  }
+  to {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-  }
-  to {
-    top: 0;
-    left: 0;
+    width: 100.03px;
+    height: 121.97px;
+    display: none;
   }
 }
