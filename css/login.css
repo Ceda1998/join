@@ -232,7 +232,7 @@
   background-color: white;
   z-index: 999;
   animation-name: logoContainerDisappear;
-  animation-fill-mode: backwards;
+  animation-fill-mode: forwards;
   animation-timing-function: ease-in-out;
   animation-duration: 0.6s;
   animation-delay: 1s;
@@ -255,12 +255,14 @@
 /* keyframes */
 
 @keyframes logoContainerDisappear {
-  from {
+  0% {
     opacity: 1;
   }
-  to {
+  99% {
     opacity: 0;
-    display: none;
+  }
+  100% {
+    visibility: hidden;
   }
 }
 
@@ -275,6 +277,6 @@
     transform: translate(-50%, -50%);
     width: 100.03px;
     height: 121.97px;
-    display: none;
+    opacity: 0;
   }
 }
