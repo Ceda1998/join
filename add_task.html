@@ -123,10 +123,14 @@
                         <div class="category">
                             <label>Category<span class="star">*</span><br>
                                 <div class="category-container">
-                                <input list="category" placeholder="Select task category" class="inputField">
-                                <img src="./assets/img/arrow-drop-down.png" class="arrow-drop-down">
+                                <input list="category" placeholder="Select task category" class="inputField" id="categoryInput">
+                                <img id="arrowCategory" src="./assets/img/arrow-drop-down.png" class="arrow-drop-down" onclick="toggleCategoryDropDown()">
                                 </div>
                             </label>
+                            <div id="categoryDropDown" class="category-drop-down d-none">
+                                <span id="category1" onclick="selectCategory(1)">Technical Task</span>
+                                <span id="category2" onclick="selectCategory(2)">User Story</span>
+                            </div>
                         </div>
                         <br>
 

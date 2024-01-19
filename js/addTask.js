@@ -1,4 +1,5 @@
 let isButtonToggled = [false, false, false];
+let isArrowRotated = false;
 
 function setPrio(num) {
     const TOTAL_BUTTONS = 3;
@@ -18,4 +19,20 @@ function setPrio(num) {
         }        
     }
 
+}
+
+
+function toggleCategoryDropDown() {
+    let categoryDropDown = document.getElementById('categoryDropDown');
+    let arrowCategory = document.getElementById('arrowCategory');
+    categoryDropDown.classList.toggle('d-none');
+    isArrowRotated = !isArrowRotated;
+    arrowCategory.style.transform = isArrowRotated ? 'rotate(180deg)' : '';
+}
+
+
+function selectCategory(num) {
+    let input = document.getElementById('categoryInput');
+    let selectedCategory = document.getElementById(`category${num}`).innerHTML;
+    input.value = selectedCategory;
 }
