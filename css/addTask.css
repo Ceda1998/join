@@ -45,7 +45,7 @@ h1 {
     color: #2A3647;
 }
 
-.add-task-container span {
+.star {
     color: #FF8190;
 }
 
@@ -205,18 +205,30 @@ textarea::placeholder {
 
 .button-prio:hover {
     cursor: pointer;
+    box-shadow: 0px 4px 4px 0px #00000040;
 }
 
 .button-prio img {
     width: 20px;
 }
 
-.urgent {
-    background-color: #FF3D00 !important;
+.prioTextWhite {
     color: #FFFFFF;
     font-weight: 700;
     font-size: 21px;
     line-height: 25.2px;
+}
+
+.urgent {
+    background-color: #FF3D00 !important;
+}
+
+.medium {
+    background-color: #FFA800 !important;
+}
+
+.low {
+    background-color: #7AE229 !important;
 }
 
 .category {
