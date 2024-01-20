@@ -18,8 +18,8 @@ async function postMail() {
 }
 
 async function loadUsers() {
-    await postMail();
-    ParsedArray = JSON.parse(await getItem('array'));
-    console.log(ParsedArray['name'])
+    
+    let ParsedArray = JSON.parse(await getItem('array'));
+    console.log(ParsedArray['0']['mail'])
    
 }
