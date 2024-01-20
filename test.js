@@ -1,25 +1,24 @@
 let array = [];
 
 async function postMail() {
-    let value = document.getElementById('mailValue');
+    /* let value = document.getElementById('mailValue');
     let userName = document.getElementById('name');
     console.log(value);
-    console.log(userName);
+    console.log(userName); */
     let obj = {
-        'name': userName.value,
-        'mail': value.value
+        'name': 'Testname',
+        'mail': 'Email@Address.com'
     }
    
     array.push(obj);
-    console.log(array);
+    //console.log(array);
     await setItem('user', JSON.stringify('array'));
     let item = await getItem('array');
-    console.log(item)
+    console.log(item);
 }
 
 async function loadUsers() {
     await postMail();
-    ParsedArray = JSON.parse(await getItem('array'));
-    console.log(ParsedArray['name'])
-   
+    let parsedArray = JSON.parse(await getItem('array'));
+    console.log(parsedArray[0]['name']);
 }
