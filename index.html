@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join</title>
+    <script src="./js/remoteStorage.js"></script>
     <script src="./script.js"></script>
     <script src="./js/login.js"></script>
     <link rel="stylesheet" href="./css/login.css" />
@@ -37,18 +38,18 @@
         <hr class="dividerSolid">
         <form action="#" id="loginForm">
           <div class="inputIcon_container">
-            <input type="email" required class="loginInputField" placeholder="Email"/>
+            <input type="email" required class="loginInputField" placeholder="Email" id="emailLoginField"/>
             <img src="./assets/img/mail.png" alt="mailicon" class="loginIcons">
           </div>
           <div class="inputIcon_container">
-          <input type="password" required class="loginInputField" placeholder="Password" />
+          <input type="password" required class="loginInputField" placeholder="Password" id="passwordLoginField"/>
           <img src="./assets/img/lock.png" alt="passwordIcon" class="loginIcons">
         </div>
           <div class="rememberMe_container">
             <input type="checkbox" id="rememberMe"><label for="rememberMe" class="rememberMeLabel">Remember me</label>
           </div>
           <div class="loginButtons_container">
-            <button id="loginButton">Log in</button>
+            <button id="loginButton" onclick="checkLogin(event)">Log in</button>
             <button type="button" id="guestLoginButton" onclick="openWithGuestLogin()">Guest Log in</button>
           </div>
         </form>

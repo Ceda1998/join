@@ -7,7 +7,7 @@ window.onload = async () => {
     await includeHTML(); //Renders external templates and waits for it
 
     //Import tasks data from file- need to be changed to Server afterwards
-    let resp = await fetch('./tasks.json');
+    let resp = await fetch('./assets/json/tasks.json');
     tasks = await resp.json();
 
     renderBoard();

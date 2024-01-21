@@ -7,6 +7,7 @@
 .ctc-left {
     width: 456px;
     padding: 32px 48px;
+    overflow-y: scroll;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -21,11 +22,15 @@
     gap: 24px;
     width: 352px;
     height: 56px;
+    padding: 16px 0;
 }
 
 .ctc-list {
     width: 100%;
     margin-top: 40px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .ctc-small-list {
@@ -44,6 +49,20 @@
     padding: 15px 24px;
     gap: 40px;
     align-items: center;
+    border-radius: 10px;
+}
+
+.contact:hover {
+    cursor: pointer;
+    background-color: #2A3647;
+}
+
+.contact:hover .ctc-fullname {
+    color: #fff;
+}
+
+.contact:hover .ctc-fullname {
+    color: #fff;
 }
 
 .ctc-sort-letter {
@@ -59,7 +78,7 @@
     padding: 8px;
     border-radius: 50%;
     color: #fff;
-    border: 1px solid #fff;
+    border: 2px solid #fff;
     background-color: #462f8a;
     display: flex;
     justify-content: center;
