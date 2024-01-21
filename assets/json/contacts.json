@@ -1,0 +1,52 @@
+[
+    {
+        "id": "1",
+        "firstname": "Hannes",
+        "lastname": "Pirhofer",
+        "fullname": "Hannes Pirhofer",
+        "email": "pirhofer.hannes88@gmail.com",
+        "password": "123456",
+        "phone": "+39 123456789",
+        "initials": "HP"
+    },
+    {
+        "id": "2",
+        "firstname": "Pascale",
+        "lastname": "Sennhauser",
+        "fullname": "Pascale Sennhauser",
+        "email": "pascale.sennhauser@gmail.com",
+        "password": "123456",
+        "phone": "+41 123456789",
+        "initials": "PS"
+    },
+    {
+        "id": "3",
+        "firstname": "Cedrik",
+        "lastname": "Daunke",
+        "fullname": "Cedrik Daunke",
+        "email": "cedrik.daunke@gmail.com",
+        "password": "123456",
+        "phone": "+49 123456789",
+        "initials": "CD"
+    },
+    {
+        "id": "4",
+        "firstname": "Max",
+        "lastname": "Mustermann",
+        "fullname": "Max Mustermann",
+        "email": "max.mustermann@gmail.com",
+        "password": "123456",
+        "phone": "+41 123456789",
+        "initials": "MM"
+    },
+    {
+        "id": "5",
+        "firstname": "Zerafin",
+        "lastname": "Musterhaus",
+        "fullname": "Zerafin Musterhaus",
+        "email": "zerafin.musterhaus@gmail.com",
+        "password": "123456",
+        "phone": "+41 123456789",
+        "initials": "ZM"
+    }
+]
