@@ -25,16 +25,6 @@ h1 {
     display: flex;
 }
 
-/* Container-Left */
-
-.container-left {
-    width: 440px;
-    height: 376px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
 .add-task-container label {
     display:block;
     width: 100%;
@@ -43,6 +33,20 @@ h1 {
     font-size: 20px;
     line-height: 24px;
     color: #2A3647;
+}
+
+.focus:focus {
+    outline: none;
+    border: 1px solid #29ABE2;
+}
+
+/* Container-Left */
+
+.container-left {
+    width: 440px;
+    min-height: 376px;
+    display: flex;
+    flex-direction: column;
 }
 
 .star {
@@ -57,10 +61,29 @@ h1 {
 .title {
     width: 100%;
     height: 96px;
+    position: relative;
 }
 
-.title input {
-    margin-bottom: 12px;
+.focus:focus {
+    outline: none;
+    border: 1px solid #29ABE2;
+}
+
+.title-no-input {
+    outline: none;
+    border: 1px solid #FF8190;
+}
+
+.title-required {
+    font: Poppins;
+    font-size: 12px;
+    line-height: 14.4px;
+    font-weight: 400;
+    color: #FF8190;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .description {
@@ -71,6 +94,14 @@ h1 {
 .desc-input-container {
     width: 440px;
     position: relative;
+}
+
+.description textarea:focus {
+    font: 'Open Sans';
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25.2px;
+    color: #000000;
 }
 
 .recurso {
@@ -92,6 +123,9 @@ textarea {
     font-family: Inter;
     box-sizing: border-box;
     padding: 18px 16px;
+    resize: vertical;
+    z-index: 99;
+    -webkit
 }
 
 textarea::placeholder {
@@ -101,9 +135,13 @@ textarea::placeholder {
     line-height: 24px;
 }
 
+.textarea::-webkit-resizer {
+    display: none;
+}
+
 .assigned-to {
     width: 100%;
-    height: 80px;
+    min-height: 80px;
 }
 
 .a-t-input-container,

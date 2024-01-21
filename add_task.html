@@ -70,16 +70,16 @@
                     <div class="container-left">
                         <div class="title">
                             <label>Title<span class="star">*</span><br>
-                                <input class="inputField" type="text" placeholder="Enter a title">
+                                <input id="titleInput" class="inputField focus" type="text" placeholder="Enter a title" onkeyup="checkValueTitle()">
                             </label>
+                            <div id="titleRequiredContainer" class="title-required d-none">This field is required</div>
                         </div>
                         <br>
 
                         <div class="description">
                             <label>Description<br>
                                 <div class="desc-input-container">
-                                    <textarea placeholder="Enter a Description"></textarea>
-                                    <img src="./assets/img/recurso.png" class="recurso">
+                                    <textarea class="focus" placeholder="Enter a Description"></textarea>
                                 </div>
                             </label>
                         </div>
