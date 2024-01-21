@@ -16,6 +16,22 @@ let task = [
     }
 ]
 
+
+function checkValueTitle() {
+    let titleInput = document.getElementById('titleInput');
+    let titleRequiredContainer = document.getElementById('titleRequiredContainer');
+    if (titleInput.value == '') {
+        titleRequiredContainer.classList.remove('d-none');
+        titleInput.classList.add('title-no-input');
+        titleInput.classList.remove('focus')
+    } else {
+        titleRequiredContainer.classList.add('d-none');
+        titleInput.classList.remove('title-no-input');
+        titleInput.classList.add('focus');
+    }
+}
+
+
 function setPrio(num) {
     const TOTAL_BUTTONS = 3;
 
