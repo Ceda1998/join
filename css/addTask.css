@@ -55,13 +55,16 @@ h1 {
 
 .add-task-container input{
     width: 100%;
-    margin-top: 8px;
 }
 
 .title {
     width: 100%;
     height: 96px;
     position: relative;
+}
+
+.title input {
+    margin-top: 8px;
 }
 
 .focus:focus {
@@ -121,11 +124,13 @@ textarea {
     background-color: #FFFFFF;
     margin-bottom: 12px;
     font-family: Inter;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25.2px;
     box-sizing: border-box;
     padding: 18px 16px;
     resize: vertical;
     z-index: 99;
-    -webkit
 }
 
 textarea::placeholder {
@@ -151,6 +156,22 @@ textarea::placeholder {
     position: relative;
     display: flex;
     align-items: center;
+    margin-top: 8px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+}
+
+#assignedToInput,
+#categoryInput,
+#subtaskInput {
+    width: 370px;
+    outline: unset;
+    border: unset;
+}
+
+.focus-container {
+    border: 1px solid #29ABE2;
 }
 
 .arrow-drop-down,
@@ -159,7 +180,6 @@ textarea::placeholder {
     height: 24px;
     position: absolute;
     right: 20px;
-    margin-bottom: -8px;
 }
 
 .arrow-drop-down:hover,
@@ -224,6 +244,7 @@ textarea::placeholder {
     position: relative;
     display: flex;
     align-items: center;
+    margin-top: 8px;
 }
 
 .event {
@@ -297,6 +318,14 @@ textarea::placeholder {
     min-height: 80px;
 }
 
+.category input:focus {
+    outline: none;
+}
+
+.category input:hover {
+    cursor:auto;
+}
+
 .category input::placeholder {
     color:#000000;
 }
@@ -328,6 +357,33 @@ textarea::placeholder {
 .subtasks {
     width: 100%;
     min-height: 80px;
+    position: relative;
+}
+
+.insert-subtask-tool-container {
+    width: 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    right: 16px;
+}
+
+.tool-separator {
+    width: 1px;
+    height: 24px;
+    background-color: #A8A8A8;
+}
+
+.close-img,
+.check-black-img {
+    width: 24px;
+    height: 24px;
+}
+
+.close-img:hover,
+.check-black-img:hover {
+    cursor: pointer;
 }
 
 .added-subtasks-container {
@@ -360,12 +416,6 @@ textarea::placeholder {
     height: 32px;
     right: 16px;
     top: 4px;
-}
-
-.tool-separator {
-    width: 1px;
-    height: 24px;
-    background-color: #A8A8A8;
 }
 
 .edit-img {

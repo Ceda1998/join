@@ -32,6 +32,18 @@ function checkValueTitle() {
 }
 
 
+function inputAssignedToFocus() {
+    let aTInputContainer = document.getElementById('aTInputContainer');
+    aTInputContainer.classList.add('focus-container');
+}
+
+
+function inputAssignedToBlur() {
+    let aTInputContainer = document.getElementById('aTInputContainer');
+    aTInputContainer.classList.remove('focus-container');
+}
+
+
 function setPrio(num) {
     const TOTAL_BUTTONS = 3;
 
@@ -70,13 +82,52 @@ function selectCategory(num) {
 }
 
 
+function inputSubtaskFocus() {
+    let subtaskContainer = document.getElementById('subtaskContainer');
+    subtaskContainer.classList.add('focus-container');
+}
+
+
+function inputSubtaskBlur() {
+    let subtaskContainer = document.getElementById('subtaskContainer');
+    subtaskContainer.classList.remove('focus-container');
+}
+
+
+
+function insertSubtask() {
+    let insertSubtaskToolContainer = document.getElementById('insertSubtaskToolContainer');
+    let plusImg = document.getElementById('plusImg');
+    plusImg.classList.add('d-none');
+    insertSubtaskToolContainer.classList.remove('d-none');
+    inputSubtaskFocus();
+}
+
+
+function deleteInputSubtask() {
+    let insertSubtaskToolContainer = document.getElementById('insertSubtaskToolContainer');
+    let plusImg = document.getElementById('plusImg');
+    plusImg.classList.remove('d-none');
+    insertSubtaskToolContainer.classList.add('d-none');
+}
+
+
+function saveInputSubtask() {
+
+}
+
+
 function addSubtask() {
     let input = document.getElementById('subtaskInput');
     let subtask = input.value;
+    if (subtask !== '') {
     subtasks.push(subtask);
     renderSubtasks();
     input.value = '';
+    }
 }
+
+
 
 
 function renderSubtasks() {
