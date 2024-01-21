@@ -165,7 +165,7 @@ textarea::placeholder {
 #assignedToInput,
 #categoryInput,
 #subtaskInput {
-    width: 370px;
+    width: 360px;
     outline: unset;
     border: unset;
 }
@@ -387,35 +387,46 @@ textarea::placeholder {
 }
 
 .added-subtasks-container {
-    margin-top: 56px;
+    margin-top: 60px;
 }
 
 .added-subtask-container {
     width: 100%;
     height: 32px;
     display: flex;
-    position: relative;
     align-items: center;
+    margin-bottom: 2px;
+}
+
+.point {
+    margin-left: 16px;
+    margin-right: 4px;
 }
 
 .added-subtask {
     height: 100%;
-    padding: 6px 16px 6px 16px;
+    width: 300px;
+    padding: 6px 16px 6px 0px;
     box-sizing: border-box;
     background-color: unset;
     border: unset;
     font-weight: 400;
     font-size: 16px;
     line-height: 19.2px;
+    outline: unset;
 }
 
 .tool-container {
     display: flex;
-    align-items: center;
-    position: absolute;
     height: 32px;
-    right: 16px;
-    top: 4px;
+    margin-right: 16px;
+    margin-left: 8px;
+}
+
+#toolsNoFocus,
+#toolsFocus {
+    display: flex;
+    align-items: center;
 }
 
 .edit-img {
@@ -433,6 +444,28 @@ textarea::placeholder {
 .edit-img:hover,
 .delete-img:hover {
     cursor: pointer;
+}
+
+.delete-img-focus {
+    width: 16px;
+    height: 18px;
+    margin-right: 4px;
+}
+
+.check-img-focus {
+    width: 18px;
+    height: 18px;
+    margin-left: 4px;
+}
+
+.delete-img-focus:hover,
+.check-img-focus:hover {
+    cursor: pointer;
+}
+
+.added-subtask-focus {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #29ABE2;
 }
 
 /* Buttons-Container */

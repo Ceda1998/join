@@ -88,32 +88,43 @@ function inputSubtaskFocus() {
 }
 
 
+function inputSubtask() {
+    let subtask = document.getElementById('subtaskInput').value;
+    renderInputSubtaskImg(subtask);
+}
+
+
+function renderInputSubtaskImg(subtask) {
+    let insertSubtaskToolContainer = document.getElementById('insertSubtaskToolContainer');
+    let plusImg = document.getElementById('plusImg');
+    if (subtask.trim() === '') {
+        plusImg.classList.remove('d-none');
+        insertSubtaskToolContainer.classList.add('d-none');
+    } else {
+        plusImg.classList.add('d-none');
+        insertSubtaskToolContainer.classList.remove('d-none');
+    }
+}
+
+
 function inputSubtaskBlur() {
     let subtaskContainer = document.getElementById('subtaskContainer');
     subtaskContainer.classList.remove('focus-container');
 }
 
 
-
-function insertSubtask() {
-    let insertSubtaskToolContainer = document.getElementById('insertSubtaskToolContainer');
-    let plusImg = document.getElementById('plusImg');
-    plusImg.classList.add('d-none');
-    insertSubtaskToolContainer.classList.remove('d-none');
-    inputSubtaskFocus();
-}
-
-
 function deleteInputSubtask() {
-    let insertSubtaskToolContainer = document.getElementById('insertSubtaskToolContainer');
-    let plusImg = document.getElementById('plusImg');
-    plusImg.classList.remove('d-none');
-    insertSubtaskToolContainer.classList.add('d-none');
+    let input = document.getElementById('subtaskInput');
+    input.value = '';
+    renderInputSubtaskImg(input.value);
 }
 
 
 function saveInputSubtask() {
-
+    let insertSubtaskToolContainer = document.getElementById('insertSubtaskToolContainer');
+    let plusImg = document.getElementById('plusImg');
+    plusImg.classList.remove('d-none');
+    insertSubtaskToolContainer.classList.add('d-none');
 }
 
 
@@ -124,10 +135,10 @@ function addSubtask() {
     subtasks.push(subtask);
     renderSubtasks();
     input.value = '';
+    } else {
+        inputSubtaskFocus();
     }
 }
-
-
 
 
 function renderSubtasks() {
@@ -136,12 +147,20 @@ function renderSubtasks() {
     for (let i = 0; i < subtasks.length; i++) {
         const subtask = subtasks[i];
         subtasksContainer.innerHTML += /*html*/`
-            <div class="added-subtask-container">
-                <input class="added-subtask" type="text" value='• ${subtask}'>
+            <div class="added-subtask-container" id="addedSubtaskContainer${i}">
+                <span class="point">•</span>
+                <input class="added-subtask" id="addedSubtask${i}" type="text" value='${subtask}' ondblclick="inputAddedSubtask(${i})" onblur="inputAddedSubtaskBlur(${i})" readonly>
                 <div class="tool-container">
-                    <img src="./assets/img/edit.png" class="edit-img">
-                    <div class="tool-separator"></div>
-                    <img src="./assets/img/delete-img.png" class="delete-img">
+                    <div id="toolsNoFocus">
+                        <img src="./assets/img/edit.png" class="edit-img" onclick="inputAddedSubtaskWithCursor(${i})">
+                        <div class="tool-separator"></div>
+                        <img src="./assets/img/delete-img.png" class="delete-img" onclick="deleteAddedSubtask(${i})">
+                    </div>
+                    <div id="toolsFocus" class="d-none">
+                        <img src="./assets/img/delete-img.png" class="delete-img-focus" onclick="deleteAddedSubtask(${i})">
+                        <div class="tool-separator"></div>
+                        <img src="./assets/img/check-black.png" class="check-img-focus" onclick="saveAddedSubtask(${i})">
+                    </div>
                 </div>
             </div>
         `;
@@ -165,6 +184,48 @@ function selectPerson(num) {
     toggleAssignedToDropDown();
 }
 
+
+function inputAddedSubtask(i) {
+    let addedSubtaskContainer = document.getElementById(`addedSubtaskContainer${i}`);
+    let input = document.getElementById(`addedSubtask${i}`);
+    input.removeAttribute('readonly');
+    addedSubtaskContainer.classList.add('added-subtask-focus');
+    let toolsNoFocus = document.getElementById('toolsNoFocus');
+    let toolsFocus = document.getElementById('toolsFocus');
+    toolsNoFocus.classList.add('d-none');
+    toolsFocus.classList.remove('d-none');
+}
+
+
+function inputAddedSubtaskBlur(i) {
+    let addedSubtaskContainer = document.getElementById(`addedSubtaskContainer${i}`);
+    let input = document.getElementById(`addedSubtask${i}`);
+    input.setAttribute('readonly', 'readonly');
+    addedSubtaskContainer.classList.remove('added-subtask-focus');
+    let toolsNoFocus = document.getElementById('toolsNoFocus');
+    let toolsFocus = document.getElementById('toolsFocus');
+    toolsNoFocus.classList.remove('d-none');
+    toolsFocus.classList.add('d-none');
+}
+
+
+function inputAddedSubtaskWithCursor(i) {
+    inputAddedSubtask(i);
+    let input = document.getElementById(`addedSubtask${i}`);
+    input.setSelectionRange(input.value.length, input.value.length);
+    input.focus();
+}
+
+
+function deleteAddedSubtask(i) {
+    subtasks.splice(i, 1);
+    renderSubtasks();
+}
+
+
+function saveAddedSubtask(i) {
+    inputAddedSubtaskBlur(i);
+}
 
 function createTask() {
     

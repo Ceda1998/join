@@ -142,7 +142,7 @@
                         <div class="subtasks">
                             <label>Subtasks<br>
                                 <div class="subtasks-container" id="subtaskContainer">
-                                <input type="text" placeholder="Add new Subtask" class="inputField focus" id="subtaskInput" onfocus="insertSubtask(); inputSubtaskFocus()" onblur="inputSubtaskBlur()">
+                                <input type="text" placeholder="Add new Subtask" class="inputField focus" id="subtaskInput" onfocus="inputSubtaskFocus()" oninput="inputSubtask()" onblur="inputSubtaskBlur()">
                                 <img src="./assets/img/plus-black.png" class="plus-img" id="plusImg" onclick="addSubtask()">
                                 <div class="insert-subtask-tool-container d-none" id="insertSubtaskToolContainer">
                                     <img src="./assets/img/close-img.png" class="close-img" onclick="deleteInputSubtask()">
