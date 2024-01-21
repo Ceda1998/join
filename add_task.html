@@ -87,8 +87,8 @@
 
                         <div class="assigned-to">
                             <label>Assigned to<br>
-                                <div class="a-t-input-container">
-                                    <input class="inputField" placeholder="Select contacts to assign" id="assignedToInput">
+                                <div class="a-t-input-container" id="aTInputContainer">
+                                    <input class="inputField" placeholder="Select contacts to assign" id="assignedToInput" onfocus="inputAssignedToFocus()" onblur="inputAssignedToBlur()">
                                     <img src="./assets/img/arrow-drop-down.png" class="arrow-drop-down" id="arrowAssignedTo" onclick="toggleAssignedToDropDown()">
                                 </div>
                             </label>
@@ -127,9 +127,9 @@
 
                         <div class="category">
                             <label>Category<span class="star">*</span><br>
-                                <div class="category-container">
-                                <input list="category" placeholder="Select task category" class="inputField" id="categoryInput">
-                                <img id="arrowCategory" src="./assets/img/arrow-drop-down.png" class="arrow-drop-down" onclick="toggleCategoryDropDown()">
+                                <div class="category-container" id="categoryInputContainer">
+                                <input list="category" value="Select task category" class="inputField" id="categoryInput" readonly>
+                                <img src="./assets/img/arrow-drop-down.png" class="arrow-drop-down" id="arrowCategory" onclick="toggleCategoryDropDown()">
                                 </div>
                             </label>
                             <div id="categoryDropDown" class="category-drop-down d-none">
@@ -141,9 +141,14 @@
 
                         <div class="subtasks">
                             <label>Subtasks<br>
-                                <div class="subtasks-container">
-                                <input type="text" placeholder="Add new Subtask" class="inputField" id="subtaskInput">
-                                <img src="./assets/img/plus-black.png" class="plus-img" onclick="addSubtask()">
+                                <div class="subtasks-container" id="subtaskContainer">
+                                <input type="text" placeholder="Add new Subtask" class="inputField focus" id="subtaskInput" onfocus="insertSubtask(); inputSubtaskFocus()" onblur="inputSubtaskBlur()">
+                                <img src="./assets/img/plus-black.png" class="plus-img" id="plusImg" onclick="addSubtask()">
+                                <div class="insert-subtask-tool-container d-none" id="insertSubtaskToolContainer">
+                                    <img src="./assets/img/close-img.png" class="close-img" onclick="deleteInputSubtask()">
+                                    <div class="tool-separator"></div>
+                                    <img src="./assets/img/check-black.png" class="check-black-img" onclick="saveInputSubtask()">
+                                </div>
                                 </div>
                             </label>
                             <div id="addedSubtasksContainer" class="added-subtasks-container">
