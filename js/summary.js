@@ -2,11 +2,9 @@ const currentTime = new Date();
 let currentHour = currentTime.getHours();
 
 async function getTaskData() {
-    let data = fetch('./tasks.json');
+    let data = fetch('./assets/json/tasks.json');
     return resp = (await data).json();
-   
 }
-
 
  async function initSummary() {
     await includeHTML();
@@ -14,16 +12,17 @@ async function getTaskData() {
     renderContainer.innerHTML += renderSummaryPageHtml();
     changeGreetingMessage();
     changeCurrentTodos();
+    initUsers();
 }
 
 function changeGreetingMessage() {
     let changeMessage = document.getElementById('greetUserHeadline');
    if (currentHour < 12) {
-        changeMessage.innerHTML = `Good Morning`
+        changeMessage.innerHTML = `Good Morning`;
    } else if (currentHour <= 17) {
-    changeMessage.innerHTML = `Good afternoon`
+    changeMessage.innerHTML = `Good afternoon`;
    } else {
-    changeMessage.innerHTML = `Good Evening`
+    changeMessage.innerHTML = `Good Evening`;
    }
 
 }

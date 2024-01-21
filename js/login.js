@@ -5,7 +5,6 @@ async function register() {
   let mailInput = document.getElementById("registerMailInput");
   let userName = document.getElementById("registerUserName");
   let registerPassword = document.getElementById("registerPassword");
-  let confirmRegisterdPassword = document.getElementById("confirmPassword");
   let registerBtn = document.querySelector(".registerButton");
   event.preventDefault();
   users.push({
@@ -16,6 +15,34 @@ async function register() {
   console.log(users);
   await setItem("users", JSON.stringify(users));
   form.reset();
+  initUsers();
+}
+
+async function initUsers() {
+  await loadUsers();
+}
+
+async function loadUsers(){
+  try {
+      users = JSON.parse(await getItem('users'));
+      console.log('Geladene User: ', users)
+  } catch(e){
+      console.error('Loading error:', e);
+  }
+}
+
+async function checkLogin() {
+  event.preventDefault();
+  let userMail = document.getElementById('emailLoginField').value;
+  let userPassword = document.getElementById('passwordLoginField').value;
+  await loadUsers();
+  let user = users.find(user => user.email === userMail);
+  console.log(userMail, userPassword, users)
+  if (user && user.password === userPassword) {
+    console.log('Usermail und Passwort stimmt')
+  } else {
+    console.log('Usermail und Passwort stimmt nicht!')
+  }
 }
 
 function openSignUpWindow() {
@@ -83,18 +110,18 @@ function renderLogin() {
       <hr class="dividerSolid">
       <form action="#" id="loginForm">
         <div class="inputIcon_container">
-          <input type="email" required class="loginInputField" placeholder="Email"/>
+          <input type="email" required class="loginInputField" placeholder="Email" id="emailLoginField"/>
           <img src="./assets/img/mail.png" alt="mailicon" class="loginIcons">
         </div>
         <div class="inputIcon_container">
-        <input type="password" required class="loginInputField" placeholder="Password" />
+        <input type="password" required class="loginInputField" placeholder="Password" id="passwordLoginField" />
         <img src="./assets/img/lock.png" alt="passwordIcon" class="loginIcons">
       </div>
         <div class="rememberMe_container">
           <input type="checkbox" id="rememberMe"><label for="rememberMe" class="rememberMeLabel">Remember me</label>
         </div>
         <div class="loginButtons_container">
-          <button id="loginButton">Log in</button>
+          <button id="loginButton" onclick="checkLogin()">Log in</button>
           <button type="button" id="guestLoginButton" onclick="openWithGuestLogin()">Guest Log in</button>
         </div>
       </form>
