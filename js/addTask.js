@@ -41,6 +41,7 @@ function inputAssignedToFocus() {
 function inputAssignedToBlur() {
     let aTInputContainer = document.getElementById('aTInputContainer');
     aTInputContainer.classList.remove('focus-container');
+    colorFontInput();
 }
 
 
@@ -65,6 +66,18 @@ function checkValueDueDate() {
         dateRequiredContainer.classList.remove('d-none');
         dateInput.classList.add('date-no-input');
         dateInput.classList.remove('focus')
+    }
+}
+
+
+function colorFontInput() {
+    let dateInput = document.getElementById('dateInput');
+    if (dateInput.value !== '') {
+        dateInput.classList.add('color-date-input-black');
+        dateInput.classList.remove('color-date-input-gray');
+    } else {
+        dateInput.classList.add('color-date-input-gray');
+        dateInput.classList.remove('color-date-input-black');
     }
 }
 
@@ -178,9 +191,9 @@ function renderSubtasks() {
     for (let i = 0; i < subtasks.length; i++) {
         const subtask = subtasks[i];
         subtasksContainer.innerHTML += /*html*/`
-            <div class="added-subtask-container" id="addedSubtaskContainer${i}">
+            <div class="added-subtask-container" id="addedSubtaskContainer${i}" onblur="inputAddedSubtaskBlur(${i})" >
                 <span class="point">•</span>
-                <input class="added-subtask" id="addedSubtask${i}" type="text" value='${subtask}' ondblclick="inputAddedSubtask(${i})" onblur="inputAddedSubtaskBlur(${i})" readonly>
+                <input class="added-subtask" id="addedSubtask${i}" type="text" value='${subtask}' ondblclick="inputAddedSubtask(${i})" readonly>
                 <div class="tool-container" id="toolContainer${i}">
                     <div id="toolsNoFocus${i}" class="tools-no-focus">
                         <img src="./assets/img/edit.png" class="edit-img" onclick="inputAddedSubtaskWithClickOnImg(${i})">
@@ -289,6 +302,8 @@ function clearTask() {
     dueDate.value = '';
     category.value = 'Select task category';
     subtaskInput.value = '';
+    subtasks = [];
+    renderSubtasks();
 }
 
 

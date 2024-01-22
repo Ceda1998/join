@@ -248,8 +248,16 @@ textarea::placeholder {
     margin-top: 8px;
 }
 
-.d-d-input-container input {
-    appearance: none;
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background: url(../assets/img/event.png);
+}
+
+.color-date-input-gray {
+    color:#D1D1D1;
+}
+
+.color-date-input-black {
+    color: black;
 }
 
 .prio {
