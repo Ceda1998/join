@@ -201,7 +201,7 @@ function renderToolContainerFocus(i) {
     let toolContainer = document.getElementById(`toolContainer${i}`);
     toolContainer.innerHTML = '';
     toolContainer.innerHTML = /*html*/`
-        <div id="toolsFocus${i}" class="tools-focus d-none">
+        <div id="toolsFocus${i}" class="tools-focus">
             <img src="./assets/img/delete-img.png" class="delete-img-focus" onclick="deleteAddedSubtask(${i})">
             <div class="tool-separator"></div>
             <img src="./assets/img/check-black.png" class="check-img-focus" onclick="saveAddedSubtask(${i})">
