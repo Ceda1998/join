@@ -55,8 +55,7 @@ function defineFirstLetters() {
 }
 
 function showContactDetail(id) {
-    const contact = contacts.find(ct => ct.id == id);
-
+    const contact = contacts.find(ct => ct.contactid == id);
     const color = getBackgroundColor(id);
     renderContactDetail(contact, color);
 }
@@ -70,7 +69,7 @@ function getBackgroundColor(id) {
 function renderContactHtml(contact) {
     document.getElementById('contacts-list').innerHTML += `
         
-            <div class="contact" id="contact-${contact.id}" onclick="showContactDetail(${contact.id})">
+            <div class="contact" id="contact-${contact.contactid}" onclick="showContactDetail(${contact.contactid})">
                 <div class="ctc-logo">${contact.initials}</div>
                 <div class="ctc-details">
                     <span class="ctc-fullname">${contact.fullname}</span>

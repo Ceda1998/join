@@ -86,7 +86,6 @@ function setPrio(num) {
             selectedImgPrioWhite.classList.toggle('d-none');
         }        
     }
-
 }
 
 
