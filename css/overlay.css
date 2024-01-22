@@ -1,0 +1,64 @@
+.d-none {
+    display: none !important;
+}
+
+.overlay-container {
+    height: 100vh;
+    width: 100vw;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay-content-container {
+    height: 60vh;
+    width: 80vw;
+    max-width: 1200px;
+    background-color: #fff;
+    border-radius: 30px;
+}
+
+.occ-left {
+    background-color: #2a3647;
+    width: 35%;
+    height: 100%;
+    border-radius: 25px 0 0 25px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-left: 40px;
+    gap: 16px;
+}
+
+.overlay-logo {
+    width: 54px;
+    height: 66px;
+    margin-bottom: 16px;
+}
+
+.overlay-description-text {
+    font-family: Inter;
+    font-size: 61px;
+    font-weight: 700;
+    line-height: 73px;
+    letter-spacing: 0em;
+    color: #fff;
+}
+
+.description-border {
+    width: 90px;
+    height: 3px;
+    border-top: 3px solid #29abe2;
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+
+.occ-right {
+    color: black;
+}

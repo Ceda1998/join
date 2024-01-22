@@ -1,6 +1,8 @@
 /* Global Data */
 let tasks;
+let contacts;
 let toDo = 0;
+
 
 
 window.onload = async () => {
@@ -10,8 +12,15 @@ window.onload = async () => {
     let resp = await fetch('./assets/json/tasks.json');
     tasks = await resp.json();
 
+    //Fetch contacts from remote
+    await fetchContacts();
     renderBoard();
 };
+
+async function fetchContacts() {
+    let res = await getItem('contacts');
+    contacts = JSON.parse(res);
+}
 
 
 /* Rendering the Board itself, divided by each column seperate rendering for search and drag and drop purpose */
@@ -27,7 +36,6 @@ function renderToDo() {
     let containerid = 'todoTasks';
     if (todo_tasks) {
         renderTasks(todo_tasks, containerid);
-        console.log(toDo);
     } else {
         renderEmptyTodo();
     }
@@ -77,12 +85,13 @@ function renderTasks(tasks, id) {
     let el = document.getElementById(id);
     el.innerHTML = '';
     tasks.forEach((task) => {
-        
-        const coworkersHTML = task['coworkerIds'].map(coworker => `<div class="todo-coworker">${coworker}</div>`).join('');
-        const subtasksQty = task['subtaskIds'].length;
+
+        let coworkerIds = task['contactids'];;        
+        const coworkersHTML = getInitials(coworkerIds).map(coworker => `<div class="todo-coworker">${coworker}</div>`).join('');
+        const subtasksQty = task['subtasks'].length;
 
         el.innerHTML += `
-        <div id="${task['id']}" class="todo" draggable="true" ondragstart="drag(event)">
+        <div id="${task['taskid']}" class="todo" draggable="true" ondragstart="drag(event)">
             <span class="category">${task['category']}</span>
             <span class="todo-header">${task['title']}</span>
             <p class="todo-description">${task['description']}</p>
@@ -102,3 +111,13 @@ function renderTasks(tasks, id) {
         `;        
     });
 };
+
+/* Helper function to retrieve Initials from contacts array */
+function getInitials(coworkerIds) {
+    let initials = [];
+    coworkerIds.forEach(id => {
+        const contact = contacts.find(contact => contact.contactid == id);
+        initials.push(contact.initials);
+    });
+    return initials;
+}

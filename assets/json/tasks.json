@@ -1,51 +1,51 @@
 [
     {
-        "id": "1",
+        "taskid": "1",
         "title": 11.1,
         "description": "Some description",
         "category": "User Story",
-        "subtaskIds": [5,7,9],
-        "coworkerIds": ["HP", "LS", "AP"],
+        "subtasks": ["Subtask 1", "Subtask 2"],
+        "contactids": [3,2,4],
         "priority": "neutral",
         "progress": "todo"
     },
     {
-        "id": "2",
+        "taskid": "2",
         "title": "Second Task for To Do",
         "description": "Some description",
         "category": "User Story",
-        "subtaskIds": [5,7,9],
-        "coworkerIds": ["HP", "LS", "AP"],
+        "subtasks": ["Subtask 1", "Subtask 2"],
+        "contactids": [3,2,4],
         "priority": "neutral",
         "progress": "todo"
     },
     {
-        "id": "4",
+        "taskid": "3",
         "title": 11.1,
         "description": "Some description",
         "category": "User Story",
-        "subtaskIds": [],
-        "coworkerIds": ["HP", "LS", "AP"],
+        "subtasks": ["Subtask 1", "Subtask 2"],
+        "contactids": [3,2,4],
         "priority": "neutral",
         "progress": "inprogress"
     },
     {
-        "id": "5",
+        "taskid": "4",
         "title": 11.1,
         "description": "Some description",
         "category": "User Story",
-        "subtaskIds": [],
-        "coworkerIds": ["HP", "LS", "AP"],
+        "subtasks": ["Subtask 1", "Subtask 2"],
+        "contactids": [3,2,4],
         "priority": "neutral",
         "progress": "awaitfeedback"
     },
     {
-        "id": "6",
+        "taskid": "5",
         "title": 11.1,
         "description": "Some description",
         "category": "User Story",
-        "subtaskIds": [],
-        "coworkerIds": ["HP", "LS", "AP"],
+        "subtasks": ["Subtask 1", "Subtask 2"],
+        "contactids": [3,2,4],
         "priority": "neutral",
         "progress": "done"
     }
