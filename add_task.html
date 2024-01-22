@@ -79,7 +79,7 @@
                         <div class="description">
                             <label>Description<br>
                                 <div class="desc-input-container">
-                                    <textarea class="focus" placeholder="Enter a Description"></textarea>
+                                    <textarea id="descriptionInput" class="focus" placeholder="Enter a Description"></textarea>
                                 </div>
                             </label>
                         </div>
@@ -107,10 +107,11 @@
                         <div class="due-date">
                             <label>Due date<span class="star">*</span><br>
                                 <div class="d-d-input-container">
-                                    <input type="date" class="inputField"> 
+                                    <input id="dateInput" type="date" min="" max="" class="inputField focus" onfocus="inputAssignedToFocus()" onclick="minMaxDate()" onblur="checkValueDueDate()"> 
                                     <img src="./assets/img/event.png" class="event d-none">
                                 </div>
                             </label>
+                            <div id="dateRequiredContainer" class="date-required d-none">This field is required</div>
                         </div>
                         <br>
 
@@ -162,7 +163,7 @@
                 <div class="bottom-container">
                     <span class="text-required"><span class="star-text-required">*</span>This field is required</span>
                     <div class="buttons-container">
-                        <button class="button-clear button-center">Clear<img src="./assets/img/close-img.png"></button>
+                        <button class="button-clear button-center" onclick="clearTask()">Clear<img src="./assets/img/close-img.png"></button>
                         <button class="button-create button-center">Create Task<img src="./assets/img/check.png"></button>
                     </div>
                 </div>

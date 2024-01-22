@@ -44,6 +44,31 @@ function inputAssignedToBlur() {
 }
 
 
+function minMaxDate() {
+    let today = new Date();
+    document.getElementById('dateInput').min = today.toISOString().split('T')[0];
+
+    let oneYearLater = new Date();
+    oneYearLater.setFullYear(today.getFullYear() + 1);
+    document.getElementById('dateInput').max = oneYearLater.toISOString().split('T')[0];
+}
+
+
+function checkValueDueDate() {
+    let dateInput = document.getElementById('dateInput');
+    let dateRequiredContainer = document.getElementById('dateRequiredContainer');
+    if (dateInput.value !== '') {
+        dateRequiredContainer.classList.add('d-none');
+        dateInput.classList.remove('date-no-input');
+        dateInput.classList.add('focus');
+    } else {
+        dateRequiredContainer.classList.remove('d-none');
+        dateInput.classList.add('date-no-input');
+        dateInput.classList.remove('focus')
+    }
+}
+
+
 function setPrio(num) {
     const TOTAL_BUTTONS = 3;
 
@@ -120,6 +145,8 @@ function deleteInputSubtask() {
 }
 
 
+/* Saves the subtask in the input-field, so it can be added, when clicking on the plus-image */
+
 function saveInputSubtask() {
     let insertSubtaskToolContainer = document.getElementById('insertSubtaskToolContainer');
     let plusImg = document.getElementById('plusImg');
@@ -127,6 +154,8 @@ function saveInputSubtask() {
     insertSubtaskToolContainer.classList.add('d-none');
 }
 
+
+/* Adds the subtask in the list under the subtask-input-field, when clicking on the plus-image */
 
 function addSubtask() {
     let input = document.getElementById('subtaskInput');
@@ -141,6 +170,9 @@ function addSubtask() {
 }
 
 
+
+/* This function shows the added subtask under the subtask-input-field */
+
 function renderSubtasks() {
     let subtasksContainer = document.getElementById('addedSubtasksContainer');
     subtasksContainer.innerHTML = '';
@@ -150,21 +182,80 @@ function renderSubtasks() {
             <div class="added-subtask-container" id="addedSubtaskContainer${i}">
                 <span class="point">•</span>
                 <input class="added-subtask" id="addedSubtask${i}" type="text" value='${subtask}' ondblclick="inputAddedSubtask(${i})" onblur="inputAddedSubtaskBlur(${i})" readonly>
-                <div class="tool-container">
-                    <div id="toolsNoFocus">
-                        <img src="./assets/img/edit.png" class="edit-img" onclick="inputAddedSubtaskWithCursor(${i})">
+                <div class="tool-container" id="toolContainer${i}">
+                    <div id="toolsNoFocus${i}" class="tools-no-focus">
+                        <img src="./assets/img/edit.png" class="edit-img" onclick="inputAddedSubtaskWithClickOnImg(${i})">
                         <div class="tool-separator"></div>
                         <img src="./assets/img/delete-img.png" class="delete-img" onclick="deleteAddedSubtask(${i})">
-                    </div>
-                    <div id="toolsFocus" class="d-none">
-                        <img src="./assets/img/delete-img.png" class="delete-img-focus" onclick="deleteAddedSubtask(${i})">
-                        <div class="tool-separator"></div>
-                        <img src="./assets/img/check-black.png" class="check-img-focus" onclick="saveAddedSubtask(${i})">
                     </div>
                 </div>
             </div>
         `;
     }
+}
+
+
+/* Changes the tool-images in the addded subtask, when his focused on */
+
+function renderToolContainerFocus(i) {
+    let toolContainer = document.getElementById(`toolContainer${i}`);
+    toolContainer.innerHTML = '';
+    toolContainer.innerHTML = /*html*/`
+        <div id="toolsFocus${i}" class="tools-focus d-none">
+            <img src="./assets/img/delete-img.png" class="delete-img-focus" onclick="deleteAddedSubtask(${i})">
+            <div class="tool-separator"></div>
+            <img src="./assets/img/check-black.png" class="check-img-focus" onclick="saveAddedSubtask(${i})">
+        </div>
+    `;
+}
+
+
+/* Doubleclick on subtask, so you can edit the subtask, different tool-images than before */
+
+function inputAddedSubtask(i) {
+    let addedSubtaskContainer = document.getElementById(`addedSubtaskContainer${i}`);
+    let input = document.getElementById(`addedSubtask${i}`);
+    input.removeAttribute('readonly');
+    addedSubtaskContainer.classList.add('added-subtask-focus');
+    renderToolContainerFocus(i);
+}
+
+
+/* If you click outside the current subtask, the backgroundcolor and images change back */
+
+function inputAddedSubtaskBlur(i) {
+    let addedSubtaskContainer = document.getElementById(`addedSubtaskContainer${i}`);
+    let input = document.getElementById(`addedSubtask${i}`);
+    input.setAttribute('readonly', 'readonly');
+    addedSubtaskContainer.classList.remove('added-subtask-focus');
+    if (input.value == '') {
+        deleteAddedSubtask(i);
+    }
+    renderSubtasks();
+}
+
+
+/* It has a pen-image in the added subtask, when you click on that, you can edit the subtask */
+
+function inputAddedSubtaskWithClickOnImg(i) {
+    inputAddedSubtask(i);
+    let input = document.getElementById(`addedSubtask${i}`);
+    input.setSelectionRange(input.value.length, input.value.length);
+    input.focus();
+}
+
+
+/* It has a bin-image in the added subtask, when you click on that, you can delete the subtask */
+
+function deleteAddedSubtask(i) {
+    subtasks.splice(i, 1);
+    renderSubtasks();
+}
+
+/* When you edit the subtask it has a check-image. If you click on the check image, you save the editted subtask */
+
+function saveAddedSubtask(i) {
+    inputAddedSubtaskBlur(i);
 }
 
 
@@ -185,47 +276,22 @@ function selectPerson(num) {
 }
 
 
-function inputAddedSubtask(i) {
-    let addedSubtaskContainer = document.getElementById(`addedSubtaskContainer${i}`);
-    let input = document.getElementById(`addedSubtask${i}`);
-    input.removeAttribute('readonly');
-    addedSubtaskContainer.classList.add('added-subtask-focus');
-    let toolsNoFocus = document.getElementById('toolsNoFocus');
-    let toolsFocus = document.getElementById('toolsFocus');
-    toolsNoFocus.classList.add('d-none');
-    toolsFocus.classList.remove('d-none');
+function clearTask() {
+    let title = document.getElementById('titleInput');
+    let description = document.getElementById('descriptionInput');
+    let assignedTo = document.getElementById('assignedToInput');
+    let dueDate = document.getElementById('dateInput');
+    let category = document.getElementById('categoryInput');
+    let subtaskInput = document.getElementById('subtaskInput');
+
+    title.value = '';
+    description.value = '';
+    assignedTo.value = '';
+    dueDate.value = '';
+    category.value = 'Select task category';
+    subtaskInput.value = '';
 }
 
-
-function inputAddedSubtaskBlur(i) {
-    let addedSubtaskContainer = document.getElementById(`addedSubtaskContainer${i}`);
-    let input = document.getElementById(`addedSubtask${i}`);
-    input.setAttribute('readonly', 'readonly');
-    addedSubtaskContainer.classList.remove('added-subtask-focus');
-    let toolsNoFocus = document.getElementById('toolsNoFocus');
-    let toolsFocus = document.getElementById('toolsFocus');
-    toolsNoFocus.classList.remove('d-none');
-    toolsFocus.classList.add('d-none');
-}
-
-
-function inputAddedSubtaskWithCursor(i) {
-    inputAddedSubtask(i);
-    let input = document.getElementById(`addedSubtask${i}`);
-    input.setSelectionRange(input.value.length, input.value.length);
-    input.focus();
-}
-
-
-function deleteAddedSubtask(i) {
-    subtasks.splice(i, 1);
-    renderSubtasks();
-}
-
-
-function saveAddedSubtask(i) {
-    inputAddedSubtaskBlur(i);
-}
 
 function createTask() {
     

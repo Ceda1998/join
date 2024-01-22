@@ -72,12 +72,14 @@ h1 {
     border: 1px solid #29ABE2;
 }
 
-.title-no-input {
+.title-no-input,
+.date-no-input {
     outline: none;
     border: 1px solid #FF8190;
 }
 
-.title-required {
+.title-required,
+.date-required {
     font: Poppins;
     font-size: 12px;
     line-height: 14.4px;
@@ -97,6 +99,7 @@ h1 {
 .desc-input-container {
     width: 440px;
     position: relative;
+    display: inline-block;
 }
 
 .description textarea:focus {
@@ -107,15 +110,8 @@ h1 {
     color: #000000;
 }
 
-.recurso {
-    position: absolute;
-    bottom: 22px;
-    right: 6px;
-    width: 18.9px;
-    height: 18.9px;
-}
-
 textarea {
+    resize: none;
     margin-top: 8px;
     width: 100%;
     height: 120px;
@@ -129,8 +125,16 @@ textarea {
     line-height: 25.2px;
     box-sizing: border-box;
     padding: 18px 16px;
-    resize: vertical;
     z-index: 99;
+}
+
+.desc-input-container::after {
+    content: url('../assets/img/recurso.png');
+    position: absolute;
+    bottom: 22px;
+    right: 6px;
+    width: 18.9px;
+    height: 18.9px;
 }
 
 textarea::placeholder {
@@ -138,10 +142,6 @@ textarea::placeholder {
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
-}
-
-.textarea::-webkit-resizer {
-    display: none;
 }
 
 .assigned-to {
@@ -237,6 +237,7 @@ textarea::placeholder {
 .due-date {
     width: 100%;
     height: 96px;
+    position: relative;
 }
 
 .d-d-input-container {
@@ -247,12 +248,8 @@ textarea::placeholder {
     margin-top: 8px;
 }
 
-.event {
-    position: absolute;
-    right: 20px;
-    width: 24px;
-    height: 24px;
-    margin-bottom: -8px;
+.d-d-input-container input {
+    appearance: none;
 }
 
 .prio {
@@ -423,8 +420,8 @@ textarea::placeholder {
     margin-left: 8px;
 }
 
-#toolsNoFocus,
-#toolsFocus {
+.tools-no-focus,
+.tools-focus {
     display: flex;
     align-items: center;
 }
