@@ -40,6 +40,7 @@ async function checkLogin() {
   console.log(userMail, userPassword, users)
   if (user && user.password === userPassword) {
     console.log('Usermail und Passwort stimmt')
+    window.location.href = "summary.html";
   } else {
     console.log('Usermail und Passwort stimmt nicht!')
   }
