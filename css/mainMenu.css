@@ -138,3 +138,7 @@
     background-color: #091931;
     cursor: pointer;
  }
+
+ #helpIcon:hover {
+    cursor: pointer;
+ }
