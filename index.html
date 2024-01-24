@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="./css/fonts.css" />
   </head>
   <body>
-    
     <div class="headerLogin">
       <img
         src="./assets/img/LogoSmall.png"
@@ -21,42 +20,84 @@
       />
       <div class="headerLoginRight">
         <span>Not a Join user?</span>
-        <button class="signUpButton" onclick="openSignUpWindow()">Sign up</button>
+        <button class="signUpButton" onclick="openSignUpWindow()">
+          Sign up
+        </button>
       </div>
     </div>
 
     <div id="loginAnimation_container">
       <div class="placeLogoImgLogin">
-        <img src="./assets/img/LogoBig.png" class="bigLoginLogo">
+        <img src="./assets/img/LogoBig.png" class="bigLoginLogo" />
       </div>
     </div>
-    
 
     <div class="login_container" id="loginContentContainer">
       <div id="loginWindow">
         <h1 class="loginHeadline">Log in</h1>
-        <hr class="dividerSolid">
+        <hr class="dividerSolid" />
         <form action="#" id="loginForm">
           <div class="inputIcon_container">
-            <input type="email" required class="loginInputField" placeholder="Email" id="emailLoginField"/>
-            <img src="./assets/img/mail.png" alt="mailicon" class="loginIcons">
+            <input
+              type="email"
+              required
+              class="loginInputField"
+              placeholder="Email"
+              id="emailLoginField"
+            />
+            <img
+              src="./assets/img/mail.png"
+              alt="mailicon"
+              class="loginIcons"
+            />
           </div>
           <div class="inputIcon_container">
-          <input type="password" required class="loginInputField" placeholder="Password" id="passwordLoginField"/>
-          <img src="./assets/img/lock.png" alt="passwordIcon" class="loginIcons">
-        </div>
+            <input
+              type="password"
+              required
+              class="loginInputField"
+              placeholder="Password"
+              id="passwordLoginField"
+            />
+            <img
+              src="./assets/img/lock.png"
+              alt="passwordIcon"
+              class="loginIcons"
+            />
+          </div>
           <div class="rememberMe_container">
-            <input type="checkbox" id="rememberMe"><label for="rememberMe" class="rememberMeLabel">Remember me</label>
+            <input type="checkbox" id="rememberMe" /><label
+              for="rememberMe"
+              class="rememberMeLabel"
+              >Remember me</label
+            >
           </div>
           <div class="loginButtons_container">
             <button id="loginButton" onclick="checkLogin(event)">Log in</button>
-            <button type="button" id="guestLoginButton" onclick="openWithGuestLogin()">Guest Log in</button>
+            <button
+              type="button"
+              id="guestLoginButton"
+              onclick="openWithGuestLogin()"
+            >
+              Guest Log in
+            </button>
           </div>
         </form>
       </div>
     </div>
-  
+    <div class="legalContentLogin">
+      <a
+        href="./legal/privacyPolicyExternal.html"
+        class="legalContentLinksLogin"
+        target="_blank"
+        >Privacy Policy</a
+      >
+      <a
+        href="./legal/legalNoticeExternal.html"
+        class="legalContentLinksLogin"
+        target="_blank"
+        >Legal Notice</a
+      >
+    </div>
   </body>
 </html>
-
-
