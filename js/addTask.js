@@ -1,40 +1,74 @@
+let titleInput;
+let descriptionInput;
+let assignedToInput;
+let selectedContacts = [];
+let isArrowAssignedToRotated = false;
+let dueDateInput;
+let setPrio;
 let isButtonToggled = [false, false, false];
-let isArrowRotated = false;
+const TOTAL_BUTTONS = 3;
+let categoryInput;
+let isArrowCategoryRotated = false;
+let subtaskInput;
 let subtasks = [];
 
-/* JSON-ARRAY */
 
-let task = [
-    {
-        'title': 'Hallo',
-        'description': 'Wie geht es?',
-        'assignedTo': 'Anna',
-        'dueDate': '01/01/2024',
-        'prio': 'urgent',
-        'category': 'User Story',
-        'subtasks': 'Do this'
-    }
-]
 
+/*function initAddTask() {
+    titleInput = document.getElementById('titleInput');
+    descriptionInput = document.getElementById('descriptionInput');
+    assignedToInput = document.getElementById('assignedToInput');
+    dueDateInput = document.getElementById('dateInput');
+    categoryInput = document.getElementById('categoryInput');
+    subtaskInput = document.getElementById('subtaskInput');
+
+    titleInput.value = '';
+    descriptionInput.value = '';
+    assignedToInput.value = '';
+    selectedContacts = [];
+    dueDateInput.value = '';
+    categoryInput.value = 'Select task category';
+    subtaskInput.value = '';
+    subtasks = [];
+        clearPrioButtons();
+        renderSubtasks();
+} */
+
+
+/* When a field gets the focus, it gets a blue border */
+
+function addFocus(selectedField) {
+    `${selectedField}`.classList.add('focus');
+}
+
+
+/* After clicking away from a field, the blue border gets removed */
+
+function removeFocus(selectedField) {
+    `${selectedField}`.classList.remove('focus');
+}
+
+
+/* After clicking on the title-input it gets checked if there is text in the inputfield */
 
 function checkValueTitle() {
-    let titleInput = document.getElementById('titleInput');
     let titleRequiredContainer = document.getElementById('titleRequiredContainer');
     if (titleInput.value == '') {
         titleRequiredContainer.classList.remove('d-none');
         titleInput.classList.add('title-no-input');
-        titleInput.classList.remove('focus')
+        removeFocus(titleInput);
     } else {
         titleRequiredContainer.classList.add('d-none');
         titleInput.classList.remove('title-no-input');
-        titleInput.classList.add('focus');
+        addFocus(titleInput);
     }
 }
 
+/* Add Focus to Assigned to */
 
 function inputAssignedToFocus() {
     let aTInputContainer = document.getElementById('aTInputContainer');
-    aTInputContainer.classList.add('focus-container');
+    addFocus(aTInputContainer);
 }
 
 
@@ -43,6 +77,45 @@ function inputAssignedToBlur() {
     aTInputContainer.classList.remove('focus-container');
     colorFontInput();
 }
+
+
+function selectPerson(num) {
+    let input = document.getElementById('assignedToInput');
+    let selectedPerson = document.getElementById(`person${num}`).innerHTML;
+    input.value = selectedPerson;
+    toggleAssignedToDropDown();
+}
+
+
+function toggleAssignedToDropDown() {
+    let assignedToDropDown = document.getElementById('assignedToDropDown');
+    let arrowAssignedTo = document.getElementById('arrowAssignedTo');
+    assignedToDropDown.classList.toggle('d-none');
+    isArrowAssignedToRotated = !isArrowAssignedToRotated;
+    arrowAssignedTo.style.transform = isArrowAssignedToRotated ? 'rotate(180deg)' : '';
+    renderContacts();
+}
+
+
+function renderContacts() {
+    let assignedToDropDown = document.getElementById('assignedToDropDown');
+    assignedToDropDown.innerHTML = '';
+    assignedToDropDown.innerHTML += /*html*/`
+        <span id="person1" onclick="selectPerson(1)">Anna</span>
+        <span id="person2" onclick="selectPerson(2)">Peter</span>
+        <span id="person3" onclick="selectPerson(3)">Hans</span>
+    `;
+}
+
+
+document.addEventListener('click', function(event) {
+    let assignedToContainer = document.getElementById('aTInputContainer');
+    let assignedToDropDown = document.getElementById('assignedToDropDown');
+
+    if (isArrowAssignedToRotated === true && !assignedToContainer.contains(event.target) && !assignedToDropDown.contains(event.target)) {
+        toggleAssignedToDropDown();
+    }
+})
 
 
 function minMaxDate() {
@@ -69,6 +142,12 @@ function checkValueDueDate() {
     }
 }
 
+function inputDueDateBlur() {
+    let dateInputContainer = document.getElementById('dateInputContainer');
+    dateInputContainer.classList.remove('focus-container');
+    colorFontInput();
+}
+
 
 function colorFontInput() {
     let dateInput = document.getElementById('dateInput');
@@ -83,11 +162,9 @@ function colorFontInput() {
 
 
 function setPrio(num) {
-    const TOTAL_BUTTONS = 3;
-
     for (let i = 0; i < TOTAL_BUTTONS; i++) {
         if (i + 1 == num || isButtonToggled[i] === true) {
-            isButtonToggled[i] = !isButtonToggled[i]
+            isButtonToggled[i] = !isButtonToggled[i];
             const selectedButton = document.getElementById(`prioButton${i+1}`);
             const selectedImgPrioColor = document.getElementById(`prioColor${i+1}`);
             const selectedImgPrioWhite = document.getElementById(`prioWhite${i+1}`);
@@ -102,12 +179,30 @@ function setPrio(num) {
 }
 
 
+function clearPrioButtons() {
+    for (let i = 0; i < TOTAL_BUTTONS; i++) {
+        if (isButtonToggled[i] === true) {
+            isButtonToggled[i] = !isButtonToggled[i];
+            const selectedButton = document.getElementById(`prioButton${i+1}`);
+            const selectedImgPrioColor = document.getElementById(`prioColor${i+1}`);
+            const selectedImgPrioWhite = document.getElementById(`prioWhite${i+1}`);
+            const selectedPrio = document.getElementById(`prio${i+1}`).innerHTML.toLowerCase();
+        
+            selectedButton.classList.toggle(`${selectedPrio}`);
+            selectedButton.classList.toggle('prioTextWhite');
+            selectedImgPrioColor.classList.toggle('d-none');
+            selectedImgPrioWhite.classList.toggle('d-none');
+        }
+    }
+}
+
+
 function toggleCategoryDropDown() {
     let categoryDropDown = document.getElementById('categoryDropDown');
     let arrowCategory = document.getElementById('arrowCategory');
     categoryDropDown.classList.toggle('d-none');
-    isArrowRotated = !isArrowRotated;
-    arrowCategory.style.transform = isArrowRotated ? 'rotate(180deg)' : '';
+    isArrowCategoryRotated = !isArrowCategoryRotated;
+    arrowCategory.style.transform = isArrowCategoryRotated ? 'rotate(180deg)' : '';
 }
 
 
@@ -117,6 +212,15 @@ function selectCategory(num) {
     input.value = selectedCategory;
     toggleCategoryDropDown();
 }
+
+document.addEventListener('click', function(event) {
+    let categoryContainer = document.getElementById('categoryInputContainer');
+    let categoryDropDown = document.getElementById('categoryDropDown');
+
+    if (isArrowCategoryRotated === true && !categoryContainer.contains(event.target) && !categoryDropDown.contains(event.target)) {
+        toggleCategoryDropDown();
+    }
+})
 
 
 function inputSubtaskFocus() {
@@ -271,23 +375,6 @@ function saveAddedSubtask(i) {
 }
 
 
-function toggleAssignedToDropDown() {
-    let assignedToDropDown = document.getElementById('assignedToDropDown');
-    let arrowAssignedTo = document.getElementById('arrowAssignedTo');
-    assignedToDropDown.classList.toggle('d-none');
-    isArrowRotated = !isArrowRotated;
-    arrowAssignedTo.style.transform = isArrowRotated ? 'rotate(180deg)' : '';
-}
-
-
-function selectPerson(num) {
-    let input = document.getElementById('assignedToInput');
-    let selectedPerson = document.getElementById(`person${num}`).innerHTML;
-    input.value = selectedPerson;
-    toggleAssignedToDropDown();
-}
-
-
 function clearTask() {
     let title = document.getElementById('titleInput');
     let description = document.getElementById('descriptionInput');
@@ -304,9 +391,26 @@ function clearTask() {
     subtaskInput.value = '';
     subtasks = [];
     renderSubtasks();
+    clearPrioButtons();
 }
 
 
 function createTask() {
+
+    let title = document.getElementById('titleInput');
+    let description = document.getElementById('descriptionInput');
+    let dueDate = document.getElementById('dateInput');
+    let category = document.getElementById('categoryInput');
+
+    let task = {
+        "taskid": "5",
+        "title": title.value,
+        "description": description.value,
+        "category": category.value,
+        "subtasks": subtasks,
+        "contactids": selectedContacts,
+        "priority": "neutral",
+        "progress": "done"
+    }
     
 }
