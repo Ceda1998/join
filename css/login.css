@@ -223,7 +223,7 @@
 /* bottom legal Content */
 
 .legalContentLogin {
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -231,6 +231,7 @@
   height: 100px;
   width: 100%;
   bottom: 0;
+  z-index: 9999;
 }
 
 .legalContentLinksLogin {
@@ -317,8 +318,7 @@
 /* responsive */
 
 @media (max-width: 760px) {
-  #loginAnimation_container {
-  }
+  
   #loginWindow {
     width: 396px;
     height: 515px;
@@ -344,11 +344,16 @@
   .signUpContentMobile {
     display: flex;
   }
-  .signUpWindow {
+  #signUpWindow {
     width: 396px;
     height: 595px;
   }
-  .login_container {
-    margin-top: 78px;
+
+  #signUpArrowLeft {
+    right: 330px;
   }
+  .loginHeadline {
+    font-size: 47px;
+  }
+  
 }
