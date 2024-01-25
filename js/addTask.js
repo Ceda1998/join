@@ -1,9 +1,11 @@
-let selectedContacts = [];
+let contacts = []; /* contacts which are later from the remote Storage */
+let selectedContacts = []; /* gets added to the tasks.json */
 let isArrowAssignedToRotated = false;
 let isButtonToggled = [false, false, false];
 const TOTAL_BUTTONS = 3;
 let isArrowCategoryRotated = false;
-let subtasks = [];
+let subtasks = []; /* gets added to the tasks.json */
+let tasks = []; /* tasks which are later added to the remote Storage */
 
 
 /* When the side is loaded all Fields get initalized and cleared*/
@@ -12,9 +14,18 @@ async function initAddTask() {
     await includeHTML();
     let renderContainer = getField('addTaskContent_container');
     renderContainer.innerHTML += renderAddTaskHtml();
+    await fetchContacts();
     renderAddTask();
+    console.log(contacts);
 }
 
+
+/* Load Contacts from JSON later Remote Storage */
+
+async function fetchContacts() {
+    let resp = await fetch('./assets/json/contacts.json');
+    contacts = await resp.json();
+}
 
 /* Render all the Fields from Add Task */
 
@@ -24,8 +35,10 @@ async function renderAddTask() {
 }
 
 
+/* Render HTML Add Task*/
+
 function renderAddTaskHtml() {
-    return `
+    return /*html*/`
     <h1>Add Task</h1>
 <div class="add-task-container">
 
@@ -576,7 +589,8 @@ function createTask() {
         "subtasks": subtasks,
         "contactids": selectedContacts,
         "priority": "neutral",
-        "progress": "done"
+        "progress": "done",
+        "date": dueDate
     }
     
 }
