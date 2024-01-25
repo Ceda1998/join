@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summary</title>
+    <link rel="stylesheet" href="css/mobileSpecific.css">
     <link rel="stylesheet" href="css/general-design.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/mainMenu.css">
@@ -17,15 +18,14 @@
 </head>
 <body onload="includeHTML(), initSummary()">
     <div class="mainContentSummary_container">
-    <div w3-include-html="./templates/sidebar_template.html">
-
-    </div>
+    <div w3-include-html="./templates/sidebar_template.html"></div>
+    <div w3-include-html="./templates/mobileMenuTop_template.html"></div>
    
     <div id="summaryContent_container">
         <div w3-include-html="./templates/mainHeader_template.html">
 
         </div>
     </div>
-
+    <div w3-include-html="./templates/mobileMenuFooter_template.html"></div>
 </body>
 </html>
