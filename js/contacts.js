@@ -8,10 +8,14 @@ async function init() {
 }
 
 async function fetchContacts() {
-    //Import contacts data from file- need to be changed to Server afterwards
+    //Import data from registrated users
     //const contacts = await fetch('./assets/json/contacts.json');
-    let res = await getItem('contacts');
-    contacts = JSON.parse(res);
+    try {
+        contacts = JSON.parse(await getItem('users'));
+        console.log('Geladene Kontakte ', contacts)
+    } catch(e){
+        console.error('Loading error:', e);
+    }
 }
 
 function renderContactList() {
@@ -39,7 +43,7 @@ function renderLetterHtml(letter) {
 
 function renderContacts(letter) {
     contacts.forEach(contact => {
-        if (contact.firstname.charAt(0).toUpperCase() == letter) {
+        if (contact.name.charAt(0).toUpperCase() == letter) {
             renderContactHtml(contact);
         }
     });
@@ -47,7 +51,7 @@ function renderContacts(letter) {
 
 function defineFirstLetters() {
     contacts.forEach(contact => {
-        const firstLetter = (contact.firstname.charAt(0).toUpperCase());
+        const firstLetter = (contact.name.charAt(0).toUpperCase());
         if (!letterFilters.includes(firstLetter)) {
             letterFilters.push(firstLetter);
         }
@@ -72,7 +76,7 @@ function renderContactHtml(contact) {
             <div class="contact" id="contact-${contact.contactid}" onclick="showContactDetail(${contact.contactid})">
                 <div class="ctc-logo">${contact.initials}</div>
                 <div class="ctc-details">
-                    <span class="ctc-fullname">${contact.fullname}</span>
+                    <span class="ctc-fullname">${contact.name}</span>
                     <span class="ctc-email">${contact.email}</span>
                 </div>
             </div>
@@ -87,7 +91,7 @@ function renderContactDetail(contact, color) {
                     <div class="ctc-logo cmh-logo-big" style="background-color:${color}">${contact.initials}</div>
                 </div>
                 <div class="cmh-right">
-                    <div class="cmh-fullname">${contact.fullname}</div>
+                    <div class="cmh-fullname">${contact.name}</div>
                     <div class="edit-contact">
                         <span class="edit-item"><img src="../assets/img/edit.png">Edit</span>
                         <span class="edit-item"><img src="../assets/img/delete-img.png">Delete</span>
