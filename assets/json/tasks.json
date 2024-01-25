@@ -7,7 +7,8 @@
         "subtasks": ["Subtask 1", "Subtask 2"],
         "contactids": [3,2,4],
         "priority": "neutral",
-        "progress": "todo"
+        "progress": "todo",
+        "duedate": ""
     },
     {
         "taskid": "2",
@@ -17,7 +18,8 @@
         "subtasks": ["Subtask 1", "Subtask 2"],
         "contactids": [3,2,4],
         "priority": "neutral",
-        "progress": "todo"
+        "progress": "todo",
+        "duedate": ""
     },
     {
         "taskid": "3",
@@ -27,7 +29,8 @@
         "subtasks": ["Subtask 1", "Subtask 2"],
         "contactids": [3,2,4],
         "priority": "neutral",
-        "progress": "inprogress"
+        "progress": "inprogress",
+        "duedate": ""
     },
     {
         "taskid": "4",
@@ -37,7 +40,8 @@
         "subtasks": ["Subtask 1", "Subtask 2"],
         "contactids": [3,2,4],
         "priority": "neutral",
-        "progress": "awaitfeedback"
+        "progress": "awaitfeedback",
+        "duedate": ""
     },
     {
         "taskid": "5",
@@ -47,6 +51,7 @@
         "subtasks": ["Subtask 1", "Subtask 2"],
         "contactids": [3,2,4],
         "priority": "neutral",
-        "progress": "done"
+        "progress": "done",
+        "duedate": ""
     }
 ]

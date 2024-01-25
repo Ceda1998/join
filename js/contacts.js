@@ -11,8 +11,7 @@ async function fetchContacts() {
   //Import data from registrated users
   //const contacts = await fetch('./assets/json/contacts.json');
   try {
-    contacts = JSON.parse(await getItem("users"));
-    console.log("Geladene Kontakte ", contacts);
+    contacts = JSON.parse(await getItem('contacts'));
   } catch (e) {
     console.error("Loading error:", e);
   }
@@ -43,7 +42,7 @@ function renderLetterHtml(letter) {
 
 function renderContacts(letter) {
   contacts.forEach((contact) => {
-    if (contact.name.charAt(0).toUpperCase() == letter) {
+    if (contact.firstname.charAt(0).toUpperCase() == letter) {
       renderContactHtml(contact);
     }
   });
@@ -51,22 +50,9 @@ function renderContacts(letter) {
 
 function defineFirstLetters() {
   contacts.forEach((contact) => {
-    const firstLetter = contact.name.charAt(0).toUpperCase();
+    const firstLetter = contact.firstname.charAt(0).toUpperCase();
     if (!letterFilters.includes(firstLetter)) {
       letterFilters.push(firstLetter);
-    }
-  });
-}
-
-async function createInitials(firstTwoLetters) {
-  let contactsArray = await contacts;
-
-  contactsArray.forEach((contact) => {
-    if (contact.name && contact.name.length >= 2) {
-      let firstTwoLetters = contact.name.substring(0, 2).toUpperCase();
-      console.log(firstTwoLetters);
-    } else {
-      console.log("Name nicht verfügbar oder zu kurz");
     }
   });
 }
@@ -86,12 +72,13 @@ function getBackgroundColor(id) {
 }
 
 function renderContactHtml(contact) {
+  console.log(contact);
   document.getElementById("contacts-list").innerHTML += `
         
             <div class="contact" id="contact-${contact.contactid}" onclick="showContactDetail(${contact.contactid})">
-                <div class="ctc-logo">${contact.firstTwoLetters}</div>
+                <div class="ctc-logo">${contact.initials}</div>
                 <div class="ctc-details">
-                    <span class="ctc-fullname">${contact.name}</span>
+                    <span class="ctc-fullname">${contact.fullname}</span>
                     <span class="ctc-email">${contact.email}</span>
                 </div>
             </div>
@@ -103,10 +90,10 @@ function renderContactDetail(contact, color) {
   document.getElementById("contact-detail").innerHTML = `
             <div class="contacts-main-header">
                 <div class="cmh-left">
-                    <div class="ctc-logo cmh-logo-big" style="background-color:${color}">${contact.firstTwoLetters}</div>
+                    <div class="ctc-logo cmh-logo-big" style="background-color:${color}">${contact.initials}</div>
                 </div>
                 <div class="cmh-right">
-                    <div class="cmh-fullname">${contact.name}</div>
+                    <div class="cmh-fullname">${contact.fullname}</div>
                     <div class="edit-contact">
                         <span class="edit-item"><img src="../assets/img/edit.png">Edit</span>
                         <span class="edit-item"><img src="../assets/img/delete-img.png">Delete</span>
