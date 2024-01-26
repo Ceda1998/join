@@ -1,5 +1,5 @@
-let contacts = []; /* contacts which are later from the remote Storage */
-let selectedContacts = []; /* gets added to the tasks.json */
+let contactsAssigendTo = []; /* contacts which are later from the remote Storage */
+let selectedContactsAssignedTo = []; /* gets added to the tasks.json */
 let isArrowAssignedToRotated = false;
 let isButtonToggled = [false, false, false];
 const TOTAL_BUTTONS = 3;
@@ -14,17 +14,17 @@ async function initAddTask() {
     await includeHTML();
     let renderContainer = getField('addTaskContent_container');
     renderContainer.innerHTML += renderAddTaskHtml();
-    await fetchContacts();
-    renderAddTask();
-    console.log(contacts);
+    await fetchContactsAt();
+    await renderAddTask();
+    console.log(contactsAssigendTo);
 }
 
 
 /* Load Contacts from JSON later Remote Storage */
 
-async function fetchContacts() {
+async function fetchContactsAt() {
     let resp = await fetch('./assets/json/contacts.json');
-    contacts = await resp.json();
+    contactsAssigendTo = await resp.json();
 }
 
 /* Render all the Fields from Add Task */
@@ -39,8 +39,9 @@ async function renderAddTask() {
 
 function renderAddTaskHtml() {
     return /*html*/`
+    <form>
     <h1>Add Task</h1>
-<div class="add-task-container">
+    <div class="add-task-container">
 
     <div class="container-left">
         <div class="title">
@@ -78,8 +79,7 @@ function renderAddTaskHtml() {
         <div class="due-date">
             <label>Due date<span class="star">*</span><br>
                 <div class="d-d-input-container" id="dateInputContainer">
-                    <input id="dateInput" type="date" class="inputField focus color-date-input-gray" required onclick="minMaxDate()" onblur="checkValueDueDate()" onchange="colorFontInput()"> 
-                    <img src="./assets/img/event.png" class="event d-none">
+                    <input id="dateInput" type="date" class="inputField focus color-date-input-gray" required onclick="minMaxDate()" onblur="checkValueDueDate()" onchange="colorFontInput(), checkValueDueDate()"> 
                 </div>
             </label>
             <div id="dateRequiredContainer" class="date-required d-none">This field is required</div>
@@ -130,6 +130,7 @@ function renderAddTaskHtml() {
     </div>
 
 </div>
+</form>
 
 <div class="bottom-container">
     <span class="text-required"><span class="star-text-required">*</span>This field is required</span>
@@ -169,7 +170,7 @@ function setInputClear(inputFields) {
     inputFields.titleInput.value = '';
     inputFields.descriptionInput.value = '';
     inputFields.assignedToInput.value = '';
-    selectedContacts = [];
+    selectedContactsAssignedTo = [];
     inputFields.dueDateInput.value = '';
     inputFields.categoryInput.value = 'Select task category';
     inputFields.subtaskInput.value = '';
@@ -236,12 +237,39 @@ function inputAssignedToBlur() {
 }
 
 
-/* Selects the person you click on and puts it in the input-field */
+/* Selects the person you click on and puts it in the selectedContactsAssignedTo-Array */
 
 function selectPerson(num) {
-    let selectedPerson = document.getElementById(`person${num}`).innerHTML;
-    assignedToInput.value = selectedPerson;
-    toggleAssignedToDropDown();
+    let selectedPerson = getField(`person${num}`).innerHTML;
+    selectedContactsAssignedTo.push(selectedPerson);
+    checkButtonContactsChecked(num);
+}
+
+
+/* Removes the person you click on and removes it from the selectedContactsAssignedTo-Array*/
+
+function removePerson(num) {
+    let selectedPerson = getField(`person${num}`).innerHTML;
+    for (let i=0; i < selectedContactsAssignedTo.length; i++) {
+        let name = selectedContactsAssignedTo[i];
+        if (name === selectedPerson) {
+            selectedContactsAssignedTo.splice(name, 1);
+        }
+    }
+    checkButtonContactsChecked(num);
+}
+
+/* What happens when a contact gets selected */
+
+function checkButtonContactsChecked(num) {
+    let button = getField(`button${num}`);
+    let checkedButton = getField(`checkedButton${num}`);
+    let dropDownContactsContainer = getField(`dropDownContactsContainer${num}`);
+    let person = getField(`person${num}`);
+    dropDownContactsContainer.classList.toggle('background-selected-contact');
+    person.classList.toggle('white');
+    button.classList.toggle('d-none');
+    checkedButton.classList.toggle('d-none');
 }
 
 
@@ -263,11 +291,54 @@ function toggleAssignedToDropDown() {
 
 function renderContactsAssignedTo(assignedToDropDown) {
     assignedToDropDown.innerHTML = '';
-    assignedToDropDown.innerHTML += /*html*/`
-        <span id="person1" onclick="selectPerson(1)">Anna</span>
-        <span id="person2" onclick="selectPerson(2)">Peter</span>
-        <span id="person3" onclick="selectPerson(3)">Hans</span>
+    for (let i = 0; i < contactsAssigendTo.length; i++) {
+        let contact = contactsAssigendTo[i];
+        let fullname = contact['fullname'];
+        assignedToDropDown.innerHTML += assignedToContactsTemplate(contact, i);
+    /* renderBackgroundColorInitials(); */
+    renderContactsChecked(fullname, i);
+    }
+}
+
+
+/* Template to the renderContactsAssignedTo-function */
+
+function assignedToContactsTemplate(contact, i) {
+    return /*html*/`
+        <div class="drop-down-contacts-container" id="dropDownContactsContainer${i}">
+            <div class="initial-name-container">
+                <div class="initial-at"><span>${contact['initials']}</span></div>
+                <span class="name-at" id="person${i}">${contact['fullname']}</span>
+            </div>
+            <img class="check-button-contacts-at" id="button${i}" onclick="selectPerson(${i})" src="./assets/img/check-button.png">
+            <img class="checked-button-contacts-at d-none" id="checkedButton${i}" onclick="removePerson(${i})" src="./assets/img/checked-button.png">
+        </div>
     `;
+}
+
+/* The selected contacts get the look of the checked button */
+
+function renderContactsChecked(fullname, i) {
+    for (let j = 0; j < selectedContactsAssignedTo.length; j++) {
+        const name = selectedContactsAssignedTo[j];
+        if (name === fullname) {
+            let button = getField(`button${i}`);
+            let checkedButton = getField(`checkedButton${i}`);
+            let person = getField(`person${i}`);
+            let dropDownContactsContainer = getField(`dropDownContactsContainer${i}`);
+            person.classList.add('white');
+            button.classList.add('d-none');
+            checkedButton.classList.remove('d-none');
+            dropDownContactsContainer.classList.add('background-selected-contact');
+        }
+    }
+}
+
+
+/* Sets the Background Color of the initial-name-container according to the initials */
+
+function renderBackgroundColorInitials() {
+
 }
 
 
@@ -587,7 +658,7 @@ function createTask() {
         "description": description.value,
         "category": category.value,
         "subtasks": subtasks,
-        "contactids": selectedContacts,
+        "contactids": selectedContactsAssignedTo,
         "priority": "neutral",
         "progress": "done",
         "date": dueDate
