@@ -222,10 +222,10 @@
   .summaryHeader {
     display: flex;
     flex-direction: column;
-    align-items: start;
     padding-left: 50px;
     padding-bottom: 50px;
     gap: 15px;
+    align-items: center;
   }
   .dividerSummaryHeader {
     display: none;
@@ -270,4 +270,15 @@
     width: 410px;
     height: 110px;
  }
+ .summaryHeader {
+  display: flex;
+  flex-direction: column;
+  padding-left: 74px;
+  padding-bottom: 50px;
+  gap: 15px;
+  align-items: start;
+}
+.summaryToDoTaskHeadlines {
+  font-size: 47px;
+}
 }
