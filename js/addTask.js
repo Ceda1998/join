@@ -5,7 +5,7 @@ let isButtonToggled = [false, false, false];
 const TOTAL_BUTTONS = 3;
 let isArrowCategoryRotated = false;
 let subtasks = []; /* gets added to the tasks.json */
-let tasks = []; /* tasks which are later added to the remote Storage */
+let tasksAssignedTo = []; /* tasks which are later added to the remote Storage */
 
 
 /* When the side is loaded all Fields get initalized and cleared*/
@@ -15,6 +15,7 @@ async function initAddTask() {
     let renderContainer = getField('addTaskContent_container');
     renderContainer.innerHTML += renderAddTaskHtml();
     await fetchContactsAt();
+    await fetchTasksAt();
     await renderAddTask();
     console.log(contactsAssigendTo);
 }
@@ -26,6 +27,15 @@ async function fetchContactsAt() {
     let resp = await fetch('./assets/json/contacts.json');
     contactsAssigendTo = await resp.json();
 }
+
+
+/* Load tasks from JSON later Remote Storage */
+
+async function fetchTasksAt() {
+    let resp = await fetch('./assets/json/tasks.json');
+    tasksAssignedTo = await resp.json();
+}
+
 
 /* Render all the Fields from Add Task */
 
@@ -39,8 +49,8 @@ async function renderAddTask() {
 
 function renderAddTaskHtml() {
     return /*html*/`
-    <form>
     <h1>Add Task</h1>
+    <form onsubmit="createTask(); return false">
     <div class="add-task-container">
 
     <div class="container-left">
@@ -64,7 +74,7 @@ function renderAddTaskHtml() {
         <div class="assigned-to">
             <label>Assigned to<br>
                 <div class="a-t-input-container" id="aTInputContainer">
-                    <input class="inputField" placeholder="Select contacts to assign" id="assignedToInput" readonly onfocus="inputAssignedToFocus()" onblur="inputAssignedToBlur()" onchange="filterNames()">
+                    <input class="inputField" placeholder="Select contacts to assign" id="assignedToInput" onfocus="inputAssignedToFocus()" onblur="inputAssignedToBlur()" onkeyup="filterNames()">
                     <img src="./assets/img/arrow-drop-down.png" class="arrow-drop-down" id="arrowAssignedTo" onclick="toggleAssignedToDropDown()">
                 </div>
             </label>
@@ -82,7 +92,7 @@ function renderAddTaskHtml() {
         <div class="due-date">
             <label>Due date<span class="star">*</span><br>
                 <div class="d-d-input-container" id="dateInputContainer">
-                    <input id="dateInput" type="date" class="inputField focus color-date-input-gray" required onclick="minMaxDate()" onblur="checkValueDueDate()" onchange="colorFontInput(), checkValueDueDate()"> 
+                    <input id="dateInput" type="date" class="inputField focus color-date-input-gray" onclick="minMaxDate()" onblur="checkValueDueDate()" onchange="colorFontInput(), checkValueDueDate()"> 
                 </div>
             </label>
             <div id="dateRequiredContainer" class="date-required d-none">This field is required</div>
@@ -103,7 +113,7 @@ function renderAddTaskHtml() {
         <div class="category">
             <label>Category<span class="star">*</span><br>
                 <div class="category-container" id="categoryInputContainer">
-                <input list="category" value="Select task category" class="inputField" id="categoryInput" readonly>
+                <input list="category" placeholder="Select task category" class="inputField" id="categoryInput" readonly>
                 <img src="./assets/img/arrow-drop-down.png" class="arrow-drop-down" id="arrowCategory" onclick="toggleCategoryDropDown()">
                 </div>
             </label>
@@ -133,15 +143,15 @@ function renderAddTaskHtml() {
     </div>
 
 </div>
-</form>
 
 <div class="bottom-container">
     <span class="text-required"><span class="star-text-required">*</span>This field is required</span>
     <div class="buttons-container">
-        <button class="button-clear button-center" onclick="clearTask()">Clear<img src="./assets/img/close-img.png"></button>
-        <button class="button-create button-center">Create Task<img src="./assets/img/check.png"></button>
+        <button type="reset" class="button-clear button-center" onclick="clearTask()">Clear<img src="./assets/img/close-img.png"></button>
+        <button type="submit" class="button-create button-center">Create Task<img src="./assets/img/check.png"></button>
     </div>
 </div>
+</form>
     `;
 }
 
@@ -175,7 +185,7 @@ function setInputClear(inputFields) {
     inputFields.assignedToInput.value = '';
     selectedContactsAssignedTo = [];
     inputFields.dueDateInput.value = '';
-    inputFields.categoryInput.value = 'Select task category';
+    inputFields.categoryInput.value = '';
     inputFields.subtaskInput.value = '';
     subtasks = [];
     clearPrioButtons();
@@ -283,24 +293,21 @@ function toggleAssignedToDropDown() {
     let assignedToDropDown = getField('assignedToDropDown');
     let contactsSelectedContainer = getField('contactsSelectedContainer');
     let arrowAssignedTo = getField('arrowAssignedTo');
-    let assignedToInput = getField('assignedToInput');
     contactsSelectedContainer.classList.toggle('d-none');
     assignedToDropDown.classList.toggle('d-none');
     isArrowAssignedToRotated = !isArrowAssignedToRotated;
     arrowAssignedTo.style.transform = isArrowAssignedToRotated ? 'rotate(180deg)' : '';
-    ifElseArrow(assignedToDropDown, contactsSelectedContainer, assignedToInput);
+    ifElseArrow(assignedToDropDown, contactsSelectedContainer);
 }
 
 
 /* If-else-statement according to the direction of the arrow */
 
-function ifElseArrow(assignedToDropDown, contactsSelectedContainer, assignedToInput) {
+function ifElseArrow(assignedToDropDown, contactsSelectedContainer) {
     if (isArrowAssignedToRotated == true) {
         renderContactsAssignedTo(assignedToDropDown);
-        assignedToInput.removeAttribute('readonly');
     } else {
         renderInitialsSelected(contactsSelectedContainer);
-        assignedToInput.setAttribute('readonly', 'readonly');
     }
 }
 
@@ -378,7 +385,33 @@ function renderBackgroundColorInitials() {
 
 function filterNames() {
     let search = getField('assignedToInput').value.toLowerCase();
+    let assignedToDropDown = getField('assignedToDropDown');
+    if (search == '') {
+        if (isArrowAssignedToRotated == true) {
+            toggleAssignedToDropDown();
+        }
+        }
+    else {
+        if (isArrowAssignedToRotated == false) {
+            toggleAssignedToDropDown();
+        }
+        activeSearchInput(search, assignedToDropDown);
+    }
+}
 
+
+/* Active search assigned-to-seach-input */
+
+function activeSearchInput(search, assignedToDropDown) {
+    assignedToDropDown.innerHTML = '';
+    for (let i = 0; i < contactsAssigendTo.length; i++) {
+        let contact = contactsAssigendTo[i];
+        let fullname = contact['fullname'];
+        if (fullname.toLowerCase().includes(search)) {
+            assignedToDropDown.innerHTML += assignedToContactsTemplate(contact, i);
+            renderContactsChecked(fullname, i)
+        }
+    }
 }
 
 
@@ -387,7 +420,6 @@ function filterNames() {
 document.addEventListener('click', function(event) {
     let assignedToContainer = document.getElementById('aTInputContainer');
     let assignedToDropDown = document.getElementById('assignedToDropDown');
-
     if (isArrowAssignedToRotated === true && !assignedToContainer.contains(event.target) && !assignedToDropDown.contains(event.target)) {
         toggleAssignedToDropDown();
     }
@@ -570,13 +602,16 @@ function saveInputSubtask() {
 function addSubtask() {
     let input = getField('subtaskInput');
     let subtask = input.value;
-    if (subtask !== '') {
-    subtasks.push(subtask);
-    renderSubtasks();
-    input.value = '';
+    if (subtasks.length < 2) {
+        if (subtask !== '') {
+            subtasks.push(subtask);
+            renderSubtasks();
+            }
     } else {
+        alert('Es sind maximal zwei Subtasks erlaubt.')
         inputSubtaskFocus();
     }
+    input.value = '';
 }
 
 
@@ -691,17 +726,30 @@ function createTask() {
     let description = document.getElementById('descriptionInput');
     let dueDate = document.getElementById('dateInput');
     let category = document.getElementById('categoryInput');
+    let taskId = gettingContactId();
+    console.log(taskId);
 
     let task = {
-        "taskid": "5",
+        "taskid": taskId,
         "title": title.value,
         "description": description.value,
         "category": category.value,
         "subtasks": subtasks,
-        "contactids": selectedContactsAssignedTo,
+        "contactids": selectedContactsAssignedTo['contactid'],
         "priority": "neutral",
         "progress": "done",
         "date": dueDate
     }
+
+    tasksAssignedTo.push(task);
+    console.log(tasksAssignedTo);
+    clearTask();
     
+}
+
+
+/* Function for getting the contactId */
+
+function gettingContactId() {
+    return tasksAssignedTo.length + 1;
 }
