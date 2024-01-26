@@ -64,11 +64,14 @@ function renderAddTaskHtml() {
         <div class="assigned-to">
             <label>Assigned to<br>
                 <div class="a-t-input-container" id="aTInputContainer">
-                    <input class="inputField" placeholder="Select contacts to assign" id="assignedToInput" onfocus="inputAssignedToFocus()" onblur="inputAssignedToBlur()">
+                    <input class="inputField" placeholder="Select contacts to assign" id="assignedToInput" readonly onfocus="inputAssignedToFocus()" onblur="inputAssignedToBlur()" onchange="filterNames()">
                     <img src="./assets/img/arrow-drop-down.png" class="arrow-drop-down" id="arrowAssignedTo" onclick="toggleAssignedToDropDown()">
                 </div>
             </label>
-            <div id="assignedToDropDown" class="assigned-to-drop-down d-none"></div>
+            <div id="assignedToDropDown" class="assigned-to-drop-down d-none">
+            </div>
+            <div id="contactsSelectedContainer" class="contacts-selected-container">
+            </div>
         </div>
 
     </div>
@@ -240,7 +243,7 @@ function inputAssignedToBlur() {
 /* Selects the person you click on and puts it in the selectedContactsAssignedTo-Array */
 
 function selectPerson(num) {
-    let selectedPerson = getField(`person${num}`).innerHTML;
+    let selectedPerson = contactsAssigendTo[`${num}`];
     selectedContactsAssignedTo.push(selectedPerson);
     checkButtonContactsChecked(num);
 }
@@ -249,11 +252,12 @@ function selectPerson(num) {
 /* Removes the person you click on and removes it from the selectedContactsAssignedTo-Array*/
 
 function removePerson(num) {
-    let selectedPerson = getField(`person${num}`).innerHTML;
+    let selectedPerson = contactsAssigendTo[`${num}`]['fullname'];
     for (let i=0; i < selectedContactsAssignedTo.length; i++) {
-        let name = selectedContactsAssignedTo[i];
+        let contact = selectedContactsAssignedTo[i];
+        let name = contact['fullname'];
         if (name === selectedPerson) {
-            selectedContactsAssignedTo.splice(name, 1);
+            selectedContactsAssignedTo.splice(contact, 1);
         }
     }
     checkButtonContactsChecked(num);
@@ -277,17 +281,31 @@ function checkButtonContactsChecked(num) {
 
 function toggleAssignedToDropDown() {
     let assignedToDropDown = getField('assignedToDropDown');
+    let contactsSelectedContainer = getField('contactsSelectedContainer');
     let arrowAssignedTo = getField('arrowAssignedTo');
+    let assignedToInput = getField('assignedToInput');
+    contactsSelectedContainer.classList.toggle('d-none');
     assignedToDropDown.classList.toggle('d-none');
     isArrowAssignedToRotated = !isArrowAssignedToRotated;
     arrowAssignedTo.style.transform = isArrowAssignedToRotated ? 'rotate(180deg)' : '';
+    ifElseArrow(assignedToDropDown, contactsSelectedContainer, assignedToInput);
+}
+
+
+/* If-else-statement according to the direction of the arrow */
+
+function ifElseArrow(assignedToDropDown, contactsSelectedContainer, assignedToInput) {
     if (isArrowAssignedToRotated == true) {
         renderContactsAssignedTo(assignedToDropDown);
+        assignedToInput.removeAttribute('readonly');
+    } else {
+        renderInitialsSelected(contactsSelectedContainer);
+        assignedToInput.setAttribute('readonly', 'readonly');
     }
 }
 
 
-/* If the Arrwo is rotated the contacts are loaded and shown*/
+/* If the arrow is rotated the contacts are loaded and shown*/
 
 function renderContactsAssignedTo(assignedToDropDown) {
     assignedToDropDown.innerHTML = '';
@@ -295,8 +313,21 @@ function renderContactsAssignedTo(assignedToDropDown) {
         let contact = contactsAssigendTo[i];
         let fullname = contact['fullname'];
         assignedToDropDown.innerHTML += assignedToContactsTemplate(contact, i);
-    /* renderBackgroundColorInitials(); */
-    renderContactsChecked(fullname, i);
+        /* renderBackgroundColorInitials(); */
+        renderContactsChecked(fullname, i);
+    }
+}
+
+
+/* If the direction of the arrow is down, all the slected contacts are shown by the initials */
+
+function renderInitialsSelected(contactsSelectedContainer) {
+    contactsSelectedContainer.innerHTML = '';
+    for (let i = 0; i < selectedContactsAssignedTo.length; i++) {
+        let initials = selectedContactsAssignedTo[i]['initials'];
+        contactsSelectedContainer.innerHTML += /*html*/`
+            <div class="initial-at"><span>${initials}</span></div>
+        `;
     }
 }
 
@@ -307,7 +338,7 @@ function assignedToContactsTemplate(contact, i) {
     return /*html*/`
         <div class="drop-down-contacts-container" id="dropDownContactsContainer${i}">
             <div class="initial-name-container">
-                <div class="initial-at"><span>${contact['initials']}</span></div>
+                <div class="initial-at" id="initialAt${i}"><span>${contact['initials']}</span></div>
                 <span class="name-at" id="person${i}">${contact['fullname']}</span>
             </div>
             <img class="check-button-contacts-at" id="button${i}" onclick="selectPerson(${i})" src="./assets/img/check-button.png">
@@ -320,8 +351,9 @@ function assignedToContactsTemplate(contact, i) {
 
 function renderContactsChecked(fullname, i) {
     for (let j = 0; j < selectedContactsAssignedTo.length; j++) {
-        const name = selectedContactsAssignedTo[j];
-        if (name === fullname) {
+        let contactSelected = selectedContactsAssignedTo[j];
+        let name = contactSelected['fullname'];
+        if (fullname === name) {
             let button = getField(`button${i}`);
             let checkedButton = getField(`checkedButton${i}`);
             let person = getField(`person${i}`);
@@ -338,6 +370,14 @@ function renderContactsChecked(fullname, i) {
 /* Sets the Background Color of the initial-name-container according to the initials */
 
 function renderBackgroundColorInitials() {
+
+}
+
+
+/* You can search for a name */
+
+function filterNames() {
+    let search = getField('assignedToInput').value.toLowerCase();
 
 }
 

@@ -162,6 +162,10 @@ textarea::placeholder {
     border: 1px solid #D1D1D1;
 }
 
+.inputField:hover {
+    cursor:auto;
+}
+
 #assignedToInput,
 #categoryInput,
 #subtaskInput {
@@ -266,6 +270,15 @@ textarea::placeholder {
 
 .white {
     color: white;
+}
+
+.contacts-selected-container {
+    display: flex;
+    margin-top: 64px;
+}
+
+.contacts-selected-container .initial-at {
+    margin-right: 8px;
 }
 
 /* separator */
