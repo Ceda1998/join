@@ -1,5 +1,6 @@
 const currentTime = new Date();
 let currentHour = currentTime.getHours();
+let pageStatus = true;
 
 async function getTaskData() {
     let data = fetch('./assets/json/tasks.json');
@@ -73,6 +74,16 @@ async function changeAwaitingFeedbackTasks() {
     tasksAwaitingFeedback.innerHTML = awaitingFeedbackTasksCount;
 }
 
+// change Backgroundcolor on mobile template
+
+function changeStatus(status) {
+    let getCurrentDiv = document.getElementById('summaryDivBc');
+    if (status == true) {
+        getCurrentDiv.style.backgroundColor = '#091931';
+    } else {
+        getCurrentDiv.style.backgroundColor = 'none'
+    }
+}
 
 function renderSummaryPageHtml() {
  return ` 

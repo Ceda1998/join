@@ -244,10 +244,14 @@
     width: 170px;
     height: 170px;
   }
- .bigToDo_container {
+  .bigToDo_container {
     width: 550px;
     height: 180px;
- }
+  }
+  .mobileNavbarIcons {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 @media (max-width: 550px) {
@@ -269,16 +273,32 @@
   .bigToDo_container {
     width: 410px;
     height: 110px;
- }
- .summaryHeader {
-  display: flex;
-  flex-direction: column;
-  padding-left: 74px;
-  padding-bottom: 50px;
-  gap: 15px;
-  align-items: start;
-}
-.summaryToDoTaskHeadlines {
-  font-size: 47px;
-}
+  }
+  .summaryHeader {
+    display: flex;
+    flex-direction: column;
+    padding-left: 74px;
+    padding-bottom: 50px;
+    gap: 15px;
+    align-items: start;
+  }
+  .summaryToDoTaskHeadlines {
+    font-size: 47px;
+  }
+  .summaryImg {
+    width: 40px;
+    height: 40px;
+  }
+  .deadlineToDateStyle {
+    font-size: 16px;
+  }
+  .summarySmallSpan {
+    font-size: 14px;
+  }
+  .toDoContent_container {
+    align-items: start;
+  }
+  .summaryHeader {
+    padding-left: 10px;
+  }
 }
