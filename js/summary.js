@@ -100,6 +100,7 @@ function renderSummaryPageHtml() {
      <h1 class="summaryHeadline">Join 360</h1>
      <div class="dividerSummaryHeader"></div> 
      <span class="summarySpan">Key Metrics at Glance</span>
+     <div class="dividerSummaryHeaderMobile"></div> 
      </div>
      <div class="toDoContent_container">
      <div class="smallToDo_container">

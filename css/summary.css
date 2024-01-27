@@ -37,6 +37,14 @@
   background-color: #0d99ff;
 }
 
+.dividerSummaryHeaderMobile {
+  border: 3px;
+  width: 300px;
+  height: 3px;
+  background-color: #0d99ff;
+  display: none;
+}
+
 .summarySpan {
   font-size: 27px;
   font-weight: 400;
@@ -223,7 +231,7 @@
     margin-left: 0 !important;
   }
   #summaryContent_container {
-    margin-left: 10px;
+    margin-left: 0;
   }
   #greetUserHeadline {
     display: none;
@@ -252,7 +260,7 @@
     height: 170px;
   }
   .smallToDo_container {
-    gap: 50px;
+    gap: 40px;
   }
   .smallTask_container {
     width: 170px;
@@ -265,6 +273,12 @@
   .mobileNavbarIcons {
     width: 40px;
     height: 40px;
+  }
+  .greetUserContainer {
+    display: none;
+  }
+  .dividerSummaryHeaderMobile {
+    display: block;
   }
 }
 

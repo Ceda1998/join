@@ -48,6 +48,8 @@ async function checkLogin() {
   }
 }
 
+//finding current logged in User functions:
+
 function findUserNameByEmail(email) {
   const user = users.find(user => user.email === email);
   return user ? user.name : null;
@@ -58,6 +60,8 @@ async function greetUserInSummary() {
   loggedInUser.push(findUserNameByEmail(currentMail));
   localStorage.setItem("userName", JSON.stringify(loggedInUser));
 }
+
+//sign Up Logic:
 
 function openSignUpWindow() {
   let signUpContainer = document.getElementById("loginContentContainer");
