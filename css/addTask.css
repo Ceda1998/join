@@ -202,8 +202,11 @@ textarea::placeholder {
     flex-direction: column;
     background-color: #FFFFFF;
     margin-top: 48px;
-    padding-top: 8px;
     max-height: 288px;
+}
+
+.assigned-to-drop-down-wrapper {
+    margin-top: 8px;
     overflow-y: auto;
 }
 

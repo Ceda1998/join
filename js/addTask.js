@@ -79,6 +79,8 @@ function renderAddTaskHtml() {
                 </div>
             </label>
             <div id="assignedToDropDown" class="assigned-to-drop-down d-none">
+                <div id="assignedToDropDownWrapper" class="assigned-to-drop-down-wrapper">
+                </div>
             </div>
             <div id="contactsSelectedContainer" class="contacts-selected-container">
             </div>
@@ -316,12 +318,12 @@ function ifElseArrow() {
 /* If the arrow is rotated the contacts are loaded and shown*/
 
 function renderContactsAssignedTo() {
-    let assignedToDropDown = getField('assignedToDropDown');
-    assignedToDropDown.innerHTML = '';
+    let assignedToDropDownWrapper = getField('assignedToDropDownWrapper');
+    assignedToDropDownWrapper.innerHTML = '';
     for (let i = 0; i < contactsAssigendTo.length; i++) {
         let contact = contactsAssigendTo[i];
         let fullname = contact['fullname'];
-        assignedToDropDown.innerHTML += assignedToContactsTemplate(contact, i);
+        assignedToDropDownWrapper.innerHTML += assignedToContactsTemplate(contact, i);
         /* renderBackgroundColorInitials(); */
         renderContactsChecked(fullname, i);
     }
@@ -388,7 +390,7 @@ function renderBackgroundColorInitials() {
 
 function filterNames() {
     let search = getField('assignedToInput').value.toLowerCase();
-    let assignedToDropDown = getField('assignedToDropDown');
+    let assignedToDropDownWrapper = getField('assignedToDropDownWrapper');
     if (search == '') {
         if (isArrowAssignedToRotated == true) {
             toggleAssignedToDropDown();
@@ -398,20 +400,20 @@ function filterNames() {
         if (isArrowAssignedToRotated == false) {
             toggleAssignedToDropDown();
         }
-        activeSearchInput(search, assignedToDropDown);
+        activeSearchInput(search, assignedToDropDownWrapper);
     }
 }
 
 
 /* Active search assigned-to-seach-input */
 
-function activeSearchInput(search, assignedToDropDown) {
-    assignedToDropDown.innerHTML = '';
+function activeSearchInput(search, assignedToDropDownWrapper) {
+    assignedToDropDownWrapper.innerHTML = '';
     for (let i = 0; i < contactsAssigendTo.length; i++) {
         let contact = contactsAssigendTo[i];
         let fullname = contact['fullname'];
         if (fullname.toLowerCase().includes(search)) {
-            assignedToDropDown.innerHTML += assignedToContactsTemplate(contact, i);
+            assignedToDropDownWrapper.innerHTML += assignedToContactsTemplate(contact, i);
             renderContactsChecked(fullname, i)
         }
     }
@@ -422,8 +424,8 @@ function activeSearchInput(search, assignedToDropDown) {
 
 document.addEventListener('click', function(event) {
     let assignedToContainer = document.getElementById('aTInputContainer');
-    let assignedToDropDown = document.getElementById('assignedToDropDown');
-    if (isArrowAssignedToRotated === true && !assignedToContainer.contains(event.target) && !assignedToDropDown.contains(event.target)) {
+    let assignedToDropDownWrapper = document.getElementById('assignedToDropDownWrapper');
+    if (isArrowAssignedToRotated === true && !assignedToContainer.contains(event.target) && !assignedToDropDownWrapper.contains(event.target)) {
         toggleAssignedToDropDown();
     }
 })
