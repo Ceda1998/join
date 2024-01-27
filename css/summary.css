@@ -5,6 +5,7 @@
 #summaryContent_container {
   position: relative;
   width: 100%;
+  height: 100vh;
   margin-left: 232px;
 }
 
@@ -229,6 +230,7 @@
   }
   .summaryHeader {
     margin-left: 0 !important;
+    margin-top: 10px;
   }
   #summaryContent_container {
     margin-left: 0;
@@ -245,8 +247,8 @@
     display: flex;
     flex-direction: column;
     padding-left: 50px;
-    padding-bottom: 50px;
-    gap: 15px;
+    padding-bottom: 20px !important;
+    gap: 5px;
     align-items: center;
   }
   .dividerSummaryHeader {
@@ -279,6 +281,7 @@
   }
   .dividerSummaryHeaderMobile {
     display: block;
+    height: 2px;
   }
 }
 
@@ -389,5 +392,11 @@
  .urgentTask {
   gap: 20px;
   margin-left: 10px;
+ }
+ .summaryHeadline {
+  font-size: 37px;
+ }
+ .summarySpan {
+  font-size: 20px;
  }
 }
