@@ -1,7 +1,25 @@
 let contactsAssigendTo = []; /* contacts which are later from the remote Storage */
 let selectedContactsAssignedTo = []; /* gets added to the tasks.json */
 let isArrowAssignedToRotated = false;
-let isButtonToggled = [false, false, false];
+let prioButtons = [
+    {
+        "name": "urgent",
+        "img": "./assets/img/img-urgent.png",
+        "toggled": false
+    },
+
+    {
+        "name": "medium",
+        "img": "./assets/img/img-medium.png",
+        "toggled": false
+    },
+
+    {
+        "name": "low",
+        "img": "./assets/img/img-low.png",
+        "toggled": false
+    },
+    ];
 const TOTAL_BUTTONS = 3;
 let isArrowCategoryRotated = false;
 let subtasks = []; /* gets added to the tasks.json */
@@ -478,7 +496,8 @@ function colorFontInput() {
 
 function setPrio(num) {
     for (let i = 0; i < TOTAL_BUTTONS; i++) {
-        if (i + 1 == num || isButtonToggled[i] === true) {
+        let isButtonToggled = prioButtons[i]['toggled'];
+        if (i + 1 == num || isButtonToggled === true) {
             togglePrio(i);
         }        
     }
@@ -488,7 +507,7 @@ function setPrio(num) {
 /* Function to toggle the desired prio-button */
 
 function togglePrio(i) {
-    isButtonToggled[i] = !isButtonToggled[i];
+    prioButtons[i]['toggled'] = !prioButtons[i]['toggled'];
     const selectedButton = getField(`prioButton${i+1}`);
     const selectedImgPrioColor = getField(`prioColor${i+1}`);
     const selectedImgPrioWhite = getField(`prioWhite${i+1}`);
@@ -506,7 +525,8 @@ function togglePrio(i) {
 
 function clearPrioButtons() {
     for (let i = 0; i < TOTAL_BUTTONS; i++) {
-        if (isButtonToggled[i] === true) {
+        let isButtonToggled = prioButtons[i]['toggled']
+        if (isButtonToggled === true) {
             togglePrio(i);
         }
     }
@@ -725,13 +745,14 @@ function clearTask() {
 
 /* This function creates a Task and saves it into the remote storage */
 
-function createTask() {
+async function createTask() {
 
     let title = getField('titleInput');
     let description = document.getElementById('descriptionInput');
     let dueDate = document.getElementById('dateInput');
     let category = document.getElementById('categoryInput');
     let taskId = gettingContactId();
+    let priority = getPriority();
     console.log(taskId);
 
     let task = {
@@ -741,8 +762,8 @@ function createTask() {
         "category": category.value,
         "subtasks": subtasks,
         "contactids": selectedContactsAssignedTo['contactid'],
-        "priority": "neutral",
-        "progress": "done",
+        "priority": priority,
+        "progress": "To do",
         "date": dueDate
     }
 
@@ -757,4 +778,16 @@ function createTask() {
 
 function gettingContactId() {
     return tasksAssignedTo.length + 1;
+}
+
+
+/* Function for getting the prio name */
+
+function getPriority() {
+    for (let i = 0; i < prioButtons.length; i++){
+        let isButtonToggled = prioButtons[i]['toggled']
+        if (isButtonToggled === true) {
+                return prioButtons[i]['name'];
+        }
+    }
 }
