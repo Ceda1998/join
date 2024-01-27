@@ -343,6 +343,7 @@ function renderContactsAssignedTo() {
         assignedToDropDownWrapper.innerHTML += assignedToContactsTemplate(contact, i);
         /* renderBackgroundColorInitials(); */
         renderContactsChecked(fullname, i);
+        renderBackgroundColorInitials(i);
     }
 }
 
@@ -355,8 +356,9 @@ function renderInitialsSelected() {
     for (let i = 0; i < selectedContactsAssignedTo.length; i++) {
         let initials = selectedContactsAssignedTo[i]['initials'];
         contactsSelectedContainer.innerHTML += /*html*/`
-            <div class="initial-at"><span>${initials}</span></div>
+            <div class="initial-at" id="initials-at${i}"><span>${initials}</span></div>
         `;
+        renderBackgroundColorInitialsSelected(i);
     }
 }
 
@@ -398,8 +400,21 @@ function renderContactsChecked(fullname, i) {
 
 /* Sets the Background Color of the initial-name-container according to the initials */
 
-function renderBackgroundColorInitials() {
+function renderBackgroundColorInitialsSelected(i) {
+    let initialsSelectedContact = selectedContactsAssignedTo[i]['initials'];
+    let firstLetter = initialsSelectedContact.charAt(0).toLowerCase();
+    let initialsField = getField(`initials-at${i}`);
+    initialsField.classList.add(`${firstLetter}`);
+}
 
+
+/* Sets the Background Color of the initial-name-container according to the initials */
+
+function renderBackgroundColorInitials(i) {
+    let initialsSelectedContact = contactsAssigendTo[i]['initials'];
+    let firstLetter = initialsSelectedContact.charAt(0).toLowerCase();
+    let initialsField = getField(`initialAt${i}`);
+    initialsField.classList.add(`${firstLetter}`);
 }
 
 

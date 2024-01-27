@@ -237,7 +237,6 @@ textarea::placeholder {
     justify-content: center;
     align-items: center;
     border-radius: 100px;
-    background-color: #00BEE8;
     border: 2px solid #FFFFFF;
     box-sizing: border-box;
 }
@@ -286,56 +285,69 @@ textarea::placeholder {
 
 /* initials-color */
 
-.ab {
+.a,
+.b {
     background-color: #FF7A00;
 }
 
-.cd {
+.c,
+.d {
     background-color: #FF5EB3;
 }
 
-.ef {
+.e,
+.f {
     background-color: #6E52FF;
 }
 
-.gh {
-
+.g,
+.h {
+    background-color: #9327FF;
 }
 
-.ij {
-
+.i,
+.j {
+    background-color: #00BEE8;
 }
 
-.kl {
-
+.k,
+.l {
+    background-color: #1FD7C1;
 }
 
-.mn {
-
+.m,
+.n {
+    background-color: #FF745E;
 }
 
-.op {
-
+.o,
+.p {
+    background-color: #FFA35E;
 }
 
-.qr {
-
+.q,
+.r {
+    background-color: #FC71FF;
 }
 
-.st {
-
+.s,
+.t {
+    background-color: #FFC701;
 }
 
-.uv {
-
+.u,
+.v {
+    background-color: #0038FF;
 }
 
-.wx {
-
+.w,
+.x {
+    background-color: #C3FF2B;
 }
 
-.yz {
-
+.y,
+.z {
+    background-color: #FFE62B;
 }
 
 /* separator */
