@@ -220,6 +220,12 @@
     display: flex;
     margin-left: 0 !important;
   }
+  .navbar-mobile-bottom {
+    display: flex !important;
+  }
+  .navbar-mobile-content {
+    display: flex;
+  }
   .nav-left {
     display: none;
   }
@@ -331,6 +337,9 @@
   }
   .summaryHeader {
     padding-left: 10px;
+  }
+  .mobileSpan {
+    font-size: 12px;
   }
 }
 @media (max-width: 450px) {
