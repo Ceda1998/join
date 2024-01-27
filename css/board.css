@@ -192,6 +192,42 @@
     padding: 20px;
 }
 
+/* Pop-up Add Task */
+
+.pop-up-at-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.pop-up-at-field {
+    width: 1116px;
+    height: 870px;
+    background-color: white;
+    border-radius: 30px;
+    z-index: 101;
+    position: relative;
+}
+
+.close-img-at-pop-up {
+    position: absolute;
+    top: 64px;
+    left: 1044px;
+    width: 32px;
+    height: 32px;
+}
+
+.close-img-at-pop-up:hover {
+    cursor: pointer;
+}
+
+
 /* On screens that are 992px wide or less, go from four columns to two columns */
 @media screen and (max-width: 992px) {
     .column {

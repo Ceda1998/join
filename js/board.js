@@ -122,3 +122,15 @@ function getInitials(coworkerIds) {
     });
     return initials;
 }
+
+
+function openPopUpAt() {
+    let popUp = document.getElementById('popUpAtContainer');
+    popUp.classList.remove('d-none');
+}
+
+
+function closePopUpAt() {
+    let popUp = document.getElementById('popUpAtContainer');
+    popUp.classList.add('d-none');
+}
