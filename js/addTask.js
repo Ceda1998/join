@@ -92,7 +92,7 @@ function renderAddTaskHtml() {
         <div class="due-date">
             <label>Due date<span class="star">*</span><br>
                 <div class="d-d-input-container" id="dateInputContainer">
-                    <input id="dateInput" type="date" class="inputField focus color-date-input-gray" onclick="minMaxDate()" onblur="checkValueDueDate()" onchange="colorFontInput(), checkValueDueDate()"> 
+                    <input id="dateInput" type="date" class="inputField focus color-date-input-gray" onclick="minMaxDate()" onkeyup="checkValueDueDate()" onchange="colorFontInput(), checkValueDueDate()"> 
                 </div>
             </label>
             <div id="dateRequiredContainer" class="date-required d-none">This field is required</div>
@@ -188,6 +188,7 @@ function setInputClear(inputFields) {
     inputFields.categoryInput.value = '';
     inputFields.subtaskInput.value = '';
     subtasks = [];
+    renderInitialsSelected();
     clearPrioButtons();
     renderSubtasks();
 }
@@ -297,24 +298,25 @@ function toggleAssignedToDropDown() {
     assignedToDropDown.classList.toggle('d-none');
     isArrowAssignedToRotated = !isArrowAssignedToRotated;
     arrowAssignedTo.style.transform = isArrowAssignedToRotated ? 'rotate(180deg)' : '';
-    ifElseArrow(assignedToDropDown, contactsSelectedContainer);
+    ifElseArrow();
 }
 
 
 /* If-else-statement according to the direction of the arrow */
 
-function ifElseArrow(assignedToDropDown, contactsSelectedContainer) {
+function ifElseArrow() {
     if (isArrowAssignedToRotated == true) {
-        renderContactsAssignedTo(assignedToDropDown);
+        renderContactsAssignedTo();
     } else {
-        renderInitialsSelected(contactsSelectedContainer);
+        renderInitialsSelected();
     }
 }
 
 
 /* If the arrow is rotated the contacts are loaded and shown*/
 
-function renderContactsAssignedTo(assignedToDropDown) {
+function renderContactsAssignedTo() {
+    let assignedToDropDown = getField('assignedToDropDown');
     assignedToDropDown.innerHTML = '';
     for (let i = 0; i < contactsAssigendTo.length; i++) {
         let contact = contactsAssigendTo[i];
@@ -328,7 +330,8 @@ function renderContactsAssignedTo(assignedToDropDown) {
 
 /* If the direction of the arrow is down, all the slected contacts are shown by the initials */
 
-function renderInitialsSelected(contactsSelectedContainer) {
+function renderInitialsSelected() {
+    let contactsSelectedContainer = getField('contactsSelectedContainer');
     contactsSelectedContainer.innerHTML = '';
     for (let i = 0; i < selectedContactsAssignedTo.length; i++) {
         let initials = selectedContactsAssignedTo[i]['initials'];
@@ -443,14 +446,14 @@ function minMaxDate() {
 function checkValueDueDate() {
     let dueDateInput = getField('dateInput');
     let dateRequiredContainer = getField('dateRequiredContainer');
-    if (dueDateInput.value !== '') {
-        dateRequiredContainer.classList.add('d-none');
-        dueDateInput.classList.remove('date-no-input');
-        addFocus(dueDateInput);
-    } else {
+    if (dueDateInput.value === '') {
         dateRequiredContainer.classList.remove('d-none');
         dueDateInput.classList.add('date-no-input');
-        removeFocus(dueDateInput);
+        removeFocus('dateInput');
+    } else {
+        dateRequiredContainer.classList.add('d-none');
+        dueDateInput.classList.remove('date-no-input');
+        addFocus('dateInput');
     }
 }
 
