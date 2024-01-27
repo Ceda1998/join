@@ -74,7 +74,7 @@ function renderAddTaskHtml() {
     <div class="container-left">
         <div class="title">
             <label>Title<span class="star">*</span><br>
-                <input id="titleInput" class="inputField focus" type="text" placeholder="Enter a title" onkeyup="checkValueTitle()">
+                <input id="titleInput" class="inputField focus" type="text" placeholder="Enter a title" onkeyup="checkValueTitle()" required>
             </label>
             <div id="titleRequiredContainer" class="title-required d-none">This field is required</div>
         </div>
@@ -112,7 +112,7 @@ function renderAddTaskHtml() {
         <div class="due-date">
             <label>Due date<span class="star">*</span><br>
                 <div class="d-d-input-container" id="dateInputContainer">
-                    <input id="dateInput" type="date" class="inputField focus color-date-input-gray" onclick="minMaxDate()" onkeyup="checkValueDueDate()" onchange="colorFontInput(), checkValueDueDate()"> 
+                    <input id="dateInput" type="date" class="inputField focus color-date-input-gray" onclick="minMaxDate()" onkeyup="checkValueDueDate()" onchange="colorFontInput(), checkValueDueDate()" required> 
                 </div>
             </label>
             <div id="dateRequiredContainer" class="date-required d-none">This field is required</div>
@@ -133,7 +133,7 @@ function renderAddTaskHtml() {
         <div class="category">
             <label>Category<span class="star">*</span><br>
                 <div class="category-container" id="categoryInputContainer">
-                <input list="category" placeholder="Select task category" class="inputField" id="categoryInput" readonly>
+                <input list="category" placeholder="Select task category" required class="inputField" id="categoryInput">
                 <img src="./assets/img/arrow-drop-down.png" class="arrow-drop-down" id="arrowCategory" onclick="toggleCategoryDropDown()">
                 </div>
             </label>
@@ -168,7 +168,7 @@ function renderAddTaskHtml() {
     <span class="text-required"><span class="star-text-required">*</span>This field is required</span>
     <div class="buttons-container">
         <button type="reset" class="button-clear button-center" onclick="clearTask()">Clear<img src="./assets/img/close-img.png"></button>
-        <button type="submit" class="button-create button-center">Create Task<img src="./assets/img/check.png"></button>
+        <button type="submit" class="button-create button-center" id="createTaskButton">Create Task<img src="./assets/img/check.png"></button>
     </div>
 </div>
 </form>
@@ -212,7 +212,6 @@ function setInputClear(inputFields) {
     clearPrioButtons();
     renderSubtasks();
 }
-
 
 /* When a field gets the focus, it gets a blue border */
 
@@ -745,8 +744,7 @@ function clearTask() {
 
 /* This function creates a Task and saves it into the remote storage */
 
-async function createTask() {
-
+function createTask() {
     let title = getField('titleInput');
     let description = document.getElementById('descriptionInput');
     let dueDate = document.getElementById('dateInput');
@@ -770,7 +768,6 @@ async function createTask() {
     tasksAssignedTo.push(task);
     console.log(tasksAssignedTo);
     clearTask();
-    
 }
 
 
