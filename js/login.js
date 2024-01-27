@@ -1,4 +1,5 @@
 let users = [];
+let loggedInUser =[];
 
 async function register() {
   let form = document.getElementById('SignUpForm');
@@ -41,9 +42,21 @@ async function checkLogin() {
   if (user && user.password === userPassword) {
     console.log('Usermail und Passwort stimmt')
     window.location.href = "summary.html";
+    greetUserInSummary();
   } else {
     console.log('Usermail und Passwort stimmt nicht!')
   }
+}
+
+function findUserNameByEmail(email) {
+  const user = users.find(user => user.email === email);
+  return user ? user.name : null;
+}
+
+async function greetUserInSummary() {
+  let currentMail = document.getElementById('emailLoginField').value;
+  loggedInUser.push(findUserNameByEmail(currentMail));
+  localStorage.setItem("userName", JSON.stringify(loggedInUser));
 }
 
 function openSignUpWindow() {

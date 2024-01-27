@@ -17,6 +17,7 @@ async function getTaskData() {
     changeTaskDone();
     changeAwaitingFeedbackTasks();
     initUsers();
+    getCurrentLoggedInUser();
 }
 
 function changeGreetingMessage() {
@@ -31,6 +32,13 @@ function changeGreetingMessage() {
 
 }
 
+//get current loggedin User from Array stored in local Storage:
+
+function getCurrentLoggedInUser() {
+    let greetUser = document.getElementById('greetUserName');
+    let userData = JSON.parse(localStorage.getItem('userName'));
+    greetUser.innerHTML = `${userData}`
+}
 
 // change Summary Data
 
@@ -133,7 +141,10 @@ function renderSummaryPageHtml() {
                  </div>
              </div>
          </div>
+         <div class="greetUserContainer">
          <p id="greetUserHeadline">Good Morning</p>
+         <p id="greetUserName">Test</p>
+         </div>
      </div>
 
      <div class="taskOverview_container">

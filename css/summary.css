@@ -102,6 +102,20 @@
 #greetUserHeadline {
   font-size: 47px;
   font-weight: 500;
+  margin: 0;
+}
+
+.greetUserContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#greetUserName {
+  font-weight: bold;
+  font-size: 47px;
+  color: #0d99ff;
+  margin: 0;
 }
 
 /* innerContent */
