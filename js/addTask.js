@@ -284,7 +284,7 @@ async function createTask() {
         "subtasks": subtasks,
         "contactids": selectedContactsAssignedTo['contactid'],
         "priority": priority,
-        "progress": "To do",
+        "progress": "todo",
         "date": dueDate
     }
 

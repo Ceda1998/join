@@ -16,6 +16,7 @@ async function getTaskData() {
     changeCurrentTodos();
     changeTaskInProgress();
     changeTaskDone();
+    changeUrgentTasks()
     changeAwaitingFeedbackTasks();
     changeTaskInBoard();
     initUsers();
@@ -71,7 +72,7 @@ async function changeTaskDone() {
 async function changeUrgentTasks() {
     await getTaskData();
     let taskUrgentCount = currentStatusTasks.filter(task => task.priority === 'urgent').length;
-    let tasksUrgent = document.getElementById('urgent');
+    let tasksUrgent = document.getElementById('urgentToDos');
     tasksUrgent.innerHTML = '';
     tasksUrgent.innerHTML = taskUrgentCount;
 }
@@ -117,7 +118,7 @@ function renderSummaryPageHtml() {
              <div class="dflexRow">
                  <img src="./assets/img/ToDoPen.png" alt="toDoPen" class="summaryImg">
                  <div class="dflexColumn">
-                     <h1 id="currentToDoNumber" class="summaryToDoTaskHeadlines">1</h1>
+                     <h1 id="currentToDoNumber" class="summaryToDoTaskHeadlines"></h1>
                      <span class="summarySmallSpan">To-do</span>
                  </div>
              </div>
@@ -127,7 +128,7 @@ function renderSummaryPageHtml() {
                  <div class="dflexRow">
                      <img src="./assets/img/ToDoDone.png" alt="toDoPen" class="summaryImg">
                      <div class="dflexColumn">
-                         <h1 id="DoneToDos" class="summaryToDoTaskHeadlines">1</h1>
+                         <h1 id="DoneToDos" class="summaryToDoTaskHeadlines"></h1>
                          <span class="summarySmallSpan">Done</span>
                      </div>
                  </div>
@@ -140,7 +141,7 @@ function renderSummaryPageHtml() {
                  <div class="urgentTask">
                      <img src="./assets/img/TaskUrgent.png" alt="urgentTask" class="summaryImg">
                      <div class="dflexColumn">
-                         <h1 id="DoneToDos" class="summaryToDoTaskHeadlines">1</h1>
+                         <h1 id="urgentToDos" class="summaryToDoTaskHeadlines"></h1>
                          <span class="summarySmallSpan">Urgent</span>
                      </div>
                  </div>
@@ -160,7 +161,7 @@ function renderSummaryPageHtml() {
      <div class="taskOverview_container">
          <div class="smallTask_container">
              <div class="dflexColumn">
-                 <h1 id="TasksInBoard" class="summaryToDoTaskHeadlines">1</h1>
+                 <h1 id="TasksInBoard" class="summaryToDoTaskHeadlines"></h1>
                  <span class="summarySmallSpan">Tasks in <br>
                      Board</span>
              </div>
@@ -174,7 +175,7 @@ function renderSummaryPageHtml() {
          </div>
          <div class="smallTask_container">
              <div class="dflexColumn">
-                 <h1 id="TaskAwaitingFeedback" class="summaryToDoTaskHeadlines">1</h1>
+                 <h1 id="TaskAwaitingFeedback" class="summaryToDoTaskHeadlines"></h1>
                  <span class="summarySmallSpan">Awaiting<br>
                      Feedback</span>
              </div>
