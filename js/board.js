@@ -11,12 +11,16 @@ window.onload = async () => {
     //let resp = await fetch('./assets/json/tasks.json');
     //tasks = await resp.json();
 
-    tasks = JSON.parse(await getItem('tasks'));
+    await getTasksFromServer();
 
     //Fetch contacts from remote
     await fetchContacts();
     renderBoard();
 };
+
+async function getTasksFromServer() {
+    tasks = JSON.parse(await getItem('tasks'));
+}
 
 async function fetchContacts() {
     let res = await getItem('contacts');
@@ -123,17 +127,16 @@ function getInitials(coworkerIds) {
     return initials;
 }
 
-function updateTask(newtaskid, newprogress) {
-    const task = tasks.find(task => task.taskid = newtaskid);
-    
+async function updateTask(newtaskid, newprogress) {    
+    tasks.forEach(task => {
+        if (task.taskid == newtaskid) {
+            task.progress = newprogress;
+        }
+    });
 
-    console.log(task);
-
-    task['progress'] = newprogress;
-    
-    console.log(task['progress']);
-    console.log('taskid is: ', newtaskid);
-    console.log('New progress is: ', newprogress);
+    await setItem('tasks', tasks);
+    getTasksFromServer();
+    renderBoard();
 }
 
 
