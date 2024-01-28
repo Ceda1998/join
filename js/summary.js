@@ -1,10 +1,11 @@
 const currentTime = new Date();
 let currentHour = currentTime.getHours();
 let pageStatus = true;
+currentStatusTasks = [];
 
 async function getTaskData() {
-    let data = fetch('./assets/json/tasks.json');
-    return resp = (await data).json();
+    currentStatusTasks = JSON.parse(await getItem('tasks'));
+    console.log("aktuelle Tasks", currentStatusTasks);
 }
 
  async function initSummary() {
@@ -16,6 +17,7 @@ async function getTaskData() {
     changeTaskInProgress();
     changeTaskDone();
     changeAwaitingFeedbackTasks();
+    changeTaskInBoard();
     initUsers();
     getCurrentLoggedInUser();
 }
@@ -42,44 +44,51 @@ function getCurrentLoggedInUser() {
 
 // change Summary Data
 
-async function changeCurrentTodos() {
-    let tasks = await getTaskData();
-    let todoCount = tasks.filter(task => task.progress === 'todo').length;
+ async function changeCurrentTodos() {
+    await getTaskData();
+    let todoCount = currentStatusTasks.filter(task => task.progress === 'todo').length;
     let currentToDo = document.getElementById('currentToDoNumber');
     currentToDo.innerHTML = '';
     currentToDo.innerHTML = todoCount;
 }
 
 async function changeTaskInProgress() {
-    let tasks = await getTaskData();
-    let taskInProgressCount = tasks.filter(task => task.progress === 'inprogress').length;
+    await getTaskData();
+    let taskInProgressCount = currentStatusTasks.filter(task => task.progress === 'inprogress').length;
     let taskInProgress = document.getElementById('TaskInProgress');
     taskInProgress.innerHTML = '';
     taskInProgress.innerHTML = taskInProgressCount;
 }
 
 async function changeTaskDone() {
-    let tasks = await getTaskData();
-    let taskDoneCount = tasks.filter(task => task.progress === 'done').length;
+    await getTaskData();
+    let taskDoneCount = currentStatusTasks.filter(task => task.progress === 'done').length;
     let tasksDone = document.getElementById('DoneToDos');
     tasksDone.innerHTML = '';
     tasksDone.innerHTML = taskDoneCount;
 }
 
 async function changeUrgentTasks() {
-    let tasks = await getTaskData();
-    let taskUrgentCount = tasks.filter(task => task.progress === 'done').length;
+    await getTaskData();
+    let taskUrgentCount = currentStatusTasks.filter(task => task.priority === 'urgent').length;
     let tasksUrgent = document.getElementById('urgent');
     tasksUrgent.innerHTML = '';
     tasksUrgent.innerHTML = taskUrgentCount;
 }
 
 async function changeAwaitingFeedbackTasks() {
-    let tasks = await getTaskData();
-    let awaitingFeedbackTasksCount = tasks.filter(task => task.progress === 'awaitfeedback').length;
+    await getTaskData();
+    let awaitingFeedbackTasksCount = currentStatusTasks.filter(task => task.progress === 'awaitfeedback').length;
     let tasksAwaitingFeedback = document.getElementById('TaskAwaitingFeedback');
     tasksAwaitingFeedback.innerHTML = '';
     tasksAwaitingFeedback.innerHTML = awaitingFeedbackTasksCount;
+}
+
+async function changeTaskInBoard() {
+    await getTaskData();
+    let allCurrentTasks = currentStatusTasks.length;
+    let allCurrentTaskContainer = document.getElementById('TasksInBoard');
+    allCurrentTaskContainer.innerHTML = allCurrentTasks;
 }
 
 // change Backgroundcolor on mobile template
