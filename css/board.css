@@ -237,6 +237,10 @@
     cursor: pointer;
 }
 
+.pop-up-at-field .assigned-to-drop-down {
+    max-height: 180px;
+    border: 1px solid #D1D1D1;
+}
 
 /* On screens that are 992px wide or less, go from four columns to two columns */
 @media screen and (max-width: 992px) {
