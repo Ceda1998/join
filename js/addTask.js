@@ -30,7 +30,12 @@ let tasksAssignedTo = []; /* tasks fetched from the remote storage */
 
 async function initAddTask() {
     await includeHTML();
-    await removeCloseButton();
+    console.log(window.location.href);
+    if (window.location.pathname === "/join/add_task.html") {
+        await removeCloseButton();
+    } else {
+        await addCloseButton();
+    }
     await fetchContactsAt();
     await fetchTasksAt();
     await renderAddTask();
@@ -105,6 +110,14 @@ function setInputClear(inputFields) {
 async function removeCloseButton() {
     getField('closeButtonPopUpAt').classList.add('d-none');
 }
+
+
+/* Adds the close button */
+
+async function addCloseButton() {
+    getField('closeButtonPopUpAt').classList.remove('d-none');
+}
+
 
 /* When a field gets the focus, it gets a blue border */
 
@@ -282,8 +295,6 @@ async function createTask() {
     let category = document.getElementById('categoryInput');
     let taskId = gettingContactId();
     let priority = getPriority();
-    console.log(taskId);
-
     let task = {
         "taskid": taskId,
         "title": title.value,
@@ -295,9 +306,8 @@ async function createTask() {
         "progress": "todo",
         "date": dueDate
     }
-
+    console.log(task);
     tasksAssignedTo.push(task);
-    console.log(tasksAssignedTo);
     await setItem('tasks', tasksAssignedTo);
     clearTask();
 }
