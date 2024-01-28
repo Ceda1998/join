@@ -93,7 +93,7 @@ function renderTasks(tasks, id) {
 
         el.innerHTML += `
         <div id="${task['taskid']}" class="todo" draggable="true" ondragstart="drag(event)">
-            <span class="category">${task['category']}</span>
+            <span class="category-board">${task['category']}</span>
             <span class="todo-header">${task['title']}</span>
             <p class="todo-description">${task['description']}</p>
             <div class="subtasks">

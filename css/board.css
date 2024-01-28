@@ -87,7 +87,7 @@
     cursor: grab;
 }
 
-.category {
+.category-board {
     align-self: flex-start;
     background-color: #0038ff;
     padding: 4px 16px;
