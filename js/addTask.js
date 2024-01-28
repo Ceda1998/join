@@ -33,23 +33,23 @@ async function initAddTask() {
     await fetchContactsAt();
     await fetchTasksAt();
     await renderAddTask();
-    console.log(contactsAssigendTo);
+    console.log(tasksAssignedTo);
 }
 
 
 /* Load Contacts from JSON later Remote Storage */
 
 async function fetchContactsAt() {
-    let resp = await fetch('./assets/json/contacts.json');
-    contactsAssigendTo = await resp.json();
+    let resp = await getItem('contacts');
+    contactsAssigendTo = JSON.parse(resp);
 }
 
 
 /* Load tasks from JSON later Remote Storage */
 
 async function fetchTasksAt() {
-    let resp = await fetch('./assets/json/tasks.json');
-    tasksAssignedTo = await resp.json();
+    let resp = await getItem('tasks');
+    tasksAssignedTo = JSON.parse(resp);
 }
 
 
@@ -267,7 +267,7 @@ function clearTask() {
 
 /* This function creates a Task and saves it into the remote storage */
 
-function createTask() {
+async function createTask() {
     let title = getField('titleInput');
     let description = document.getElementById('descriptionInput');
     let dueDate = document.getElementById('dateInput');
@@ -290,6 +290,7 @@ function createTask() {
 
     tasksAssignedTo.push(task);
     console.log(tasksAssignedTo);
+    await setItem('tasks', tasksAssignedTo);
     clearTask();
 }
 
