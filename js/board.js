@@ -4,27 +4,26 @@ let contacts;
 let toDo = 0;
 
 
-
-window.onload = async () => {
+// window.onload = async () =>
+ async function init(){
     await includeHTML(); //Renders external templates and waits for it
-   
-    //let resp = await fetch('./assets/json/tasks.json');
-    //tasks = await resp.json();
-
     await getTasksFromServer();
-
-    //Fetch contacts from remote
-    await fetchContacts();
+    await getContactsFromServer();
     renderBoard();
 };
+
+//Actually not in use
+async function getTasksFromFile() {
+    let resp = await fetch('./assets/json/tasks.json');
+    tasks = await resp.json();
+}
 
 async function getTasksFromServer() {
     tasks = JSON.parse(await getItem('tasks'));
 }
 
-async function fetchContacts() {
-    let res = await getItem('contacts');
-    contacts = JSON.parse(res);
+async function getContactsFromServer() {
+    contacts = JSON.parse(await getItem('contacts'));
 }
 
 
@@ -90,15 +89,17 @@ function renderTasks(tasks, id) {
     let el = document.getElementById(id);
     el.innerHTML = '';
     tasks.forEach((task) => {
-        let coworkerIds = task['contactids'];;        
-        const coworkersHTML = getInitials(coworkerIds).map(coworker => `<div class="todo-coworker">${coworker}</div>`).join('');
+        let coworkerIds = task['contactids'];
+        const coworkersHTML = collectAndRenderCoworkers(coworkerIds);
         const subtasksQty = task['subtasks'].length;
-
         const prioUrl = getPriorityImg(task.priority);
-
         el.innerHTML += renderTaskHtml(task, subtasksQty, coworkersHTML, prioUrl);     
     });
 };
+
+function collectAndRenderCoworkers(coworkerIds) {
+    return getInitials(coworkerIds).map(coworker => `<div class="todo-coworker">${coworker}</div>`).join('');
+}
 
 function getPriorityImg(priovalue) {
     let url;
@@ -153,12 +154,10 @@ async function updateTask(newtaskid, newprogress) {
     renderBoard();
 }
 
-
 function openPopUpAt() {
     let popUp = document.getElementById('popUpAtContainer');
     popUp.classList.remove('d-none');
 }
-
 
 function closePopUpAt() {
     let popUp = document.getElementById('popUpAtContainer');

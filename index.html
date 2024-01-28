@@ -1,110 +1,71 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Join</title>
-    <script src="./js/remoteStorage.js"></script>
-    <script src="./script.js"></script>
-    <script src="./js/login.js"></script>
-    <link rel="stylesheet" href="./css/login.css" />
-    <link rel="stylesheet" href="./css/general-design.css" />
-    <link rel="stylesheet" href="./css/fonts.css" />
-  </head>
-  <body>
-    <div class="headerLogin">
-      <img
-        src="./assets/img/LogoSmall.png"
-        alt="logo small"
-        class="logoSmall"
-      />
-      <div class="headerLoginRight">
-        <span>Not a Join user?</span>
-        <button class="signUpButton" onclick="openSignUpWindow()">
-          Sign up
-        </button>
-      </div>
-    </div>
 
-    <div id="loginAnimation_container">
-      <div class="placeLogoImgLogin">
-        <img src="./assets/img/LogoBig.png" class="bigLoginLogo" />
-      </div>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join</title>
+  <script src="./js/remoteStorage.js"></script>
+  <script src="./script.js"></script>
+  <script src="./js/login.js"></script>
+  <link rel="stylesheet" href="./css/login.css" />
+  <link rel="stylesheet" href="./css/general-design.css" />
+  <link rel="stylesheet" href="./css/fonts.css" />
+</head>
 
-    <div class="login_container" id="loginContentContainer">
-      <div id="loginWindow">
-        <h1 class="loginHeadline">Log in</h1>
-        <hr class="dividerSolid" />
-        <form action="#" id="loginForm">
-          <div class="inputIcon_container">
-            <input
-              type="email"
-              required
-              class="loginInputField"
-              placeholder="Email"
-              id="emailLoginField"
-            />
-            <img
-              src="./assets/img/mail.png"
-              alt="mailicon"
-              class="loginIcons"
-            />
-          </div>
-          <div class="inputIcon_container">
-            <input
-              type="password"
-              required
-              class="loginInputField"
-              placeholder="Password"
-              id="passwordLoginField"
-            />
-            <img
-              src="./assets/img/lock.png"
-              alt="passwordIcon"
-              class="loginIcons"
-            />
-          </div>
-          <div class="rememberMe_container">
-            <input type="checkbox" id="rememberMe" /><label
-              for="rememberMe"
-              class="rememberMeLabel"
-              >Remember me</label
-            >
-          </div>
-          <div class="loginButtons_container">
-            <button id="loginButton" onclick="checkLogin(event)">Log in</button>
-            <button
-              type="button"
-              id="guestLoginButton"
-              onclick="openWithGuestLogin()"
-            >
-              Guest Log in
-            </button>
-          </div>
-        </form>
-      </div>
-      <div class="legalContentLogin">
-        <a
-          href="./legal/privacyPolicyExternal.html"
-          class="legalContentLinksLogin"
-          target="_blank"
-          >Privacy Policy</a
-        >
-        <a
-          href="./legal/legalNoticeExternal.html"
-          class="legalContentLinksLogin"
-          target="_blank"
-          >Legal Notice</a
-        >
-      </div>
-    </div>
-    <div class="signUpContentMobile">
+<body>
+  <div class="headerLogin">
+    <img src="./assets/img/LogoSmall.png" alt="logo small" class="logoSmall" />
+    <div class="headerLoginRight">
       <span>Not a Join user?</span>
       <button class="signUpButton" onclick="openSignUpWindow()">
         Sign up
       </button>
     </div>
-  
-  </body>
+  </div>
+
+  <div id="loginAnimation_container">
+    <div class="placeLogoImgLogin">
+      <img src="./assets/img/LogoBig.png" class="bigLoginLogo" />
+    </div>
+  </div>
+
+  <div class="login_container" id="loginContentContainer">
+    <div id="loginWindow">
+      <h1 class="loginHeadline">Log in</h1>
+      <hr class="dividerSolid" />
+      <form action="#" id="loginForm">
+        <div class="inputIcon_container">
+          <input type="email" required class="loginInputField" placeholder="Email" id="emailLoginField" />
+          <img src="./assets/img/mail.png" alt="mailicon" class="loginIcons" />
+        </div>
+        <div class="inputIcon_container">
+          <input type="password" required class="loginInputField" placeholder="Password" id="passwordLoginField" />
+          <img src="./assets/img/lock.png" alt="passwordIcon" class="loginIcons" />
+        </div>
+        <div class="rememberMe_container">
+          <input type="checkbox" id="rememberMe" /><label for="rememberMe" class="rememberMeLabel">Remember me</label>
+        </div>
+        <div class="loginButtons_container">
+          <button id="loginButton" onclick="checkLogin(event)">Log in</button>
+          <button type="button" id="guestLoginButton" onclick="openWithGuestLogin()">
+            Guest Log in
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="legalContentLogin">
+      <a href="./legal/privacyPolicyExternal.html" class="legalContentLinksLogin" target="_blank">Privacy Policy</a>
+      <a href="./legal/legalNoticeExternal.html" class="legalContentLinksLogin" target="_blank">Legal Notice</a>
+    </div>
+  </div>
+  <div class="signUpContentMobile">
+    <span>Not a Join user?</span>
+    <button class="signUpButton" onclick="openSignUpWindow()">
+      Sign up
+    </button>
+  </div>
+
+</body>
+
 </html>
