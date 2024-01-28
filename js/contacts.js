@@ -72,7 +72,6 @@ function getBackgroundColor(id) {
 }
 
 function renderContactHtml(contact) {
-  console.log(contact);
   document.getElementById("contacts-list").innerHTML += `
         
             <div class="contact" id="contact-${contact.contactid}" onclick="showContactDetail(${contact.contactid})">
@@ -90,7 +89,7 @@ function renderContactDetail(contact, color) {
   document.getElementById("contact-detail").innerHTML = `
             <div class="contacts-main-header">
                 <div class="cmh-left">
-                    <div class="ctc-logo cmh-logo-big" style="background-color:${color}">${contact.initials}</div>
+                    <div class="cmh-logo-big" style="background-color:${color}">${contact.initials}</div>
                 </div>
                 <div class="cmh-right">
                     <div class="cmh-fullname">${contact.fullname}</div>
@@ -113,3 +112,5 @@ function renderContactDetail(contact, color) {
             </div>
     `;
 }
+
+

@@ -35,6 +35,11 @@ function renderBoard() {
     renderDone();
 }
 
+function fetchAndReloadBoard() {
+    getTasksFromServer();
+    renderBoard();
+}
+
 function renderToDo() {
     let todo_tasks = filterTasksByProgress(tasks, 'todo');
     let containerid = 'todo';
@@ -149,9 +154,8 @@ async function updateTask(newtaskid, newprogress) {
             task.progress = newprogress;
         }
     });
-    await setItem('tasks', tasks);
-    getTasksFromServer();
-    renderBoard();
+    await setItem('tasks', tasks);    
+    fetchAndReloadBoard();
 }
 
 function openPopUpAt() {

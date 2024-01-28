@@ -84,8 +84,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 42px;
-    width: 42px;
+    height: 42px !important;
+    width: 42px !important;
 }
 
 .contact:nth-child(3n + 1) .ctc-logo {
@@ -208,6 +208,11 @@
     letter-spacing: 0em;
     border: 3px solid #fff;
     box-sizing: border-box;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .cmh-fullname {
