@@ -1,0 +1,3 @@
+function renderBackgroundByLetter(letter) {
+    
+}

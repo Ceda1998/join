@@ -39,40 +39,40 @@ function renderBoard() {
 function renderToDo() {
     let todo_tasks = filterTasksByProgress(tasks, 'todo');
     let containerid = 'todo';
-    if (todo_tasks) {
+    if (todo_tasks.length > 0) {
         renderTasks(todo_tasks, containerid);
     } else {
-        renderEmptyTodo();
+        renderEmptyTodo(containerid);
     }
 }
 
 function renderInProgress() {
     let inprogress_tasks = filterTasksByProgress(tasks, 'inprogress');
     let containerid = 'inprogress';
-    if (inprogress_tasks) {
+    if (inprogress_tasks.length > 0) {
         renderTasks(inprogress_tasks, containerid);
     } else {
-        renderEmptyTodo();
+        renderEmptyTodo(containerid);
     }
 }
 
 function renderAwaitFeedback() {
     let awaitfeedback_tasks = filterTasksByProgress(tasks, 'awaitfeedback');
     let containerid = 'awaitfeedback';
-    if (awaitfeedback_tasks) {
+    if (awaitfeedback_tasks.length > 0) {
         renderTasks(awaitfeedback_tasks, containerid);
     } else {
-        renderEmptyTodo();
+        renderEmptyTodo(containerid);
     }
 }
 
 function renderDone() {
     let done_tasks = filterTasksByProgress(tasks, 'done');
     let containerid = 'done';
-    if (done_tasks) {
+    if (done_tasks.length > 0) {
         renderTasks(done_tasks, containerid);
     } else {
-        renderEmptyTodo();
+        renderEmptyTodo(containerid);
     }
 }
 
