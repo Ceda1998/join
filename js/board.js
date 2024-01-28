@@ -88,7 +88,6 @@ function renderEmptyTodo(id) {
     document.getElementById(id).innerHTML = `<div id="emptyTodo" class="todo-empty">No tasks here</div>`;
 }
 
-
 /* Render HTML */
 function renderTasks(tasks, id) {
     let el = document.getElementById(id);
@@ -144,17 +143,9 @@ function getInitials(coworkerIds) {
     coworkerIds.forEach(id => {
         const contact = contacts.find(contact => contact.contactid == id);
         initials.push(contact.initials);
-        /* renderBackgroundColorInitialsBoard(initials); */
     });
     return initials;
 }
-
-
-/* function renderBackgroundColorInitialsBoard(initials) {
-    let firstLetter = initials.charAt(0).toLowerCase();
-    let initialsField = document.getElementById('');
-    initialsField.classList.add(`${firstLetter}`);
-} */
 
 async function updateTask(newtaskid, newprogress) {    
     tasks.forEach(task => {
