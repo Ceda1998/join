@@ -30,6 +30,7 @@ let tasksAssignedTo = []; /* tasks fetched from the remote storage */
 
 async function initAddTask() {
     await includeHTML();
+    await removeCloseButton();
     await fetchContactsAt();
     await fetchTasksAt();
     await renderAddTask();
@@ -96,6 +97,13 @@ function setInputClear(inputFields) {
     renderInitialsSelected();
     clearPrioButtons();
     renderSubtasks();
+}
+
+
+/* Removes the close button */
+
+async function removeCloseButton() {
+    getField('closeButtonPopUpAt').classList.add('d-none');
 }
 
 /* When a field gets the focus, it gets a blue border */

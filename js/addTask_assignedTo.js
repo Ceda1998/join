@@ -84,7 +84,6 @@ function renderContactsAssignedTo() {
         let contact = contactsAssigendTo[i];
         let fullname = contact['fullname'];
         assignedToDropDownWrapper.innerHTML += assignedToContactsTemplate(contact, i);
-        /* renderBackgroundColorInitials(); */
         renderContactsChecked(fullname, i);
         renderBackgroundColorInitials(i);
     }
