@@ -90,32 +90,47 @@ function renderTasks(tasks, id) {
     let el = document.getElementById(id);
     el.innerHTML = '';
     tasks.forEach((task) => {
-
         let coworkerIds = task['contactids'];;        
         const coworkersHTML = getInitials(coworkerIds).map(coworker => `<div class="todo-coworker">${coworker}</div>`).join('');
         const subtasksQty = task['subtasks'].length;
 
-        el.innerHTML += `
-        <div id="${task['taskid']}" class="todo" draggable="true" ondragstart="drag(event)">
-            <span class="category-board">${task['category']}</span>
-            <span class="todo-header">${task['title']}</span>
-            <p class="todo-description">${task['description']}</p>
-            <div class="subtasks">
-                <div class="subtasks-bar-outer">
-                    <div class="subtasks-bar-inner"></div>
-                </div>
-                <span class="subtasks-text">${subtasksQty} Subtasks Total</span>
-            </div>
-            <div class="todo-footer">
-                <div class="todo-coworkers">${coworkersHTML}</div>
-                <div class="priority">
-                    <img src="./assets/img/prio-media.png">
-                </div>
-            </div>
-        </div>
-        `;        
+        const prioUrl = getPriorityImg(task.priority);
+
+        el.innerHTML += renderTaskHtml(task, subtasksQty, coworkersHTML, prioUrl);     
     });
 };
+
+function getPriorityImg(priovalue) {
+    let url;
+    prioButtons.forEach(el => {
+        if (el.name == priovalue) {
+            url = el.img;
+        }
+    });
+    return url;
+}
+
+function renderTaskHtml(task, subtasksQty, coworkersHTML, prioUrl) {
+    return `
+    <div id="${task['taskid']}" class="todo" draggable="true" ondragstart="drag(event)">
+        <span class="category-board">${task['category']}</span>
+        <span class="todo-header">${task['title']}</span>
+        <p class="todo-description">${task['description']}</p>
+        <div class="subtasks">
+            <div class="subtasks-bar-outer">
+                <div class="subtasks-bar-inner"></div>
+            </div>
+            <span class="subtasks-text">${subtasksQty} Subtasks Total</span>
+        </div>
+        <div class="todo-footer">
+            <div class="todo-coworkers">${coworkersHTML}</div>
+            <div class="priority">
+                <img src="${prioUrl}">
+            </div>
+        </div>
+    </div>
+    `;
+}
 
 /* Helper function to retrieve Initials from contacts array */
 function getInitials(coworkerIds) {
@@ -133,7 +148,6 @@ async function updateTask(newtaskid, newprogress) {
             task.progress = newprogress;
         }
     });
-
     await setItem('tasks', tasks);
     getTasksFromServer();
     renderBoard();

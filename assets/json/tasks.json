@@ -6,7 +6,7 @@
         "category": "User Story",
         "subtasks": ["Subtask 1", "Subtask 2"],
         "contactids": [3,2,4],
-        "priority": "neutral",
+        "priority": "low",
         "progress": "todo",
         "duedate": ""
     },
@@ -17,7 +17,7 @@
         "category": "User Story",
         "subtasks": ["Subtask 1", "Subtask 2"],
         "contactids": [3,2,4],
-        "priority": "neutral",
+        "priority": "medium",
         "progress": "todo",
         "duedate": ""
     },
@@ -28,7 +28,7 @@
         "category": "User Story",
         "subtasks": ["Subtask 1", "Subtask 2"],
         "contactids": [3,2,4],
-        "priority": "neutral",
+        "priority": "urgent",
         "progress": "inprogress",
         "duedate": ""
     },
@@ -39,7 +39,7 @@
         "category": "User Story",
         "subtasks": ["Subtask 1", "Subtask 2"],
         "contactids": [3,2,4],
-        "priority": "neutral",
+        "priority": "medium",
         "progress": "awaitfeedback",
         "duedate": ""
     },
@@ -50,7 +50,7 @@
         "category": "User Story",
         "subtasks": ["Subtask 1", "Subtask 2"],
         "contactids": [3,2,4],
-        "priority": "neutral",
+        "priority": "medium",
         "progress": "done",
         "duedate": ""
     }
