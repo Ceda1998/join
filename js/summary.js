@@ -16,6 +16,7 @@ async function getTaskData() {
     changeCurrentTodos();
     changeTaskInProgress();
     changeTaskDone();
+    changeUrgentTasks()
     changeAwaitingFeedbackTasks();
     changeTaskInBoard();
     initUsers();
@@ -71,7 +72,7 @@ async function changeTaskDone() {
 async function changeUrgentTasks() {
     await getTaskData();
     let taskUrgentCount = currentStatusTasks.filter(task => task.priority === 'urgent').length;
-    let tasksUrgent = document.getElementById('urgent');
+    let tasksUrgent = document.getElementById('urgentToDos');
     tasksUrgent.innerHTML = '';
     tasksUrgent.innerHTML = taskUrgentCount;
 }
@@ -140,7 +141,7 @@ function renderSummaryPageHtml() {
                  <div class="urgentTask">
                      <img src="./assets/img/TaskUrgent.png" alt="urgentTask" class="summaryImg">
                      <div class="dflexColumn">
-                         <h1 id="DoneToDos" class="summaryToDoTaskHeadlines">1</h1>
+                         <h1 id="urgentToDos" class="summaryToDoTaskHeadlines">1</h1>
                          <span class="summarySmallSpan">Urgent</span>
                      </div>
                  </div>
