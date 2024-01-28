@@ -8,7 +8,7 @@
 
 h1 {
     margin-top: 110px;
-    margin-left: 328px; /* 96px */
+    margin-left: 96px;
     gap: 1px;
     font-weight: 700px;
     font-size: 61px;
@@ -20,7 +20,7 @@ h1 {
 
 .add-task-container {
     margin-top: 48px;
-    margin-left: 328px; /* 96px */
+    margin-left: 96px;
     min-height: 424px;
     display: flex;
 }
@@ -613,7 +613,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .bottom-container {
     display: flex;
     justify-content: space-between;
-    margin-left: 328px; /* */
+    margin-left: 96px;
     margin-top: 138px;
     width: 921px;
 }

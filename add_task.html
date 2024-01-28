@@ -14,7 +14,6 @@
     <script src="./js/addTask_assignedTo.js"></script>
     <script src="./js/addTask_subtasks.js"></script>
     <script src="./js/contacts.js"></script>
-    <script src="./js/login.js"></script>
     <script src="./js/includeHtml.js"></script>
     <script src="./js/remoteStorage.js"></script>
 </head>
@@ -23,9 +22,11 @@
     <div class="mainContentAddTask_container">
         <div w3-include-html="./templates/sidebar_template.html"></div>
     </div>
-       
-    <div id="addTaskContent_container">
+    <div class="board-content">
         <div w3-include-html="./templates/mainHeader_template.html"></div>
+        <div class="content-main">
+            <div class="board-container" w3-include-html="./templates/addTask_template.html"></div>
+        </div>
     </div>
 </body>
 </html>
