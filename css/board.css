@@ -215,12 +215,21 @@
     position: relative;
 }
 
+.pop-up-at-field h1 {
+    margin-top: 64px;
+}
+
+.pop-up-at-field .bottom-container {
+    margin-top: 130px;
+}
+
 .close-img-at-pop-up {
     position: absolute;
     top: 64px;
     left: 1044px;
     width: 32px;
     height: 32px;
+    z-index: 102;
 }
 
 .close-img-at-pop-up:hover {
