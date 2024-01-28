@@ -220,7 +220,8 @@
 }
 
 .pop-up-at-field .bottom-container {
-    margin-top: 130px;
+    position: absolute;
+    bottom: 64px;
 }
 
 .close-img-at-pop-up {
