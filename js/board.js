@@ -34,7 +34,7 @@ function renderBoard() {
 
 function renderToDo() {
     let todo_tasks = filterTasksByProgress(tasks, 'todo');
-    let containerid = 'todoTasks';
+    let containerid = 'todo';
     if (todo_tasks) {
         renderTasks(todo_tasks, containerid);
     } else {
@@ -44,7 +44,7 @@ function renderToDo() {
 
 function renderInProgress() {
     let inprogress_tasks = filterTasksByProgress(tasks, 'inprogress');
-    let containerid = 'inProgressTasks';
+    let containerid = 'inprogress';
     if (inprogress_tasks) {
         renderTasks(inprogress_tasks, containerid);
     } else {
@@ -54,7 +54,7 @@ function renderInProgress() {
 
 function renderAwaitFeedback() {
     let awaitfeedback_tasks = filterTasksByProgress(tasks, 'awaitfeedback');
-    let containerid = 'awaitFeedbackTasks';
+    let containerid = 'awaitfeedback';
     if (awaitfeedback_tasks) {
         renderTasks(awaitfeedback_tasks, containerid);
     } else {
@@ -64,7 +64,7 @@ function renderAwaitFeedback() {
 
 function renderDone() {
     let done_tasks = filterTasksByProgress(tasks, 'done');
-    let containerid = 'doneTasks';
+    let containerid = 'done';
     if (done_tasks) {
         renderTasks(done_tasks, containerid);
     } else {
@@ -121,6 +121,19 @@ function getInitials(coworkerIds) {
         initials.push(contact.initials);
     });
     return initials;
+}
+
+function updateTask(newtaskid, newprogress) {
+    const task = tasks.find(task => task.taskid = newtaskid);
+    
+
+    console.log(task);
+
+    task['progress'] = newprogress;
+    
+    console.log(task['progress']);
+    console.log('taskid is: ', newtaskid);
+    console.log('New progress is: ', newprogress);
 }
 
 
