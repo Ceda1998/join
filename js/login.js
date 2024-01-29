@@ -98,7 +98,7 @@ function renderSignUpWindow() {
       <h1 class="loginHeadline">Sign up</h1>
       <hr class="dividerSolid">
       <img src="./assets/img/arrow-left-line.png" id="signUpArrowLeft" onclick="backToLogin()">
-      <form action="#" id="SignUpForm">
+      <form action="#" id="SignUpForm" onsubmit="register(event)">
         <div class="inputIcon_container">
           <input type="text" required class="loginInputField" placeholder="Name" id="registerUserName"/>
           <img src="./assets/img/person.png" alt="mailicon" class="loginIcons">
@@ -119,7 +119,7 @@ function renderSignUpWindow() {
             <input type="checkbox" id="privacyCheckbox"><label for="privacy" class="privacyLabel">I accept the&nbsp</label><a class="blueLinks" href="#">Privacy policy</a>
           </div>
         <div class="loginButtons_container">
-          <button id="loginButton" class="registerButton" onclick="register(event)">Sign Up</button>
+          <button id="loginButton" class="registerButton">Sign Up</button>
         </div>
       </form>
     </div>
