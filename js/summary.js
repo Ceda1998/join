@@ -144,7 +144,6 @@ async function changeTaskInBoard() {
   let allCurrentTaskContainer = document.getElementById("TasksInBoard");
   allCurrentTaskContainer.innerHTML = allCurrentTasks;
 }
-
 // change Backgroundcolor on mobile template
 
 function changeStatus(status) {

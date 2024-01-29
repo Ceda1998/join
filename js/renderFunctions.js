@@ -24,7 +24,7 @@ function renderSignUpWindow() {
           <img src="./assets/img/lock.png" alt="passwordIcon" class="loginIcons">
         </div>
         <div class="SignUpPrivacy_container">
-              <input type="checkbox" id="privacyCheckbox"><label for="privacy" class="privacyLabel">I accept the&nbsp</label><a class="blueLinks" href="#">Privacy policy</a>
+              <input type="checkbox" id="privacyCheckbox" required><label for="privacy" class="privacyLabel">I accept the&nbsp</label><a class="blueLinks" href="#">Privacy policy</a>
             </div>
           <div class="loginButtons_container">
             <button id="loginButton" class="registerButton">Sign Up</button>
