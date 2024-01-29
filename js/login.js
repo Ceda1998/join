@@ -9,6 +9,9 @@ async function register() {
   let registerPassword = document.getElementById("registerPassword");
   let registerBtn = document.querySelector(".registerButton");
   event.preventDefault();
+
+  let users = JSON.parse(await getItem('users'));
+
   users.push({
     email: mailInput.value,
     name: userName.value,
