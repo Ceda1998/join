@@ -47,10 +47,12 @@
 /* login Window */
 
 .login_container {
-  /* height: 100vh; */
+  position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
+  align-items: center;
+  
 }
 
 #loginWindow {
@@ -223,7 +225,7 @@
 /* bottom legal Content */
 
 .legalContentLogin {
-  position: fixed;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -231,7 +233,16 @@
   height: 100px;
   width: 100%;
   bottom: 0;
+  left: 0;
   z-index: 9999;
+  
+}
+.loginAllContentContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  height: 100vh;
 }
 
 .legalContentLinksLogin {

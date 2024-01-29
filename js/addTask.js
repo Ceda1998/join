@@ -1,5 +1,6 @@
 let contactsAssigendTo = []; /* contacts fetched from the remote storage */
 let selectedContactsAssignedTo = []; /* gets added to the tasks.json */
+let selectedContactsAssignedToIds= [];
 let isArrowAssignedToRotated = false;
 let prioButtons = [
     {
@@ -289,27 +290,55 @@ function clearTask() {
 /* This function creates a Task and saves it into the remote storage */
 
 async function createTask() {
-    let title = getField('titleInput');
-    let description = document.getElementById('descriptionInput');
-    let dueDate = document.getElementById('dateInput');
-    let category = document.getElementById('categoryInput');
-    let taskId = gettingContactId();
-    let priority = getPriority();
-    let task = {
-        "taskid": taskId,
-        "title": title.value,
-        "description": description.value,
-        "category": category.value,
-        "subtasks": subtasks,
-        "contactids": selectedContactsAssignedTo['contactid'],
-        "priority": priority,
-        "progress": "todo",
-        "date": dueDate
-    }
+    const inputFields = collectInputFields();
+    renderContactIds();
+    controlIfDescriptionEmtpy(inputFields.description);
+    let task = createTaskInstance(inputFields);
     console.log(task);
     tasksAssignedTo.push(task);
     await setItem('tasks', tasksAssignedTo);
     clearTask();
+}
+
+
+/* Function to collect the input fields */
+
+function collectInputFields() {
+    let title = getField('titleInput').value;
+    let description = document.getElementById('descriptionInput').value;
+    let dueDate = document.getElementById('dateInput').value;
+    let category = document.getElementById('categoryInput').value;
+    let taskId = gettingContactId();
+    let priority = getPriority();
+
+    return { title, description, dueDate, category, taskId, priority };
+}
+
+
+/* Function to create a task-instance for pushing to the tasks-array */
+
+function createTaskInstance({ title, description, dueDate, category, taskId, priority }) {
+    return {
+        "taskid": taskId,
+        "title": title,
+        "description": description,
+        "category": category,
+        "subtasks": subtasks,
+        "contactids": selectedContactsAssignedToIds,
+        "priority": priority,
+        "progress": "todo",
+        "duedate": dueDate
+    };
+}
+
+
+/* Function to control empty fields */
+
+function controlIfDescriptionEmtpy(description) {
+    if (description == '') {
+        description = '';
+    }
+    return description;
 }
 
 
@@ -327,6 +356,19 @@ function getPriority() {
         let isButtonToggled = prioButtons[i]['toggled']
         if (isButtonToggled === true) {
                 return prioButtons[i]['name'];
+        } else {
+            return '';
         }
+    }
+}
+
+
+/* Function to get the selected contacts as an array or a empty array*/
+
+function renderContactIds() {
+    if (selectedContactsAssignedTo.length > 0) {
+        selectedContactsAssignedToIds = selectedContactsAssignedTo.map(contact => parseInt(contact['contactid']));
+    } else {
+        selectedContactsAssignedToIds = [];
     }
 }
