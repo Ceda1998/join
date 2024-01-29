@@ -165,11 +165,22 @@ function renderTaskHtml(task, subtasksQty, coworkersHTML, prioHtml) {
 /* Helper function to retrieve Initials from contacts array */
 function getInitials(coworkerIds) {
     let initials = [];
-    coworkerIds.forEach(id => {
-        const contact = contacts.find(contact => contact.contactid == id);
-        initials.push(contact.initials);
-    });
+    for (const id of coworkerIds) {
+        const contact = contacts.find(contact => contact.contactid === id);
+        if (contact) {
+            console.log(contact);
+            initials.push(contact.initials);
+        } else {
+            console.error(`Contact not found for id ${id}`);
+        }
+    }
+    console.log(initials);
     return initials;
+
+    // coworkerIds.forEach(id => {
+    //     const contact = contacts.find(contact => contact.contactid == id);
+    //     initials.push(contact.initials);
+    // });
 }
 
 async function updateTask(newtaskid, newprogress) {
