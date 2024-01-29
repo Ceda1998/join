@@ -5,7 +5,7 @@ function renderSignUpWindow() {
       <div id="signUpWindow">
         <h1 class="loginHeadline">Sign up</h1>
         <hr class="dividerSolid">
-        <img src="./assets/img/arrow-left-line.png" id="signUpArrowLeft" onclick="backToLogin()">
+        <img src="./assets/img/arrow-left-line.png" id="signUpArrowLeft" onclick="returnToLogin()">
         <form action="#" id="SignUpForm" onsubmit="register(event)">
           <div class="inputIcon_container">
             <input type="text" required class="loginInputField" placeholder="Name" id="registerUserName"/>
@@ -60,6 +60,18 @@ function renderSignUpWindow() {
         </form>
       </div>
     </div>
+    <div class="signUpContentMobile">
+    <span>Not a Join user?</span>
+    <button class="signUpButton" onclick="openSignUpWindow()">
+      Sign up
+    </button>
+  </div>
+  <div class="legalContentLogin">
+    <a href="./legal/privacyPolicyExternal.html" class="legalContentLinksLogin" target="_blank">Privacy Policy</a>
+    <a href="./legal/legalNoticeExternal.html" class="legalContentLinksLogin" target="_blank">Legal Notice</a>
+  </div>
+</div>
+
       `;
   }
   
