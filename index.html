@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Join</title>
+  <script src="./js/renderFunctions.js"></script>
   <script src="./js/summary.js"></script>
   <script src="./js/remoteStorage.js"></script>
   <script src="./script.js"></script>
@@ -16,8 +17,6 @@
 
 <body>
   
-
- 
   <div class="headerLogin">
     <img src="./assets/img/LogoSmall.png" alt="logo small" class="logoSmall" />
     <div class="headerLoginRight">
@@ -59,17 +58,18 @@
       </form>
       
     </div>
+    <div class="signUpContentMobile">
+      <span>Not a Join user?</span>
+      <button class="signUpButton" onclick="openSignUpWindow()">
+        Sign up
+      </button>
+    </div>
     <div class="legalContentLogin">
       <a href="./legal/privacyPolicyExternal.html" class="legalContentLinksLogin" target="_blank">Privacy Policy</a>
       <a href="./legal/legalNoticeExternal.html" class="legalContentLinksLogin" target="_blank">Legal Notice</a>
     </div>
   </div>
-  <div class="signUpContentMobile">
-    <span>Not a Join user?</span>
-    <button class="signUpButton" onclick="openSignUpWindow()">
-      Sign up
-    </button>
-  </div>
+  
 
 </body>
 

@@ -142,7 +142,7 @@ function getPriorityHtml(priovalue) {
 
 function renderTaskHtml(task, subtasksQty, coworkersHTML, prioHtml) {
     return `
-    <div id="${task['taskid']}" class="todo" draggable="true" ondragstart="drag(event)">
+    <div id="${task['taskid']}" class="todo" draggable="true" ondragstart="drag(event)" onclick="openTaskBig(${task['taskid']})">
         <span class="category-board">${task['category']}</span>
         <span class="todo-header">${task['title']}</span>
         <p class="todo-description">${task['description']}</p>
@@ -184,16 +184,6 @@ async function updateTask(newtaskid, newprogress) {
     fetchAndReloadBoard();
 }
 
-function openPopUpAt() {
-    let popUp = document.getElementById('popUpAtContainer');
-    popUp.classList.remove('d-none');
-}
-
-function closePopUpAt() {
-    let popUp = document.getElementById('popUpAtContainer');
-    popUp.classList.add('d-none');
-}
-
 function filterTasks() {
     let inval = document.getElementById('filterTasks').value;
     const filteredtasks = tasks.filter((task) => {
@@ -202,4 +192,54 @@ function filterTasks() {
         } return false;
     });
     renderBoard(filteredtasks);
+}
+
+
+/* Remove or Add pop-up-container */
+
+function openPopUpContainer() {
+    let popUp = document.getElementById('popUpAtContainer');
+    popUp.classList.remove('d-none');
+}
+
+
+function closePopUpContainer() {
+    let popUp = document.getElementById('popUpAtContainer');
+    popUp.classList.add('d-none');
+}
+
+
+/* Remove or add d-none */
+
+function removeDNone(name) {
+    let field = document.getElementById(name)
+    field.classList.remove('d-none');
+}
+
+
+function addDNone(name) {
+    let field = document.getElementById(name)
+    field.classList.add('d-none');
+}
+
+
+/* Pop-up to add a new Task */
+    
+function openPopUpAt() {
+    openPopUpContainer();
+    removeDNone('popUpAtField');
+}
+
+
+function closePopUpAt() {
+    closePopUpContainer();
+    addDNone('popUpAtField');
+}
+
+/* The pop-up when you click on a specific task on the board */
+
+
+function openTaskBig(id) {
+    openPopUpContainer();
+    removeDNone('popUpTaskBig');
 }
