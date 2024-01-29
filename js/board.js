@@ -5,7 +5,7 @@ let toDo = 0;
 
 
 // window.onload = async () =>
- async function init(){
+async function init() {
     await includeHTML(); //Renders external templates and waits for it
     await getTasksFromServer();
     await getContactsFromServer();
@@ -96,8 +96,8 @@ function renderTasks(tasks, id) {
         let coworkerIds = task['contactids'];
         const coworkersHTML = collectAndRenderCoworkers(coworkerIds);
         const subtasksQty = task['subtasks'].length;
-        const prioUrl = getPriorityImg(task.priority);
-        el.innerHTML += renderTaskHtml(task, subtasksQty, coworkersHTML, prioUrl);     
+        const prioHtml = getPriorityHtml(task.priority);
+        el.innerHTML += renderTaskHtml(task, subtasksQty, coworkersHTML, prioHtml);
     });
 };
 
@@ -105,17 +105,22 @@ function collectAndRenderCoworkers(coworkerIds) {
     return getInitials(coworkerIds).map(coworker => `<div class="todo-coworker">${coworker}</div>`).join('');
 }
 
-function getPriorityImg(priovalue) {
+function getPriorityHtml(priovalue) {
     let url;
-    prioButtons.forEach(el => {
-        if (el.name == priovalue) {
-            url = el.img;
-        }
-    });
-    return url;
+    if (priovalue) {
+        prioButtons.forEach(el => {
+            if (el.name == priovalue) {
+                url = el.img;
+            }
+        });
+        return `<img src="${url}"></img>`;
+    }   
+    return ''; 
 }
 
-function renderTaskHtml(task, subtasksQty, coworkersHTML, prioUrl) {
+
+
+function renderTaskHtml(task, subtasksQty, coworkersHTML, prioHtml) {
     return `
     <div id="${task['taskid']}" class="todo" draggable="true" ondragstart="drag(event)">
         <span class="category-board">${task['category']}</span>
@@ -129,8 +134,8 @@ function renderTaskHtml(task, subtasksQty, coworkersHTML, prioUrl) {
         </div>
         <div class="todo-footer">
             <div class="todo-coworkers">${coworkersHTML}</div>
-            <div class="priority">
-                <img src="${prioUrl}">
+            <div class="priority">                
+                ${prioHtml}
             </div>
         </div>
     </div>
@@ -147,13 +152,13 @@ function getInitials(coworkerIds) {
     return initials;
 }
 
-async function updateTask(newtaskid, newprogress) {    
+async function updateTask(newtaskid, newprogress) {
     tasks.forEach(task => {
         if (task.taskid == newtaskid) {
             task.progress = newprogress;
         }
     });
-    await setItem('tasks', tasks);    
+    await setItem('tasks', tasks);
     fetchAndReloadBoard();
 }
 
