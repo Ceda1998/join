@@ -28,11 +28,11 @@ async function getContactsFromServer() {
 
 
 /* Rendering the Board itself, divided by each column seperate rendering for search and drag and drop purpose */
-function renderBoard() {
-    renderToDo();
-    renderInProgress();
-    renderAwaitFeedback();
-    renderDone();
+function renderBoard(arr) {
+    renderToDo(arr);
+    renderInProgress(arr);
+    renderAwaitFeedback(arr);
+    renderDone(arr);
 }
 
 function fetchAndReloadBoard() {
@@ -40,8 +40,13 @@ function fetchAndReloadBoard() {
     renderBoard();
 }
 
-function renderToDo() {
-    let todo_tasks = filterTasksByProgress(tasks, 'todo');
+function renderToDo(arr) {
+    let todo_tasks;
+    if (arr) {
+        todo_tasks = filterTasksByProgress(arr, 'todo');
+    } else {
+        todo_tasks = filterTasksByProgress(tasks, 'todo');
+    }    
     let containerid = 'todo';
     if (todo_tasks.length > 0) {
         renderTasks(todo_tasks, containerid);
@@ -50,8 +55,13 @@ function renderToDo() {
     }
 }
 
-function renderInProgress() {
-    let inprogress_tasks = filterTasksByProgress(tasks, 'inprogress');
+function renderInProgress(arr) {
+    let inprogress_tasks;
+    if (arr) {
+        inprogress_tasks = filterTasksByProgress(arr, 'inprogress');
+    } else {
+        inprogress_tasks = filterTasksByProgress(tasks, 'inprogress');
+    } 
     let containerid = 'inprogress';
     if (inprogress_tasks.length > 0) {
         renderTasks(inprogress_tasks, containerid);
@@ -60,8 +70,13 @@ function renderInProgress() {
     }
 }
 
-function renderAwaitFeedback() {
-    let awaitfeedback_tasks = filterTasksByProgress(tasks, 'awaitfeedback');
+function renderAwaitFeedback(arr) {
+    let awaitfeedback_tasks;
+    if (arr) {
+        awaitfeedback_tasks = filterTasksByProgress(arr, 'awaitfeedback');
+    } else {
+        awaitfeedback_tasks = filterTasksByProgress(tasks, 'awaitfeedback');
+    }
     let containerid = 'awaitfeedback';
     if (awaitfeedback_tasks.length > 0) {
         renderTasks(awaitfeedback_tasks, containerid);
@@ -70,8 +85,13 @@ function renderAwaitFeedback() {
     }
 }
 
-function renderDone() {
-    let done_tasks = filterTasksByProgress(tasks, 'done');
+function renderDone(arr) {
+    let done_tasks;
+    if (arr) {
+        done_tasks = filterTasksByProgress(arr, 'done');
+    } else {
+        done_tasks = filterTasksByProgress(tasks, 'done');
+    }
     let containerid = 'done';
     if (done_tasks.length > 0) {
         renderTasks(done_tasks, containerid);
@@ -170,4 +190,10 @@ function openPopUpAt() {
 function closePopUpAt() {
     let popUp = document.getElementById('popUpAtContainer');
     popUp.classList.add('d-none');
+}
+
+function filterTasks() {
+    let inval = document.getElementById('filterTasks').value;
+    const filteredtasks = tasks.filter((task) => task.title.toLowerCase().includes(inval.toLowerCase()));
+    renderBoard(filteredtasks);
 }
