@@ -20,9 +20,9 @@ async function initSummary() {
   changeUrgentTasks();
   changeAwaitingFeedbackTasks();
   changeTaskInBoard();
+  checkIfUserIsLoggedin();
   changeInitialsCurrentUser();
   initUsers();
-  getCurrentLoggedInUser();
 }
 
 function changeGreetingMessage() {
@@ -53,8 +53,35 @@ function getInitialsFromUserName() {
 
 function changeInitialsCurrentUser() {
   getInitialsFromUserName();
-  let initialsDiv = document.querySelector('.header-profile-icon');
-  let initialsDivMobile = document.getElementById('currentUserinHeader');
+  let guestUserLoggedIn = JSON.parse(localStorage.getItem("guest"));
+
+  if (guestUserLoggedIn === true) {
+    changeHeaderUserIconGuest();
+  } else {
+    changeHeaderUserIconLoggedIn();
+  }
+}
+
+function checkIfUserIsLoggedin() {
+    let guestUserLoggedIn = JSON.parse(localStorage.getItem("guest"));
+    if (guestUserLoggedIn === true) {
+        let greetUser = document.getElementById("greetUserName");
+        greetUser.innerHTML = '';
+    } else {
+        getCurrentLoggedInUser();
+    }
+}
+
+function changeHeaderUserIconGuest() {
+  let initialsDiv = document.querySelector(".header-profile-icon");
+  let initialsDivMobile = document.getElementById("currentUserinHeader");
+  initialsDiv.innerHTML = "GU";
+  initialsDivMobile.innerHTML = "GU";
+}
+
+function changeHeaderUserIconLoggedIn() {
+  let initialsDiv = document.querySelector(".header-profile-icon");
+  let initialsDivMobile = document.getElementById("currentUserinHeader");
   initialsDiv.innerHTML = finalinitals;
   initialsDivMobile.innerHTML = finalinitals;
 }

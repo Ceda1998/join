@@ -1,5 +1,6 @@
 let users = [];
 let loggedInUser =[];
+let guestLoggedIn = false;
 
 async function register() {
   let form = document.getElementById('SignUpForm');
@@ -34,6 +35,8 @@ async function loadUsers(){
 
 async function checkLogin() {
   event.preventDefault();
+  guestLoggedIn = false;
+  localStorage.setItem('guest',JSON.stringify(guestLoggedIn));
   let userMail = document.getElementById('emailLoginField').value;
   let userPassword = document.getElementById('passwordLoginField').value;
   await loadUsers();
@@ -76,8 +79,12 @@ function backToLogin() {
 }
 
 function openWithGuestLogin() {
+  guestLoggedIn = true;
+  localStorage.setItem('guest',JSON.stringify(guestLoggedIn));
   window.location.href = "summary.html";
 }
+
+
 
 function registeredLogin() {
   window.location.href = "index.html";
