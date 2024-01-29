@@ -17,7 +17,12 @@ async function fetchContacts() {
   }
 }
 
+function clearId(id) {
+  document.getElementById(id).innerHTML = '';
+}
+
 function renderContactList() {
+  clearId('contacts-list');
   defineFirstLetters();
   sortLettersByAlphabet();
   renderLetterAndContacts();
@@ -49,6 +54,7 @@ function renderContacts(letter) {
 }
 
 function defineFirstLetters() {
+  letterFilters = [];
   contacts.forEach((contact) => {
     const firstLetter = contact.firstname.charAt(0).toUpperCase();
     if (!letterFilters.includes(firstLetter)) {
@@ -94,8 +100,8 @@ function renderContactDetail(contact, color) {
                 <div class="cmh-right">
                     <div class="cmh-fullname">${contact.fullname}</div>
                     <div class="edit-contact">
-                        <span class="edit-item"><img src="../assets/img/edit.png">Edit</span>
-                        <span class="edit-item"><img src="../assets/img/delete-img.png">Delete</span>
+                        <span class="edit-item" onclick="editContact(${contact.contactid})"><img src="../assets/img/edit.png">Edit</span>
+                        <span class="edit-item" onclick="deleteContact(${contact.contactid})"><img src="../assets/img/delete-img.png">Delete</span>
                     </div>
                 </div>
             </div>

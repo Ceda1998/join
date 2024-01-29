@@ -31,7 +31,6 @@ let tasksAssignedTo = []; /* tasks fetched from the remote storage */
 
 async function initAddTask() {
     await includeHTML();
-    console.log(window.location.href);
     if (window.location.pathname === "/join/add_task.html") {
         await removeCloseButton();
     } else {

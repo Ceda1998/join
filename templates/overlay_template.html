@@ -2,9 +2,17 @@
     <div class="overlay-content-container">
         <div class="occ-left">
             <img class="overlay-logo" src="./assets/img/LogoSmallWhite.png">
-            <span class="overlay-description-text">Edit contact</span>
+            <span class="overlay-headline"><span id="overlay-headline"></span></span>
+            <span class="overlay-sub-headline" id="overlay-sub-headline"></span>
             <div class="description-border"></div>
         </div>
-        <div class="occ-right"></div>
+        <div class="occ-right">
+            <div class="full-width right">
+                <img class="overlay-close" src="./assets/img/close-img.png" onclick="closeOverlay()">
+            </div>
+            <div class="full-height">
+                <div id="overlay-content" class="full-height"></div>
+            </div>
+        </div>
     </div>
 </div>
