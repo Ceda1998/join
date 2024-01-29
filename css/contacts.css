@@ -200,6 +200,8 @@
 }
 
 .cmh-logo-big {
+    background-color: rgb(70, 47, 138);
+    box-shadow: 0 0 7px #e5e5e5;
     height: 120px;
     width: 120px;
     font-size: 47px;

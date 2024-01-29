@@ -21,6 +21,19 @@
     gap: 24px;
 }
 
+.align-center {
+    display: flex;
+    align-items: center;
+}
+
+.gap-24 {
+    gap: 24px;
+}
+
+.w-60 {
+    width: 60%;
+}
+
 .overlay-container {
     height: 100vh;
     width: 100vw;
@@ -117,4 +130,23 @@
     line-height: 23px;
     letter-spacing: 0em;
     text-align: left;
+}
+
+.edit-contact-form {
+    justify-content: flex-end;
+    display: flex;
+    gap: 48px;
+    margin-top: 48px;
+}
+
+.input-fullname {
+    background: url("../assets/img/person.png") no-repeat right 20px center;
+}
+
+.input-email {
+    background: url("../assets/img/mail.png") no-repeat right 20px center;
+}
+
+.input-phone {
+    background: url("../assets/img/call.png") no-repeat right 20px center;
 }

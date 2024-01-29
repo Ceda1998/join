@@ -13,21 +13,165 @@ function getIndexById(id) {
     return pos;
 }
 
+/* ADD new Contact Section */
+
 function newContact() {
     document.getElementById('overlay').classList.remove('d-none');
     document.getElementById('overlay-headline').innerHTML = 'Add contact';
     document.getElementById('overlay-sub-headline').innerHTML = 'Tasks are better with a team';
-    document.getElementById('overlay-content').innerHTML = renderNewContactFields();
+    renderNewContactFields();
 }
 
+function renderNewContactFields() {
+    document.getElementById('overlay-content').innerHTML = 
+    `
+        <div class="edit-contact-form">
+            <div class="align-center">
+                <div class="cmh-logo-big" style="background-color:#d1d1d1"><img src="./assets/img/person-white.png"></div>
+            </div>            
+                <form class="flex-col w-60" onsubmit="return addContact(event)">
+                    <input minlength="2" id="addFirstName" class="inputField input-fullname" placeholder="Name" required/>
+                    <input type="email" id="addEmail" class="inputField input-email" placeholder="Email" required/>
+                    <input id="addPhone" class="inputField input-phone" placeholder="Phone" required/>
+                    <div class="align-center gap-24">
+                        <button class="button-light" onclick="closeOverlay()">Cancel</button>
+                        <button type="submit" class="button-dark align-center">Create contact<img src="./assets/img/check.png"></igm></button>
+                    </div>
+                </form>                                   
+        </div>
+    `;
+}
 
-/* EDIT Contact Section */
+function addContact(event) {
+    event.preventDefault();
+    const firstname = document.getElementById('addFirstName').value;
+    const email = document.getElementById('addEmail').value;
+    const phone = document.getElementById('addPhone').value;
+    if (firstname && email && phone) {
+        buildContact(firstname, email, phone);
+    }
+}
+
+function buildContact(firstname, email, phone) {
+    const lastname = 'Mustermann';
+    let initials = createInitials(firstname, lastname);
+    let id = createNewId();
+    let fullname = firstname + ' ' + lastname;
+    setandSaveContact(id, email, firstname, lastname, fullname, initials, phone);
+}
+
+function setandSaveContact(id, email, firstname, lastname, fullname, initials, phone) {
+    const contact = {
+            "contactid": id,
+            "firstname": firstname,
+            "lastname": lastname,
+            "fullname": fullname,
+            "email": email,
+            "phone": phone,
+            "initials": initials
+        }
+    contacts.push(contact);
+    saveandShowContact(id);
+}
+
+function saveandShowContact(id) {
+    setItem('contacts', contacts);
+    renderContactList();
+    showContactDetail(id);
+    closeOverlay();
+}
+
+function createInitials(firstname, lastname) {
+    let firstletter = firstname.charAt(0).toUpperCase();
+    let secondletter = lastname.charAt(0).toUpperCase();
+    let initials = firstletter + secondletter;
+    return initials;
+}
+
+function createNewId() {
+    let arr = [];
+    contacts.forEach(contact => {
+        arr.push(Number(contact.contactid));
+    });
+    arr.sort(function(a,b){ return a - b });
+    let newid = arr[arr.length - 1] + 1;
+    return newid;
+}
+
+/* EDIT Contact Section 👇️ */
 
 function editContact(id) {
     document.getElementById('overlay').classList.remove('d-none');
     document.getElementById('overlay-headline').innerHTML = 'Edit contact';
     document.getElementById('overlay-sub-headline').innerHTML = '';
-    document.getElementById('overlay-content').innerHTML = renderEditContactFields(id);
+    renderEditContactFields(id);
+}
+
+function renderEditContactFields(id) {
+    let index = getIndexById(id);
+    const contact = contacts[index];
+    const color = getBackgroundColor(id);
+    renderEditContactHtmlForm(contact, color);
+}
+
+function renderEditContactHtmlForm(contact, color) {
+    document.getElementById('overlay-content').innerHTML = `
+        <div class="edit-contact-form">
+            <div class="align-center">
+                <div class="cmh-logo-big" style="background-color:${color}">${contact.initials}</div>
+            </div>
+            <div class="flex-col w-60">
+                <input id="editFirstName" class="inputField input-fullname" value="${contact.firstname}"/>
+                <input id="editEmail" class="inputField input-email" value="${contact.email}"/>
+                <input id="editPhone" class="inputField input-phone" value="${contact.phone}"/>
+                <div class="align-center gap-24">
+                    <button class="button-light" onclick="deleteContact('${contact.contactid}')">Delete</button>
+                    <button class="button-dark align-center" onclick="saveEditedContact('${contact.contactid}')">Save<img src="./assets/img/check.png"></igm></button>
+                </div>
+            </div>                        
+        </div>
+    `;
+}
+
+function saveEditedContact(id) {
+    let index = getIndexById(id);
+    const firstname = document.getElementById('editFirstName').value;
+    const email = document.getElementById('editEmail').value;
+    const phone = document.getElementById('editPhone').value;
+    generateSaveAndReload(index, id, firstname, email, phone);
+}
+
+function generateSaveAndReload(index, id, firstname, email, phone) {
+    regenerateInitials(index, firstname);
+    regenerateFullname(index, firstname);
+    saveContact(index, firstname, email, phone);
+    setItem('contacts', contacts);
+    renderContactList();
+    showContactDetail(id);
+    closeOverlay();
+}
+
+function regenerateInitials(index, firstname) {
+    if (index && firstname) {
+        let firstletter = firstname.charAt(0).toUpperCase();
+        let secondletter = contacts[index].lastname.charAt(0).toUpperCase();
+        let initials = firstletter + secondletter;
+        contacts[index].initials = initials;
+    }
+}
+
+function regenerateFullname(index, firstname) {
+    if (index && firstname) {
+        contacts[index].fullname = firstname + ' ' + contacts[index].lastname;
+    }
+}
+
+function saveContact(index, firstname, email, phone) {
+    if (index) {
+        contacts[index].firstname = firstname;
+        contacts[index].email = email;
+        contacts[index].phone = phone;
+    }
 }
 
 

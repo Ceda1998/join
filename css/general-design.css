@@ -15,7 +15,7 @@ body {
 
 .button-dark {
     height: 48px;
-    padding: 0 16px;
+    padding: 8px 16px;
     border-radius: 8px;
     background: #2a3647;
     color: white;
@@ -41,6 +41,7 @@ body {
     background-color: white;
     font-size: 21px;
     font-weight: 700;
+    padding: 8px 16px;
 }
 
 .button-light:hover {
