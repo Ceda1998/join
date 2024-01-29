@@ -46,7 +46,7 @@ function renderToDo(arr) {
         todo_tasks = filterTasksByProgress(arr, 'todo');
     } else {
         todo_tasks = filterTasksByProgress(tasks, 'todo');
-    }    
+    }
     let containerid = 'todo';
     if (todo_tasks.length > 0) {
         renderTasks(todo_tasks, containerid);
@@ -61,7 +61,7 @@ function renderInProgress(arr) {
         inprogress_tasks = filterTasksByProgress(arr, 'inprogress');
     } else {
         inprogress_tasks = filterTasksByProgress(tasks, 'inprogress');
-    } 
+    }
     let containerid = 'inprogress';
     if (inprogress_tasks.length > 0) {
         renderTasks(inprogress_tasks, containerid);
@@ -134,8 +134,8 @@ function getPriorityHtml(priovalue) {
             }
         });
         return `<img src="${url}"></img>`;
-    }   
-    return ''; 
+    }
+    return '';
 }
 
 
@@ -194,6 +194,10 @@ function closePopUpAt() {
 
 function filterTasks() {
     let inval = document.getElementById('filterTasks').value;
-    const filteredtasks = tasks.filter((task) => task.title.toLowerCase().includes(inval.toLowerCase()));
+    const filteredtasks = tasks.filter((task) => {
+        if(task.title.toLowerCase().includes(inval.toLowerCase()) || task.description.toLowerCase().includes(inval.toLowerCase())) {
+            return true;
+        } return false;
+    });
     renderBoard(filteredtasks);
 }
