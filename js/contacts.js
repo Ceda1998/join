@@ -54,6 +54,7 @@ function renderContacts(letter) {
 }
 
 function defineFirstLetters() {
+  letterFilters = [];
   contacts.forEach((contact) => {
     const firstLetter = contact.firstname.charAt(0).toUpperCase();
     if (!letterFilters.includes(firstLetter)) {

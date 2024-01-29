@@ -2,12 +2,26 @@ function closeOverlay() {
     document.getElementById('overlay').classList.add('d-none');
 }
 
+/* Helper function to retrieve array index by contactid */
+function getIndexById(id) {
+    let pos;
+    contacts.forEach((contact, index) => {
+        if (contact.contactid == id) {
+            pos = index;
+        }
+    });
+    return pos;
+}
+
 function newContact() {
     document.getElementById('overlay').classList.remove('d-none');
     document.getElementById('overlay-headline').innerHTML = 'Add contact';
     document.getElementById('overlay-sub-headline').innerHTML = 'Tasks are better with a team';
     document.getElementById('overlay-content').innerHTML = renderNewContactFields();
 }
+
+
+/* EDIT Contact Section */
 
 function editContact(id) {
     document.getElementById('overlay').classList.remove('d-none');
@@ -16,26 +30,19 @@ function editContact(id) {
     document.getElementById('overlay-content').innerHTML = renderEditContactFields(id);
 }
 
-function deleteContact(id) {
-    contacts.forEach((contact, index) => {
-        if (contact.contactid == id) {
-            openDeleteOverlay(index);
-        }
-    });
-}
 
-function finalDeleteContact(index) {
-    contacts.splice(index, 1);
-    setItem('contacts', contacts);
-    renderContactList();
+/* DELETE Contact Section */
+
+function deleteContact(id) {
+    let index = getIndexById(id);
+    openDeleteOverlay(index);
 }
 
 function openDeleteOverlay(index) {
+    renderContact(index);
     document.getElementById('overlay').classList.remove('d-none');
     document.getElementById('overlay-headline').innerHTML = 'Delete contact';
     document.getElementById('overlay-sub-headline').innerHTML = '';
-
-    renderContact(index);
 }
 
 function renderContact(index) {
@@ -55,4 +62,16 @@ function returnDeleteHtml(contact, index) {
             <button class="final-delete-btn button-dark" onclick="finalDeleteContact(${index})">Yes, delete!</button>
         </div>
     `;
+}
+
+function finalDeleteContact(index) {
+    contacts.splice(index, 1);
+    setItem('contacts', contacts);
+    renderContactList();
+    clearUserDetail();
+    closeOverlay();
+}
+
+function clearUserDetail() {
+    document.getElementById('contact-detail').innerHTML = '';
 }
