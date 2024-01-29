@@ -234,12 +234,31 @@ function openPopUpAt() {
 function closePopUpAt() {
     closePopUpContainer();
     addDNone('popUpAtField');
+    clearTask();
 }
 
 /* The pop-up when you click on a specific task on the board */
 
 
-function openTaskBig(id) {
+function openTaskBig() {
     openPopUpContainer();
     removeDNone('popUpTaskBig');
+    renderColorsCategoryPu();
 }
+
+
+function closeTaskBig() {
+    closePopUpContainer();
+    addDNone('popUpTaskBig');
+}
+
+
+function renderColorsCategoryPu() {
+    let category = document.getElementById('categoryPuBig');
+    if (category.innerHTML === "User Story") {
+        category.classList.add('user-story');
+    } else {
+        category.classList.add('technical-task');
+    }
+}
+
