@@ -167,7 +167,9 @@ function getInitials(coworkerIds) {
     let initials = [];
     coworkerIds.forEach(id => {
         const contact = contacts.find(contact => contact.contactid == id);
-        initials.push(contact.initials);
+        if (contact) {
+            initials.push(contact.initials);
+        }        
     });
     return initials;
 }

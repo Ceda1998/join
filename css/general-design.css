@@ -30,6 +30,10 @@ body {
     box-shadow: 8px 8px 2px 1px #ededed;
 }
 
+.final-delete-btn:hover {
+    background-color: red !important;
+}
+
 .button-light {
     height: 48px;
     border-radius: 8px;
