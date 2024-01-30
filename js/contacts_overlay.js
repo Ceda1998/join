@@ -13,6 +13,15 @@ function getIndexById(id) {
     return pos;
 }
 
+function showMessage(text) {
+    let container = document.getElementById('messageBox');
+    container.innerHTML = `${text}`;
+    container.classList.remove('d-none');
+    setTimeout(() => {
+        container.classList.add('d-none');
+    }, 2500);
+}
+
 /* ADD new Contact Section */
 
 function newContact() {
@@ -79,6 +88,7 @@ function saveandShowContact(id) {
     renderContactList();
     showContactDetail(id);
     closeOverlay();
+    showMessage('Contact successfully created');
 }
 
 function createInitials(firstname, lastname) {
@@ -149,6 +159,7 @@ function generateSaveAndReload(index, id, firstname, email, phone) {
     renderContactList();
     showContactDetail(id);
     closeOverlay();
+    showMessage('Contact successfully edited');
 }
 
 function regenerateInitials(index, firstname) {
