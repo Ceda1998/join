@@ -39,6 +39,7 @@ async function initAddTask() {
     await fetchContactsAt();
     await fetchTasksAt();
     await renderAddTask();
+    changeInitialsCurrentUser();
     console.log(tasksAssignedTo);
 }
 

@@ -10,6 +10,7 @@ async function init() {
     await getTasksFromServer();
     await getContactsFromServer();
     renderBoard();
+    changeInitialsCurrentUser();
 };
 
 //Actually not in use

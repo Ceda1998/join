@@ -5,6 +5,7 @@ async function init() {
   await includeHTML();
   await fetchContacts();
   renderContactList();
+  changeInitialsCurrentUser();
 }
 
 async function fetchContacts() {
