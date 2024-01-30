@@ -6,7 +6,6 @@ let finalinitals;
 
 async function getTaskData() {
   currentStatusTasks = JSON.parse(await getItem("tasks"));
-  console.log("aktuelle Tasks", currentStatusTasks);
 }
 
 async function initSummary() {
@@ -23,6 +22,7 @@ async function initSummary() {
   checkIfUserIsLoggedin();
   changeInitialsCurrentUser();
   initUsers();
+  changeDateUrgentTask();
 }
 
 function changeGreetingMessage() {
@@ -63,13 +63,13 @@ function changeInitialsCurrentUser() {
 }
 
 function checkIfUserIsLoggedin() {
-    let guestUserLoggedIn = JSON.parse(localStorage.getItem("guest"));
-    if (guestUserLoggedIn === true) {
-        let greetUser = document.getElementById("greetUserName");
-        greetUser.innerHTML = '';
-    } else {
-        getCurrentLoggedInUser();
-    }
+  let guestUserLoggedIn = JSON.parse(localStorage.getItem("guest"));
+  if (guestUserLoggedIn === true) {
+    let greetUser = document.getElementById("greetUserName");
+    greetUser.innerHTML = "";
+  } else {
+    getCurrentLoggedInUser();
+  }
 }
 
 function changeHeaderUserIconGuest() {
@@ -148,10 +148,54 @@ async function changeTaskInBoard() {
 
 function changeStatus(status) {
   let getCurrentDiv = document.getElementById("summaryDivBc");
-  if (status == true) {
-    getCurrentDiv.style.backgroundColor = "#091931";
+  if (status === true) {
+    getCurrentDiv.style.backgroundColor = "#2A3647";
   } else {
-    getCurrentDiv.style.backgroundColor = "none";
+    getCurrentDiv.style.backgroundColor = "#091931";
   }
 }
 
+async function changeDateUrgentTask() {
+  let dateContainer = document.getElementById("deadlineToDoDate");
+  arrayData = JSON.parse(await getItem("tasks"));
+
+  if (arrayData) {
+    let dateOnlyArray = arrayData
+      .filter((task) => task.duedate)
+      .map((task) => ({ duedate: new Date(task.duedate) }));
+    dateOnlyArray.sort((a, b) => a.duedate - b.duedate);
+
+    if (dateOnlyArray.length > 0) {
+      let nextDueDate = dateOnlyArray[0].duedate;
+
+      if (isValidDate(nextDueDate)) {
+        dateContainer.innerText = nextDueDate.toLocaleDateString();
+      } else {
+        let validNextDueDate = findNextValidDate(dateOnlyArray);
+
+        dateContainer.innerText = validNextDueDate
+          ? validNextDueDate.toLocaleDateString()
+          : "No valid deadline found";
+      }
+    } else {
+      dateContainer.innerText = "No Deadline";
+    }
+  } else {
+    console.log("Error: arrayData ist undefined");
+  }
+}
+
+// Hilfsfunktion zum Check ob das Datum auch gültig ist
+function isValidDate(date) {
+  return date instanceof Date && !isNaN(date);
+}
+
+// Hilfsfunktion zur Suche des nächsten gültigen Datums im dateOnlyArray
+function findNextValidDate(dateOnlyArray) {
+  for (let i = 1; i < dateOnlyArray.length; i++) {
+    if (isValidDate(dateOnlyArray[i].duedate)) {
+      return dateOnlyArray[i].duedate;
+    }
+  }
+  return null;
+}

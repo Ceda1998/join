@@ -30,7 +30,6 @@ async function initUsers() {
 async function loadUsers(){
   try {
       users = JSON.parse(await getItem('users'));
-      console.log('Geladene User: ', users)
   } catch(e){
       console.error('Loading error:', e);
   }
@@ -44,13 +43,10 @@ async function checkLogin() {
   let userPassword = document.getElementById('passwordLoginField').value;
   await loadUsers();
   let user = users.find(user => user.email === userMail);
-  console.log(userMail, userPassword, users)
   if (user && user.password === userPassword) {
-    console.log('Usermail und Passwort stimmt')
     window.location.href = "summary.html";
     greetUserInSummary();
   } else {
-    console.log('Usermail und Passwort stimmt nicht!')
   }
 }
 

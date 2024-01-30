@@ -121,7 +121,7 @@ function renderSummaryPageHtml() {
                    </div>
                    <div class="dividerUrgentTask"></div>
                    <div class="dflexColumn">
-                       <h2 id="deadlineToDoDate" class="deadlineToDateStyle">October 15, 2024</h2>
+                       <h2 id="deadlineToDoDate" class="deadlineToDateStyle"></h2>
                        <span class="summarySmallSpan">Upcoming Deadline</span>
                    </div>
                </div>
