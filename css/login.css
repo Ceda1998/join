@@ -87,6 +87,7 @@ body {
   border: 1px solid #ededed;
   font-size: 20px;
   font-weight: 400;
+  padding-left: 10px;
 }
 
 #loginButton {
@@ -409,6 +410,7 @@ body {
   .loginInputField {
     width: 280px;
     height: 38px;
+    
   }
   #loginButton {
     width: 90px;

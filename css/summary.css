@@ -1,5 +1,10 @@
+body {
+  overflow: auto;
+}
+
 .mainContentSummary_container {
   display: flex;
+  height: 100vh;
 }
 
 #summaryContent_container {
