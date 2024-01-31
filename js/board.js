@@ -243,7 +243,9 @@ function closePopUpAt() {
 /* The pop-up when you click on a specific task on the board */
 
 
-function openTaskBig(id) {
+async function openTaskBig(id) {
+    await getTasksFromServer();
+    console.log(tasks);
     openPopUpContainer();
     removeDNone('popUpTaskBig');
     let index = id-1;
@@ -251,7 +253,7 @@ function openTaskBig(id) {
     let popUp = document.getElementById('popUpTaskBig');
     popUp.innerHTML = '';
     popUp.innerHTML += renderPopUpCardTask(currentTask, index);
-    renderColorsCategoryPu(index);
+    renderColorsCategoryPu(currentTask, index);
     renderDescriptionPu(currentTask, index);
     renderDueDatePu(currentTask, index);
     renderPrioPu(currentTask, index);
@@ -283,7 +285,7 @@ function renderPopUpCardTask(currentTask, index) {
         <span class="pu-big-subtasks">Subtasks</span>
         <div class="pu-big-subtasks-container" id="puBigSubtasksContainer${index}"></div>
         <div class="pu-big-edit-container">
-            <div class="pu-big-edit-only">
+            <div class="pu-big-edit-only" onclick="deleteTask(${index})">
                 <img class="pu-big-delete" src="./assets/img/delete-img.png">
                 <span>Delete</span>
             </div>
@@ -297,12 +299,15 @@ function renderPopUpCardTask(currentTask, index) {
 }
 
 
-function renderColorsCategoryPu(index) {
+function renderColorsCategoryPu(currentTask, index) {
+    let currentCategory = currentTask['category'];
     let category = document.getElementById(`categoryPuBig${index}`);
-    if (category.innerHTML === "User Story") {
+    if (currentCategory === "User Story") {
         category.classList.add('user-story');
+        category.classList.remove('technical-task');
     } else {
         category.classList.add('technical-task');
+        category.classList.remove('user-story');
     }
 }
 
@@ -375,27 +380,60 @@ function getContactPu(contactid) {
 
 function renderSubtasksPu(currentTask, index) {
     let subtasksBigContainer = document.getElementById(`puBigSubtasksContainer${index}`);
+    console.log("Index " + index);
     subtasksBigContainer.innerHTML = '';
-    for (let i = 0; i < currentTask['subtasks'].length; i++) {
-        const currentSubtask = currentTask['subtasks'][i];
-        subtasksBigContainer.innerHTML += /*html*/`
-            <div class="pu-big-subtask-container">
-                <img id="subtaskImg${i}" src="./assets/img/check-button.png" onclick="toggleFinishedSubtask(i)">
-                <span>${currentSubtask}</span>
-            </div>
-        `;
+    if (currentTask['subtasks'] != '') {
+        for (let i = 0; i < currentTask['subtasks'].length; i++) {
+            let currentSubtask = currentTask['subtasks'][i];
+            subtasksBigContainer.innerHTML += /*html*/`
+                <div class="pu-big-subtask-container">
+                    <img id="subtaskImg${i}" src="./assets/img/check-button.png" onclick="renderFinishedSubtaskPu(${i}, ${index})">
+                    <span>${currentSubtask['name']}</span>
+                </div>
+            `;
+            renderCheckedSubtaskPu(i, currentSubtask);
+        }
+    } else {
+        subtasksBigContainer.innerHTML = '';
     }
 }
 
 
-function toggleFinishedSubtask(i) {
-    let currentSubtask = document.getElementById(`subtaskImg${i}`);
-    isSubtaskButtonToggled != isSubtaskButtonToggled;
-    currentSubtask.toggle.scr('./assets/img/checked-button-black.png');
+function renderFinishedSubtaskPu(i, index) {
+    let currentTask = tasks[index];
+    let currentSubtask = currentTask['subtasks'][i];
+    currentSubtask['isToggled'] = !currentSubtask['isToggled'];
+    console.log(currentSubtask['isToggled']);
+    renderCheckImage(currentSubtask, i);
 }
 
 
-function closeTaskBig() {
+function renderCheckedSubtaskPu(i, currentSubtask) {
+    renderCheckImage(currentSubtask, i);
+}
+
+
+function renderCheckImage(currentSubtask, i) {
+    let currentSubtaskImg = document.getElementById(`subtaskImg${i}`);
+    if (currentSubtask['isToggled']) {
+        currentSubtaskImg.src = './assets/img/checked-button-black.png';
+    } else {
+        currentSubtaskImg.src = './assets/img/check-button.png';
+    }
+}
+
+
+async function deleteTask(index) {
+    console.log(tasks[index]);
+    tasks.splice(index, 1);
+    await closeTaskBig();
+    fetchAndReloadBoard();
+}
+
+
+async function closeTaskBig() {
+    console.log(tasks);
+    await setItem('tasks', tasks);
     closePopUpContainer();
     addDNone('popUpTaskBig');
 }

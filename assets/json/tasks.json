@@ -4,7 +4,16 @@
         "title": "First Task",
         "description": "The first task is the first task.",
         "category": "User Story",
-        "subtasks": ["Subtask 1", "Subtask 2"],
+        "subtasks": [
+                        {
+                            "name":"Subtask 1",
+                            "isToggled": false
+                        },
+                        {
+                            "name":"Subtask 2",
+                            "isToggled": false                       
+                        }
+                    ],
         "contactids": [3,2,4],
         "priority": "low",
         "progress": "todo",
@@ -15,7 +24,16 @@
         "title": "Second Task",
         "description": "Some description",
         "category": "User Story",
-        "subtasks": ["Subtask 1", "Subtask 2"],
+        "subtasks": [
+                        {
+                            "name":"Subtask 3",
+                            "isToggled": false
+                        },
+                        {
+                            "name":"Subtask 4",
+                            "isToggled": false                       
+                        }
+                    ],
         "contactids": [3,2,4],
         "priority": "medium",
         "progress": "todo",
@@ -26,7 +44,16 @@
         "title": "Third Task",
         "description": "Some description",
         "category": "User Story",
-        "subtasks": ["Subtask 1", "Subtask 2"],
+        "subtasks": [
+                        {
+                            "name":"Subtask 5",
+                            "isToggled": false
+                        },
+                        {
+                            "name":"Subtask 6",
+                            "isToggled": false                       
+                        }
+                    ],
         "contactids": [3,2,4],
         "priority": "urgent",
         "progress": "inprogress",
@@ -37,7 +64,16 @@
         "title": "Fourth Task",
         "description": "Some description",
         "category": "User Story",
-        "subtasks": ["Subtask 1", "Subtask 2"],
+        "subtasks": [
+                        {
+                            "name":"Subtask 7",
+                            "isToggled": false
+                        },
+                        {
+                            "name":"Subtask 8",
+                            "isToggled": false                       
+                        }
+                    ],
         "contactids": [3,2,4],
         "priority": "medium",
         "progress": "awaitfeedback",
@@ -48,7 +84,36 @@
         "title": "Fifth Task",
         "description": "Some description",
         "category": "Technical Task",
-        "subtasks": ["Subtask 1", "Subtask 2"],
+        "subtasks": [
+                        {
+                            "name":"Subtask 9",
+                            "isToggled": false
+                        },
+                        {
+                            "name":"Subtask 10",
+                            "isToggled": false                       
+                        }
+                    ],
+        "contactids": [3,2,4],
+        "priority": "medium",
+        "progress": "awaitfeedback",
+        "duedate": "2024-02-06"
+    },
+    {
+        "taskid": 6,
+        "title": "Sixth Task",
+        "description": "Some description",
+        "category": "Technical Task",
+        "subtasks": [
+                        {
+                            "name":"Subtask 9",
+                            "isToggled": false
+                        },
+                        {
+                            "name":"Subtask 10",
+                            "isToggled": false                       
+                        }
+                    ],
         "contactids": [3,2,4],
         "priority": "medium",
         "progress": "done",
