@@ -1,5 +1,6 @@
 let contacts = [];
 let letterFilters = [];
+let activeContact;
 
 async function init() {
   await includeHTML();
@@ -16,6 +17,12 @@ async function fetchContacts() {
   } catch (e) {
     console.error("Loading error:", e);
   }
+}
+
+/* Helper Functions */
+
+function getWindowWidth() {
+  return window.innerWidth;
 }
 
 function clearId(id) {
@@ -67,7 +74,23 @@ function defineFirstLetters() {
 function showContactDetail(id) {
   const contact = contacts.find((ct) => ct.contactid == id);
   const color = getBackgroundColor(id);
+  highlightContact(id);
   renderContactDetail(contact, color);
+  handleMobileView();
+}
+
+function highlightContact(id) {
+  if (activeContact) {
+    removeHighlight(activeContact);
+  }
+  let elem = document.getElementById(`contact-${id}`);
+  elem.classList.add('contact-active');
+  activeContact = id;
+}
+
+function removeHighlight(id) {
+  let elem = document.getElementById(`contact-${id}`);
+  elem.classList.remove('contact-active');
 }
 
 function getBackgroundColor(id) {
@@ -94,9 +117,9 @@ function renderContactHtml(contact) {
 
 function renderContactDetail(contact, color) {
   document.getElementById("contact-detail").innerHTML = `
-            <div class="contacts-main-header">
+            <div class="contacts-main-header cmh-mobile">
                 <div class="cmh-left">
-                    <div class="cmh-logo-big" style="background-color:${color}">${contact.initials}</div>
+                    <div class="cmh-logo-big cmh-logo-big-mobile" style="background-color:${color}">${contact.initials}</div>
                 </div>
                 <div class="cmh-right">
                     <div class="cmh-fullname">${contact.fullname}</div>
@@ -116,6 +139,13 @@ function renderContactDetail(contact, color) {
                 <div>
                     <a href="tel:${contact.phone}" class="ctc-phone">${contact.phone}</a>
                 </div>
+                <div class="mobile-menu">
+                  <div id="mobileMenuDots" class="newcontact-btn-mobile" onclick="renderContactDetailMenu(event)"><img src="./assets/img/more.png"></div>
+                  <div id="mobileMenu" class="edit-contact-mobile-menu d-none">
+                      <div class="edit-contact-mobile" onclick="editContact(${contact.contactid})"><img class="pencil" src="./assets/img/edit.png">Edit</div>
+                      <div class="delete-contact-mobile" onclick="deleteContact(${contact.contactid})"><img src="./assets/img/delete-img.png">Delete</div>
+                  </div>
+              </div>
             </div>
     `;
 }

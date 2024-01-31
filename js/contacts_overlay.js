@@ -36,14 +36,14 @@ function renderNewContactFields() {
     `
         <div class="edit-contact-form">
             <div class="align-center">
-                <div class="cmh-logo-big" style="background-color:#d1d1d1"><img src="./assets/img/person-white.png"></div>
+                <div class="cmh-logo-big cmh-logo-big-overlay" style="background-color:#d1d1d1"><img src="./assets/img/person-white.png"></div>
             </div>            
-                <form class="flex-col w-60" onsubmit="return addContact(event)">
+                <form class="flex-col w-60 overlay-form" onsubmit="return addContact(event)">
                     <input minlength="2" id="addFirstName" class="inputField input-fullname" placeholder="Name" required/>
                     <input type="email" id="addEmail" class="inputField input-email" placeholder="Email" required/>
                     <input id="addPhone" class="inputField input-phone" placeholder="Phone" required/>
-                    <div class="align-center gap-24">
-                        <button class="button-light" onclick="closeOverlay()">Cancel</button>
+                    <div class="align-center gap-24 button-container">
+                        <button class="button-light cancel-btn" onclick="closeOverlay()">Cancel</button>
                         <button type="submit" class="button-dark align-center">Create contact<img src="./assets/img/check.png"></igm></button>
                     </div>
                 </form>                                   
@@ -128,22 +128,23 @@ function renderEditContactHtmlForm(contact, color) {
     document.getElementById('overlay-content').innerHTML = `
         <div class="edit-contact-form">
             <div class="align-center">
-                <div class="cmh-logo-big" style="background-color:${color}">${contact.initials}</div>
+                <div class="cmh-logo-big cmh-logo-big-overlay" style="background-color:${color}">${contact.initials}</div>
             </div>
-            <div class="flex-col w-60">
-                <input id="editFirstName" class="inputField input-fullname" value="${contact.firstname}"/>
-                <input id="editEmail" class="inputField input-email" value="${contact.email}"/>
-                <input id="editPhone" class="inputField input-phone" value="${contact.phone}"/>
-                <div class="align-center gap-24">
+            <form class="flex-col w-60 overlay-form" onsubmit="return saveEditedContact(${contact.contactid}, event)">
+                <input id="editFirstName" class="inputField input-fullname" value="${contact.firstname}" required/>
+                <input id="editEmail" type="email" class="inputField input-email" value="${contact.email}" required/>
+                <input id="editPhone" class="inputField input-phone" value="${contact.phone}" required/>
+                <div class="align-center gap-24 button-container">
                     <button class="button-light" onclick="deleteContact('${contact.contactid}')">Delete</button>
-                    <button class="button-dark align-center" onclick="saveEditedContact('${contact.contactid}')">Save<img src="./assets/img/check.png"></igm></button>
+                    <button type="submit" class="button-dark align-center">Save<img src="./assets/img/check.png"></img></button>
                 </div>
-            </div>                        
+            </form>
         </div>
     `;
 }
 
-function saveEditedContact(id) {
+function saveEditedContact(id, event) {
+    event.preventDefault();
     let index = getIndexById(id);
     const firstname = document.getElementById('editFirstName').value;
     const email = document.getElementById('editEmail').value;
@@ -225,6 +226,7 @@ function finalDeleteContact(index) {
     renderContactList();
     clearUserDetail();
     closeOverlay();
+    showMessage('Contact successfully deleted');
 }
 
 function clearUserDetail() {

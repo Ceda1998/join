@@ -1,32 +1,18 @@
 <div class="overlay-container d-none" id="overlay">
     <div class="overlay-content-container">
         <div class="occ-left">
+            <div class="close-sign-mobile"  onclick="closeOverlay()"><img src="./assets/img/close-white.png"></div>
             <img class="overlay-logo" src="./assets/img/LogoSmallWhite.png">
             <span class="overlay-headline"><span id="overlay-headline"></span></span>
             <span class="overlay-sub-headline" id="overlay-sub-headline"></span>
             <div class="description-border"></div>
         </div>
         <div class="occ-right">
-            <div class="full-width right">
+            <div class="full-width right close-sign-desktop">
                 <img class="overlay-close" src="./assets/img/close-img.png" onclick="closeOverlay()">
             </div>
             <div class="full-height">
-                <div id="overlay-content" class="full-height full-width">
-                    <!-- <div class="edit-contact-form">
-                        <div class="align-center">
-                            <div class="cmh-logo-big">HP</div>
-                        </div>
-                        <div class="flex-col w-60">
-                            <input class="inputField input-fullname"/>
-                            <input class="inputField input-email"/>
-                            <input class="inputField input-phone"/>
-                            <div class="align-center gap-24">
-                                <button class="button-light">Delete</button>
-                                <button class="button-dark align-center">Save<img src="./assets/img/check.png"></igm></button>
-                            </div>
-                        </div>                        
-                    </div> -->
-                </div>
+                <div id="overlay-content" class="full-height full-width"></div>
             </div>
         </div>
     </div>

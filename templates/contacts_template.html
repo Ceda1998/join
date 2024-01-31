@@ -1,54 +1,29 @@
-<div class="ctc-left">
+<div id="contactListContainer" class="ctc-left">
     <button class="button-dark newcontact-btn" onclick="newContact()">
         Add new contact
         <img class="newcontact-btn-img" src="./assets/img/person_add.png">
     </button>
-    <div class="ctc-list" id="contacts-list">
-        <!-- <div class="ctc-sort-letter">A</div>
-            <div class="contact">
-                <div class="ctc-logo">AM</div>
-                <div class="ctc-details">
-                    <span class="ctc-fullname">Anton Mayer</span>
-                    <span class="ctc-email">anton@gmail.com</span>
-                </div>
-            </div>
-        -->
-    </div>
+    <div class="newcontact-mobile" onclick="newContact()"><img src="./assets/img/person_add_mobile.png"></div>
+    <div class="ctc-list" id="contacts-list"></div>
 </div>
-<div class="ctc-right">
+<div id="contactsDetailContainer" class="ctc-right">
     <div class="msg"><span id="messageBox" class="msg-text d-none">Contact successfully created</span></div>
-    <div class="contacts-main">
-        <div class="contacts-header">
-            <div class="contacts-header-left">Contacts</div>
-            <span class="contacts-header-divider"></span>
-            <div class="contacts-header-right">Better with a team</div>
-        </div>
-
-        <div class="contacts-content" id="contact-detail">
-            <!-- <div class="contacts-main-header">
-                <div class="cmh-left">
-                    <div class="ctc-logo cmh-logo-big">AM</div>
-                </div>
-                <div class="cmh-right">
-                    <div class="cmh-fullname">Anton Mayer</div>
-                    <div class="edit-contact">
-                        <span class="edit-item"><img src="../assets/img/edit.png">Edit</span>
-                        <span class="edit-item"><img src="../assets/img/delete-img.png">Delete</span>
-                    </div>
-                </div>
+    <div class="contacts-main" onclick="closeMenu()">
+        <div class="contacts-main-header">
+            <div class="backArrow" onclick="hideMobileDetailView()"><img src="./assets/img/arrow-left-line.png"></div>
+            <div class="contacts-header">
+                <div class="contacts-header-left">Contacts</div>
+                <span class="contacts-header-divider"></span>
+                <div class="contacts-header-right">Better with a team</div>
             </div>
-            <div class="contacts-main-content">
-                <span class="contacts-info">Contact Information</span>
-                <span class="field-headline">Email</span>
-                <div>
-                    <a href="mailto:anton@gmail.com" class="ctc-email ctc-email-act">anton@gmail.com</a>
-                </div>
-                <span class="field-headline">Phone</span>
-                <div>
-                    <a href="tel:+49 1111 111 11 1" class="ctc-phone">+49 1111 111 11 1</a>
-                </div>
-            </div> -->
         </div>
-        
+        <div class="contacts-content" id="contact-detail"></div>
+        <!-- <div class="mobile-menu">
+            <div id="mobileMenuDots" class="newcontact-btn-mobile" onclick="renderContactDetailMenu(event)"><img src="./assets/img/more.png"></div>
+            <div id="mobileMenu" class="edit-contact-mobile-menu d-none">
+                <div class="edit-contact-mobile"><img class="pencil" src="./assets/img/edit.png">Edit</div>
+                <div class="delete-contact-mobile"><img src="./assets/img/delete-img.png">Delete</div>
+            </div>
+        </div> -->
     </div>
 </div>

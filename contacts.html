@@ -12,12 +12,16 @@
     <!-- This is used for the main App Container when logged in -->
     <link rel="stylesheet" href="./css/mainMenu.css" />
 
-    <!-- This CSS is used for the Board -->
+    <!-- This CSS is used for the Contacts Section -->
     <link rel="stylesheet" href="./css/contacts.css" />
+    <link rel="stylesheet" href="./css/contacts-mobile.css" />
+    <link rel="stylesheet" href="./css/mobileSpecific.css" />
+
     <script src="./js/summary.js"></script>
     <script src="./script.js"></script>
     <script src="./js/login.js"></script>
-    <script src="./js/includeHtml.js"></script>
+    <script src="./js/includeHtml.js"></script>    
+    <script src="./js/contacts_mobile.js"></script>
     <script src="./js/contacts.js"></script>
     <script src="./js/remoteStorage.js"></script>
     <script src="./js/contacts_overlay.js"></script>
@@ -25,7 +29,7 @@
 
 <body onload="init()">
 
-    <!-- Include Header Template -->
+    <!-- Include >Overlay Template -->
     <div w3-include-html="./templates/overlay_template.html"></div>
 
     <!-- Include Header Template -->
@@ -38,6 +42,9 @@
         <!-- Include Contacts Template -->
         <div class="contacts-container content-main" w3-include-html="./templates/contacts_template.html"></div>
     </div>
+
+    <!-- Includes Mobile Navigation at the Bottom -->
+    <div w3-include-html="./templates/mobileMenuFooter_template.html"></div>
 </body>
 
 </html>

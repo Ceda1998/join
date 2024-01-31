@@ -1,3 +1,11 @@
+.d-none {
+    display: none !important;
+}
+
+.d-flex {
+    display: flex !important;
+}
+
 .contacts-container {
     display: flex;
     flex-direction: row;
@@ -33,43 +41,34 @@
     flex-direction: column;
 }
 
-/* .ctc-small-list {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 90%;
-    padding: 32px 0;
-} */
-
 .contact {
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    padding: 15px 40px;
+    padding: 15px 0 15px 18px;
     gap: 40px;
     align-items: center;
     border-radius: 10px;
     margin: 12px 0;
+    box-sizing: border-box;
 }
 
-.contact:hover {
+.contact:hover, .contact-active {
     cursor: pointer;
     background-color: #2A3647;
-}
-
-.contact:hover .ctc-fullname {
     color: #fff;
 }
 
-.contact:hover .ctc-fullname {
+.contact:hover .ctc-fullname,
+.contact-active .ctc-fullname{
     color: #fff;
 }
 
 .ctc-sort-letter {
     width: 100%;
     border-bottom: 2px solid #d1d1d1;
-    padding: 17px 36px 17px 36px;
+    padding: 17px 0 17px 36px;
     box-sizing: border-box;
     font-size: 20px;
     font-weight: 400;
@@ -86,6 +85,7 @@
     align-items: center;
     height: 42px !important;
     width: 42px !important;
+    flex-shrink: 0;
 }
 
 .contact:nth-child(3n + 1) .ctc-logo {
@@ -148,7 +148,7 @@
 }
 
 .contacts-main {
-    padding: 120px 60px;
+    padding: 60px;
     box-sizing: border-box;
 }
 
@@ -219,7 +219,7 @@
 
 .cmh-logo-big {
     background-color: rgb(70, 47, 138);
-    box-shadow: 0 0 7px #e5e5e5;
+    /* box-shadow: 0 0 7px #e5e5e5; */
     height: 120px;
     width: 120px;
     font-size: 47px;
