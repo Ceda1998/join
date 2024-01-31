@@ -380,11 +380,18 @@ function renderSubtasksPu(currentTask, index) {
         const currentSubtask = currentTask['subtasks'][i];
         subtasksBigContainer.innerHTML += /*html*/`
             <div class="pu-big-subtask-container">
-                <img src="./assets/img/check-button.png">
+                <img id="subtaskImg${i}" src="./assets/img/check-button.png" onclick="toggleFinishedSubtask(i)">
                 <span>${currentSubtask}</span>
             </div>
         `;
     }
+}
+
+
+function toggleFinishedSubtask(i) {
+    let currentSubtask = document.getElementById(`subtaskImg${i}`);
+    isSubtaskButtonToggled != isSubtaskButtonToggled;
+    currentSubtask.toggle.scr('./assets/img/checked-button-black.png');
 }
 
 
