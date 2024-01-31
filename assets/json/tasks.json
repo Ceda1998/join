@@ -2,13 +2,13 @@
     {
         "taskid": 1,
         "title": "First Task",
-        "description": "Some description",
+        "description": "The first task is the first task.",
         "category": "User Story",
         "subtasks": ["Subtask 1", "Subtask 2"],
         "contactids": [3,2,4],
         "priority": "low",
         "progress": "todo",
-        "duedate": ""
+        "duedate": "2024-02-06"
     },
     {
         "taskid": 2,
@@ -19,7 +19,7 @@
         "contactids": [3,2,4],
         "priority": "medium",
         "progress": "todo",
-        "duedate": ""
+        "duedate": "2024-02-06"
     },
     {
         "taskid": 3,
@@ -30,7 +30,7 @@
         "contactids": [3,2,4],
         "priority": "urgent",
         "progress": "inprogress",
-        "duedate": ""
+        "duedate": "2024-02-06"
     },
     {
         "taskid": 4,
@@ -41,17 +41,17 @@
         "contactids": [3,2,4],
         "priority": "medium",
         "progress": "awaitfeedback",
-        "duedate": ""
+        "duedate": "2024-02-06"
     },
     {
         "taskid": 5,
         "title": "Fifth Task",
         "description": "Some description",
-        "category": "User Story",
+        "category": "Technical Task",
         "subtasks": ["Subtask 1", "Subtask 2"],
         "contactids": [3,2,4],
         "priority": "medium",
         "progress": "done",
-        "duedate": ""
+        "duedate": "2024-02-06"
     }
 ]

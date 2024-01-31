@@ -146,6 +146,7 @@ function removeFocusToContainer(selectedField) {
     document.getElementById(selectedField).classList.remove('focus-container');
 }
 
+
 /* After clicking on the title-input it gets checked if there is text in the inputfield */
 
 function checkValueTitle() {
