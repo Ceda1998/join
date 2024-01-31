@@ -240,8 +240,8 @@ function closePopUpAt() {
     clearTask();
 }
 
-/* The pop-up when you click on a specific task on the board */
 
+/* The pop-up when you click on a specific task on the board */
 
 async function openTaskBig(id) {
     await getTasksFromServer();
@@ -252,6 +252,13 @@ async function openTaskBig(id) {
     let currentTask = tasks[index];
     let popUp = document.getElementById('popUpTaskBig');
     popUp.innerHTML = '';
+    renderAlInformationsTaskBig(popUp, currentTask, index);
+}
+
+
+/* Render all informations for the task-pop-up */
+
+function renderAlInformationsTaskBig(popUp, currentTask, index) {
     popUp.innerHTML += renderPopUpCardTask(currentTask, index);
     renderColorsCategoryPu(currentTask, index);
     renderDescriptionPu(currentTask, index);
@@ -261,6 +268,8 @@ async function openTaskBig(id) {
     renderSubtasksPu(currentTask, index);
 }
 
+
+/* HTML-Template for the task */
 
 function renderPopUpCardTask(currentTask, index) {
     return /*html*/`
@@ -299,6 +308,8 @@ function renderPopUpCardTask(currentTask, index) {
 }
 
 
+/* Background-Color of the specific category */
+
 function renderColorsCategoryPu(currentTask, index) {
     let currentCategory = currentTask['category'];
     let category = document.getElementById(`categoryPuBig${index}`);
@@ -312,6 +323,8 @@ function renderColorsCategoryPu(currentTask, index) {
 }
 
 
+/* The description part, when there is a description and when not */
+
 function renderDescriptionPu(currentTask, index) {
     let description = document.getElementById(`puBigDescription${index}`);
     if (currentTask['description'] !== '') {
@@ -323,6 +336,8 @@ function renderDescriptionPu(currentTask, index) {
 }
 
 
+/* The date gets shown in the correct format */
+
 function renderDueDatePu(currentTask, index) {
     let dueDateBig = document.getElementById(`dueDatePuBig${index}`);
     const dateParts = currentTask['duedate'].split('-');
@@ -331,6 +346,8 @@ function renderDueDatePu(currentTask, index) {
     dueDateBig.innerHTML = formattedDate;
 }
 
+
+/* The priority is shown or not */
 
 function renderPrioPu(currentTask, index) {
     let prioBig = document.getElementById(`priorityPuBig${index}`);
@@ -346,26 +363,20 @@ function renderPrioPu(currentTask, index) {
 }
 
 
+/* The selected contacts are shown */
+
 function renderassignedToPu(currentTask, index) {
     let puBigContacts = document.getElementById(`puBigContacts${index}`);
     puBigContacts.innerHTML = '';
     for (let i = 0; i < currentTask['contactids'].length; i++) {
         const contactid = currentTask['contactids'][i];
         const indexContact = getContactPu(contactid);
-        if (indexContact !== null) {
-            const contact = contacts[indexContact];
-            puBigContacts.innerHTML += /*html*/`
-            <div class="pu-big-contact-container">
-                <div>${contact['initials']}</div>
-                <span>${contact['fullname']}</span>
-            </div>
-        `;
-        } else {
-            puBigContacts.innerHTML = '';
-        }
+        ifElseContact(indexContact, puBigContacts);
     } 
 }
 
+
+/* Function to get all selected contacts from the array */
 
 function getContactPu(contactid) {
     for (let j = 0; j < contacts.length; j++) {
@@ -378,26 +389,54 @@ function getContactPu(contactid) {
 }
 
 
+/* The if-else part, when there are contacts or no contacts */
+
+function ifElseContact(indexContact, puBigContacts) {
+    if (indexContact !== null) {
+        const contact = contacts[indexContact];
+        puBigContacts.innerHTML += /*html*/`
+        <div class="pu-big-contact-container">
+            <div>${contact['initials']}</div>
+            <span>${contact['fullname']}</span>
+        </div>
+    `;
+    } else {
+        puBigContacts.innerHTML = '';
+    }
+}
+
+
+/* Function to render the subtasks */
+
 function renderSubtasksPu(currentTask, index) {
     let subtasksBigContainer = document.getElementById(`puBigSubtasksContainer${index}`);
     console.log("Index " + index);
     subtasksBigContainer.innerHTML = '';
     if (currentTask['subtasks'] != '') {
-        for (let i = 0; i < currentTask['subtasks'].length; i++) {
-            let currentSubtask = currentTask['subtasks'][i];
-            subtasksBigContainer.innerHTML += /*html*/`
-                <div class="pu-big-subtask-container">
-                    <img id="subtaskImg${i}" src="./assets/img/check-button.png" onclick="renderFinishedSubtaskPu(${i}, ${index})">
-                    <span>${currentSubtask['name']}</span>
-                </div>
-            `;
-            renderCheckedSubtaskPu(i, currentSubtask);
-        }
+        getSubtasksPu(currentTask, subtasksBigContainer, index);
     } else {
         subtasksBigContainer.innerHTML = '';
     }
 }
 
+
+/* For-Loop to get all subtasks */
+
+function getSubtasksPu(currentTask, subtasksBigContainer, index) {
+    for (let i = 0; i < currentTask['subtasks'].length; i++) {
+        let currentSubtask = currentTask['subtasks'][i];
+        subtasksBigContainer.innerHTML += /*html*/`
+            <div class="pu-big-subtask-container">
+                <img id="subtaskImg${i}" src="./assets/img/check-button.png" onclick="renderFinishedSubtaskPu(${i}, ${index})">
+                <span>${currentSubtask['name']}</span>
+            </div>
+        `;
+        renderCheckedSubtaskPu(i, currentSubtask);
+    }
+}
+
+
+/* The value of the isToggled-variable gets changed and the image gets toggled too */
 
 function renderFinishedSubtaskPu(i, index) {
     let currentTask = tasks[index];
@@ -408,10 +447,14 @@ function renderFinishedSubtaskPu(i, index) {
 }
 
 
+/* When the task gets opend the buttons get renderd  */
+
 function renderCheckedSubtaskPu(i, currentSubtask) {
     renderCheckImage(currentSubtask, i);
 }
 
+
+/* Function to toggle the image */
 
 function renderCheckImage(currentSubtask, i) {
     let currentSubtaskImg = document.getElementById(`subtaskImg${i}`);
@@ -423,6 +466,8 @@ function renderCheckImage(currentSubtask, i) {
 }
 
 
+/* This function deletes the task */
+
 async function deleteTask(index) {
     console.log(tasks[index]);
     tasks.splice(index, 1);
@@ -430,6 +475,8 @@ async function deleteTask(index) {
     fetchAndReloadBoard();
 }
 
+
+/* The task gets closed */
 
 async function closeTaskBig() {
     console.log(tasks);
