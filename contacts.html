@@ -24,7 +24,14 @@
 </head>
 
 <body onload="init()">
-
+    <div id="popupContainer">
+        <div id="logoutContent">
+            <div class="logoutHeaderContent">
+                <a href="./legal/legalNoticeInternal.html">Legal Notice</a>
+                <a href="./legal/privacyPolicyInternal.html">Privacy Policy</a>
+                <a href="./index.html">Log out</a>
+            </div>
+        </div>
     <!-- Include Header Template -->
     <div w3-include-html="./templates/overlay_template.html"></div>
 
@@ -37,6 +44,7 @@
 
         <!-- Include Contacts Template -->
         <div class="contacts-container content-main" w3-include-html="./templates/contacts_template.html"></div>
+    </div>
     </div>
 </body>
 
