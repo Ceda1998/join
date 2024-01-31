@@ -407,6 +407,10 @@ table img {
     margin-right: 16px;
 }
 
+.pu-big-subtask-container img:hover {
+    cursor: pointer;
+}
+
 .pu-big-edit-container {
     display: flex;
     align-items: center;

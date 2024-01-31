@@ -20,6 +20,14 @@
 </head>
 
 <body onload="includeHTML(), initAddTask()">
+    <div id="popupContainer">
+        <div id="logoutContent">
+            <div class="logoutHeaderContent">
+                <a href="./legal/legalNoticeInternal.html">Legal Notice</a>
+                <a href="./legal/privacyPolicyInternal.html">Privacy Policy</a>
+                <a href="./index.html">Log out</a>
+            </div>
+        </div>
     <div class="mainContentAddTask_container">
         <div w3-include-html="./templates/sidebar_template.html"></div>
     </div>
@@ -29,5 +37,6 @@
             <div class="board-container" w3-include-html="./templates/addTask_template.html"></div>
         </div>
     </div>
+</div>
 </body>
 </html>

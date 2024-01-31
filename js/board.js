@@ -34,6 +34,8 @@ function renderBoard(arr) {
     renderInProgress(arr);
     renderAwaitFeedback(arr);
     renderDone(arr);
+    console.log(tasks);
+    console.log(contacts);
 }
 
 function fetchAndReloadBoard() {
@@ -241,25 +243,160 @@ function closePopUpAt() {
 /* The pop-up when you click on a specific task on the board */
 
 
-function openTaskBig() {
+function openTaskBig(id) {
     openPopUpContainer();
     removeDNone('popUpTaskBig');
-    renderColorsCategoryPu();
+    let index = id-1;
+    let currentTask = tasks[index];
+    let popUp = document.getElementById('popUpTaskBig');
+    popUp.innerHTML = '';
+    popUp.innerHTML += renderPopUpCardTask(currentTask, index);
+    renderColorsCategoryPu(index);
+    renderDescriptionPu(currentTask, index);
+    renderDueDatePu(currentTask, index);
+    renderPrioPu(currentTask, index);
+    renderassignedToPu(currentTask, index);
+    renderSubtasksPu(currentTask, index);
+}
+
+
+function renderPopUpCardTask(currentTask, index) {
+    return /*html*/`
+        <div class="category-close-btn-container">
+            <div class="category-pu-big" id="categoryPuBig${index}">${currentTask['category']}</div>
+            <img class="close-button-pu-big" src="./assets/img/close-img.png" onclick="closeTaskBig()">
+        </div>
+        <h1 class="pu-big-title">${currentTask['title']}</h1>
+        <span class="pu-big-description" id="puBigDescription${index}"></span>
+        <table>
+            <tr>
+                <td>Due date:</td>
+                <td id="dueDatePuBig${index}"></td>
+            </tr>
+            <tr>
+                <td>Priority:</td>
+                <td id="priorityPuBig${index}"></td>
+            </tr>
+        </table>
+        <span class="pu-big-assigned-to">Assigned to:</span>
+        <div class="pu-big-contacts" id="puBigContacts${index}"></div>
+        <span class="pu-big-subtasks">Subtasks</span>
+        <div class="pu-big-subtasks-container" id="puBigSubtasksContainer${index}"></div>
+        <div class="pu-big-edit-container">
+            <div class="pu-big-edit-only">
+                <img class="pu-big-delete" src="./assets/img/delete-img.png">
+                <span>Delete</span>
+            </div>
+            <div class="pu-big-seperator"></div>
+            <div class="pu-big-edit-only">
+                <img class="pu-big-edit" src="./assets/img/edit.png">
+                <span>Edit</span>
+            </div>
+        </div>
+    `;
+}
+
+
+function renderColorsCategoryPu(index) {
+    let category = document.getElementById(`categoryPuBig${index}`);
+    if (category.innerHTML === "User Story") {
+        category.classList.add('user-story');
+    } else {
+        category.classList.add('technical-task');
+    }
+}
+
+
+function renderDescriptionPu(currentTask, index) {
+    let description = document.getElementById(`puBigDescription${index}`);
+    if (currentTask['description'] !== '') {
+        description.innerHTML = currentTask['description'];
+    } else {
+        description.innerHTML = '';
+    }
+    
+}
+
+
+function renderDueDatePu(currentTask, index) {
+    let dueDateBig = document.getElementById(`dueDatePuBig${index}`);
+    const dateParts = currentTask['duedate'].split('-');
+    const jsDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+    const formattedDate = `${jsDate.getDate().toString().padStart(2, '0')}/${(jsDate.getMonth() + 1).toString().padStart(2, '0')}/${jsDate.getFullYear()}`;
+    dueDateBig.innerHTML = formattedDate;
+}
+
+
+function renderPrioPu(currentTask, index) {
+    let prioBig = document.getElementById(`priorityPuBig${index}`);
+    let priority = currentTask['priority'];
+    if (priority !== '') {
+        let priorityUppercase = priority.charAt(0).toUpperCase() + priority.slice(1);
+        prioBig.innerHTML = /*html*/`
+            ${priorityUppercase}<img src="./assets/img/img-${currentTask['priority']}.png">
+        `;
+    } else {
+        prioBig.innerHTML = '';
+    }
+}
+
+
+function renderassignedToPu(currentTask, index) {
+    let puBigContacts = document.getElementById(`puBigContacts${index}`);
+    puBigContacts.innerHTML = '';
+    for (let i = 0; i < currentTask['contactids'].length; i++) {
+        const contactid = currentTask['contactids'][i];
+        const indexContact = getContactPu(contactid);
+        if (indexContact !== null) {
+            const contact = contacts[indexContact];
+            puBigContacts.innerHTML += /*html*/`
+            <div class="pu-big-contact-container">
+                <div>${contact['initials']}</div>
+                <span>${contact['fullname']}</span>
+            </div>
+        `;
+        } else {
+            puBigContacts.innerHTML = '';
+        }
+    } 
+}
+
+
+function getContactPu(contactid) {
+    for (let j = 0; j < contacts.length; j++) {
+        const contactidContacts = contacts[j]['contactid'];
+        if (contactidContacts === contactid.toString()) {
+            return j;
+        }
+    }
+    return null;
+}
+
+
+function renderSubtasksPu(currentTask, index) {
+    let subtasksBigContainer = document.getElementById(`puBigSubtasksContainer${index}`);
+    subtasksBigContainer.innerHTML = '';
+    for (let i = 0; i < currentTask['subtasks'].length; i++) {
+        const currentSubtask = currentTask['subtasks'][i];
+        subtasksBigContainer.innerHTML += /*html*/`
+            <div class="pu-big-subtask-container">
+                <img id="subtaskImg${i}" src="./assets/img/check-button.png" onclick="toggleFinishedSubtask(i)">
+                <span>${currentSubtask}</span>
+            </div>
+        `;
+    }
+}
+
+
+function toggleFinishedSubtask(i) {
+    let currentSubtask = document.getElementById(`subtaskImg${i}`);
+    isSubtaskButtonToggled != isSubtaskButtonToggled;
+    currentSubtask.toggle.scr('./assets/img/checked-button-black.png');
 }
 
 
 function closeTaskBig() {
     closePopUpContainer();
     addDNone('popUpTaskBig');
-}
-
-
-function renderColorsCategoryPu() {
-    let category = document.getElementById('categoryPuBig');
-    if (category.innerHTML === "User Story") {
-        category.classList.add('user-story');
-    } else {
-        category.classList.add('technical-task');
-    }
 }
 

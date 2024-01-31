@@ -143,3 +143,41 @@
  #helpIcon:hover {
     cursor: pointer;
  }
+
+ /* logout Content */
+
+ #logoutContent {
+    position: absolute;
+    width: 150px;
+    height: 158px;
+    background-color: #2A3647;
+    top: 100px;
+    right: 5px;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    z-index: 999;
+    display: none;
+ }
+
+ .logoutHeaderContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    gap: 15px;
+ }
+
+ .logoutHeaderContent a {
+    text-decoration: none;
+    color: #A8A8A8;
+ }
+
+ .logoutHeaderContent a:hover {
+    cursor: pointer;
+    font-weight: 700;
+ }
+
+ .popupContainer {
+    position: relative;
+ }
+
