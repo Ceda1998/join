@@ -262,16 +262,20 @@ table img {
     right: 40px;
 }
 
-.close-button-pu-big:hover {
+.close-button-pu-edit:hover {
     cursor: pointer;
 }
 
 .field-container-pu-edit {
     margin-top: 56px;
+    margin-bottom: 56px;
     width: 445px;
     max-height: 697px;
     overflow-y: auto;
-    overflow-x: hidden;
+}
+
+.field-container-pu-edit label {
+    font-size: 20px;
 }
 
 .title-label-pu-edit {
@@ -281,8 +285,6 @@ table img {
 
 .title-input-pu-edit {
     width: 100%;
-    font-size: 16px;
-    line-height: 19.2px;
 }
 
 .desc-input-container-pu-edit {
@@ -292,4 +294,41 @@ table img {
 .date-input-pu-edit {
     width: 428.33px !important;
     box-sizing: border-box;
+}
+
+.field-container-pu-edit .assigned-to {
+    margin-top: 14px;
+}
+
+.field-container-pu-edit .subtasks {
+    margin-top: 14px;
+}
+
+.ok-button {
+    width: 89px;
+    height: 57px;
+    border-radius: 10px;
+    padding: 16px;
+    box-sizing: border-box;
+    background-color: #2A3647;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 25.2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 32px;
+    right: 40px;
+}
+
+.ok-button img {
+    margin-left: 4px;
+    height: 24px;
+    width: 24px;
+}
+
+.ok-button:hover {
+    cursor: pointer;
 }

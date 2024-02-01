@@ -36,19 +36,6 @@
             </label>
         </div>
 
-        <div class="category">
-            <label>Category<span class="star">*</span><br>
-                <div class="category-container" id="categoryInputContainer">
-                    <input list="category" placeholder="Select task category" required class="inputField" id="categoryInput">
-                    <img src="./assets/img/arrow-drop-down.png" class="arrow-drop-down" id="arrowCategory" onclick="toggleCategoryDropDown()">
-                </div>
-            </label>
-            <div id="categoryDropDown" class="category-drop-down d-none">
-                <span id="category1" onclick="selectCategory(1)">Technical Task</span>
-                <span id="category2" onclick="selectCategory(2)">User Story</span>
-            </div>
-        </div>
-
         <div class="assigned-to">
             <label>Assigned to<br>
                 <div class="a-t-input-container" id="aTInputContainer">
@@ -60,7 +47,7 @@
                 <div id="assignedToDropDownWrapper" class="assigned-to-drop-down-wrapper">
                 </div>
             </div>
-            <div id="contactsSelectedContainer" class="contacts-selected-container">
+            <div id="contactsSelectedContainer" class="contacts-selected-container d-none">
             </div>
         </div>
 
@@ -81,5 +68,5 @@
         </div>
 
     </div>
-    <button type="submit">OK</button>
+    <button class="ok-button" type="submit">Ok<img src="./assets/img/check.png"></button>
 </form>
