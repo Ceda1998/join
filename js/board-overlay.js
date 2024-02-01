@@ -47,11 +47,26 @@ async function openTaskBig(id) {
     await getTasksFromServer();
     openPopUpContainer();
     removeDNone('popUpTaskBig');
-    let index = id-1;
+    let index = getIndexById(id);
+    console.log(index);
     let currentTask = tasks[index];
     let popUp = document.getElementById('popUpTaskBig');
     popUp.innerHTML = '';
     renderAlInformationsTaskBig(popUp, currentTask, index);
+}
+
+
+
+function getIndexById(id) {
+    const index = tasks.findIndex(function(task) {
+        return task.taskid === id;
+    })
+
+    if (index != -1) {
+        return index;
+    } else {
+        return null;
+    }
 }
 
 
@@ -303,8 +318,16 @@ function closeTaskEdit() {
     addDNone('popUpEdit');
 }
 
+
 function renderAllInformationsEditTask(index, currentTask, popUp) {
-    popUp.innerHTML += renderPopUpCardEdit(index, currentTask);
+    popUp.innerHTML += renderPopUpCardEdit();
+    renderTitleValueEdit(index);
+}
+
+
+function renderTitleValueEdit(index) {
+    let input = document.getElementById(`titleInput`);
+    input.value = tasks[index]['title'];
 }
 
 
