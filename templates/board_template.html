@@ -12,14 +12,14 @@
     <div id="toDoContainer" class="column">
         <div class="col-head">
             <span>To do</span>
-            <img src="./assets/img/plusbutton.png">
+            <img src="./assets/img/plusbutton.png" onclick="openPopUpAt()">
         </div>
         <div class="task-holder" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
     </div>
     <div id="inProgressContainer" class="column">
         <div class="col-head">
             <span>In Progress</span>
-            <img src="./assets/img/plusbutton.png">
+            <img src="./assets/img/plusbutton.png" onclick="openPopUpAt()">
         </div>
         <div class="task-holder" id="inprogress" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
         <!-- <div id="someid" class="todo" draggable="true" ondragstart="drag(event)">
@@ -51,7 +51,7 @@
     <div id="awaitFeedbackContainer" class="column">
         <div class="col-head">
             <span>Await Feedback</span>
-            <img src="./assets/img/plusbutton.png">
+            <img src="./assets/img/plusbutton.png" onclick="openPopUpAt()">
         </div>
         <div class="task-holder" id="awaitfeedback" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
     </div>
