@@ -13,7 +13,8 @@
 }
 
 .ctc-left {
-    width: 456px;
+    flex-shrink: 0;
+    width: 35%;
     padding: 32px 48px;
     overflow-y: scroll;
     display: flex;
@@ -46,7 +47,7 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    padding: 15px 0 15px 18px;
+    padding: 15px 18px 15px 18px;
     gap: 40px;
     align-items: center;
     border-radius: 10px;
@@ -54,7 +55,8 @@
     box-sizing: border-box;
 }
 
-.contact:hover, .contact-active {
+.contact:hover, 
+.contact-active {
     cursor: pointer;
     background-color: #2A3647;
     color: #fff;
@@ -111,12 +113,14 @@
     font-weight: 400;
     line-height: 24px;
     color: #000;
+    overflow-wrap: anywhere;
 }
 
 .ctc-email {
     color: #007CEE;
     font-size: 16px;
     text-decoration: none;
+    overflow-wrap: anywhere;
 }
 
 .newcontact-btn-img {
@@ -124,7 +128,7 @@
 }
 
 .ctc-right {
-    flex: 2;
+    flex-shrink: 1;
 }
 
 /* Contacts main Container Right */
@@ -148,8 +152,9 @@
 }
 
 .contacts-main {
-    padding: 60px;
+    padding: 40px 20px 20px 40px;
     box-sizing: border-box;
+    height: 100%;
 }
 
 .contacts-header {
@@ -236,6 +241,7 @@
 }
 
 .cmh-fullname {
+    overflow-wrap: anywhere;
     font-family: Inter;
     font-size: 47px;
     font-weight: 500;

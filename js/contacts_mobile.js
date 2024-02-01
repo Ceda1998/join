@@ -7,7 +7,7 @@ function hideMobileDetailView() {
 
 /* Attention this need to be adjusted if media queries change! */
 function handleMobileView() {
-    if (getWindowWidth() < 550) {
+    if (getWindowWidth() < 800) {
         document.getElementById('contactListContainer').classList.add('d-none');
         document.getElementById('contactsDetailContainer').classList.add('d-flex');
     }
