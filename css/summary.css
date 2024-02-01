@@ -297,9 +297,18 @@ body {
   .header-left {
     display: block !important;
    }
+ .urgenTaskContent_container {
+  gap: 30px;
+ }
+ .taskOverview_container {
+  gap: 25px;
+ }
 }
 
 @media (max-width: 550px) {
+  .taskOverview_container {
+    gap: 30px;
+   }
   .mobileNavbarIcons {
     width: 32px;
     height: 32px;
@@ -355,8 +364,20 @@ body {
  .header-left {
   display: block !important;
  }
+ .smallToDo_container {
+  margin-left: 5px;
+ }
+ .bigToDo_container {
+  margin-left: 5px;
+ }
+ .taskOverview_container {
+  margin-left: 5px;
+ }
 }
 @media (max-width: 450px) {
+  .mobileSpan {
+    font-size: 10px;
+  }
   .mobileLogoSmall {
     display: block !important;
    }
@@ -399,6 +420,7 @@ body {
   }
   .summarySmallSpan {
     font-size: 10px;
+    text-wrap: wrap;
   }
   .toDoContent_container {
     align-items: start;
@@ -425,4 +447,7 @@ body {
  .summarySpan {
   font-size: 20px;
  }
+ .deadlineToDateStyle {
+  font-size: 12px;
+}
 }
