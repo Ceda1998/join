@@ -216,6 +216,11 @@ body {
 }
 
 /* responsive */
+@media (max-width: 1200px) {
+  .navbar-mobile-bottom {
+    display: none;
+  }
+}
 
 @media (max-width: 1070px) {
   .content-header {
