@@ -289,7 +289,9 @@ async function closeTaskBig() {
 /* The html so you can edit the task */
 
 function editTask(index) {
-    let popUp = document.getElementById('popUpTaskBig');
+    removeDNone('popUpEdit');
+    addDNone('popUpTaskBig');
+    let popUp = document.getElementById('popUpEdit');
     let currentTask = tasks[index];
     popUp.innerHTML = '';
     renderAllInformationsEditTask(index, currentTask, popUp);
