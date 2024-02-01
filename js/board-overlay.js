@@ -301,7 +301,7 @@ function renderAllInformationsEditTask(index, currentTask, popUp) {
 }
 
 
-function renderPopUpCardEdit(index, currentTask) {
+function renderPopUpCardEdit() {
     return /*html*/`
         <img class="close-button-pu-big" src="./assets/img/close-img.png" onclick="closeTaskBig()">
         <form onsubmit="saveEdittedTask(); return false">
@@ -312,8 +312,58 @@ function renderPopUpCardEdit(index, currentTask) {
                     </label>
                     <div id="titleRequiredContainer" class="title-required d-none">This field is required</div>
                 </div>
-                <br>
+                <div class="description">
+                    <label>Description<br>
+                        <div class="desc-input-container">
+                            <textarea id="descriptionInput" class="focus" placeholder="Enter a Description"></textarea>
+                        </div>
+                    </label>
+                </div>
+                <div class="prio">
+                    <label>Prio<br>
+                        <div class="button-prio-container">
+                            <div class="button-prio" id="prioButton1" onclick="setPrio(1)"><span class="prio-name" id="prio1">Urgent</span><img src="./assets/img/img-urgent.png" id="prioColor1"><img class="d-none" src="./assets/img/img-urgent-white.png" id="prioWhite1"></div>
+                            <div class="button-prio" id="prioButton2" onclick="setPrio(2)"><span class="prio-name" id="prio2">Medium</span><img src="./assets/img/img-medium.png" id="prioColor2"><img class="d-none" src="./assets/img/img-medium-white.png" id="prioWhite2"></div>
+                            <div class="button-prio" id="prioButton3" onclick="setPrio(3)"><span class="prio-name" id="prio3">Low</span><img src="./assets/img/img-low.png" id="prioColor3"><img class="d-none" src="./assets/img/img-low-white.png" id="prioWhite3"></div>
+                        </div>
+                    </label>
+                </div>
+                <div class="due-date">
+                    <label>Due date<span class="star">*</span><br>
+                        <div class="d-d-input-container" id="dateInputContainer">
+                            <input id="dateInput" type="date" class="inputField focus color-date-input-gray" onclick="minMaxDate()" onkeyup="checkValueDueDate()" onchange="colorFontInput(), checkValueDueDate()" required> 
+                        </div>
+                    </label>
+                    <div id="dateRequiredContainer" class="date-required d-none">This field is required</div>
+                </div>
+                <div class="category">
+                    <label>Category<span class="star">*</span><br>
+                        <div class="category-container" id="categoryInputContainer">
+                            <input list="category" placeholder="Select task category" required class="inputField" id="categoryInput">
+                            <img src="./assets/img/arrow-drop-down.png" class="arrow-drop-down" id="arrowCategory" onclick="toggleCategoryDropDown()">
+                        </div>
+                    </label>
+                    <div id="categoryDropDown" class="category-drop-down d-none">
+                        <span id="category1" onclick="selectCategory(1)">Technical Task</span>
+                        <span id="category2" onclick="selectCategory(2)">User Story</span>
+                    </div>
+                </div>
+                <div class="assigned-to">
+                    <label>Assigned to<br>
+                        <div class="a-t-input-container" id="aTInputContainer">
+                            <input class="inputField" placeholder="Select contacts to assign" id="assignedToInput" onfocus="inputAssignedToFocus()" onblur="inputAssignedToBlur()" onkeyup="filterNames()">
+                            <img src="./assets/img/arrow-drop-down.png" class="arrow-drop-down" id="arrowAssignedTo" onclick="toggleAssignedToDropDown()">
+                         </div>
+                    </label>
+                    <div id="assignedToDropDown" class="assigned-to-drop-down d-none">
+                        <div id="assignedToDropDownWrapper" class="assigned-to-drop-down-wrapper">
+                        </div>
+                    </div>
+                    <div id="contactsSelectedContainer" class="contacts-selected-container">
+                    </div>
+                </div>
             </div>
+            <button type="submit">OK</button>
         </form>
     `;
 }
