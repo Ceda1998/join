@@ -217,7 +217,7 @@ body {
 
 /* responsive */
 
-@media (max-width: 1000px) {
+@media (max-width: 1070px) {
   .content-header {
     display: none;
   }
@@ -294,6 +294,9 @@ body {
     display: block;
     height: 2px;
   }
+  .header-left {
+    display: block !important;
+   }
 }
 
 @media (max-width: 550px) {
@@ -345,9 +348,18 @@ body {
   }
   .mobileSpan {
     font-size: 12px;
-  }
+ }
+ .mobileLogoSmall {
+  display: block !important;
+ }
+ .header-left {
+  display: block !important;
+ }
 }
 @media (max-width: 450px) {
+  .mobileLogoSmall {
+    display: block !important;
+   }
   .mobileNavbarIcons {
     width: 28px;
     height: 28px;
