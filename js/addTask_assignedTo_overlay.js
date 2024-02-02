@@ -12,6 +12,7 @@ function toggleAssignedToDropDownEdit() {
     isArrowAssignedToEditRotated = !isArrowAssignedToEditRotated;
     arrowAssignedTo.style.transform = isArrowAssignedToEditRotated ? 'rotate(180deg)' : '';
     ifElseArrowEdit();
+    console.log(selectedContactsAssignedTo);
 }
 
 
@@ -21,7 +22,7 @@ function ifElseArrowEdit() {
     if (isArrowAssignedToEditRotated == true) {
         renderContactsAssignedToEdit();
     } else {
-        renderInitialsSelectedEdit();
+        renderInitialsSelected();
     }
 }
 
@@ -36,7 +37,7 @@ function renderContactsAssignedToEdit() {
         let fullname = contact['fullname'];
         assignedToDropDownWrapper.innerHTML += assignedToContactsTemplateEdit(contact, i);
         renderBackgroundColorInitials(i);
-        renderContactsCheckedEdit(fullname, i);
+        renderContactsChecked(fullname, i);
     }
 }
 
@@ -57,11 +58,46 @@ function assignedToContactsTemplateEdit(contact, i) {
 }
 
 
-function renderContactsCheckedEdit(fullname, i) {
-    getContactIndexEdit();
+/* You can search for a name */
+
+function filterNamesEdit() {
+    let search = getField('assignedToInputEdit').value.toLowerCase();
+    let assignedToDropDownWrapper = getField('assignedToDropDownWrapperEdit');
+    if (search == '') {
+        if (isArrowAssignedToEditRotated == true) {
+            toggleAssignedToDropDownEdit();
+        }
+        }
+    else {
+        if (isArrowAssignedToEditRotated == false) {
+            toggleAssignedToDropDownEdit();
+        }
+        activeSearchInput(search, assignedToDropDownWrapper);
+    }
 }
 
 
-function getContactIndexEdit() {
+/* Active search assigned-to-seach-input */
 
+function activeSearchInputEdit(search, assignedToDropDownWrapper) {
+    assignedToDropDownWrapper.innerHTML = '';
+    for (let i = 0; i < contactsAssigendTo.length; i++) {
+        let contact = contactsAssigendTo[i];
+        let fullname = contact['fullname'];
+        if (fullname.toLowerCase().includes(search)) {
+            assignedToDropDownWrapper.innerHTML += assignedToContactsTemplateEdit(contact, i);
+            renderContactsChecked(fullname, i)
+        }
+    }
 }
+
+
+/* An EventListener when you click outside the assigned-to-container, the drop-down gets closed */
+
+document.addEventListener('click', function(event) {
+    let assignedToContainer = document.getElementById('aTInputContainerEdit');
+    let assignedToDropDownWrapper = document.getElementById('assignedToDropDownWrapperEdit');
+    if (isArrowAssignedToEditRotated === true && !assignedToContainer.contains(event.target) && !assignedToDropDownWrapper.contains(event.target)) {
+        toggleAssignedToDropDownEdit();
+    }
+})

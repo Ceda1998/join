@@ -210,6 +210,8 @@ function getContactPu(contactid) {
 function ifElseContact(indexContact, puBigContacts) {
     if (indexContact !== null) {
         const contact = contacts[indexContact];
+        selectedContactsAssignedTo.push(contact);
+        console.log(selectedContactsAssignedTo);
         puBigContacts.innerHTML += /*html*/`
         <div class="pu-big-contact-container">
             <div>${contact['initials']}</div>
@@ -315,9 +317,10 @@ function editTask(index) {
 }
 
 
-function closeTaskEdit() {
+async function closeTaskEdit() {
     clearPrioButtonsEdit();
-    closeTaskBig();
+    selectedContactsAssignedTo = [];
+    await closeTaskBig();
     addDNone('popUpEdit');
 }
 
@@ -419,7 +422,7 @@ function renderPopUpCardEdit() {
 
                 <div class="prio">
                     <label>Priority<br>
-                        <div class="button-prio-container">
+                        <div class="button-prio-container button-prio-container-edit">
                             <div class="button-prio" id="prioButtonEdit1" onclick="setPrio(1, 'prioButtonEdit', 'prioColorEdit', 'prioWhiteEdit', 'prioEdit')"><span class="prio-name" id="prioEdit1">Urgent</span><img src="./assets/img/img-urgent.png" id="prioColorEdit1"><img class="d-none" src="./assets/img/img-urgent-white.png" id="prioWhiteEdit1"></div>
                             <div class="button-prio" id="prioButtonEdit2" onclick="setPrio(2, 'prioButtonEdit', 'prioColorEdit', 'prioWhiteEdit', 'prioEdit')"><span class="prio-name" id="prioEdit2">Medium</span><img src="./assets/img/img-medium.png" id="prioColorEdit2"><img class="d-none" src="./assets/img/img-medium-white.png" id="prioWhiteEdit2"></div>
                             <div class="button-prio" id="prioButtonEdit3" onclick="setPrio(3, 'prioButtonEdit', 'prioColorEdit', 'prioWhiteEdit', 'prioEdit')"><span class="prio-name" id="prioEdit3">Low</span><img src="./assets/img/img-low.png" id="prioColorEdit3"><img class="d-none" src="./assets/img/img-low-white.png" id="prioWhiteEdit3"></div>
@@ -429,7 +432,7 @@ function renderPopUpCardEdit() {
 
                 <div class="assigned-to">
                     <label>Assigned to<br>
-                        <div class="a-t-input-container" id="aTInputContainerEdit">
+                        <div class="a-t-input-container a-t-input-container-edit" id="aTInputContainerEdit">
                             <input class="inputField" placeholder="Select contacts to assign" id="assignedToInput" onfocus="inputAssignedToFocus('aTInputContainerEdit')" onblur="inputAssignedToBlur('aTInputContainerEdit')" onkeyup="filterNamesEdit()">
                             <img src="./assets/img/arrow-drop-down.png" class="arrow-drop-down" id="arrowAssignedToEdit" onclick="toggleAssignedToDropDownEdit()">
                         </div>
@@ -444,7 +447,7 @@ function renderPopUpCardEdit() {
 
                 <div class="subtasks">
                     <label>Subtasks<br>
-                        <div class="subtasks-container" id="subtaskContainer">
+                        <div class="subtasks-container subtasks-container-edit" id="subtaskContainer">
                         <input type="text" placeholder="Add new Subtask" class="inputField focus" id="subtaskInput" onfocus="inputSubtaskFocus()" oninput="inputSubtask()" onblur="inputSubtaskBlur()">
                         <img src="./assets/img/plus-black.png" class="plus-img" id="plusImg" onclick="addSubtask()">
                         <div class="insert-subtask-tool-container d-none" id="insertSubtaskToolContainer">

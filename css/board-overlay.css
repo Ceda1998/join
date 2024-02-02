@@ -269,9 +269,9 @@ table img {
 .field-container-pu-edit {
     margin-top: 56px;
     margin-bottom: 56px;
-    width: 445px;
     max-height: 697px;
-    overflow-y: auto;
+    overflow-y:scroll;
+    overflow-x: hidden;
 }
 
 .field-container-pu-edit label {
@@ -292,12 +292,20 @@ table img {
 }
 
 .date-input-pu-edit {
-    width: 428.33px !important;
+    width: 428px !important;
     box-sizing: border-box;
+}
+
+.button-prio-container-edit {
+    width: 100% !important;
 }
 
 .field-container-pu-edit .assigned-to {
     margin-top: 14px;
+}
+
+.a-t-input-container-edit {
+    width: 100% !important;
 }
 
 .at-drop-down-edit {
@@ -311,6 +319,11 @@ table img {
 
 .field-container-pu-edit .subtasks {
     margin-top: 14px;
+}
+
+.subtasks-container-edit {
+    width: 427px !important;
+    margin-bottom: 10px
 }
 
 .ok-button {
