@@ -6,7 +6,7 @@
 <div class="container-left">
     <div class="title">
         <label>Title<span class="star">*</span><br>
-            <input id="titleInput" class="inputField focus" type="text" placeholder="Enter a title" onkeyup="checkValueTitle()" required>
+            <input id="titleInput" class="inputField focus" type="text" placeholder="Enter a title" onkeyup="checkValueTitle('titleInput', 'titleRequiredContainer')" required>
         </label>
         <div id="titleRequiredContainer" class="title-required d-none">This field is required</div>
     </div>
@@ -44,7 +44,7 @@
     <div class="due-date">
         <label>Due date<span class="star">*</span><br>
             <div class="d-d-input-container" id="dateInputContainer">
-                <input id="dateInput" type="date" class="inputField focus color-date-input-gray" onclick="minMaxDate()" onkeyup="checkValueDueDate()" onchange="colorFontInput(), checkValueDueDate()" required> 
+                <input id="dateInput" type="date" class="inputField focus color-date-input-gray" onclick="minMaxDate('dateInput')" onkeyup="checkValueDueDate('dateInput', 'dateRequiredContainer')" onchange="colorFontInput('dateInput'), checkValueDueDate('dateInput', 'dateRequiredContainer')" required> 
             </div>
         </label>
         <div id="dateRequiredContainer" class="date-required d-none">This field is required</div>

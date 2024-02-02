@@ -149,54 +149,54 @@ function removeFocusToContainer(selectedField) {
 
 /* After clicking on the title-input it gets checked if there is text in the inputfield */
 
-function checkValueTitle() {
-    let titleInput = getField('titleInput')
-    let titleRequiredContainer = getField('titleRequiredContainer');
+function checkValueTitle(inputName, requiredContainerName) {
+    let titleInput = getField(inputName)
+    let titleRequiredContainer = getField(requiredContainerName);
     if (titleInput.value == '') {
         titleRequiredContainer.classList.remove('d-none');
         titleInput.classList.add('title-no-input');
-        removeFocus('titleInput');
+        removeFocus(inputName);
     } else {
         titleRequiredContainer.classList.add('d-none');
         titleInput.classList.remove('title-no-input');
-        addFocus('titleInput');
+        addFocus(inputName);
     }
 }
 
 
 /* The min-date is set for today and the max-date is set in a year */
 
-function minMaxDate() {
+function minMaxDate(inputName) {
     let today = new Date();
-    document.getElementById('dateInput').min = today.toISOString().split('T')[0];
+    document.getElementById(inputName).min = today.toISOString().split('T')[0];
 
     let oneYearLater = new Date();
     oneYearLater.setFullYear(today.getFullYear() + 1);
-    document.getElementById('dateInput').max = oneYearLater.toISOString().split('T')[0];
+    document.getElementById(inputName).max = oneYearLater.toISOString().split('T')[0];
 }
 
 
 /* After clicking on the due-date-input it gets checked if there is text in the inputfield */
 
-function checkValueDueDate() {
-    let dueDateInput = getField('dateInput');
-    let dateRequiredContainer = getField('dateRequiredContainer');
+function checkValueDueDate(inputName, containerName) {
+    let dueDateInput = getField(inputName);
+    let dateRequiredContainer = getField(containerName);
     if (dueDateInput.value === '') {
         dateRequiredContainer.classList.remove('d-none');
         dueDateInput.classList.add('date-no-input');
-        removeFocus('dateInput');
+        removeFocus(inputName);
     } else {
         dateRequiredContainer.classList.add('d-none');
         dueDateInput.classList.remove('date-no-input');
-        addFocus('dateInput');
+        addFocus(inputName);
     }
 }
 
 
 /* The font color gets changed, when there is a date in the field */
 
-function colorFontInput() {
-    let dateInput = getField('dateInput');
+function colorFontInput(inputName) {
+    let dateInput = getField(inputName);
     if (dateInput.value !== '') {
         dateInput.classList.add('color-date-input-black');
         dateInput.classList.remove('color-date-input-gray');
@@ -312,13 +312,13 @@ function collectInputFields() {
     let taskId = gettingContactId();
     let priority = getPriority();
 
-    return { title, description, dueDate, category, taskId, priority };
+    return { title, description, dueDate, category, taskId, priority};
 }
 
 
 /* Function to create a task-instance for pushing to the tasks-array */
 
-function createTaskInstance({ title, description, dueDate, category, taskId, priority }) {
+function createTaskInstance({ title, description, dueDate, category, taskId, priority}) {
     return {
         "taskid": taskId,
         "title": title,
@@ -327,7 +327,7 @@ function createTaskInstance({ title, description, dueDate, category, taskId, pri
         "subtasks": subtasks,
         "contactids": selectedContactsAssignedToIds,
         "priority": priority,
-        "progress": "todo",
+        "progress": 'todo',
         "duedate": dueDate
     };
 }

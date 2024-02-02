@@ -38,6 +38,7 @@ function closePopUpAt() {
     closePopUpContainer();
     addDNone('popUpAtField');
     clearTask();
+    fetchAndReloadBoard();
 }
 
 
@@ -56,6 +57,7 @@ async function openTaskBig(id) {
 }
 
 
+/* Function to get the index by the taskid */
 
 function getIndexById(id) {
     const index = tasks.findIndex(function(task) {
@@ -74,11 +76,11 @@ function getIndexById(id) {
 
 function renderAlInformationsTaskBig(popUp, currentTask, index) {
     popUp.innerHTML += renderPopUpCardTask(currentTask, index);
-    renderColorsCategoryPu(currentTask, index);
-    renderDescriptionPu(currentTask, index);
-    renderDueDatePu(currentTask, index);
-    renderPrioPu(currentTask, index);
-    renderassignedToPu(currentTask, index);
+    renderColorsCategoryPu(currentTask);
+    renderDescriptionPu(currentTask);
+    renderDueDatePu(currentTask);
+    renderPrioPu(currentTask);
+    renderassignedToPu(currentTask);
     renderSubtasksPu(currentTask, index);
 }
 
@@ -88,25 +90,25 @@ function renderAlInformationsTaskBig(popUp, currentTask, index) {
 function renderPopUpCardTask(currentTask, index) {
     return /*html*/`
         <div class="category-close-btn-container">
-            <div class="category-pu-big" id="categoryPuBig${index}">${currentTask['category']}</div>
+            <div class="category-pu-big" id="categoryPuBig">${currentTask['category']}</div>
             <img class="close-button-pu-big" src="./assets/img/close-img.png" onclick="closeTaskBig()">
         </div>
         <h1 class="pu-big-title">${currentTask['title']}</h1>
-        <span class="pu-big-description" id="puBigDescription${index}"></span>
+        <span class="pu-big-description" id="puBigDescription"></span>
         <table>
             <tr>
                 <td>Due date:</td>
-                <td id="dueDatePuBig${index}"></td>
+                <td id="dueDatePuBig"></td>
             </tr>
             <tr>
                 <td>Priority:</td>
-                <td id="priorityPuBig${index}"></td>
+                <td id="priorityPuBig"></td>
             </tr>
         </table>
         <span class="pu-big-assigned-to">Assigned to:</span>
-        <div class="pu-big-contacts" id="puBigContacts${index}"></div>
-        <span class="pu-big-subtasks">Subtasks</span>
-        <div class="pu-big-subtasks-container" id="puBigSubtasksContainer${index}"></div>
+        <div class="pu-big-contacts" id="puBigContacts"></div>
+        <span class="pu-big-subtasks">Subtasks</span> 
+        <div class="pu-big-subtasks-container" id="puBigSubtasksContainer"></div>
         <div class="pu-big-edit-container">
             <div class="pu-big-edit-only" onclick="deleteTask(${index})">
                 <img class="pu-big-delete" src="./assets/img/delete-img.png">
@@ -124,9 +126,9 @@ function renderPopUpCardTask(currentTask, index) {
 
 /* Background-Color of the specific category */
 
-function renderColorsCategoryPu(currentTask, index) {
+function renderColorsCategoryPu(currentTask) {
     let currentCategory = currentTask['category'];
-    let category = document.getElementById(`categoryPuBig${index}`);
+    let category = document.getElementById(`categoryPuBig`);
     if (currentCategory === "User Story") {
         category.classList.add('user-story');
         category.classList.remove('technical-task');
@@ -139,8 +141,8 @@ function renderColorsCategoryPu(currentTask, index) {
 
 /* The description part, when there is a description and when not */
 
-function renderDescriptionPu(currentTask, index) {
-    let description = document.getElementById(`puBigDescription${index}`);
+function renderDescriptionPu(currentTask) {
+    let description = document.getElementById(`puBigDescription`);
     if (currentTask['description'] !== '') {
         description.innerHTML = currentTask['description'];
     } else {
@@ -152,8 +154,8 @@ function renderDescriptionPu(currentTask, index) {
 
 /* The date gets shown in the correct format */
 
-function renderDueDatePu(currentTask, index) {
-    let dueDateBig = document.getElementById(`dueDatePuBig${index}`);
+function renderDueDatePu(currentTask) {
+    let dueDateBig = document.getElementById(`dueDatePuBig`);
     const dateParts = currentTask['duedate'].split('-');
     const jsDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
     const formattedDate = `${jsDate.getDate().toString().padStart(2, '0')}/${(jsDate.getMonth() + 1).toString().padStart(2, '0')}/${jsDate.getFullYear()}`;
@@ -164,7 +166,7 @@ function renderDueDatePu(currentTask, index) {
 /* The priority is shown or not */
 
 function renderPrioPu(currentTask, index) {
-    let prioBig = document.getElementById(`priorityPuBig${index}`);
+    let prioBig = document.getElementById(`priorityPuBig`);
     let priority = currentTask['priority'];
     if (priority !== '') {
         let priorityUppercase = priority.charAt(0).toUpperCase() + priority.slice(1);
@@ -179,8 +181,8 @@ function renderPrioPu(currentTask, index) {
 
 /* The selected contacts are shown */
 
-function renderassignedToPu(currentTask, index) {
-    let puBigContacts = document.getElementById(`puBigContacts${index}`);
+function renderassignedToPu(currentTask) {
+    let puBigContacts = document.getElementById(`puBigContacts`);
     puBigContacts.innerHTML = '';
     for (let i = 0; i < currentTask['contactids'].length; i++) {
         const contactid = currentTask['contactids'][i];
@@ -223,7 +225,7 @@ function ifElseContact(indexContact, puBigContacts) {
 /* Function to render the subtasks */
 
 function renderSubtasksPu(currentTask, index) {
-    let subtasksBigContainer = document.getElementById(`puBigSubtasksContainer${index}`);
+    let subtasksBigContainer = document.getElementById(`puBigSubtasksContainer`);
     console.log("Index " + index);
     subtasksBigContainer.innerHTML = '';
     if (currentTask['subtasks'] != '') {
@@ -320,112 +322,20 @@ function closeTaskEdit() {
 
 
 function renderAllInformationsEditTask(index, currentTask, popUp) {
-    popUp.innerHTML += renderPopUpCardEdit(index);
-    renderTitleValueEdit(index);
-    renderDescriptionEdit(index);
-    renderDueDateEdit(index);
-    colorFontInput(index);
-    renderButtonEdit(index);
+    popUp.innerHTML += renderPopUpCardEdit();
+    renderTitleEdit(index);
 }
 
 
-function renderTitleValueEdit(index) {
-    let input = document.getElementById(`titleInput${index}`);
+function renderTitleEdit(index) {
+    let titleInput = document.getElementById('titleInputEdit');
     let title = tasks[index]['title'];
     console.log(title);
-    input.value = title;
+    titleInput.value = title;
 }
 
 
-function checkValueTitleEdit(index) {
-    let titleInput = getField(`titleInput${index}`)
-    let titleRequiredContainer = getField(`titleRequiredContainer${index}`);
-    if (titleInput.value == '') {
-        titleRequiredContainer.classList.remove('d-none');
-        titleInput.classList.add('title-no-input');
-        removeFocus('titleInput');
-    } else {
-        titleRequiredContainer.classList.add('d-none');
-        titleInput.classList.remove('title-no-input');
-        addFocus('titleInput');
-    }
-}
-
-
-function renderDescriptionEdit(index) {
-    let textarea = document.getElementById(`descriptionInput${index}`);
-    let description = tasks[index]['description'];
-    console.log(description);
-    textarea.value = description;
-}
-
-
-function renderDueDateEdit(index) {
-    let dateInput = document.getElementById(`dateInput${index}`);
-    let date = tasks[index]['duedate'];
-    console.log(date);
-    dateInput.value = date;
-}
-
-/* The min-date is set for today and the max-date is set in a year */
-
-function minMaxDateEdit(index) {
-    let today = new Date();
-    document.getElementById(`dateInput${index}`).min = today.toISOString().split('T')[0];
-
-    let oneYearLater = new Date();
-    oneYearLater.setFullYear(today.getFullYear() + 1);
-    document.getElementById(`dateInput${index}`).max = oneYearLater.toISOString().split('T')[0];
-}
-
-
-/* After clicking on the due-date-input it gets checked if there is text in the inputfield */
-
-function checkValueDueDate(index) {
-    let dueDateInput = getField(`dateInput${index}`);
-    let dateRequiredContainer = getField('dateRequiredContainer');
-    if (dueDateInput.value === '') {
-        dateRequiredContainer.classList.remove('d-none');
-        dueDateInput.classList.add('date-no-input');
-        removeFocus(`dateInput${index}`);
-    } else {
-        dateRequiredContainer.classList.add('d-none');
-        dueDateInput.classList.remove('date-no-input');
-        addFocus(`dateInput${index}`);
-    }
-}
-
-
-/* The font color gets changed, when there is a date in the field */
-
-function colorFontInput(index) {
-    let dateInput = getField(`dateInput${index}`);
-    if (dateInput.value !== '') {
-        dateInput.classList.add('color-date-input-black');
-        dateInput.classList.remove('color-date-input-gray');
-    } else {
-        dateInput.classList.add('color-date-input-gray');
-        dateInput.classList.remove('color-date-input-black');
-    }
-}
-
-
-function renderButtonEdit(index) {
-    let valuePrio = tasks[index]['priority'];
-    console.log(valuePrio);
-    if (valuePrio == 'urgent') {
-        const selectedButton = getField(`prioButton${index+1}`);
-        const selectedImgPrioColor = getField(`prioColor${index+1}`);
-        const selectedImgPrioWhite = getField(`prioWhite${index+1}`);
-        selectedButton.classList.toggle(`${valuePrio}`);
-        selectedButton.classList.toggle('prioTextWhite');
-        selectedImgPrioColor.classList.toggle('d-none');
-        selectedImgPrioWhite.classList.toggle('d-none');
-    }
-}
-
-
-function renderPopUpCardEdit(index) {
+function renderPopUpCardEdit() {
     return /*html*/`
         <img class="close-button-pu-edit" src="./assets/img/close-img.png" onclick="closeTaskEdit()">
         <form onsubmit="saveEdittedTask(); return false">
@@ -433,15 +343,15 @@ function renderPopUpCardEdit(index) {
 
                 <div class="title">
                     <label class="title-label-pu-edit">Title<span class="star">*</span><br>
-                        <input id="titleInput${index}" class="inputField focus title-input-pu-edit" type="text" placeholder="Enter a title" onkeyup="checkValueTitleEdit(${index})" required>
+                        <input id="titleInputEdit" class="inputField focus title-input-pu-edit" type="text" placeholder="Enter a title" onkeyup="checkValueTitle('titleInputEdit', 'titleRequiredContainerEdit')" required>
                     </label>
-                    <div id="titleRequiredContainer${index}" class="title-required d-none">This field is required</div>
+                    <div id="titleRequiredContainerEdit" class="title-required d-none">This field is required</div>
                 </div>
 
                 <div class="description desc-pu-edit">
                     <label class="description-label-pu-edit">Description<br>
                         <div class="desc-input-container desc-input-container-pu-edit">
-                            <textarea id="descriptionInput${index}" class="focus" placeholder="Enter a Description"></textarea>
+                            <textarea id="descriptionInput" class="focus" placeholder="Enter a Description"></textarea>
                         </div>
                     </label>
                 </div>
@@ -449,10 +359,10 @@ function renderPopUpCardEdit(index) {
                 <div class="due-date">
                     <label>Due date<span class="star">*</span><br>
                         <div class="d-d-input-container d-d-input-container-pu-edit" id="dateInputContainer">
-                            <input id="dateInput${index}" type="date" class="inputField focus color-date-input-gray date-input-pu-edit" onclick="minMaxDateEdit(${index})" onkeyup="checkValueDueDate(${index})" onchange="colorFontInput(${index}), checkValueDueDate(${index})" required> 
+                            <input id="dateInputEdit" type="date" class="inputField focus color-date-input-gray date-input-pu-edit" onclick="minMaxDate('dateInputEdit')" onkeyup="checkValueDueDate('dateInputEdit', 'dateRequiredContainerEdit')" onchange="colorFontInput('dateInputEdit'), checkValueDueDate('dateInputEdit', 'dateRequiredContainerEdit')" required> 
                         </div>
                     </label>
-                    <div id="dateRequiredContainer" class="date-required d-none">This field is required</div>
+                    <div id="dateRequiredContainerEdit" class="date-required d-none">This field is required</div>
                 </div>
 
                 <div class="prio">
