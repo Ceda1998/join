@@ -48,3 +48,27 @@ h1 {
     overflow: hidden;
 }
 
+@media (max-width: 1200px) {
+    .nav-left {
+        display: none;
+    }
+    .content-header {
+        display: none;
+    }
+    
+    .content-header-mobile {
+      display: flex !important;
+      margin-left: 0 !important;
+      width: 100%;
+    }
+    .navbar-mobile-bottom {
+      display: flex !important;
+    }
+    .mainLegalContent_container {
+        flex-direction: column;
+    }
+    .legalContent_container {
+        margin-left: 10px;
+    }
+
+}

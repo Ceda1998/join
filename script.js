@@ -9,7 +9,7 @@ function returnToSummary() {
 }
 
 function returnToLogin() {
-    window.location.href = "./index.html";
+    window.location.href = "../index.html";
 }
 
 function returnToBoard() {
