@@ -300,6 +300,15 @@ table img {
     margin-top: 14px;
 }
 
+.at-drop-down-edit {
+    margin-top: 0 !important;
+    max-height: 223px !important;
+}
+
+.at-edit {
+    max-height: 300px;
+}
+
 .field-container-pu-edit .subtasks {
     margin-top: 14px;
 }

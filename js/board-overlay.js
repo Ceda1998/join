@@ -430,11 +430,11 @@ function renderPopUpCardEdit() {
                 <div class="assigned-to">
                     <label>Assigned to<br>
                         <div class="a-t-input-container" id="aTInputContainerEdit">
-                            <input class="inputField" placeholder="Select contacts to assign" id="assignedToInput" onfocus="inputAssignedToFocus('aTInputContainerEdit')" onblur="inputAssignedToBlur('aTInputContainerEdit')" onkeyup="filterNames()">
-                            <img src="./assets/img/arrow-drop-down.png" class="arrow-drop-down" id="arrowAssignedToEdit" onclick="toggleAssignedToDropDown('assignedToDropDownEdit', 'contactsSelectedContainerEdit', 'arrowAssignedToEdit', 'assigendToDropDownWrapperEdit')">
+                            <input class="inputField" placeholder="Select contacts to assign" id="assignedToInput" onfocus="inputAssignedToFocus('aTInputContainerEdit')" onblur="inputAssignedToBlur('aTInputContainerEdit')" onkeyup="filterNamesEdit()">
+                            <img src="./assets/img/arrow-drop-down.png" class="arrow-drop-down" id="arrowAssignedToEdit" onclick="toggleAssignedToDropDownEdit()">
                         </div>
                     </label>
-                    <div id="assignedToDropDownEdit" class="assigned-to-drop-down d-none">
+                    <div id="assignedToDropDownEdit" class="assigned-to-drop-down at-drop-down-edit d-none">
                         <div id="assignedToDropDownWrapperEdit" class="assigned-to-drop-down-wrapper">
                         </div>
                     </div>

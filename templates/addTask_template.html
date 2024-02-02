@@ -21,11 +21,11 @@
     </div>
     <br>
 
-    <div class="assigned-to">
+    <div class="assigned-to at-edit">
         <label>Assigned to<br>
             <div class="a-t-input-container" id="aTInputContainer">
                 <input class="inputField" placeholder="Select contacts to assign" id="assignedToInput" onfocus="inputAssignedToFocus('aTInputContainer')" onblur="inputAssignedToBlur('aTInputContainer')" onkeyup="filterNames()">
-                <img src="./assets/img/arrow-drop-down.png" class="arrow-drop-down" id="arrowAssignedTo" onclick="toggleAssignedToDropDown('assignedToDropDown', 'contactsSelectedContainer', 'arrowAssignedTo', 'assignedToDropDownWrapper')">
+                <img src="./assets/img/arrow-drop-down.png" class="arrow-drop-down" id="arrowAssignedTo" onclick="toggleAssignedToDropDown()">
             </div>
         </label>
         <div id="assignedToDropDown" class="assigned-to-drop-down d-none">

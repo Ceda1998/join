@@ -147,6 +147,7 @@ textarea::placeholder {
 .assigned-to {
     width: 100%;
     min-height: 80px;
+    max-height: 300px;
 }
 
 .a-t-input-container,

@@ -52,23 +52,23 @@ function checkButtonContactsChecked(num) {
 
 /* The assigned-to-drop-down gets toggled */
 
-function toggleAssignedToDropDown(assignedToDropDownId, contactsSelectedContainerId, arrowAssignedToId, assigendToDropDownWrapperId) {
-    let assignedToDropDown = getField(assignedToDropDownId);
-    let contactsSelectedContainer = getField(contactsSelectedContainerId);
-    let arrowAssignedTo = getField(arrowAssignedToId);
+function toggleAssignedToDropDown() {
+    let assignedToDropDown = getField('assignedToDropDown');
+    let contactsSelectedContainer = getField('contactsSelectedContainer');
+    let arrowAssignedTo = getField('arrowAssignedTo');
     contactsSelectedContainer.classList.toggle('d-none');
     assignedToDropDown.classList.toggle('d-none');
     isArrowAssignedToRotated = !isArrowAssignedToRotated;
     arrowAssignedTo.style.transform = isArrowAssignedToRotated ? 'rotate(180deg)' : '';
-    ifElseArrow(assigendToDropDownWrapperId);
+    ifElseArrow();
 }
 
 
 /* If-else-statement according to the direction of the arrow */
 
-function ifElseArrow(assigendToDropDownWrapperId) {
+function ifElseArrow() {
     if (isArrowAssignedToRotated == true) {
-        renderContactsAssignedTo(assigendToDropDownWrapperId);
+        renderContactsAssignedTo();
     } else {
         renderInitialsSelected();
     }
@@ -77,8 +77,8 @@ function ifElseArrow(assigendToDropDownWrapperId) {
 
 /* If the arrow is rotated the contacts are loaded and shown*/
 
-function renderContactsAssignedTo(assigendToDropDownWrapperId) {
-    let assignedToDropDownWrapper = getField(assigendToDropDownWrapperId);
+function renderContactsAssignedTo() {
+    let assignedToDropDownWrapper = getField('assignedToDropDownWrapper');
     assignedToDropDownWrapper.innerHTML = '';
     for (let i = 0; i < contactsAssigendTo.length; i++) {
         let contact = contactsAssigendTo[i];
