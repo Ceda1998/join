@@ -209,11 +209,11 @@ function colorFontInput(inputName) {
 
 /* Function to set the Prio */
 
-function setPrio(num) {
+function setPrio(num, buttonName, prioColor, prioWhite, prio) {
     for (let i = 0; i < TOTAL_BUTTONS; i++) {
         let isButtonToggled = prioButtons[i]['toggled'];
         if (i + 1 == num || isButtonToggled === true) {
-            togglePrio(i);
+            togglePrio(i, buttonName, prioColor, prioWhite, prio);
         }        
     }
 }
@@ -221,13 +221,14 @@ function setPrio(num) {
 
 /* Function to toggle the desired prio-button */
 
-function togglePrio(i) {
+function togglePrio(i, buttonName, prioColor, prioWhite, prio) {
     prioButtons[i]['toggled'] = !prioButtons[i]['toggled'];
-    const selectedButton = getField(`prioButton${i+1}`);
-    const selectedImgPrioColor = getField(`prioColor${i+1}`);
-    const selectedImgPrioWhite = getField(`prioWhite${i+1}`);
-    const selectedPrio = getField(`prio${i+1}`);
+    const selectedButton = getField(`${buttonName}${i+1}`);
+    const selectedImgPrioColor = getField(`${prioColor}${i+1}`);
+    const selectedImgPrioWhite = getField(`${prioWhite}${i+1}`);
+    const selectedPrio = getField(`${prio}${i+1}`);
     const selectedPrioName = selectedPrio.innerHTML.toLowerCase();
+   
 
     selectedButton.classList.toggle(`${selectedPrioName}`);
     selectedButton.classList.toggle('prioTextWhite');

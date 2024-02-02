@@ -316,14 +316,25 @@ function editTask(index) {
 
 
 function closeTaskEdit() {
+    clearPrioButtonsEdit();
     closeTaskBig();
     addDNone('popUpEdit');
+}
+
+
+function clearPrioButtonsEdit() {
+    for (let i = 0; i < prioButtons.length; i++) {
+        prioButtons[i]['toggled'] = false;
+    }
 }
 
 
 function renderAllInformationsEditTask(index, currentTask, popUp) {
     popUp.innerHTML += renderPopUpCardEdit();
     renderTitleEdit(index);
+    renderDescriptionEdit(index);
+    renderDateEdit(index);
+    renderPrioEdit(index);
 }
 
 
@@ -333,6 +344,47 @@ function renderTitleEdit(index) {
     console.log(title);
     titleInput.value = title;
 }
+
+
+function renderDescriptionEdit(index) {
+    let descriptionInput = document.getElementById('descriptionInputEdit');
+    let description = tasks[index]['description'];
+    descriptionInput.value = description;
+}
+
+
+function renderDateEdit(index) {
+    let dateInput = document.getElementById('dateInputEdit');
+    let date = tasks[index]['duedate'];
+    dateInput.value = date;
+    colorFontInput('dateInputEdit');
+}
+
+
+function renderPrioEdit(index) {
+    let prio = tasks[index]['priority'];
+    for (let i = 0; i < prioButtons.length; i++) {
+        const prioButtonsName = prioButtons[i]['name'];
+        if (prioButtonsName === prio) {
+            prioButtons[i]['toggled'] = true;
+            setBackgroundColorPrioButton(i);
+        }
+    }
+}
+
+
+function setBackgroundColorPrioButton(i) {
+    const selectedButton = getField(`prioButtonEdit${i+1}`);
+    const selectedImgPrioColor = getField(`prioColorEdit${i+1}`);
+    const selectedImgPrioWhite = getField(`prioWhiteEdit${i+1}`);
+    const selectedPrio = getField(`prio${i+1}`);
+    const selectedPrioName = selectedPrio.innerHTML.toLowerCase();
+    selectedButton.classList.toggle(`${selectedPrioName}`);
+    selectedButton.classList.toggle('prioTextWhite');
+    selectedImgPrioColor.classList.toggle('d-none');
+    selectedImgPrioWhite.classList.toggle('d-none');
+}
+
 
 
 function renderPopUpCardEdit() {
@@ -351,7 +403,7 @@ function renderPopUpCardEdit() {
                 <div class="description desc-pu-edit">
                     <label class="description-label-pu-edit">Description<br>
                         <div class="desc-input-container desc-input-container-pu-edit">
-                            <textarea id="descriptionInput" class="focus" placeholder="Enter a Description"></textarea>
+                            <textarea id="descriptionInputEdit" class="focus" placeholder="Enter a Description"></textarea>
                         </div>
                     </label>
                 </div>
@@ -368,9 +420,9 @@ function renderPopUpCardEdit() {
                 <div class="prio">
                     <label>Priority<br>
                         <div class="button-prio-container">
-                            <div class="button-prio" id="prioButton1" onclick="setPrio(1)"><span class="prio-name" id="prio1">Urgent</span><img src="./assets/img/img-urgent.png" id="prioColor1"><img class="d-none" src="./assets/img/img-urgent-white.png" id="prioWhite1"></div>
-                            <div class="button-prio" id="prioButton2" onclick="setPrio(2)"><span class="prio-name" id="prio2">Medium</span><img src="./assets/img/img-medium.png" id="prioColor2"><img class="d-none" src="./assets/img/img-medium-white.png" id="prioWhite2"></div>
-                            <div class="button-prio" id="prioButton3" onclick="setPrio(3)"><span class="prio-name" id="prio3">Low</span><img src="./assets/img/img-low.png" id="prioColor3"><img class="d-none" src="./assets/img/img-low-white.png" id="prioWhite3"></div>
+                            <div class="button-prio" id="prioButtonEdit1" onclick="setPrio(1, 'prioButtonEdit', 'prioColorEdit', 'prioWhiteEdit', 'prioEdit')"><span class="prio-name" id="prioEdit1">Urgent</span><img src="./assets/img/img-urgent.png" id="prioColorEdit1"><img class="d-none" src="./assets/img/img-urgent-white.png" id="prioWhiteEdit1"></div>
+                            <div class="button-prio" id="prioButtonEdit2" onclick="setPrio(2, 'prioButtonEdit', 'prioColorEdit', 'prioWhiteEdit', 'prioEdit')"><span class="prio-name" id="prioEdit2">Medium</span><img src="./assets/img/img-medium.png" id="prioColorEdit2"><img class="d-none" src="./assets/img/img-medium-white.png" id="prioWhiteEdit2"></div>
+                            <div class="button-prio" id="prioButtonEdit3" onclick="setPrio(3, 'prioButtonEdit', 'prioColorEdit', 'prioWhiteEdit', 'prioEdit')"><span class="prio-name" id="prioEdit3">Low</span><img src="./assets/img/img-low.png" id="prioColorEdit3"><img class="d-none" src="./assets/img/img-low-white.png" id="prioWhiteEdit3"></div>
                         </div>
                     </label>
                 </div>
