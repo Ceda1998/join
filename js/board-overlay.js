@@ -429,16 +429,16 @@ function renderPopUpCardEdit() {
 
                 <div class="assigned-to">
                     <label>Assigned to<br>
-                        <div class="a-t-input-container" id="aTInputContainer">
-                            <input class="inputField" placeholder="Select contacts to assign" id="assignedToInput" onfocus="inputAssignedToFocus()" onblur="inputAssignedToBlur()" onkeyup="filterNames()">
-                            <img src="./assets/img/arrow-drop-down.png" class="arrow-drop-down" id="arrowAssignedTo" onclick="toggleAssignedToDropDown()">
+                        <div class="a-t-input-container" id="aTInputContainerEdit">
+                            <input class="inputField" placeholder="Select contacts to assign" id="assignedToInput" onfocus="inputAssignedToFocus('aTInputContainerEdit')" onblur="inputAssignedToBlur('aTInputContainerEdit')" onkeyup="filterNames()">
+                            <img src="./assets/img/arrow-drop-down.png" class="arrow-drop-down" id="arrowAssignedToEdit" onclick="toggleAssignedToDropDown('assignedToDropDownEdit', 'contactsSelectedContainerEdit', 'arrowAssignedToEdit', 'assigendToDropDownWrapperEdit')">
                         </div>
                     </label>
-                    <div id="assignedToDropDown" class="assigned-to-drop-down d-none">
-                        <div id="assignedToDropDownWrapper" class="assigned-to-drop-down-wrapper">
+                    <div id="assignedToDropDownEdit" class="assigned-to-drop-down d-none">
+                        <div id="assignedToDropDownWrapperEdit" class="assigned-to-drop-down-wrapper">
                         </div>
                     </div>
-                    <div id="contactsSelectedContainer" class="contacts-selected-container d-none">
+                    <div id="contactsSelectedContainerEdit" class="contacts-selected-container d-none">
                     </div>
                 </div>
 
