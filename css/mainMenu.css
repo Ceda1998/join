@@ -189,5 +189,5 @@
 }
 
 .legalAndHelp_container {
-    height: 100vh;
+    overflow: auto;
 }
