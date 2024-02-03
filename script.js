@@ -1,7 +1,7 @@
 
 
 function openHelpMenu() {
-    window.location.href = "help.html";
+    window.location.href = "../help.html";
 }
 
 function returnToSummary() {

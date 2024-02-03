@@ -181,3 +181,13 @@
     position: relative;
  }
 
+/* help Page */
+
+.helpPageHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.legalAndHelp_container {
+    height: 100vh;
+}
