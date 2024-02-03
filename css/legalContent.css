@@ -49,6 +49,7 @@ h1 {
 }
 
 @media (max-width: 1200px) {
+
     .nav-left {
         display: none;
     }
@@ -62,10 +63,13 @@ h1 {
       width: 100%;
     }
     .navbar-mobile-bottom {
+    position: absolute;
       display: flex !important;
     }
     .mainLegalContent_container {
         flex-direction: column;
+        position: relative;
+        height: 100%;
     }
     .legalContent_container {
         margin-left: 10px;
