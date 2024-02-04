@@ -1,4 +1,4 @@
-/* The html so you can edit the task */
+/* The html-form so you can edit the task */
 
 function editTask(index) {
     removeDNone('popUpEdit');
@@ -10,6 +10,8 @@ function editTask(index) {
 }
 
 
+/* The edit-part gets closed without saving the changes */
+
 async function closeTaskEdit() {
     clearPrioButtonsEdit();
     selectedContactsAssignedTo = [];
@@ -18,12 +20,16 @@ async function closeTaskEdit() {
 }
 
 
+/* The prio-buttons are getting cleared, so they are set for the next task or added task-form */
+
 function clearPrioButtonsEdit() {
     for (let i = 0; i < prioButtons.length; i++) {
         prioButtons[i]['toggled'] = false;
     }
 }
 
+
+/* The input fields in the form are getting field */
 
 function renderAllInformationsEditTask(index, currentTask, popUp) {
     popUp.innerHTML += renderPopUpCardEdit(index);
@@ -38,6 +44,8 @@ function renderAllInformationsEditTask(index, currentTask, popUp) {
 }
 
 
+/* The title input is getting rendered*/
+
 function renderTitleEdit(index) {
     let titleInput = document.getElementById('titleInputEdit');
     let title = tasks[index]['title'];
@@ -46,12 +54,16 @@ function renderTitleEdit(index) {
 }
 
 
+/* The description is getting filled */
+
 function renderDescriptionEdit(index) {
     let descriptionInput = document.getElementById('descriptionInputEdit');
     let description = tasks[index]['description'];
     descriptionInput.value = description;
 }
 
+
+/* The date is getting filled */
 
 function renderDateEdit(index) {
     let dateInput = document.getElementById('dateInputEdit');
@@ -60,6 +72,8 @@ function renderDateEdit(index) {
     colorFontInput('dateInputEdit');
 }
 
+
+/* The prio is rendered */
 
 function renderPrioEdit(index) {
     let prio = tasks[index]['priority'];
@@ -73,16 +87,7 @@ function renderPrioEdit(index) {
 }
 
 
-function getSubtasksEdit(index) {
-    subtasks = [];
-    let subtaskArray = tasks[index]['subtasks'];
-    for (let i = 0; i < subtaskArray.length; i++) {
-        const subtask = subtaskArray[i]['name'];
-        subtasks.push(subtask);
-    }
-}
-
-
+/* The background color of the prio-button is set */
 function setBackgroundColorPrioButton(i) {
     const selectedButton = getField(`prioButtonEdit${i+1}`);
     const selectedImgPrioColor = getField(`prioColorEdit${i+1}`);
@@ -95,6 +100,20 @@ function setBackgroundColorPrioButton(i) {
     selectedImgPrioWhite.classList.toggle('d-none');
 }
 
+
+/* The subtasks are shown */
+
+function getSubtasksEdit(index) {
+    subtasks = [];
+    let subtaskArray = tasks[index]['subtasks'];
+    for (let i = 0; i < subtaskArray.length; i++) {
+        const subtask = subtaskArray[i]['name'];
+        subtasks.push(subtask);
+    }
+}
+
+
+/* When you click on the ok-button the fields are saved and the board gets rendered new, so the changes are shown */
 
 async function saveAndCloseEdit(index) {
     const inputFields = collectInputFieldsEdit(index);
@@ -111,6 +130,8 @@ async function saveAndCloseEdit(index) {
 }
 
 
+/* The different fields in the form are collected */
+
 function collectInputFieldsEdit(index) {
     let taskId = tasks[index]['taskid'];
     let title = getField('titleInputEdit').value;
@@ -123,6 +144,8 @@ function collectInputFieldsEdit(index) {
     return {taskId, title, description, category, dueDate, progress, priority};
 }
 
+
+/* The array with the new values */
 
 function createTaskInstanceEdit({taskId, title, description, category, dueDate, progress, priority}) {
     return {
@@ -138,6 +161,8 @@ function createTaskInstanceEdit({taskId, title, description, category, dueDate, 
     };
 }
 
+
+/* The html of the edit form */
 
 function renderPopUpCardEdit(index) {
     return /*html*/`
