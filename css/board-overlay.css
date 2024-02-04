@@ -304,6 +304,19 @@ table img {
     margin-top: 14px;
 }
 
+#assignedToInputEdit {
+    border: none;
+    outline: none;
+}
+
+.assigned-to-edit {
+    height: auto;
+}
+
+.contacts-selected-container-edit {
+    margin-top: 4px!important;
+}
+
 .a-t-input-container-edit {
     width: 100% !important;
 }
@@ -321,9 +334,23 @@ table img {
     margin-top: 14px;
 }
 
+.input-field-subtask-edit {
+    outline: none;
+    border: none;
+}
+
+.subtasks-edit {
+    display: flex;
+    flex-direction: column !important;
+}
+
 .subtasks-container-edit {
     width: 427px !important;
     margin-bottom: 10px
+}
+
+.added-subtasks-container-edit {
+    margin-top: 0 !important;
 }
 
 .ok-button {

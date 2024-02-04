@@ -22,7 +22,22 @@ function ifElseArrowEdit() {
     if (isArrowAssignedToEditRotated == true) {
         renderContactsAssignedToEdit();
     } else {
-        renderInitialsSelected();
+        renderInitialsSelectedEdit();
+    }
+}
+
+
+/* If the direction of the arrow is down, all the slected contacts are shown by the initials */
+
+function renderInitialsSelectedEdit() {
+    let contactsSelectedContainer = getField('contactsSelectedContainerEdit');
+    contactsSelectedContainer.innerHTML = '';
+    for (let i = 0; i < selectedContactsAssignedTo.length; i++) {
+        let initials = selectedContactsAssignedTo[i]['initials'];
+        contactsSelectedContainer.innerHTML += /*html*/`
+            <div class="initial-at" id="initials-at${i}"><span>${initials}</span></div>
+        `;
+        renderBackgroundColorInitialsSelected(i);
     }
 }
 
@@ -72,7 +87,7 @@ function filterNamesEdit() {
         if (isArrowAssignedToEditRotated == false) {
             toggleAssignedToDropDownEdit();
         }
-        activeSearchInput(search, assignedToDropDownWrapper);
+        activeSearchInputEdit(search, assignedToDropDownWrapper);
     }
 }
 
@@ -87,6 +102,7 @@ function activeSearchInputEdit(search, assignedToDropDownWrapper) {
         if (fullname.toLowerCase().includes(search)) {
             assignedToDropDownWrapper.innerHTML += assignedToContactsTemplateEdit(contact, i);
             renderContactsChecked(fullname, i)
+            renderBackgroundColorInitials(i);
         }
     }
 }

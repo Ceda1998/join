@@ -193,7 +193,8 @@ function activeSearchInput(search, assignedToDropDownWrapper) {
         let fullname = contact['fullname'];
         if (fullname.toLowerCase().includes(search)) {
             assignedToDropDownWrapper.innerHTML += assignedToContactsTemplate(contact, i);
-            renderContactsChecked(fullname, i)
+            renderContactsChecked(fullname, i);
+            renderBackgroundColorInitials(i);
         }
     }
 }
