@@ -126,6 +126,10 @@ async function saveAndCloseEdit(index) {
     tasks = tasksAssignedTo;
     console.log(tasksAssignedTo);
     console.log(tasks);
+    console.log("subtasks");
+    console.log(subtasks);
+    console.log("selectedContactsAssignedToIds");
+    console.log(selectedContactsAssignedToIds);
     await closeTaskEdit();
 }
 

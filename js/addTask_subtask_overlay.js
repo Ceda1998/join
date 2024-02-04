@@ -121,7 +121,7 @@ function renderToolContainerFocusEdit(i) {
     toolContainer.innerHTML = '';
     toolContainer.innerHTML = /*html*/`
         <div id="toolsFocusEdit${i}" class="tools-focus">
-            <img src="./assets/img/delete-img.png" class="delete-img-focus" onclick="deleteAddedSubtask(${i})">
+            <img src="./assets/img/delete-img.png" class="delete-img-focus" onclick="deleteAddedSubtaskEdit(${i})">
             <div class="tool-separator"></div>
             <img src="./assets/img/check-black.png" class="check-img-focus" onclick="saveAddedSubtask(${i})">
         </div>
@@ -156,7 +156,9 @@ function inputAddedSubtaskWithClickOnImgEdit(i) {
 
 function deleteAddedSubtaskEdit(i) {
     subtasks.splice(i, 1);
+    console.log(subtasks);
     renderSubtasksEdit();
+    console.log(subtasks);
 }
 
 

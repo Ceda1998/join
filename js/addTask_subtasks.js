@@ -157,6 +157,7 @@ function inputAddedSubtaskWithClickOnImg(i) {
 
 function deleteAddedSubtask(i) {
     subtasks.splice(i, 1);
+    console.log(subtasks)
     renderSubtasks();
 }
 
