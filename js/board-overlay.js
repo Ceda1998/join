@@ -187,7 +187,7 @@ function renderassignedToPu(currentTask) {
     for (let i = 0; i < currentTask['contactids'].length; i++) {
         const contactid = currentTask['contactids'][i];
         const indexContact = getContactPu(contactid);
-        ifElseContact(indexContact, puBigContacts);
+        ifElseContact(indexContact, puBigContacts, i);
     } 
 }
 
@@ -207,20 +207,29 @@ function getContactPu(contactid) {
 
 /* The if-else part, when there are contacts or no contacts */
 
-function ifElseContact(indexContact, puBigContacts) {
+function ifElseContact(indexContact, puBigContacts, i) {
     if (indexContact !== null) {
         const contact = contacts[indexContact];
         selectedContactsAssignedTo.push(contact);
+        const initials = contact['initials'];
         console.log(selectedContactsAssignedTo);
         puBigContacts.innerHTML += /*html*/`
         <div class="pu-big-contact-container">
-            <div>${contact['initials']}</div>
+            <div id="initialsBig${i}">${contact['initials']}</div>
             <span>${contact['fullname']}</span>
         </div>
     `;
+    renderBackgroundColorOverlay(initials, i);
     } else {
         puBigContacts.innerHTML = '';
     }
+}
+
+
+function renderBackgroundColorOverlay(initials, i) {
+    let firstLetter = initials.charAt(0).toLowerCase();
+    let initialsField = getField(`initialsBig${i}`);
+    initialsField.classList.add(`${firstLetter}`);
 }
 
 

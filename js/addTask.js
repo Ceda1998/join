@@ -358,8 +358,6 @@ function getPriority() {
         let isButtonToggled = prioButtons[i]['toggled']
         if (isButtonToggled === true) {
                 return prioButtons[i]['name'];
-        } else {
-            return '';
         }
     }
 }
