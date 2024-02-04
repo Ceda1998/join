@@ -26,7 +26,7 @@ function clearPrioButtonsEdit() {
 
 
 function renderAllInformationsEditTask(index, currentTask, popUp) {
-    popUp.innerHTML += renderPopUpCardEdit();
+    popUp.innerHTML += renderPopUpCardEdit(index);
     renderTitleEdit(index);
     renderDescriptionEdit(index);
     renderDateEdit(index);
@@ -96,15 +96,53 @@ function setBackgroundColorPrioButton(i) {
 }
 
 
-function saveAndCloseEdit() {
-    
+async function saveAndCloseEdit(index) {
+    const inputFields = collectInputFieldsEdit(index);
+    renderContactIds();
+    controlIfDescriptionEmtpy(inputFields.description);
+    let task = createTaskInstanceEdit(inputFields);
+    console.log(task);
+    console.log(index);
+    tasksAssignedTo[index] = task;
+    tasks = tasksAssignedTo;
+    console.log(tasksAssignedTo);
+    console.log(tasks);
+    await closeTaskEdit();
 }
 
 
-function renderPopUpCardEdit() {
+function collectInputFieldsEdit(index) {
+    let taskId = tasks[index]['taskid'];
+    let title = getField('titleInputEdit').value;
+    let description = getField('descriptionInputEdit').value;
+    let category = tasks[index]['category'];
+    let dueDate = getField('dateInputEdit').value;
+    let progress = tasks[index]['progress'];
+    let priority = getPriority();
+    
+    return {taskId, title, description, category, dueDate, progress, priority};
+}
+
+
+function createTaskInstanceEdit({taskId, title, description, category, dueDate, progress, priority}) {
+    return {
+        "taskid": taskId,
+        "title": title,
+        "description": description,
+        "category": category,
+        "subtasks": subtasks,
+        "contactids": selectedContactsAssignedToIds,
+        "priority": priority,
+        "progress": progress,
+        "duedate": dueDate
+    };
+}
+
+
+function renderPopUpCardEdit(index) {
     return /*html*/`
         <img class="close-button-pu-edit" src="./assets/img/close-img.png" onclick="closeTaskEdit()">
-        <form onsubmit="saveEdittedTask(); return false">
+        <form onsubmit="saveAndCloseEdit(${index}); return false">
             <div class="field-container-pu-edit">
 
                 <div class="title">
@@ -173,7 +211,7 @@ function renderPopUpCardEdit() {
                 </div>
 
             </div>
-            <button class="ok-button" type="submit" onclick="saveAndCloseEdit()">Ok<img src="./assets/img/check.png"></button>
+            <button class="ok-button" type="submit">Ok<img src="./assets/img/check.png"></button>
         </form>
     `;
 }
