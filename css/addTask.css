@@ -103,7 +103,6 @@ h1 {
 }
 
 .description textarea:focus {
-    font: 'Open Sans';
     font-weight: 400;
     font-size: 21px;
     line-height: 25.2px;
