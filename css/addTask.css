@@ -4,6 +4,14 @@
     display: none !important;
 }
 
+.mobile-footer-addTask {
+    display: none;
+}
+
+.mobileMenuTop-addTask {
+    display: none;
+}
+
 /* title */
 
 h1 {
@@ -147,6 +155,7 @@ textarea::placeholder {
     width: 100%;
     min-height: 80px;
     max-height: 300px;
+    max-width: 440px;
 }
 
 .a-t-input-container,
@@ -160,6 +169,7 @@ textarea::placeholder {
     background-color: white;
     border-radius: 10px;
     border: 1px solid #D1D1D1;
+    box-sizing: border-box;
 }
 
 .inputField:hover {
