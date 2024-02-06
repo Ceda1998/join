@@ -9,6 +9,7 @@
         flex-direction: column;
         align-items: center;
         border-radius: 0;
+        overflow-y: auto;
     }
 
     .pop-up-at-field .bottom-container {
@@ -18,9 +19,70 @@
 
     .close-img-at-pop-up {
         position: absolute;
-        top: 10;
-        right: 10;
+        top: 20px;
+        right: 20px;
+        left: unset;
         z-index: 200;
     }
 
 }
+
+@media (max-width: 650px) {
+
+    /* Pop-up task big */
+
+    .pop-up-task-big {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .pu-big-contact-container {
+        width: 100%;
+    }
+}
+
+@media (max-width: 535px) {
+
+        /* Pop-up task big edit */
+
+        .pop-up-task-big-edit {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    
+        .pop-up-task-big-edit input {
+            font-size: 16px;
+        }
+    
+        .field-container-pu-edit {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    
+        .field-container-pu-edit label {
+            font-size: 16px;
+        }
+    
+        .added-subtasks-container-edit input {
+            width: 250px;
+        }
+    
+        .subtasks-edit label {
+            max-width: unset;
+        }
+    
+        .date-input-pu-edit {
+            width: 100%;
+            max-width: unset;
+        }
+
+}
+

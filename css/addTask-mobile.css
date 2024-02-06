@@ -73,6 +73,10 @@
         min-height: 0px;
     }
 
+    .category-drop-down span {
+        font-size: 16px;
+    }
+
     /* Buttons-Container */
 
     .bottom-container {

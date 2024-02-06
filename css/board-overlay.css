@@ -287,11 +287,12 @@ table img {
 }
 
 .desc-input-container-pu-edit {
-    width: 100% !important;
+    width: 100%;
 }
 
 .date-input-pu-edit {
-    width: 428px !important;
+    width: 100%;
+    max-width: 430px;
     box-sizing: border-box;
 }
 
@@ -343,12 +344,18 @@ table img {
     flex-direction: column !important;
 }
 
+.subtasks-edit label {
+    width: 100%;
+    max-width: 440px;
+}
+
 .subtasks-container-edit {
-    width: 427px !important;
-    margin-bottom: 10px
+    width: 100%;
+    margin-bottom: 10px;
 }
 
 .added-subtasks-container-edit {
+    width: 100%;
     margin-top: 0 !important;
 }
 
