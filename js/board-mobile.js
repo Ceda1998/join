@@ -13,18 +13,18 @@ function handleMobileView() {
     }
 }
 
-function renderContactDetailMenu(event) {
+/* function renderContactDetailMenu(event) {
     event.stopPropagation();
     document.getElementById('mobileMenuDots').classList.add('d-none');
     document.getElementById('mobileMenu').classList.remove('d-none');
     menuOpen = true;
-}
+} */
 
-function closeMenu() {
+/* function closeMenu() {
     if (menuOpen) {
         document.getElementById('mobileMenuDots').classList.remove('d-none');
         document.getElementById('mobileMenu').classList.add('d-none');
         menuOpen = false;
     }
-}
+} */
 

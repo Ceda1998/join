@@ -33,9 +33,9 @@ function renderBoard(arr) {
     renderToDo(arr);
     renderInProgress(arr);
     renderAwaitFeedback(arr);
-    renderDone(arr);
+    renderDone(arr);/* 
     console.log(tasks);
-    console.log(contacts);
+    console.log(contacts); */
 }
 
 function fetchAndReloadBoard() {

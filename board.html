@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="./css/board.css" />
     <link rel="stylesheet" href="./css/board-overlay.css" />
 
+    <!-- This CSS is used for Responsive -->
+    <link rel="stylesheet" href="./css/board-mobile.css" />
+    <link rel="stylesheet" href="./css/mobileSpecific.css" />
+
     <!-- This CSS is used for the pop-up-add-task -->
     <link rel="stylesheet" href="./css/addTask.css">
 
@@ -31,6 +35,7 @@
     <script src="./js/addTask_subtask_overlay.js"></script>
     <script src="./js/remoteStorage.js"></script>
     <script src="./js/draganddrop.js"></script>
+    <script src="./js/board-mobile.js"></script>
 </head>
 
 <body onload="init(), initAddTask()">
@@ -42,22 +47,27 @@
                 <a href="./index.html">Log out</a>
             </div>
         </div>
-    <!-- Include Header Template -->
-    <div class="" w3-include-html="./templates/sidebar_template.html"></div>
-    <div class="board-content">
-        <!-- Include Main Header Template -->
-        <div w3-include-html="./templates/mainHeader_template.html"></div>
-        <div class="content-main">
-            <!-- Include Board Template -->
-            <div class="board-container" w3-include-html="./templates/board_template.html"></div>
-            <div class="pop-up-at-container d-none" id="popUpAtContainer">
-                <div class="pop-up-at-field d-none" id="popUpAtField" w3-include-html="./templates/addTask_template.html"></div>
-                <div class="pop-up-task-big d-none" id="popUpTaskBig"></div>
-                <div class="pop-up-task-big-edit d-none" id="popUpEdit"></div>
+        <!-- Include Header Template -->
+        <div class="" w3-include-html="./templates/sidebar_template.html"></div>
+        <div class="board-content">
+            <!-- Include Main Header Template -->
+            <div w3-include-html="./templates/mainHeader_template.html"></div>
+            <div class="content-main">
+                <!-- Include Board Template -->
+                <div class="board-container" w3-include-html="./templates/board_template.html"></div>
+                <div class="pop-up-at-container d-none" id="popUpAtContainer">
+                    <div class="pop-up-at-field d-none" id="popUpAtField"
+                        w3-include-html="./templates/addTask_template.html"></div>
+                    <div class="pop-up-task-big d-none" id="popUpTaskBig"></div>
+                    <div class="pop-up-task-big-edit d-none" id="popUpEdit"></div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <!-- Includes Mobile Navigation at the Bottom -->
+    <div w3-include-html="./templates/mobileMenuFooter_template.html"></div>
+
     <script src="./script.js"></script>
 </body>
 

@@ -86,4 +86,3 @@ function openWithGuestLogin() {
 function registeredLogin() {
   window.location.href = "index.html";
 }
-

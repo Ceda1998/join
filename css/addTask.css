@@ -1,7 +1,8 @@
 /* general CSS */
 
 .d-none {
-    display: none !important;
+    /* display: none !important; */
+    display: none;
 }
 
 .mobile-footer-addTask {

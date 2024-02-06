@@ -238,7 +238,8 @@
         color: #2A3647;
     }
 
-    .newcontact-btn-mobile, .newcontact-mobile {
+    .newcontact-btn-mobile, 
+    .newcontact-mobile {
         background-color: #2A3647;
         border-radius: 50%;
         padding: 16px;
@@ -247,7 +248,8 @@
         margin-right: 20px;
     }
 
-    .newcontact-btn-mobile:hover {
+    .newcontact-btn-mobile:hover,
+    .newcontact-mobile:hover {
         cursor: pointer;
     }
 
@@ -273,6 +275,11 @@
         justify-content: flex-start;
         align-items: center;
         gap: 8px;
+    }
+
+    .edit-contact-mobile:hover,
+    .delete-contact-mobile:hover {
+        cursor: pointer;
     }
 
     .pencil {
@@ -342,6 +349,10 @@
     .backArrow {
         display: flex;
         justify-content: flex-end;
+    }
+
+    .backArrow:hover {
+        cursor: pointer;
     }
 
     .contacts-header {
@@ -476,6 +487,10 @@
         width: 100%;
         display: flex;
         justify-content: flex-end;
+    }
+
+    .close-sign-mobile:hover {
+        cursor: pointer;
     }
 
     .close-sign-desktop {
