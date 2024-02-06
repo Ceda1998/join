@@ -1,46 +1,5 @@
 @media (max-width: 1400px) {
 
-    .mobile-footer-addTask {
-        display: unset;
-        position: fixed;
-        z-index: 100;
-        bottom: 0;
-        left: 0;
-        right: 0;
-    }
-
-    .sidebar-addTask {
-        display: none;
-    }
-
-    .content-main-addTask {
-        margin: 0;
-        display: flex;
-        justify-content: center;
-    }
-
-    .content-header {
-        margin-left: 0;
-        padding-left: 16px;
-        padding-right: 16px;
-    }
-
-    .header-left {
-        display: none;
-    }
-
-    .mobile-logo {
-        display: unset;
-    }
-
-    .mobile-logo img {
-        height: 39px;
-    }
-
-    .navbar-mobile-bottom {
-        display: flex;
-    }
-
     /* title */
 
     h1 {

@@ -309,6 +309,17 @@ async function deleteTask(index) {
 async function closeTaskBig() {
     await setItem('tasks', tasks);
     closePopUpContainer();
+    clearInputFieldsTaskBig();
     addDNone('popUpTaskBig');
     fetchAndReloadBoard();
+}
+
+
+/* Function to clear the input fields after closing the task */
+
+function clearInputFieldsTaskBig() {
+    getField('titleInputEdit').value = '';
+    getField('descriptionInputEdit').value = '';
+    getField('dateInputEdit').value = '';
+    selectedContactsAssignedTo = [];
 }

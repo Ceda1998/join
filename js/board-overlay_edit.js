@@ -120,16 +120,8 @@ async function saveAndCloseEdit(index) {
     renderContactIds();
     controlIfDescriptionEmtpy(inputFields.description);
     let task = createTaskInstanceEdit(inputFields);
-    console.log(task);
-    console.log(index);
     tasksAssignedTo[index] = task;
     tasks = tasksAssignedTo;
-    console.log(tasksAssignedTo);
-    console.log(tasks);
-    console.log("subtasks");
-    console.log(subtasks);
-    console.log("selectedContactsAssignedToIds");
-    console.log(selectedContactsAssignedToIds);
     await closeTaskEdit();
 }
 
