@@ -9,15 +9,7 @@
         right: 0;
     }
 
-    .mobileMenuTop-addTask {
-        display: unset;
-    }
-
     .sidebar-addTask {
-        display: none;
-    }
-
-    .main-header-addTask {
         display: none;
     }
 
@@ -25,6 +17,28 @@
         margin: 0;
         display: flex;
         justify-content: center;
+    }
+
+    .content-header {
+        margin-left: 0;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .header-left {
+        display: none;
+    }
+
+    .mobile-logo {
+        display: unset;
+    }
+
+    .mobile-logo img {
+        height: 39px;
+    }
+
+    .navbar-mobile-bottom {
+        display: flex;
     }
 
     /* title */
