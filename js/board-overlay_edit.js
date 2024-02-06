@@ -7,6 +7,7 @@ function editTask(index) {
     let currentTask = tasks[index];
     popUp.innerHTML = '';
     renderAllInformationsEditTask(index, currentTask, popUp);
+    console.log(subtasks);
 }
 
 
@@ -38,7 +39,6 @@ function renderAllInformationsEditTask(index, currentTask, popUp) {
     renderDateEdit(index);
     renderPrioEdit(index);
     renderInitialsSelectedEdit();
-    getSubtasksEdit(index);
     console.log(subtasks);
     renderSubtasksEdit();
 }
@@ -101,16 +101,6 @@ function setBackgroundColorPrioButton(i) {
 }
 
 
-/* The subtasks are shown */
-
-function getSubtasksEdit(index) {
-    subtasks = [];
-    let subtaskArray = tasks[index]['subtasks'];
-    for (let i = 0; i < subtaskArray.length; i++) {
-        const subtask = subtaskArray[i]['name'];
-        subtasks.push(subtask);
-    }
-}
 
 
 /* When you click on the ok-button the fields are saved and the board gets rendered new, so the changes are shown */
