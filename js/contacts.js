@@ -21,8 +21,8 @@ async function fetchContacts() {
 
 /* Helper Functions */
 
-function getWindowWidth() {
-  return window.innerWidth;
+function isMobile() {
+  return window.innerWidth < 800;
 }
 
 function clearId(id) {
@@ -80,7 +80,10 @@ function showContactDetail(id) {
 }
 
 function highlightContact(id) {
-  if (activeContact) {
+  if (isMobile()) {
+    removeHighlight(activeContact);
+    return;
+  } else if (activeContact) {
     removeHighlight(activeContact);
   }
   let elem = document.getElementById(`contact-${id}`);
@@ -89,8 +92,10 @@ function highlightContact(id) {
 }
 
 function removeHighlight(id) {
-  let elem = document.getElementById(`contact-${id}`);
-  elem.classList.remove('contact-active');
+  if (id) {
+    let elem = document.getElementById(`contact-${id}`);
+    elem.classList.remove('contact-active');
+  }
 }
 
 function getBackgroundColor(id) {
@@ -149,5 +154,3 @@ function renderContactDetail(contact, color) {
             </div>
     `;
 }
-
-
