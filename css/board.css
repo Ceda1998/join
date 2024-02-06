@@ -81,6 +81,8 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
+    min-width: 350px;
+    box-sizing: border-box;
 }
 
 .todo:hover {

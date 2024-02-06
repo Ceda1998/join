@@ -1,0 +1,108 @@
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}
+
+
+/* Individual Responsive Queries */
+
+/* Remove mobile Navigation when over 1000px */
+@media (min-width: 1200px) {
+    .navbar-mobile-bottom {
+        display: none;
+    }
+}
+
+/* Here starts the responsiveness (header adaptation, sidebar removing and mobile footer addition) */
+@media (max-width: 1200px) {
+    .board-inner-head .button-dark {
+        display: none;
+    }
+
+    .board-inner-head>div {
+        width: 100%;
+    }
+    
+    .board-inner-head .inputField {
+        width: 100%;
+    }
+
+    .board-content {
+        overflow: auto;
+    }
+
+    .content-main {
+        margin-left: 0;
+    }
+
+    .board-inner-head {
+        flex-direction: column;
+    }
+
+    .content-header {
+        margin-left: 0 !important;
+        padding: 0 40px;
+        position: absolute;
+        width: 100%;
+    }
+
+    .navbar-mobile-bottom {
+        display: flex;
+    }
+
+    .navbar-mobile-content {
+        display: flex;
+    }
+
+    .nav-left {
+        display: none;
+    }
+}
+
+@media (max-width: 1000px) {}
+
+@media (max-width: 800px) {
+    .header-left {
+        display: none;
+    }
+
+    .mobile-logo {
+        display: block !important;
+    }
+
+    .header-profile-icon {
+        height: 40px;
+        width: 40px;
+        border-width: 2px;
+        font-size: 11px;
+    }
+
+    .header-question-icon {
+        display: none;
+    }
+
+    .mobile-logo img {
+        height: 40px;
+    }
+
+    .mobileNavbarIcons {
+        width: 32px;
+        height: 32px;
+    }
+
+    .navbar-mobile-bottom {
+        gap: 32px !important;
+    }
+}
+
+@media (max-width: 450px) {}
