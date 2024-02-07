@@ -25,6 +25,15 @@
 
 /* Here starts the responsiveness (header adaptation, sidebar removing and mobile footer addition) */
 @media (max-width: 1200px) {
+    .board-container {
+        margin-top: 110px;
+    }
+
+    .board-inner-head {
+        gap: 16px;
+        margin: 0 25px;
+    }
+    
     .board-inner-head .button-dark {
         display: none;
     }
@@ -39,6 +48,16 @@
 
     .board-content {
         overflow: auto;
+    }
+
+    .row {
+        padding: 20px 5px;
+    }
+
+    .task-holder {
+        min-width: unset;
+        width: 100%;
+        padding-bottom: 50px;
     }
 
     .content-main {
