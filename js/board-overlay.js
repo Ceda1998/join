@@ -29,6 +29,7 @@ function addDNone(name) {
 /* Pop-up to add a new Task */
     
 function openPopUpAt() {
+    addDNone('popUpTaskBig');
     openPopUpContainer();
     removeDNone('popUpAtField');
     subtasks = [];
