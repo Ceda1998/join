@@ -4,7 +4,7 @@
 
     h1 {
         margin-left: 0;
-        margin-top: 130px;
+        margin-top: 40px;
     }
 
     /* Content Main Add-Task */
@@ -44,10 +44,6 @@
 
     .container-right {
         min-height: 0px;
-    }
-
-    .category-drop-down span {
-        font-size: 16px;
     }
 
     /* Buttons-Container */
@@ -90,6 +86,7 @@
 
     .add-task-container {
         width: 100%;
+        min-width: 80vw;
     }
 
     .add-task-container label {
@@ -157,6 +154,10 @@
     #subtaskInput {
         width: 220px;
     }
+    
+    .category-drop-down span {
+        font-size: 16px;
+    }
 
     .assigned-to-drop-down {
         margin-top: 36px;
@@ -205,6 +206,10 @@
         padding: 18px 10px 18px 10px;
         font-size: 16px;
         line-height: 19.2px;
+    }
+
+    .button-prio img {
+        width: 14px;
     }
 
     .category-drop-down {
