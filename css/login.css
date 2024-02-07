@@ -114,10 +114,31 @@ body {
   font-weight: 700;
 }
 
+#signUpButton {
+  width: 110px;
+  height: 48px;
+  border-radius: 8px;
+  background: #2a3647;
+  color: white;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+#signUpButton:enabled {
+  background-color: #0d99ff;
+}
+
 #loginButton:hover {
   cursor: pointer;
   background-color: #0d99ff;
   box-shadow: 8px 8px 2px 1px #ededed;
+}
+
+#signUpPasswordCheckText {
+  color: red;
+  margin-left: 10px;
+  font-size: 12px;
+  height: 15px;
 }
 
 #guestLoginButton {
@@ -223,8 +244,8 @@ body {
 .SignUpPrivacy_container {
   display: flex;
   justify-content: center;
-  margin-top: 32px;
-  margin-bottom: 32px;
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
 .privacyLabel {
@@ -398,13 +419,16 @@ body {
 }
 
 @media (max-width: 500px) {
+  #signUpPasswordCheckText {
+    margin: 0;
+  }
   #loginWindow {
     width: 300px;
     height: 400px;
   }
   #signUpWindow {
     width: 300px;
-    height: 430px;
+    height: 470px;
     margin-top: 10px;
   }
   #signUpArrowLeft {

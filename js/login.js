@@ -92,3 +92,21 @@ function openWithGuestLogin() {
 function registeredLogin() {
   window.location.href = "index.html";
 }
+
+//password validation in SignUp
+
+function checkPasswords() {
+  let userName = document.getElementById('registerUserName').value;
+  let userMail = document.getElementById('registerMailInput').value;
+  let signUpPassword = document.getElementById('registerPassword').value;
+  let signUpConfirmPassword = document.getElementById('confirmPassword').value;
+  let signUpButton = document.getElementById('signUpButton');
+  let passwordsFalse = document.getElementById('signUpPasswordCheckText');
+  if (signUpPassword == signUpConfirmPassword && userName.length > 0 && userMail.length > 0) {
+    signUpButton.disabled = false;
+    passwordsFalse.innerHTML = '';
+  } else {
+    passwordsFalse.innerHTML = `Password does not match`;
+    signUpButton.disabled = true;
+  }
+}
