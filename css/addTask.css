@@ -1,10 +1,5 @@
 /* general CSS */
 
-.d-none {
-    /* display: none !important; */
-    display: none;
-}
-
 .mobile-footer-addTask {
     display: none;
 }
@@ -692,4 +687,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .button-center {
     display: flex;
     gap: 4px;
+}
+
+.d-none {
+    /* display: none !important; */
+    display: none;
 }

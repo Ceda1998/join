@@ -102,6 +102,7 @@ function setInputClear(inputFields) {
     subtasks = [];
     renderInitialsSelected();
     clearPrioButtons();
+    setPrioMedium();
     renderSubtasks();
     setArrowRotated();
 }
@@ -221,6 +222,17 @@ function colorFontInput(inputName) {
 }
 
 
+/* Function to set Prio Medium to start */
+
+function setPrioMedium() {
+    try {
+        setPrio(2, 'prioButton', 'prioColor', 'prioWhite', 'prio');
+    } catch {
+        setPrio(2, 'prioButtonEdit', 'prioColorEdit', 'prioWhiteEdit', 'prioEdit');
+    }
+}
+
+
 /* Function to set the Prio */
 
 function setPrio(num, buttonName, prioColor, prioWhite, prio) {
@@ -314,6 +326,8 @@ async function createTask() {
     tasksAssignedTo.push(task);
     await setItem('tasks', tasksAssignedTo);
     clearTask();
+    goToBoard();
+    alert('Der Task wurde erfolgreich erstellt.');
 }
 
 
@@ -385,4 +399,11 @@ function renderContactIds() {
     } else {
         selectedContactsAssignedToIds = [];
     }
+}
+
+
+/* After the task is created, the board is shown */
+
+function goToBoard() {
+    window.location.href = './board.html';
 }
