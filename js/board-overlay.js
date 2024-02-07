@@ -31,6 +31,7 @@ function addDNone(name) {
 function openPopUpAt() {
     openPopUpContainer();
     removeDNone('popUpAtField');
+    subtasks = [];
 }
 
 
@@ -303,6 +304,7 @@ async function deleteTask(index) {
     tasks.splice(index, 1);
     console.log("current");
     console.log(tasks);
+    init();
     await closeTaskBig();
 }
 

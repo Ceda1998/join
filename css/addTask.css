@@ -688,8 +688,3 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: flex;
     gap: 4px;
 }
-
-.d-none {
-    /* display: none !important; */
-    display: none;
-}
