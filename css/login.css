@@ -1,6 +1,29 @@
 body {
   overflow: hidden;
 }
+
+#popupContainer {
+  position: relative;
+}
+
+#successRegistration {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 150px;
+  left: 40%;
+  right: 0;
+  transform: translate(-50,-50);
+  color: green;
+  background-color: #2a3647;
+  padding: 10px;
+  border-radius: 14px;
+  margin: 0;
+  height: 20px;
+  font-size: 14px;
+  width: 200px;
+}
 .headerLogin {
   width: 100%;
   display: flex;
@@ -366,6 +389,16 @@ body {
 /* responsive */
 
 @media (max-width: 760px) {
+  #successRegistration {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 100px;
+    left: 37%;
+    right: 0;
+    transform: translate(-50,-50);
+  }
   #loginWindow {
     margin-top: 100px !important;
     width: 396px;
@@ -419,6 +452,10 @@ body {
 }
 
 @media (max-width: 500px) {
+  #successRegistration {
+    top: 100px;
+    left: 24%;
+  }
   #signUpPasswordCheckText {
     margin: 0;
   }

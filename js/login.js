@@ -21,6 +21,7 @@ async function register() {
   await setItem("users", JSON.stringify(users));
   form.reset();
   initUsers();
+  successSignUpPopup();
 }
 
 async function initUsers() {
@@ -109,4 +110,14 @@ function checkPasswords() {
     passwordsFalse.innerHTML = `Password does not match`;
     signUpButton.disabled = true;
   }
+}
+
+// pop up
+
+function successSignUpPopup() {
+  let popupContainer = document.getElementById('successRegistration');
+  popupContainer.style.display = 'flex';
+  setTimeout(function() {
+    popupContainer.style.display = 'none';
+  }, 3000);
 }
