@@ -18,7 +18,9 @@
 
 <body>
   <div id="popupContainer">
-
+    <div id="successRegistration">
+      <p id="popupRegistration">successful registration!</p>
+    </div>
   
   <div class="headerLogin">
     <img src="./assets/img/LogoSmall.png" alt="logo small" class="logoSmall" />
@@ -48,6 +50,9 @@
         <div class="inputIcon_container">
           <input type="password" required class="loginInputField" placeholder="Password" id="passwordLoginField" />
           <img src="./assets/img/lock.png" alt="passwordIcon" class="loginIcons" />
+        </div>
+        <div class="invalidContainer">
+          <p id="invalidText"></p>
         </div>
         <div class="rememberMe_container">
           <input type="checkbox" id="rememberMe" /><label for="rememberMe" class="rememberMeLabel">Remember me</label>

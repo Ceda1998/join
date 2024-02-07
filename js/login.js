@@ -21,6 +21,7 @@ async function register() {
   await setItem("users", JSON.stringify(users));
   form.reset();
   initUsers();
+  successSignUpPopup();
 }
 
 async function initUsers() {
@@ -47,7 +48,13 @@ async function checkLogin() {
     window.location.href = "summary.html";
     greetUserInSummary();
   } else {
+    userNameOrPasswordIncorrect();
   }
+}
+
+function userNameOrPasswordIncorrect() {
+  let invalidText = document.getElementById('invalidText');
+  invalidText.innerHTML = `False Username or Password!`;
 }
 
 //finding current logged in User functions:
@@ -85,4 +92,32 @@ function openWithGuestLogin() {
 
 function registeredLogin() {
   window.location.href = "index.html";
+}
+
+//password validation in SignUp
+
+function checkPasswords() {
+  let userName = document.getElementById('registerUserName').value;
+  let userMail = document.getElementById('registerMailInput').value;
+  let signUpPassword = document.getElementById('registerPassword').value;
+  let signUpConfirmPassword = document.getElementById('confirmPassword').value;
+  let signUpButton = document.getElementById('signUpButton');
+  let passwordsFalse = document.getElementById('signUpPasswordCheckText');
+  if (signUpPassword == signUpConfirmPassword && userName.length > 0 && userMail.length > 0) {
+    signUpButton.disabled = false;
+    passwordsFalse.innerHTML = '';
+  } else {
+    passwordsFalse.innerHTML = `Password does not match`;
+    signUpButton.disabled = true;
+  }
+}
+
+// pop up
+
+function successSignUpPopup() {
+  let popupContainer = document.getElementById('successRegistration');
+  popupContainer.style.display = 'flex';
+  setTimeout(function() {
+    popupContainer.style.display = 'none';
+  }, 3000);
 }

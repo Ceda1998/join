@@ -16,18 +16,19 @@ function renderSignUpWindow() {
           <img src="./assets/img/mail.png" alt="passwordIcon" class="loginIcons">
         </div>
         <div class="inputIcon_container">
-          <input type="password" required class="loginInputField" placeholder="Password" id="registerPassword"/>
+          <input type="password" required class="loginInputField" placeholder="Password" id="registerPassword" onkeyup="checkPasswords()"/>
           <img src="./assets/img/lock.png" alt="passwordIcon" class="loginIcons">
         </div>
         <div class="inputIcon_container">
-          <input type="password" required class="loginInputField" placeholder="Confirm Password" id="confirmPassword"/>
+          <input type="password" required class="loginInputField" placeholder="Confirm Password" id="confirmPassword" onkeyup="checkPasswords()"/>
           <img src="./assets/img/lock.png" alt="passwordIcon" class="loginIcons">
         </div>
+        <p id="signUpPasswordCheckText"></p>
         <div class="SignUpPrivacy_container">
               <input type="checkbox" id="privacyCheckbox" required><label for="privacy" class="privacyLabel">I accept the&nbsp</label><a class="blueLinks" href="#">Privacy policy</a>
             </div>
           <div class="loginButtons_container">
-            <button id="loginButton" class="registerButton">Sign Up</button>
+            <button id="signUpButton" class="registerButton" disabled="disabled">Sign Up</button>
           </div>
         </form>
       </div>
@@ -50,6 +51,9 @@ function renderSignUpWindow() {
           <input type="password" required class="loginInputField" placeholder="Password" id="passwordLoginField" />
           <img src="./assets/img/lock.png" alt="passwordIcon" class="loginIcons">
         </div>
+        <div class="invalidContainer">
+        <p id="invalidText"></p>
+      </div>
           <div class="rememberMe_container">
             <input type="checkbox" id="rememberMe"><label for="rememberMe" class="rememberMeLabel">Remember me</label>
           </div>

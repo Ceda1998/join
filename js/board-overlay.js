@@ -29,8 +29,10 @@ function addDNone(name) {
 /* Pop-up to add a new Task */
     
 function openPopUpAt() {
+    addDNone('popUpTaskBig');
     openPopUpContainer();
     removeDNone('popUpAtField');
+    subtasks = [];
 }
 
 
@@ -303,6 +305,7 @@ async function deleteTask(index) {
     tasks.splice(index, 1);
     console.log("current");
     console.log(tasks);
+    init();
     await closeTaskBig();
 }
 

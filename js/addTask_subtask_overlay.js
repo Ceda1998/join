@@ -93,9 +93,9 @@ function renderSubtasksEdit() {
 
 function returnSubtaskTemplateEdit(i, subtask) {
     return /*html*/`
-        <div class="added-subtask-container" id="addedSubtaskContainerEdit${i}" onblur="inputAddedSubtaskBlurEdit(${i})" >
+        <div class="added-subtask-container" id="addedSubtaskContainerEdit${i}" onblur="inputAddedSubtaskBlurEdit(${i})">
             <span class="point">•</span>
-            <input class="added-subtask" id="addedSubtaskEdit${i}" type="text" value='${subtask}' ondblclick="inputAddedSubtaskEdit(${i})" readonly>
+            <input class="added-subtask" id="addedSubtaskEdit${i}" type="text" value='${subtask}' ondblclick="inputAddedSubtaskEdit(${i})" onblur="inputAddedSubtaskBlurEdit(${i})" readonly>
             <div class="tool-container" id="toolContainerEdit${i}">
                 <div id="toolsNoFocusEdit${i}" class="tools-no-focus">
                     <img src="./assets/img/edit.png" class="edit-img" onclick="inputAddedSubtaskWithClickOnImgEdit(${i})">
@@ -128,7 +128,7 @@ function renderToolContainerFocusEdit(i) {
         <div id="toolsFocusEdit${i}" class="tools-focus">
             <img src="./assets/img/delete-img.png" class="delete-img-focus" onclick="deleteAddedSubtaskEdit(${i})">
             <div class="tool-separator"></div>
-            <img src="./assets/img/check-black.png" class="check-img-focus" onclick="saveAddedSubtask(${i})">
+            <img src="./assets/img/check-black.png" class="check-img-focus" onclick="saveAddedSubtaskEdit(${i})">
         </div>
     `;
 }
@@ -161,9 +161,7 @@ function inputAddedSubtaskWithClickOnImgEdit(i) {
 
 function deleteAddedSubtaskEdit(i) {
     subtasks.splice(i, 1);
-    console.log(subtasks);
     renderSubtasksEdit();
-    console.log(subtasks);
 }
 
 

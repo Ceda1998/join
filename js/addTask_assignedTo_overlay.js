@@ -47,12 +47,14 @@ function renderInitialsSelectedEdit() {
 function renderContactsAssignedToEdit() {
     let assignedToDropDownWrapper = getField('assignedToDropDownWrapperEdit');
     assignedToDropDownWrapper.innerHTML = '';
+    console.log("contactsAssignedTo");
+    console.log(contactsAssigendTo);
     for (let i = 0; i < contactsAssigendTo.length; i++) {
         let contact = contactsAssigendTo[i];
         let fullname = contact['fullname'];
         assignedToDropDownWrapper.innerHTML += assignedToContactsTemplateEdit(contact, i);
-        renderBackgroundColorInitials(i);
-        renderContactsChecked(fullname, i);
+        renderBackgroundColorInitialsEdit(i);
+        renderContactsCheckedEdit(fullname, i);
     }
 }
 
@@ -61,15 +63,87 @@ function renderContactsAssignedToEdit() {
 
 function assignedToContactsTemplateEdit(contact, i) {
     return /*html*/`
-        <div class="drop-down-contacts-container" id="dropDownContactsContainer${i}">
+        <div class="drop-down-contacts-container" id="dropDownContactsContainerEdit${i}">
             <div class="initial-name-container">
-                <div class="initial-at" id="initialAt${i}"><span>${contact['initials']}</span></div>
-                <span class="name-at" id="person${i}">${contact['fullname']}</span>
+                <div class="initial-at" id="initialAtEdit${i}"><span>${contact['initials']}</span></div>
+                <span class="name-at" id="personEdit${i}">${contact['fullname']}</span>
             </div>
-            <img class="check-button-contacts-at" id="button${i}" onclick="selectPerson(${i})" src="./assets/img/check-button.png">
-            <img class="checked-button-contacts-at d-none" id="checkedButton${i}" onclick="removePerson(${i})" src="./assets/img/checked-button.png">
+            <img class="check-button-contacts-at" id="buttonEdit${i}" onclick="selectPersonEdit(${i})" src="./assets/img/check-button.png">
+            <img class="checked-button-contacts-at d-none" id="checkedButtonEdit${i}" onclick="removePersonEdit(${i})" src="./assets/img/checked-button.png">
         </div>
     `;
+}
+
+
+/* Selects the person you click on and puts it in the selectedContactsAssignedTo-Array */
+
+function selectPersonEdit(num) {
+    let selectedPerson = contactsAssigendTo[`${num}`];
+    selectedContactsAssignedTo.push(selectedPerson);
+    console.log(selectedContactsAssignedTo);
+    checkButtonContactsCheckedEdit(num);
+}
+
+
+/* Removes the person you click on and removes it from the selectedContactsAssignedTo-Array*/
+
+function removePersonEdit(num) {
+    let selectedPerson = contactsAssigendTo[`${num}`]['fullname'];
+    for (let i=0; i < selectedContactsAssignedTo.length; i++) {
+        let contact = selectedContactsAssignedTo[i];
+        let name = contact['fullname'];
+        console.log(selectedPerson);
+        console.log(name);
+        if (name === selectedPerson) {
+            selectedContactsAssignedTo.splice(i, 1);
+        }
+    }
+    checkButtonContactsCheckedEdit(num);
+    console.log(selectedContactsAssignedTo);
+}
+
+
+/* What happens when a contact gets selected */
+
+function checkButtonContactsCheckedEdit(num) {
+    let button = getField(`buttonEdit${num}`);
+    let checkedButton = getField(`checkedButtonEdit${num}`);
+    let dropDownContactsContainer = getField(`dropDownContactsContainerEdit${num}`);
+    let person = getField(`personEdit${num}`);
+    dropDownContactsContainer.classList.toggle('background-selected-contact');
+    person.classList.toggle('white');
+    button.classList.toggle('d-none');
+    checkedButton.classList.toggle('d-none');
+}
+
+
+/* Sets the Background Color of the initial-name-container according to the initials */
+
+function renderBackgroundColorInitialsEdit(i) {
+    let initialsSelectedContact = contactsAssigendTo[i]['initials'];
+    let firstLetter = initialsSelectedContact.charAt(0).toLowerCase();
+    let initialsField = getField(`initialAtEdit${i}`);
+    initialsField.classList.add(`${firstLetter}`);
+}
+
+
+/* The selected contacts get the look of the checked button */
+
+function renderContactsCheckedEdit(fullname, i) {
+    for (let j = 0; j < selectedContactsAssignedTo.length; j++) {
+        let contactSelected = selectedContactsAssignedTo[j];
+        let name = contactSelected['fullname'];
+        if (fullname === name) {
+            let button = getField(`buttonEdit${i}`);
+            let checkedButton = getField(`checkedButtonEdit${i}`);
+            let person = getField(`personEdit${i}`);
+            let dropDownContactsContainer = getField(`dropDownContactsContainerEdit${i}`);
+            person.classList.add('white');
+            button.classList.add('d-none');
+            checkedButton.classList.remove('d-none');
+            dropDownContactsContainer.classList.add('background-selected-contact');
+        }
+    }
 }
 
 
