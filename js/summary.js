@@ -144,16 +144,6 @@ async function changeTaskInBoard() {
   let allCurrentTaskContainer = document.getElementById("TasksInBoard");
   allCurrentTaskContainer.innerHTML = allCurrentTasks;
 }
-// change Backgroundcolor on mobile template
-
-function changeStatus(status) {
-  let getCurrentDiv = document.getElementById("summaryDivBc");
-  if (status === true) {
-    getCurrentDiv.style.backgroundColor = "#2A3647";
-  } else {
-    getCurrentDiv.style.backgroundColor = "#091931";
-  }
-}
 
 async function changeDateUrgentTask() {
   let dateContainer = document.getElementById("deadlineToDoDate");
