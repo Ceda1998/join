@@ -21,6 +21,14 @@
     .navbar-mobile-bottom {
         display: none;
     }
+
+    .board-inner-head .add-task-desktop {
+        display: block;
+    }
+
+    .board-inner-head .add-task-mobile {
+        display: none;
+    }
 }
 
 /* Here starts the responsiveness (header adaptation, sidebar removing and mobile footer addition) */
@@ -33,15 +41,34 @@
         gap: 16px;
         margin: 0 25px;
     }
-    
-    .board-inner-head .button-dark {
+
+    .board-inner-head .add-task-desktop {
         display: none;
+    }
+
+    .board-inner-head input {
+        margin-right: 0;
+    }
+
+    .board-inner-head .add-task-mobile {
+        height: 42px;
+        aspect-ratio: 1/1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* Unset Desktop values from button-dark */
+        width: unset;
+        padding: unset;
+    }
+
+    .board-inner-head .add-task-mobile>img {
+        padding: unset;
     }
 
     .board-inner-head>div {
         width: 100%;
     }
-    
+
     .board-inner-head .inputField {
         width: 100%;
     }
@@ -120,8 +147,12 @@
     }
 
     .navbar-mobile-bottom {
-        gap: 32px !important;
+        gap: 48px !important;
     }
 }
 
-@media (max-width: 450px) {}
+@media (max-width: 450px) {
+    .navbar-mobile-bottom {
+        gap: 16px !important;
+    }
+}

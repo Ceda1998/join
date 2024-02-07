@@ -4,6 +4,22 @@ body {
     font-family: 'Inter';
 }
 
+.d-flex {
+    display: flex;
+}
+
+.jc-sb {
+    justify-content: space-between;
+}
+
+.ai-c {
+    align-items: center;
+}
+
+.display-none {
+    display: none;
+}
+
 .blueLinks {
     text-decoration: none;
     color: #0d99ff;

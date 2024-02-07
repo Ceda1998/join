@@ -1,4 +1,19 @@
+/* Clear UserAgent Stylesheets */
+
+body {
+    margin: 0;
+}
+
+h1 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
 /* general CSS */
+
+.d-none {
+    display: none;
+}
 
 .mobile-footer-addTask {
     display: none;
@@ -11,10 +26,10 @@
 /* title */
 
 h1 {
-    margin-top: 110px;
+    padding-top: 110px;
     margin-left: 96px;
     gap: 1px;
-    font-weight: 700px;
+    font-weight: 700;
     font-size: 61px;
     line-height: 73.2px;
     color: #000000;

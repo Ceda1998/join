@@ -1,8 +1,13 @@
 <div id="board-header" class="board-inner-head">
-    <span>Board</span>
-    <div>
+    <div class="d-flex jc-sb ai-c">
+        <span>Board</span>
+        <button class="button-dark add-task-mobile" onclick="openPopUpAt()">
+            <img class="button-img pl-24" src="./assets/img/plus-white2.png">
+        </button>
+    </div>
+    <div class="d-flex">
         <input class="inputField" placeholder="Find task" id="filterTasks" oninput="filterTasks()">
-        <button class="button-dark" onclick="openPopUpAt()">
+        <button class="button-dark add-task-desktop" onclick="openPopUpAt()">
             Add task
             <img class="button-img pl-24" src="./assets/img/plus-white2.png">
         </button>

@@ -32,6 +32,7 @@ function openPopUpAt() {
     addDNone('popUpTaskBig');
     openPopUpContainer();
     removeDNone('popUpAtField');
+    removeDNone('closeButtonPopUpAt');
     subtasks = [];
 }
 

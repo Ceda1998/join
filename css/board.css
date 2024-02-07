@@ -190,7 +190,7 @@
 }
 
 .column {
-    flex: 25%;
+    flex: 33%;
     box-sizing: border-box;
     padding: 20px;
 }

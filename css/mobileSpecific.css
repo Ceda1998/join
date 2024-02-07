@@ -57,3 +57,20 @@
     font-weight: 400px;
 }
 
+@media (max-width: 1200px) {
+    .navbar-mobile-bottom {
+        display: flex;
+    }
+}
+
+@media (max-width: 950px) {
+    .navbar-mobile-bottom {
+        gap: 32px !important;
+    }
+}
+
+@media (max-width: 450px) {
+    .navbar-mobile-bottom {
+        gap: 16px !important;
+    }
+}
