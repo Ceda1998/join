@@ -65,7 +65,7 @@ body {
 
 .smallToDo_container {
   display: flex;
-  gap: 30px;
+  gap: 6px;
   margin-left: 38px;
 }
 
@@ -209,10 +209,61 @@ body {
   color: white;
 }
 
+.smallToDo_containeer:hover .roundContainer {
+  background-color: white;
+}
+
+.smallToDo_containeer:hover img {
+  filter: brightness(0%)
+}
+.roundContainerDone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 40px;
+  width: 64px;
+  height: 64px;
+  background-color: #2a3647;
+}
+
+.smallToDo_container:hover .roundContainerDone {
+  background-color: white;
+}
+
 .smallTask_container:hover {
   cursor: pointer;
   background-color: #2a3647;
   color: white;
+}
+
+.roundContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 40px;
+  width: 64px;
+  height: 64px;
+  background-color: #2a3647;
+}
+
+.bigToDo_container:hover {
+  background-color: #2a3647;
+  color: white;
+  cursor: pointer;
+}
+
+.roundContainer:hover { 
+  color: white;
+}
+
+.summaryImgPen {
+  width: 22px;
+  height: 22px;
+}
+
+.summaryImgDone {
+  width: 22px;
+  height: 22px;
 }
 
 /* responsive */
@@ -278,7 +329,7 @@ body {
     height: 170px;
   }
   .smallToDo_container {
-    gap: 38px;
+    gap: 6px;
   }
   .smallTask_container {
     width: 170px;
@@ -311,6 +362,14 @@ body {
 }
 
 @media (max-width: 550px) {
+  .roundContainerDone {
+    width: 44px;
+    height: 44px;
+  }
+  .roundContainer {
+    width: 44px;
+    height: 44px;
+  }
   .taskOverview_container {
     gap: 30px;
    }
