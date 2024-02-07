@@ -52,5 +52,41 @@
         "email": "hanna.musterfrau@gmail.com",
         "phone": "+41 123456789",
         "initials": "HM"
+    },
+    {
+        "contactid": "7",
+        "firstname": "Wanda",
+        "lastname": "Weber",
+        "fullname": "Wanda Weber",
+        "email": "wanda.weber@gmail.com",
+        "phone": "+41 123456789",
+        "initials": "WW"
+    },
+    {
+        "contactid": "8",
+        "firstname": "Mia",
+        "lastname": "Meier",
+        "fullname": "Mia Meier",
+        "email": "mia.meier@gmail.com",
+        "phone": "+41 123456789",
+        "initials": "MM"
+    },
+    {
+        "contactid": "9",
+        "firstname": "Beat",
+        "lastname": "Bauer",
+        "fullname": "Beat Bauer",
+        "email": "beat.bauer@gmail.com",
+        "phone": "+41 123456789",
+        "initials": "BB"
+    },
+    {
+        "contactid": "10",
+        "firstname": "Anna",
+        "lastname": "Amann",
+        "fullname": "Anna Amann",
+        "email": "anna.amann@gmail.com",
+        "phone": "+41 123456789",
+        "initials": "AA"
     }
 ]
