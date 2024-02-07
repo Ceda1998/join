@@ -47,7 +47,13 @@ async function checkLogin() {
     window.location.href = "summary.html";
     greetUserInSummary();
   } else {
+    userNameOrPasswordIncorrect();
   }
+}
+
+function userNameOrPasswordIncorrect() {
+  let invalidText = document.getElementById('invalidText');
+  invalidText.innerHTML = `False Username or Password!`;
 }
 
 //finding current logged in User functions:

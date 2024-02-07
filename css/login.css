@@ -90,6 +90,20 @@ body {
   padding-left: 10px;
 }
 
+.invalidContainer  {
+  margin: 0;
+  height: 20px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+#invalidText {
+  color: red;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
 #loginButton {
   width: 110px;
   height: 48px;
