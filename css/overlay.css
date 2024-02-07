@@ -14,7 +14,7 @@
 .flex-col {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 18px;
     word-wrap: anywhere;
     padding-bottom: 16px;
 }
@@ -118,6 +118,12 @@
     cursor: pointer;
 }
 
+.validation-message {
+    height: 16px;
+    color: #2a3647;
+    font-weight: 600;
+}
+
 .inner-box {
     display: flex;
     flex-direction: column;
@@ -147,4 +153,9 @@
 
 .input-phone {
     background: url("../assets/img/call.png") no-repeat right 20px center;
+}
+
+.highlight {
+    border: 3px solid #2a3647;
+    background-color: #2a36475d;
 }
