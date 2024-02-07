@@ -330,6 +330,7 @@ body {
 
 @media (max-width: 760px) {
   #loginWindow {
+    margin-top: 100px;
     width: 396px;
     height: 515px;
   }
@@ -357,7 +358,7 @@ body {
   #signUpWindow {
     width: 396px;
     height: 595px;
-    margin-top: 0px;
+    margin-top: 100px !important;
   }
 
   #signUpArrowLeft {
