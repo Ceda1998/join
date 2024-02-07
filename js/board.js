@@ -10,7 +10,12 @@ async function init() {
     await getTasksFromServer();
     await getContactsFromServer();
     renderBoard();
-    changeInitialsCurrentUser();
+    try {
+        changeInitialsCurrentUser();
+    }
+    catch(e) {
+
+    }
 };
 
 //Actually not in use

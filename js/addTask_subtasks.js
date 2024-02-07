@@ -88,9 +88,9 @@ function renderSubtasks() {
 
 function returnSubtaskTemplate(i, subtask) {
     return /*html*/`
-        <div class="added-subtask-container" id="addedSubtaskContainer${i}" onblur="inputAddedSubtaskBlur(${i})" >
+        <div class="added-subtask-container" id="addedSubtaskContainer${i}">
             <span class="point">•</span>
-            <input class="added-subtask" id="addedSubtask${i}" type="text" value='${subtask}' ondblclick="inputAddedSubtask(${i})" readonly>
+            <input class="added-subtask" id="addedSubtask${i}" type="text" value='${subtask}' ondblclick="inputAddedSubtask(${i})" onblur="inputAddedSubtaskBlur(${i})" readonly>
             <div class="tool-container" id="toolContainer${i}">
                 <div id="toolsNoFocus${i}" class="tools-no-focus">
                     <img src="./assets/img/edit.png" class="edit-img" onclick="inputAddedSubtaskWithClickOnImg(${i})">
