@@ -7,11 +7,11 @@
     <title>Add Task</title>
     <link rel="stylesheet" href="./css/fonts.css">
     <link rel="stylesheet" href="./css/mainMenu.css">
-    <link rel="stylesheet" href="./mobileSpecific.css">
-    <link rel="stylesheet" href="./summary.css">
+    <link rel="stylesheet" href="./css/mobileSpecific.css">
     <link rel="stylesheet" href="./css/general-design.css">
     <link rel="stylesheet" href="./css/addTask.css">
     <link rel="stylesheet" href="./css/addTask-mobile.css">
+    <link rel="stylesheet" href="./css/addTask-footer-sidebar">
     <script src="./script.js"></script>
     <script src="./js/summary.js"></script>
     <script src="./js/addTask.js"></script>
@@ -31,14 +31,19 @@
                 <a href="./index.html">Log out</a>
             </div>
         </div>
-    <div class="mainContentAddTask_container">
-        <div w3-include-html="./templates/sidebar_template.html"></div>
     </div>
-    <div class="board-content">
-        <div w3-include-html="./templates/mainHeader_template.html"></div>
-        <div class="content-main">
+
+    <div class="mainContentAddTask_container">
+
+        <div class="sidebar-addTask" w3-include-html="./templates/sidebar_template.html"></div>
+
+        <div class="main-header-addTask" w3-include-html="./templates/mainHeader_template.html"></div>
+        <div class="mobile-footer-addTask" w3-include-html="./templates/mobileMenuFooter_template.html"></div>
+
+        <div class="content-main content-main-addTask">
             <div class="board-container board-container-add-task" w3-include-html="./templates/addTask_template.html"></div>
         </div>
+
     </div>
 </div>
 </body>

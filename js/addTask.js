@@ -103,6 +103,20 @@ function setInputClear(inputFields) {
     renderInitialsSelected();
     clearPrioButtons();
     renderSubtasks();
+    setArrowRotated();
+}
+
+
+/* Function to setArrowRotated start position */
+
+function setArrowRotated() {
+    if (isArrowAssignedToRotated == true) {
+        toggleAssignedToDropDown();
+    }
+    if (isArrowCategoryRotated == true) {
+        toggleCategoryDropDown();
+    }
+    
 }
 
 

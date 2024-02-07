@@ -53,6 +53,7 @@ async function openTaskBig(id) {
     let currentTask = tasks[index];
     let popUp = document.getElementById('popUpTaskBig');
     popUp.innerHTML = '';
+    subtasks = [];
     renderAlInformationsTaskBig(popUp, currentTask, index);
 }
 
@@ -252,6 +253,7 @@ function renderSubtasksPu(currentTask, index) {
 function getSubtasksPu(currentTask, subtasksBigContainer, index) {
     for (let i = 0; i < currentTask['subtasks'].length; i++) {
         let currentSubtask = currentTask['subtasks'][i];
+        subtasks.push(currentSubtask);
         subtasksBigContainer.innerHTML += /*html*/`
             <div class="pu-big-subtask-container">
                 <img id="subtaskImg${i}" src="./assets/img/check-button.png" onclick="renderFinishedSubtaskPu(${i}, ${index})">
@@ -260,6 +262,7 @@ function getSubtasksPu(currentTask, subtasksBigContainer, index) {
         `;
         renderCheckedSubtaskPu(i, currentSubtask);
     }
+    console.log(subtasks);
 }
 
 
@@ -309,6 +312,17 @@ async function deleteTask(index) {
 async function closeTaskBig() {
     await setItem('tasks', tasks);
     closePopUpContainer();
+    clearInputFieldsTaskBig();
     addDNone('popUpTaskBig');
     fetchAndReloadBoard();
+}
+
+
+/* Function to clear the input fields after closing the task */
+
+function clearInputFieldsTaskBig() {
+    getField('titleInputEdit').value = '';
+    getField('descriptionInputEdit').value = '';
+    getField('dateInputEdit').value = '';
+    selectedContactsAssignedTo = [];
 }

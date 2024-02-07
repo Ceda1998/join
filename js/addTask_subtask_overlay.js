@@ -61,8 +61,13 @@ function addSubtaskEdit() {
     let subtask = input.value;
     if (subtasks.length < 2) {
         if (subtask !== '') {
-            subtasks.push(subtask);
+            const currentSubtask = {
+                "name": subtask,
+                "isToggled": false
+            };
+            subtasks.push(currentSubtask);
             renderSubtasksEdit();
+            console.log(subtasks);
             }
     } else {
         alert('Es sind maximal zwei Subtasks erlaubt.')
@@ -78,7 +83,7 @@ function renderSubtasksEdit() {
     let subtasksContainer = getField('addedSubtasksContainerEdit');
     subtasksContainer.innerHTML = '';
     for (let i = 0; i < subtasks.length; i++) {
-        const subtask = subtasks[i];
+        const subtask = subtasks[i]['name'];
         subtasksContainer.innerHTML += returnSubtaskTemplateEdit(i, subtask);
     }
 }
