@@ -13,7 +13,7 @@ async function init() {
     try {
         changeInitialsCurrentUser();
     }
-    catch(e) {
+    catch (e) {
 
     }
 };
@@ -38,9 +38,7 @@ function renderBoard(arr) {
     renderToDo(arr);
     renderInProgress(arr);
     renderAwaitFeedback(arr);
-    renderDone(arr);/* 
-    console.log(tasks);
-    console.log(contacts); */
+    renderDone(arr);
 }
 
 function fetchAndReloadBoard() {
@@ -121,6 +119,7 @@ function renderTasks(tasks, id) {
     let el = document.getElementById(id);
     el.innerHTML = '';
     tasks.forEach((task) => {
+        // If all fields are set in the object
         let coworkerIds = task['contactids'];
         const coworkersHTML = collectAndRenderCoworkers(coworkerIds);
         const subtasksQty = task['subtasks'].length;
@@ -177,7 +176,7 @@ function getInitials(coworkerIds) {
         const contact = contacts.find(contact => contact.contactid == id);
         if (contact) {
             initials.push(contact.initials);
-        }        
+        }
     });
     return initials;
 }
@@ -195,7 +194,7 @@ async function updateTask(newtaskid, newprogress) {
 function filterTasks() {
     let inval = document.getElementById('filterTasks').value;
     const filteredtasks = tasks.filter((task) => {
-        if(task.title.toLowerCase().includes(inval.toLowerCase()) || task.description.toLowerCase().includes(inval.toLowerCase())) {
+        if (task.title.toLowerCase().includes(inval.toLowerCase()) || task.description.toLowerCase().includes(inval.toLowerCase())) {
             return true;
         } return false;
     });

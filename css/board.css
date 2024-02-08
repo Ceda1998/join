@@ -12,6 +12,10 @@
     justify-content: space-between;
   }
 
+  .flex-grow {
+    flex-grow: 1;
+  }
+
   .board-container {
     margin-top: 96px;
   }

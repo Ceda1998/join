@@ -43,7 +43,6 @@ async function initAddTask() {
         changeInitialsCurrentUser();
     } catch(e) {
     }
-    console.log(tasksAssignedTo);
 }
 
 
@@ -126,16 +125,16 @@ function setArrowRotated() {
 
 /* Removes the close button */
 
-/* async function removeCloseButton() {
+async function removeCloseButton() {
     getField('closeButtonPopUpAt').classList.add('d-none');
-} */
+}
 
 
 /* Adds the close button */
 
-/* async function addCloseButton() {
+async function addCloseButton() {
     getField('closeButtonPopUpAt').classList.remove('d-none');
-} */
+}
 
 
 /* When a field gets the focus, it gets a blue border */
