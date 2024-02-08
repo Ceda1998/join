@@ -167,7 +167,7 @@ function renderDescription(task) {
 function getCategoryColor(cat){
     if (cat && cat == 'Technical Task') {
         return '#1FD7C1';
-    } else if (cat) {;
+    } else if (cat) {
         return '#0038FF';
     }
 }
