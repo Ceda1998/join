@@ -369,6 +369,10 @@ table img {
     margin-top: 0 !important;
 }
 
+.added-subtasks-container-edit .added-subtask-container input {
+    width: 100%;
+}
+
 .ok-button-container {
     width: 100%;
     display: flex;
