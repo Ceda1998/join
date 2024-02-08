@@ -316,7 +316,10 @@ async function deleteTask(index) {
 async function closeTaskBig() {
     await setItem('tasks', tasks);
     closePopUpContainer();
-    clearInputFieldsTaskBig();
+    try {
+        clearInputFieldsTaskBig();
+    } catch(e) {
+    }
     addDNone('popUpTaskBig');
     fetchAndReloadBoard();
 }
