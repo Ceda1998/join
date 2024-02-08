@@ -66,7 +66,6 @@ function addSubtaskEdit() {
         };
         subtasks.push(currentSubtask);
         renderSubtasksEdit();
-        console.log(subtasks);
     }
     input.value = '';
 }

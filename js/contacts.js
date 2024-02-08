@@ -6,7 +6,11 @@ async function init() {
   await includeHTML();
   await fetchContacts();
   renderContactList();
-  changeInitialsCurrentUser();
+  try {
+    changeInitialsCurrentUser();
+  } catch (e) {
+
+  }
 }
 
 async function fetchContacts() {

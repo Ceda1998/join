@@ -52,7 +52,6 @@ async function openTaskBig(id) {
     openPopUpContainer();
     removeDNone('popUpTaskBig');
     let index = getIndexById(id);
-    console.log(index);
     let currentTask = tasks[index];
     let popUp = document.getElementById('popUpTaskBig');
     popUp.innerHTML = '';
@@ -216,7 +215,6 @@ function ifElseContact(indexContact, puBigContacts, i) {
         const contact = contacts[indexContact];
         selectedContactsAssignedTo.push(contact);
         const initials = contact['initials'];
-        console.log(selectedContactsAssignedTo);
         puBigContacts.innerHTML += /*html*/`
         <div class="pu-big-contact-container">
             <div id="initialsBig${i}">${contact['initials']}</div>
@@ -241,7 +239,6 @@ function renderBackgroundColorOverlay(initials, i) {
 
 function renderSubtasksPu(currentTask, index) {
     let subtasksBigContainer = document.getElementById(`puBigSubtasksContainer`);
-    console.log("Index " + index);
     subtasksBigContainer.innerHTML = '';
     if (currentTask['subtasks'] != '') {
         getSubtasksPu(currentTask, subtasksBigContainer, index);
@@ -265,7 +262,6 @@ function getSubtasksPu(currentTask, subtasksBigContainer, index) {
         `;
         renderCheckedSubtaskPu(i, currentSubtask);
     }
-    console.log(subtasks);
 }
 
 
@@ -275,7 +271,6 @@ function renderFinishedSubtaskPu(i, index) {
     let currentTask = tasks[index];
     let currentSubtask = currentTask['subtasks'][i];
     currentSubtask['isToggled'] = !currentSubtask['isToggled'];
-    console.log(currentSubtask['isToggled']);
     renderCheckImage(currentSubtask, i);
 }
 
@@ -302,10 +297,7 @@ function renderCheckImage(currentSubtask, i) {
 /* This function deletes the task */
 
 async function deleteTask(index) {
-    console.log(tasks[index]);
     tasks.splice(index, 1);
-    console.log("current");
-    console.log(tasks);
     init();
     await closeTaskBig();
 }

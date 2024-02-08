@@ -7,7 +7,6 @@ function editTask(index) {
     let currentTask = tasks[index];
     popUp.innerHTML = '';
     renderAllInformationsEditTask(index, currentTask, popUp);
-    console.log(subtasks);
 }
 
 
@@ -39,7 +38,6 @@ function renderAllInformationsEditTask(index, currentTask, popUp) {
     renderDateEdit(index);
     renderPrioEdit(index);
     renderInitialsSelectedEdit();
-    console.log(subtasks);
     renderSubtasksEdit();
 }
 
@@ -49,7 +47,6 @@ function renderAllInformationsEditTask(index, currentTask, popUp) {
 function renderTitleEdit(index) {
     let titleInput = document.getElementById('titleInputEdit');
     let title = tasks[index]['title'];
-    console.log(title);
     titleInput.value = title;
 }
 

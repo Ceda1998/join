@@ -17,7 +17,6 @@ function inputAssignedToBlur(nameContainer) {
 function selectPerson(num) {
     let selectedPerson = contactsAssigendTo[`${num}`];
     selectedContactsAssignedTo.push(selectedPerson);
-    console.log(selectedContactsAssignedTo);
     checkButtonContactsChecked(num);
 }
 
@@ -29,14 +28,11 @@ function removePerson(num) {
     for (let i=0; i < selectedContactsAssignedTo.length; i++) {
         let contact = selectedContactsAssignedTo[i];
         let name = contact['fullname'];
-        console.log(selectedPerson);
-        console.log(name);
         if (name === selectedPerson) {
             selectedContactsAssignedTo.splice(i, 1);
         }
     }
     checkButtonContactsChecked(num);
-    console.log(selectedContactsAssignedTo);
 }
 
 

@@ -20,7 +20,10 @@ async function initSummary() {
   changeAwaitingFeedbackTasks();
   changeTaskInBoard();
   checkIfUserIsLoggedin();
-  changeInitialsCurrentUser();
+  try {
+    changeInitialsCurrentUser();
+  } catch (e) {
+  }
   initUsers();
   changeDateUrgentTask();
 }

@@ -324,7 +324,6 @@ async function createTask() {
     renderContactIds();
     controlIfDescriptionEmtpy(inputFields.description);
     let task = createTaskInstance(inputFields);
-    console.log(task);
     tasksAssignedTo.push(task);
     await setItem('tasks', tasksAssignedTo);
     clearTask();

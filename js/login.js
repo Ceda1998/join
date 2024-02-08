@@ -17,7 +17,6 @@ async function register() {
     name: userName.value,
     password: registerPassword.value,
   });
-  console.log(users);
   await setItem("users", JSON.stringify(users));
   form.reset();
   initUsers();
