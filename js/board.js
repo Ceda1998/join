@@ -123,10 +123,21 @@ function renderTasks(tasks, id) {
         let coworkerIds = task['contactids'];
         const coworkersHTML = collectAndRenderCoworkers(coworkerIds);
         const subtasksQty = task['subtasks'].length;
+        const toggled = calculateSubtasksToggled(task.subtasks);
         const prioHtml = getPriorityHtml(task.priority);
-        el.innerHTML += renderTaskHtml(task, subtasksQty, coworkersHTML, prioHtml);
+        el.innerHTML += renderTaskHtml(task, subtasksQty, toggled, coworkersHTML, prioHtml);
     });
 };
+
+function calculateSubtasksToggled(arr) {
+    let subtasksToggled = [];
+    arr.forEach(st => {
+        if (st.isToggled == true) {
+            subtasksToggled.push(st);
+        }
+    });
+    return subtasksToggled.length;
+}
 
 function collectAndRenderCoworkers(coworkerIds) {
     return getInitials(coworkerIds).map(coworker => `<div class="todo-coworker">${coworker}</div>`).join('');
@@ -147,20 +158,30 @@ function getPriorityHtml(priovalue) {
 
 function renderDescription(task) {
     if (task.description) {
-        return `<p class="todo-description">${task['description']}</p>`;
+        return `<pre class="todo-description">${task['description']}</pre>`;
+    } else {
+        return '';
+    };
+}
+
+function getCategoryColor(cat){
+    if (cat && cat == 'Technical Task') {
+        return '#1FD7C1';
+    } else if (cat) {;
+        return '#0038FF';
     }
 }
 
 
-function renderTaskHtml(task, subtasksQty, coworkersHTML, prioHtml) {
+function renderTaskHtml(task, subtasksQty, toggled, coworkersHTML, prioHtml) {
     return `
     <div id="${task['taskid']}" class="todo" draggable="true" ondragstart="drag(event)" onclick="openTaskBig(${task['taskid']})">
-        <span class="category-board">${task['category']}</span>
+        <span class="category-board" style="background-color:${getCategoryColor(task.category)}">${task['category']}</span>
         <span class="todo-header">${task['title']}</span>
         ${renderDescription(task)}
         <div class="board-subtasks">
             <div class="subtasks-bar-outer">
-                <div class="subtasks-bar-inner"></div>
+                <div class="subtasks-bar-inner" style="width:${(toggled/subtasksQty)*100}%"></div>
             </div>
             <span class="subtasks-text">${subtasksQty} Subtasks Total</span>
         </div>

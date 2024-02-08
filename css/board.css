@@ -1,24 +1,35 @@
 /* Custom Scrollbar */
 
 ::-webkit-scrollbar {
-    width: 10px;  
+    width: 10px;
     border-radius: 5px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-  }
-   
-  ::-webkit-scrollbar-thumb {
-    background: #c5c5c5; 
-    border-radius: 10px;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-  }
+}
 
-/* End Custom Scrollbar */  
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c5c5c5;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* End Custom Scrollbar */
+
+pre {
+    margin: 0;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #a8a8a8;
+}
 
 .d-none {
     display: none !important;
@@ -32,15 +43,15 @@
     right: 0;
     display: flex;
     justify-content: space-between;
-  }
+}
 
-  .flex-grow {
+.flex-grow {
     flex-grow: 1;
-  }
+}
 
-  .board-container {
+.board-container {
     margin-top: 96px;
-  }
+}
 
 .board-inner-head {
     background-color: #F6F7F8;
@@ -117,7 +128,7 @@
 
 .category-board {
     align-self: flex-start;
-    background-color: #0038ff;
+    /* background-color: #0038ff; */
     padding: 4px 16px;
     color: #fff;
     border-radius: 8px;
@@ -139,8 +150,8 @@
 }
 
 .todo-description {
-    max-height: 100px;
-    overflow: auto;
+    height: 90px;
+    overflow-y: auto;
 }
 
 .board-subtasks {
@@ -203,7 +214,7 @@
     align-items: center;
 }
 
-.priority img{
+.priority img {
     width: 18px;
 }
 
