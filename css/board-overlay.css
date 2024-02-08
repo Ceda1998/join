@@ -121,6 +121,10 @@
     margin-bottom: 16px;
 }
 
+.pop-up-task-big h1 {
+    padding-top: 20px !important;
+}
+
 .pu-big-description {
     font-weight: 400;
     font-size: 16px;
