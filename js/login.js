@@ -22,6 +22,7 @@ async function register() {
   form.reset();
   initUsers();
   successSignUpPopup();
+  goBackToLoginAfterSignUp();
 }
 
 async function initUsers() {
@@ -119,5 +120,11 @@ function successSignUpPopup() {
   popupContainer.style.display = 'flex';
   setTimeout(function() {
     popupContainer.style.display = 'none';
+  }, 2500);
+}
+
+function goBackToLoginAfterSignUp() {
+  setTimeout(function() {
+    window.location.href = "./index.html";
   }, 3000);
 }
