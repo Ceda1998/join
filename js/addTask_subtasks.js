@@ -59,14 +59,9 @@ function saveInputSubtask() {
 function addSubtask() {
     let input = getField('subtaskInput');
     let subtask = input.value;
-    if (subtasks.length < 2) {
-        if (subtask !== '') {
-            subtasks.push(subtask);
-            renderSubtasks();
-            }
-    } else {
-        alert('Es sind maximal zwei Subtasks erlaubt.')
-        inputSubtaskFocus();
+    if (subtask !== '') {
+        subtasks.push(subtask);
+        renderSubtasks();
     }
     input.value = '';
 }

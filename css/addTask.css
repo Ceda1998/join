@@ -26,7 +26,7 @@ h1 {
 /* title */
 
 h1 {
-    padding-top: 110px;
+    padding-top: 60px;
     margin-left: 96px;
     gap: 1px;
     font-weight: 700;
@@ -228,6 +228,7 @@ textarea::placeholder {
 
 .assigned-to-drop-down-wrapper {
     margin-top: 8px;
+    max-height: 220px;
     overflow-y: auto;
 }
 
@@ -549,6 +550,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .added-subtasks-container {
     margin-top: 60px;
+    max-height: 106px;
+    overflow-y: auto;
 }
 
 .added-subtask-container {
@@ -635,7 +638,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: flex;
     justify-content: space-between;
     margin-left: 96px;
-    margin-top: 138px;
+    margin-top: 80px;
     width: 921px;
 }
 

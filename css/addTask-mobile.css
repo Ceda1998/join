@@ -4,7 +4,8 @@
 
     h1 {
         margin-left: 0;
-        margin-top: 40px;
+        padding-top: 20px;
+        margin-bottom: 10px;
     }
 
     /* Content Main Add-Task */
@@ -223,6 +224,10 @@
     }
 
     .bottom-container .text-required {
+        font-size: 10px;
+    }
+
+    .star-text-required {
         font-size: 14px;
     }
 

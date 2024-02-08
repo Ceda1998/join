@@ -329,7 +329,6 @@ async function createTask() {
     await setItem('tasks', tasksAssignedTo);
     clearTask();
     goToBoard();
-    alert('Der Task wurde erfolgreich erstellt.');
 }
 
 
