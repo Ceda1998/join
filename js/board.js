@@ -184,7 +184,7 @@ function renderTaskHtml(task, subtasksQty, toggled, coworkersHTML, prioHtml) {
             <div class="subtasks-bar-outer">
                 <div class="subtasks-bar-inner" style="width:${(toggled/subtasksQty)*100}%"></div>
             </div>
-            <span class="subtasks-text">${subtasksQty} Subtasks Total</span>
+            <span class="subtasks-text">${subtasksQty} Subtasks. ${toggled}/${subtasksQty} Done ✔</span>
         </div>
         <div class="todo-footer">
             <div class="todo-coworkers">${coworkersHTML}</div>
