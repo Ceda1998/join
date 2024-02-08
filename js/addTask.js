@@ -31,7 +31,8 @@ let tasksAssignedTo = []; /* tasks fetched from the remote storage */
 
 async function initAddTask() {
     await includeHTML();
-    if (window.location.pathname === "/join/add_task.html") {
+    console.log(window.location.pathname);
+    if (window.location.pathname === "/add_task.html") {
         await removeCloseButton();
     } else {
         await addCloseButton();
@@ -271,7 +272,7 @@ function clearPrioButtons() {
     for (let i = 0; i < TOTAL_BUTTONS; i++) {
         let isButtonToggled = prioButtons[i]['toggled']
         if (isButtonToggled === true) {
-            togglePrio(i);
+            togglePrio(i, 'prioButton', 'prioColor', 'prioWhite', 'prio');
         }
     }
 }

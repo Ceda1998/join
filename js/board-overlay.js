@@ -38,9 +38,9 @@ function openPopUpAt() {
 
 
 function closePopUpAt() {
+    clearTask();
     closePopUpContainer();
     addDNone('popUpAtField');
-    clearTask();
     fetchAndReloadBoard();
 }
 
@@ -316,7 +316,10 @@ async function deleteTask(index) {
 async function closeTaskBig() {
     await setItem('tasks', tasks);
     closePopUpContainer();
-    clearInputFieldsTaskBig();
+    try {
+        clearInputFieldsTaskBig();
+    } catch(e) {
+    }
     addDNone('popUpTaskBig');
     fetchAndReloadBoard();
 }
@@ -329,4 +332,5 @@ function clearInputFieldsTaskBig() {
     getField('descriptionInputEdit').value = '';
     getField('dateInputEdit').value = '';
     selectedContactsAssignedTo = [];
+    subtasks = [];
 }
