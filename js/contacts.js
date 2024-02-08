@@ -1,6 +1,7 @@
 let contacts = [];
 let letterFilters = [];
 let activeContact;
+let mobileWidth = 950;
 
 async function init() {
   await includeHTML();
@@ -26,7 +27,7 @@ async function fetchContacts() {
 /* Helper Functions */
 
 function isMobile() {
-  return window.innerWidth < 800;
+  return window.innerWidth < mobileWidth;
 }
 
 function clearId(id) {

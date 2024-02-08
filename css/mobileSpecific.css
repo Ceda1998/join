@@ -52,6 +52,10 @@
     height: 32px;
 }
 
+.mobileNavbarIcons:hover {
+    cursor: pointer;
+}
+
 .mobileSpan {
     font-size: 14px;
     font-weight: 400px;
