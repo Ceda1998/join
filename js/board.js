@@ -157,11 +157,12 @@ function getPriorityHtml(priovalue) {
 }
 
 function renderDescription(task) {
-    if (task.description) {
+    return task.description ? `<pre class="todo-description">${task['description']}</pre>` : '';
+    /* if (task.description) {
         return `<pre class="todo-description">${task['description']}</pre>`;
     } else {
         return '';
-    };
+    }; */
 }
 
 function getCategoryColor(cat){
@@ -187,7 +188,7 @@ function renderTaskHtml(task, subtasksQty, toggled, coworkersHTML, prioHtml) {
         </div>
         <div class="todo-footer">
             <div class="todo-coworkers">${coworkersHTML}</div>
-            <div class="priority">                
+            <div class="priority">
                 ${prioHtml}
             </div>
         </div>
