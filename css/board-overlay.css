@@ -19,6 +19,8 @@
     border-radius: 30px;
     z-index: 101;
     position: relative;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 6px 0px, rgba(0, 0, 0, 0.08) 0px 2px 12px -2px, rgba(0, 0, 0, 0.06) 0px 3px 6px 0px;
+
 }
 
 .pop-up-at-field h1 {
