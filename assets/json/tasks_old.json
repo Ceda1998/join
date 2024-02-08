@@ -1,0 +1,126 @@
+[
+    {
+        "taskid": 1,
+        "title": "Create Summary",
+        "description": "In the summary you see the total of the tasks and the numbers of the current stand of the tasks. It includes a greeting of the user.",
+        "category": "User Story",
+        "subtasks": [
+                        {
+                            "name":"Summary title",
+                            "isToggled": true
+                        },
+                        {
+                            "name":"Different stands from the tasks",
+                            "isToggled": true                       
+                        },
+                        {
+                            "name":"Greeting of the user",
+                            "isToggled": false                       
+                        }
+                    ],
+        "contactids": [1,2,5],
+        "priority": "medium",
+        "progress": "todo",
+        "duedate": "2024-03-01"
+    },
+    {
+        "taskid": 2,
+        "title": "Second Task",
+        "description": "Some description",
+        "category": "User Story",
+        "subtasks": [
+                        {
+                            "name":"Subtask 3",
+                            "isToggled": false
+                        },
+                        {
+                            "name":"Subtask 4",
+                            "isToggled": false                       
+                        }
+                    ],
+        "contactids": [3,2,4],
+        "priority": "medium",
+        "progress": "todo",
+        "duedate": "2024-02-06"
+    },
+    {
+        "taskid": 3,
+        "title": "Third Task",
+        "description": "Some description",
+        "category": "User Story",
+        "subtasks": [
+                        {
+                            "name":"Subtask 5",
+                            "isToggled": false
+                        },
+                        {
+                            "name":"Subtask 6",
+                            "isToggled": false                       
+                        }
+                    ],
+        "contactids": [3,2,4],
+        "priority": "urgent",
+        "progress": "inprogress",
+        "duedate": "2024-02-06"
+    },
+    {
+        "taskid": 4,
+        "title": "Fourth Task",
+        "description": "Some description",
+        "category": "User Story",
+        "subtasks": [
+                        {
+                            "name":"Subtask 7",
+                            "isToggled": false
+                        },
+                        {
+                            "name":"Subtask 8",
+                            "isToggled": false                       
+                        }
+                    ],
+        "contactids": [3,2,4],
+        "priority": "medium",
+        "progress": "awaitfeedback",
+        "duedate": "2024-02-06"
+    },
+    {
+        "taskid": 5,
+        "title": "Fifth Task",
+        "description": "Some description",
+        "category": "Technical Task",
+        "subtasks": [
+                        {
+                            "name":"Subtask 9",
+                            "isToggled": false
+                        },
+                        {
+                            "name":"Subtask 10",
+                            "isToggled": false                       
+                        }
+                    ],
+        "contactids": [3,2,4],
+        "priority": "medium",
+        "progress": "awaitfeedback",
+        "duedate": "2024-02-06"
+    },
+    {
+        "taskid": 6,
+        "title": "Sixth Task",
+        "description": "Some description",
+        "category": "Technical Task",
+        "subtasks": [
+                        {
+                            "name":"Subtask 9",
+                            "isToggled": false
+                        },
+                        {
+                            "name":"Subtask 10",
+                            "isToggled": false                       
+                        }
+                    ],
+        "contactids": [3,2,4],
+        "priority": "medium",
+        "progress": "done",
+        "duedate": "2024-02-06"
+    }
+]

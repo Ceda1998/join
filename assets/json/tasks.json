@@ -1,122 +1,310 @@
 [
     {
         "taskid": 1,
-        "title": "First Task",
-        "description": "The first task is the first task.",
+        "title": "Summary",
+        "description": "In the summary you see the total of the tasks and the numbers of the current stand of the tasks. It includes a greeting of the user.",
         "category": "User Story",
         "subtasks": [
                         {
-                            "name":"Subtask 1",
-                            "isToggled": false
+                            "name":"Summary title",
+                            "isToggled": true
                         },
                         {
-                            "name":"Subtask 2",
+                            "name":"Different stands from the tasks",
+                            "isToggled": true                       
+                        },
+                        {
+                            "name":"Greeting of the user",
                             "isToggled": false                       
                         }
                     ],
-        "contactids": [3,2,4],
-        "priority": "low",
-        "progress": "todo",
-        "duedate": "2024-02-06"
+        "contactids": [1,2,5],
+        "priority": "medium",
+        "progress": "inprogress",
+        "duedate": "2024-03-01"
     },
     {
         "taskid": 2,
-        "title": "Second Task",
-        "description": "Some description",
+        "title": "Add Task",
+        "description": "You can fill in a form for the different points in the task. The points are title, description, assigned to, due date, prio, category and subtasks.",
         "category": "User Story",
         "subtasks": [
                         {
-                            "name":"Subtask 3",
-                            "isToggled": false
+                            "name":"Add Task title",
+                            "isToggled": true
                         },
                         {
-                            "name":"Subtask 4",
+                            "name":"Form with different inputs",
+                            "isToggled": true                       
+                        },
+                        {
+                            "name":"Clear button",
+                            "isToggled": false                       
+                        },
+                        {
+                            "name":"Create button",
                             "isToggled": false                       
                         }
                     ],
         "contactids": [3,2,4],
         "priority": "medium",
-        "progress": "todo",
-        "duedate": "2024-02-06"
+        "progress": "inprogress",
+        "duedate": "2024-03-01"
     },
     {
         "taskid": 3,
-        "title": "Third Task",
-        "description": "Some description",
+        "title": "Board",
+        "description": "On the board are all tasks. The are split in different categories like to do, in progress, await feedback and done. You can shift a task per drag and drop.",
         "category": "User Story",
         "subtasks": [
                         {
-                            "name":"Subtask 5",
-                            "isToggled": false
+                            "name":"Board title",
+                            "isToggled": true
                         },
                         {
-                            "name":"Subtask 6",
+                            "name":"Different categories",
                             "isToggled": false                       
-                        }
+                        },
+                        {
+                            "name":"Implement drag and drop function",
+                            "isToggled": false                       
+                        },
                     ],
-        "contactids": [3,2,4],
-        "priority": "urgent",
+        "contactids": [7,8],
+        "priority": "medium",
         "progress": "inprogress",
-        "duedate": "2024-02-06"
+        "duedate": "2024-03-01"
     },
     {
         "taskid": 4,
-        "title": "Fourth Task",
-        "description": "Some description",
+        "title": "Pop-up addTask on the board",
+        "description": "It has a button add task on the board and plus-buttons. If you click on them a pop-up with the addTask-form gets opened.",
         "category": "User Story",
         "subtasks": [
                         {
-                            "name":"Subtask 7",
-                            "isToggled": false
+                            "name":"Pop-up",
+                            "isToggled": true
                         },
                         {
-                            "name":"Subtask 8",
+                            "name":"Add task-form",
+                            "isToggled": true                       
+                        },
+                        {
+                            "name":"Implement the create function",
                             "isToggled": false                       
-                        }
+                        },
                     ],
-        "contactids": [3,2,4],
+        "contactids": [1],
         "priority": "medium",
-        "progress": "awaitfeedback",
-        "duedate": "2024-02-06"
+        "progress": "todo",
+        "duedate": "2024-03-07"
     },
     {
         "taskid": 5,
-        "title": "Fifth Task",
-        "description": "Some description",
-        "category": "Technical Task",
+        "title": "Task big on the board",
+        "description": "If you click on a task is shown bigger as a pop-up. There you see the details and you can delete or edit the task.",
+        "category": "User Story",
         "subtasks": [
                         {
-                            "name":"Subtask 9",
+                            "name":"Pop-up task big",
                             "isToggled": false
                         },
                         {
-                            "name":"Subtask 10",
+                            "name":"Implement different informations of the task",
+                            "isToggled": false                       
+                        },
+                        {
+                            "name":"Delete Function",
+                            "isToggled": false                       
+                        },
+                        {
+                            "name":"Edit Function",
                             "isToggled": false                       
                         }
                     ],
-        "contactids": [3,2,4],
+        "contactids": [5, 6],
         "priority": "medium",
-        "progress": "awaitfeedback",
-        "duedate": "2024-02-06"
+        "progress": "todo",
+        "duedate": "2024-03-07"
     },
     {
         "taskid": 6,
-        "title": "Sixth Task",
-        "description": "Some description",
-        "category": "Technical Task",
+        "title": "Task big edit on the board",
+        "description": "If you click on edit on the task big, a pop-up with a form to edit the different points of the task is shown.",
+        "category": "User Story",
         "subtasks": [
                         {
-                            "name":"Subtask 9",
+                            "name":"Pop-up task big edit",
                             "isToggled": false
                         },
                         {
-                            "name":"Subtask 10",
+                            "name":"Implement the form",
+                            "isToggled": false                      
+                        },
+                        {
+                            "name":"Put the value in the form",
+                            "isToggled": false                       
+                        },
+                        {
+                            "name":"Ok and exit button",
                             "isToggled": false                       
                         }
                     ],
-        "contactids": [3,2,4],
+        "contactids": [5],
+        "priority": "medium",
+        "progress": "todo",
+        "duedate": "2024-03-07"
+    },
+    {
+        "taskid": 7,
+        "title": "Login",
+        "description": "The Login is a form with email and password. You can log in as a guest. It has a button to sign up, too.",
+        "category": "User Story",
+        "subtasks": [
+                        {
+                            "name":"Login form",
+                            "isToggled": true
+                        },
+                        {
+                            "name":"Login function",
+                            "isToggled": true                      
+                        },
+                        {
+                            "name":"Guest Log in",
+                            "isToggled": true                      
+                        },
+                        {
+                            "name":"Sign up function",
+                            "isToggled": true                       
+                        },
+                        {
+                            "name":"Join logo start",
+                            "isToggled": true                       
+                        }
+                    ],
+        "contactids": [2, 3, 4, 5],
+        "priority": "medium",
+        "progress": "awaitfeedback",
+        "duedate": "2024-02-24"
+    },
+    {
+        "taskid": 6,
+        "title": "Sign up",
+        "description": "It has a form with following inputs: name, email, password and confirm password.",
+        "category": "User Story",
+        "subtasks": [
+                        {
+                            "name":"Sign up form",
+                            "isToggled": true
+                        },
+                        {
+                            "name":"Sign up function",
+                            "isToggled": true                      
+                        },
+                    ],
+        "contactids": [7, 8],
+        "priority": "medium",
+        "progress": "awaitfeedback",
+        "duedate": "2024-02-24"
+    },
+    {
+        "taskid": 7,
+        "title": "Privacy Policy and Legal Notice",
+        "description": "The Privacy Policy and the Legal Notice pages.",
+        "category": "User Story",
+        "subtasks": [
+                        {
+                            "name":"Privacy Policy",
+                            "isToggled": true
+                        },
+                        {
+                            "name":"Legal Notice",
+                            "isToggled": true                      
+                        },
+                    ],
+        "contactids": [4],
         "priority": "medium",
         "progress": "done",
-        "duedate": "2024-02-06"
+        "duedate": "2024-02-10"
+    },
+    {
+        "taskid": 8,
+        "title": "Header, Footer and Sideboard",
+        "description": "The header-, footer- and sidebar-template for all pages.",
+        "category": "User Story",
+        "subtasks": [
+                        {
+                            "name":"Header",
+                            "isToggled": true
+                        },
+                        {
+                            "name":"Footer",
+                            "isToggled": true                      
+                        },
+                        {
+                            "name":"Sideboard",
+                            "isToggled": true                      
+                        },
+                    ],
+        "contactids": [10],
+        "priority": "medium",
+        "progress": "done",
+        "duedate": "2024-02-10"
+    },
+    {
+        "taskid": 9,
+        "title": "Contacts",
+        "description": "The contact page with all the different contacts in alphabetical order.",
+        "category": "User Story",
+        "subtasks": [
+                        {
+                            "name":"Implement contacts",
+                            "isToggled": true
+                        },
+                        {
+                            "name":"Alphabetical order",
+                            "isToggled": true                      
+                        },
+                        {
+                            "name":"Details of the contact",
+                            "isToggled": false                      
+                        },
+                    ],
+        "contactids": [10],
+        "priority": "urgent",
+        "progress": "inprogress",
+        "duedate": "2024-02-11"
+    },
+    {
+        "taskid": 10,
+        "title": "Add new contact",
+        "description": "It has a button to add a new contact. If you click on it, a pop-up is shown.",
+        "category": "User Story",
+        "subtasks": [
+                        {
+                            "name":"Button add new contact",
+                            "isToggled": false
+                        },
+                        {
+                            "name":"Pop-up",
+                            "isToggled": true                      
+                        },
+                        {
+                            "name":"Form",
+                            "isToggled": false                     
+                        },
+                        {
+                            "name":"Cancel button",
+                            "isToggled": false                     
+                        },
+                        {
+                            "name":"create button",
+                            "isToggled": false                     
+                        },
+                    ],
+        "contactids": [10],
+        "priority": "low",
+        "progress": "todo",
+        "duedate": "2024-03-05"
     }
 ]
