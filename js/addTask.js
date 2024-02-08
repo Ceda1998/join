@@ -272,7 +272,7 @@ function clearPrioButtons() {
     for (let i = 0; i < TOTAL_BUTTONS; i++) {
         let isButtonToggled = prioButtons[i]['toggled']
         if (isButtonToggled === true) {
-            togglePrio(i);
+            togglePrio(i, 'prioButton', 'prioColor', 'prioWhite', 'prio');
         }
     }
 }

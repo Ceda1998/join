@@ -59,19 +59,14 @@ function saveInputSubtaskEdit() {
 function addSubtaskEdit() {
     let input = getField('subtaskInputEdit');
     let subtask = input.value;
-    if (subtasks.length < 2) {
-        if (subtask !== '') {
-            const currentSubtask = {
-                "name": subtask,
-                "isToggled": false
-            };
-            subtasks.push(currentSubtask);
-            renderSubtasksEdit();
-            console.log(subtasks);
-            }
-    } else {
-        alert('Es sind maximal zwei Subtasks erlaubt.')
-        inputSubtaskFocusEdit();
+    if (subtask !== '') {
+        const currentSubtask = {
+            "name": subtask,
+            "isToggled": false
+        };
+        subtasks.push(currentSubtask);
+        renderSubtasksEdit();
+        console.log(subtasks);
     }
     input.value = '';
 }

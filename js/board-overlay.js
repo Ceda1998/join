@@ -38,9 +38,9 @@ function openPopUpAt() {
 
 
 function closePopUpAt() {
+    clearTask();
     closePopUpContainer();
     addDNone('popUpAtField');
-    clearTask();
     fetchAndReloadBoard();
 }
 
@@ -329,4 +329,5 @@ function clearInputFieldsTaskBig() {
     getField('descriptionInputEdit').value = '';
     getField('dateInputEdit').value = '';
     selectedContactsAssignedTo = [];
+    subtasks = [];
 }
