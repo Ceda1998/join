@@ -80,7 +80,7 @@ function showContactDetail(id) {
 }
 
 function highlightContact(id) {
-  if (isMobile()) {
+  if (activeContact && isMobile()) {
     removeHighlight(activeContact);
     return;
   } else if (activeContact) {
