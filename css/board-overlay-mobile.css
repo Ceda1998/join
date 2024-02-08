@@ -37,7 +37,6 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding-top: 50px;
     }
 
     .pu-big-contact-container {
@@ -58,6 +57,10 @@
             padding-left: 10px;
             padding-right: 10px;
             border-radius: unset;
+        }
+
+        .pop-up-task-big-edit form {
+            margin-top: 20px;
         }
 
         .close-button-pu-edit {
