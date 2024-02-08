@@ -188,7 +188,7 @@
         "duedate": "2024-02-24"
     },
     {
-        "taskid": 6,
+        "taskid": 8,
         "title": "Sign up",
         "description": "It has a form with following inputs: name, email, password and confirm password.",
         "category": "User Story",
@@ -208,7 +208,7 @@
         "duedate": "2024-02-24"
     },
     {
-        "taskid": 7,
+        "taskid": 9,
         "title": "Privacy Policy and Legal Notice",
         "description": "The Privacy Policy and the Legal Notice pages.",
         "category": "User Story",
@@ -228,7 +228,7 @@
         "duedate": "2024-02-10"
     },
     {
-        "taskid": 8,
+        "taskid": 10,
         "title": "Header, Footer and Sideboard",
         "description": "The header-, footer- and sidebar-template for all pages.",
         "category": "User Story",
@@ -252,7 +252,7 @@
         "duedate": "2024-02-10"
     },
     {
-        "taskid": 9,
+        "taskid": 11,
         "title": "Contacts",
         "description": "The contact page with all the different contacts in alphabetical order.",
         "category": "User Story",
@@ -276,7 +276,7 @@
         "duedate": "2024-02-11"
     },
     {
-        "taskid": 10,
+        "taskid": 12,
         "title": "Add new contact",
         "description": "It has a button to add a new contact. If you click on it, a pop-up is shown.",
         "category": "User Story",
@@ -308,7 +308,7 @@
         "duedate": "2024-03-05"
     },
     {
-        "taskid": 10,
+        "taskid": 13,
         "title": "Database Query Performance Optimizatiion",
         "description": "Refactor the database queries to enhance the overall performance of the application.",
         "category": "Technical Task",
@@ -320,7 +320,7 @@
                         {
                             "name":"Test the performance",
                             "isToggled": false                      
-                        },                  
+                        }
                     ],
         "contactids": [2, 3, 7],
         "priority": "low",
