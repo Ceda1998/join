@@ -215,6 +215,10 @@
         height: 40px;
     }
 
+    .ctc-list {
+        margin-top: 0;
+    }
+
     .ctc-right {
         display: none;
         width: 100%;
@@ -312,6 +316,7 @@
     .contacts-main {
         margin-top: 20px;
         width: 100%;
+        overflow-y: auto;
     }
 
     .contacts-main-header {
