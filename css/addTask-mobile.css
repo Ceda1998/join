@@ -169,6 +169,15 @@
         line-height: 19.2px;
     }
 
+    .added-subtasks-container {
+        margin-top: 50px;
+    }
+
+    .added-subtasks-container input {
+        padding: 6px 16px 6px 16px !important;
+        height: 32px !important;
+    }
+
     /* Container-Right */
 
     .container-right {
