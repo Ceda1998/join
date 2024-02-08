@@ -306,5 +306,25 @@
         "priority": "low",
         "progress": "todo",
         "duedate": "2024-03-05"
+    },
+    {
+        "taskid": 10,
+        "title": "Database Query Performance Optimizatiion",
+        "description": "Refactor the database queries to enhance the overall performance of the application.",
+        "category": "Technical Task",
+        "subtasks": [
+                        {
+                            "name":"Refactor the database",
+                            "isToggled": false
+                        },
+                        {
+                            "name":"Test the performance",
+                            "isToggled": false                      
+                        },                  
+                    ],
+        "contactids": [2, 3, 7],
+        "priority": "low",
+        "progress": "todo",
+        "duedate": "2024-03-05"
     }
 ]
