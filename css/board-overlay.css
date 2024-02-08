@@ -27,7 +27,7 @@
 
 .pop-up-at-field .bottom-container {
     position: absolute;
-    bottom: 64px;
+    bottom: 30px;
 }
 
 .close-img-at-pop-up {
@@ -46,6 +46,8 @@
 .pop-up-at-field .assigned-to-drop-down {
     max-height: 180px;
     border: 1px solid #D1D1D1;
+    background-color: white;
+    z-index: 150;
 }
 
 .pop-up-at-field .category-drop-down {
