@@ -1,3 +1,25 @@
+/* Custom Scrollbar */
+
+::-webkit-scrollbar {
+    width: 10px;  
+    border-radius: 5px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  ::-webkit-scrollbar-thumb {
+    background: #c5c5c5; 
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+/* End Custom Scrollbar */  
+
 .d-none {
     display: none !important;
 }
@@ -105,7 +127,6 @@
 
 .task-holder {
     min-height: 300px;
-    padding-bottom: 200px;
     gap: 16px;
     display: flex;
     flex-direction: column;
@@ -118,11 +139,11 @@
 }
 
 .todo-description {
-    height: 40px;
-    overflow: hidden;
+    max-height: 100px;
+    overflow: auto;
 }
 
-.subtasks {
+.board-subtasks {
     display: flex;
     align-items: center;
 }

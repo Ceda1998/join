@@ -145,6 +145,11 @@ function getPriorityHtml(priovalue) {
     return '';
 }
 
+function renderDescription(task) {
+    if (task.description) {
+        return `<p class="todo-description">${task['description']}</p>`;
+    }
+}
 
 
 function renderTaskHtml(task, subtasksQty, coworkersHTML, prioHtml) {
@@ -152,8 +157,8 @@ function renderTaskHtml(task, subtasksQty, coworkersHTML, prioHtml) {
     <div id="${task['taskid']}" class="todo" draggable="true" ondragstart="drag(event)" onclick="openTaskBig(${task['taskid']})">
         <span class="category-board">${task['category']}</span>
         <span class="todo-header">${task['title']}</span>
-        <p class="todo-description">${task['description']}</p>
-        <div class="subtasks">
+        ${renderDescription(task)}
+        <div class="board-subtasks">
             <div class="subtasks-bar-outer">
                 <div class="subtasks-bar-inner"></div>
             </div>
