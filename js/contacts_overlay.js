@@ -38,11 +38,11 @@ function renderNewContactFields() {
             <div class="align-center">
                 <div class="cmh-logo-big cmh-logo-big-overlay" style="background-color:#d1d1d1"><img src="./assets/img/person-white.png"></div>
             </div>     
-                <form class="flex-col w-60 overlay-form" onsubmit="return validateNameInput(event)">
+                <form class="flex-col w-60 overlay-form" onsubmit="return validateSaveNameInput(event)">
                     <input minlength="2" id="addName" class="inputField input-fullname" placeholder="Firstname Lastname" title="Please enter your Full Name separated by a space (only 2 Values)" required/>
                     <input type="email" id="addEmail" class="inputField input-email" placeholder="Email" required/>
                     <input type="phone" id="addPhone" class="inputField input-phone" placeholder="Phone" required/>
-                    <div id="alertMessage" class="validation-message"></div> 
+                    <div id="alertMessage" class="validation-message"></div>
                     <div class="align-center gap-24 button-container">
                         <button class="button-light cancel-btn" onclick="closeOverlay()">Cancel</button>
                         <button type="submit" class="button-dark align-center">Create contact<img src="./assets/img/check.png"></igm></button>
@@ -52,9 +52,9 @@ function renderNewContactFields() {
     `;
 }
 
-function validationAlertMessage(msg) {
+function validationAlertMessage(msg, field) {
     const msgbox = document.getElementById('alertMessage');
-    const emailfield = document.getElementById('addName');
+    const emailfield = document.getElementById(`${field}`);
     emailfield.classList.add('highlight');
     msgbox.innerHTML = msg;
     setTimeout(() => {
@@ -63,11 +63,11 @@ function validationAlertMessage(msg) {
     }, 2500);
 }
 
-function validateNameInput(event) {
-    var input = document.getElementById('addName').value.trim();
-    var regex = /^[a-zA-Z]+ [a-zA-Z]+$/;
+function validateSaveNameInput(event) {
+    let input = document.getElementById('addName').value.trim();
+    var regex = /^[a-zA-ZäöüÄÖÜß]+\s+[a-zA-ZäöüÄÖÜß]+$/;
     if (!regex.test(input)) {
-        validationAlertMessage('Please input only 2 values seperated by a space.');
+        validationAlertMessage('Please input only 2 values seperated by a space.', 'addName');
         return false;
     }
     addContact(event);
@@ -153,10 +153,11 @@ function renderEditContactHtmlForm(contact, color) {
             <div class="align-center">
                 <div class="cmh-logo-big cmh-logo-big-overlay" style="background-color:${color}">${contact.initials}</div>
             </div>
-            <form class="flex-col w-60 overlay-form" onsubmit="return saveEditedContact(${contact.contactid}, event)">
-                <input id="editFullname" class="inputField input-fullname" value="${contact.firstname} ${contact.lastname}" placeholder="Firstname Lastname" required/>
+            <form class="flex-col w-60 overlay-form" onsubmit="return validateEditNameInput(event, ${contact.contactid})">
+                <input id="editName" class="inputField input-fullname" value="${contact.firstname} ${contact.lastname}" placeholder="Firstname Lastname" required/>
                 <input id="editEmail" type="email" class="inputField input-email" value="${contact.email}" placeholder="Email" required/>
                 <input id="editPhone" class="inputField input-phone" value="${contact.phone}" placeholder="Phone" required/>
+                <div id="alertMessage" class="validation-message"></div>
                 <div class="align-center gap-24 button-container">
                     <button class="button-light" onclick="deleteContact('${contact.contactid}')">Delete</button>
                     <button type="submit" class="button-dark align-center">Save<img src="./assets/img/check.png"></img></button>
@@ -166,10 +167,21 @@ function renderEditContactHtmlForm(contact, color) {
     `;
 }
 
-function saveEditedContact(id, event) {
+function validateEditNameInput(event, id) {
     event.preventDefault();
+    let input = document.getElementById('editName').value;
+    var regex = /^[a-zA-ZäöüÄÖÜß]+\s+[a-zA-ZäöüÄÖÜß]+$/;
+    if (!regex.test(input)) {
+        validationAlertMessage('Please input only 2 values seperated by a space.', 'editName');
+        return false;
+    }
+    saveEditedContact(id);
+}
+
+
+function saveEditedContact(id) {
     let index = getIndexById(id);
-    const fullname = document.getElementById('editFullname').value;
+    const fullname = document.getElementById('editName').value;
     const firstname = fullname.split(' ')[0];
     const lastname = fullname.split(' ')[1];
     const email = document.getElementById('editEmail').value;
@@ -181,7 +193,7 @@ function generateSaveAndReload(index, id, fullname, firstname, lastname, email, 
     regenerateInitials(index, firstname, lastname);
     //regenerateFullname(index, firstname);
     saveContact(index, firstname, lastname, fullname, email, phone);
-    setItem('contacts', contacts);    
+    setItem('contacts', contacts);
     renderContactList();
     showContactDetail(id);
     closeOverlay();

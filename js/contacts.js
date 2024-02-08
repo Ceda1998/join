@@ -99,10 +99,13 @@ function removeHighlight(id) {
 }
 
 function getBackgroundColor(id) {
-  let elem = document
-    .getElementById(`contact-${id}`)
-    .querySelector(".ctc-logo");
-  let bgColor = window.getComputedStyle(elem).backgroundColor;
+  let bgColor;
+  if (id) {
+    let elem = document
+      .getElementById(`contact-${id}`)
+      .querySelector(".ctc-logo");
+    bgColor = window.getComputedStyle(elem).backgroundColor;    
+  }
   return bgColor;
 }
 
