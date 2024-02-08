@@ -143,6 +143,10 @@
     margin-top: 48px;
 }
 
+.button-container {
+    flex-wrap: wrap-reverse;
+}
+
 .input-fullname {
     background: url("../assets/img/person.png") no-repeat right 20px center;
 }
