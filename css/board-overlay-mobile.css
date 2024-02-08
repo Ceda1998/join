@@ -75,6 +75,7 @@
         .field-container-pu-edit {
             margin-top: 10px;
             margin-bottom: 10px;
+            max-height: 70vh;
         }
     
         .field-container-pu-edit label {
