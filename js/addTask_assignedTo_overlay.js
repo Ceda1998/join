@@ -12,7 +12,6 @@ function toggleAssignedToDropDownEdit() {
     isArrowAssignedToEditRotated = !isArrowAssignedToEditRotated;
     arrowAssignedTo.style.transform = isArrowAssignedToEditRotated ? 'rotate(180deg)' : '';
     ifElseArrowEdit();
-    console.log(selectedContactsAssignedTo);
 }
 
 
@@ -47,8 +46,6 @@ function renderInitialsSelectedEdit() {
 function renderContactsAssignedToEdit() {
     let assignedToDropDownWrapper = getField('assignedToDropDownWrapperEdit');
     assignedToDropDownWrapper.innerHTML = '';
-    console.log("contactsAssignedTo");
-    console.log(contactsAssigendTo);
     for (let i = 0; i < contactsAssigendTo.length; i++) {
         let contact = contactsAssigendTo[i];
         let fullname = contact['fullname'];
@@ -80,7 +77,6 @@ function assignedToContactsTemplateEdit(contact, i) {
 function selectPersonEdit(num) {
     let selectedPerson = contactsAssigendTo[`${num}`];
     selectedContactsAssignedTo.push(selectedPerson);
-    console.log(selectedContactsAssignedTo);
     checkButtonContactsCheckedEdit(num);
 }
 
@@ -92,14 +88,11 @@ function removePersonEdit(num) {
     for (let i=0; i < selectedContactsAssignedTo.length; i++) {
         let contact = selectedContactsAssignedTo[i];
         let name = contact['fullname'];
-        console.log(selectedPerson);
-        console.log(name);
         if (name === selectedPerson) {
             selectedContactsAssignedTo.splice(i, 1);
         }
     }
     checkButtonContactsCheckedEdit(num);
-    console.log(selectedContactsAssignedTo);
 }
 
 

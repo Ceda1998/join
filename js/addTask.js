@@ -31,7 +31,6 @@ let tasksAssignedTo = []; /* tasks fetched from the remote storage */
 
 async function initAddTask() {
     await includeHTML();
-    console.log(window.location.pathname);
     if (window.location.pathname === "/add_task.html") {
         await removeCloseButton();
     } else {
@@ -325,7 +324,6 @@ async function createTask() {
     renderContactIds();
     controlIfDescriptionEmtpy(inputFields.description);
     let task = createTaskInstance(inputFields);
-    console.log(task);
     tasksAssignedTo.push(task);
     await setItem('tasks', tasksAssignedTo);
     clearTask();
