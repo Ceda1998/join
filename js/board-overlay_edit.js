@@ -222,7 +222,9 @@ function renderPopUpCardEdit(index) {
                 </div>
 
             </div>
-            <button class="ok-button" type="submit">Ok<img src="./assets/img/check.png"></button>
+            <div class="ok-button-container">
+                <button class="ok-button" type="submit">Ok<img src="./assets/img/check.png"></button>
+            </div>
         </form>
     `;
 }

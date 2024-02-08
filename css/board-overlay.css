@@ -269,8 +269,8 @@ table img {
 
 .field-container-pu-edit {
     margin-top: 56px;
-    margin-bottom: 56px;
-    max-height: 697px;
+    height: 697px;
+    max-height: 80vh;
     overflow-y:scroll;
     overflow-x: hidden;
 }
@@ -360,9 +360,16 @@ table img {
     margin-top: 0 !important;
 }
 
+.ok-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
 .ok-button {
     width: 89px;
     height: 57px;
+    margin-top: 8px;
     border-radius: 10px;
     padding: 16px;
     box-sizing: border-box;
@@ -374,9 +381,7 @@ table img {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    bottom: 32px;
-    right: 40px;
+
 }
 
 .ok-button img {

@@ -57,6 +57,11 @@
             padding-left: 10px;
             padding-right: 10px;
         }
+
+        .close-button-pu-edit {
+            top: 8px;
+            right: 8px;
+        }
     
         .pop-up-task-big-edit input {
             font-size: 16px;
