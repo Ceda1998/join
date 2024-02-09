@@ -198,11 +198,15 @@ function renderassignedToPu(currentTask) {
 /* Function to get all selected contacts from the array */
 
 function getContactPu(contactid) {
+
     for (let j = 0; j < contacts.length; j++) {
-        const contactidContacts = contacts[j]['contactid'];
-        if (contactidContacts === contactid.toString()) {
+        if (contacts[j].contactid == contactid) {
             return j;
         }
+        /* const contactidContacts = contacts[j]['contactid'];
+        if (contactidContacts === contactid.toString()) {
+            return j;
+        } */
     }
     return null;
 }
