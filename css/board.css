@@ -21,6 +21,12 @@
 
 /* End Custom Scrollbar */
 
+.dragover-active {
+    background-color: #e7e7e7;
+    border: 1px dashed #a8a8a8;
+    box-sizing: border-box;
+}
+
 pre {
     margin: 0;
     font-family: Inter;
@@ -146,11 +152,12 @@ pre {
 
 .task-holder {
     min-height: 300px;
-    gap: 16px;
+    gap: 10px;
     display: flex;
     flex-direction: column;
-    min-width: 350px;
     height: 100%;
+    border-radius: 24px;
+    padding: 10px;
 }
 
 .todo-header {
@@ -159,8 +166,10 @@ pre {
 }
 
 .todo-description {
-    height: 90px;
+    max-height: 120px;
+    min-height: 83px;
     overflow-y: auto;
+    margin: 10px 0;
 }
 
 .board-subtasks {
@@ -190,6 +199,7 @@ pre {
 
 .todo-coworkers {
     display: flex;
+    overflow-x: auto;
 }
 
 .todo-coworker:nth-child(n + 2) {
@@ -241,21 +251,23 @@ pre {
 }
 
 .column {
-    flex: 33%;
+    flex: 25%;
+    max-width: 25%;
     box-sizing: border-box;
     padding: 20px;
 }
 
 /* On screens that are 992px wide or less, go from four columns to two columns */
-@media screen and (max-width: 992px) {
+/* @media screen and (max-width: 992px) {
     .column {
         flex: 50%;
+        max-width: 50%;
     }
-}
+} */
 
 /* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
     .row {
         flex-direction: column;
     }
-}
+} */

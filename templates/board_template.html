@@ -19,26 +19,26 @@
             <span>To do</span>
             <img src="./assets/img/plusbutton.png" onclick="openPopUpAt()">
         </div>
-        <div class="task-holder" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="task-holder" id="todo" ondrop="drop(event, 'todo')" ondragover="allowDrop(event, 'todo')" ondragleave="removeHighlight('todo')"></div>
     </div>
     <div id="inProgressContainer" class="column">
         <div class="col-head">
             <span>In Progress</span>
             <img src="./assets/img/plusbutton.png" onclick="openPopUpAt()">
         </div>
-        <div class="task-holder" id="inprogress" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="task-holder" id="inprogress" ondrop="drop(event, 'inprogress')" ondragover="allowDrop(event, 'inprogress')" ondragleave="removeHighlight('inprogress')"></div>
     </div>
     <div id="awaitFeedbackContainer" class="column">
         <div class="col-head">
             <span>Await Feedback</span>
             <img src="./assets/img/plusbutton.png" onclick="openPopUpAt()">
         </div>
-        <div class="task-holder" id="awaitfeedback" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="task-holder" id="awaitfeedback" ondrop="drop(event, 'awaitfeedback')" ondragover="allowDrop(event, 'awaitfeedback')" ondragleave="removeHighlight('awaitfeedback')"></div>
     </div>
     <div id="doneContainer" class="column">
         <div class="col-head">
             <span>Done</span>
         </div>
-        <div class="task-holder" id="done" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="task-holder" id="done" ondrop="drop(event, 'done')" ondragover="allowDrop(event, 'done')" ondragleave="removeHighlight('done')"></div>
     </div>
 </div>

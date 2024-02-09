@@ -31,6 +31,13 @@
     }
 }
 
+@media (max-width: 1450px) {
+    .column {
+        flex: 33%;
+        max-width: 33%;
+    }
+}
+
 /* Here starts the responsiveness (header adaptation, sidebar removing and mobile footer addition) */
 @media (max-width: 1200px) {
     .board-container {
@@ -82,7 +89,6 @@
     }
 
     .task-holder {
-        width: 100%;
         padding-bottom: 50px;
     }
 
@@ -117,6 +123,11 @@
 @media (max-width: 1000px) {}
 
 @media (max-width: 950px) {
+    .column {
+        flex: 50%;
+        max-width: 50%;
+    }
+
     .header-left {
         display: none;
     }
@@ -150,12 +161,57 @@
     }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 550px) {
+    .column {
+        flex: 100%;
+        max-width: 100%;
+    }
+
     .navbar-mobile-bottom {
         gap: 16px !important;
     }
 
     .task-holder {
-        min-width: unset;
+        flex-direction: row;
+        overflow-x: auto;
+        height: unset;
+        padding-bottom: 10px;
+    }
+
+    .todo {
+        max-height: 325px;
+        min-width: 200px;
+        justify-content: space-between;
+    }
+
+    .board-subtasks {
+        flex-direction: column;
+        align-items: self-start;
+    }
+
+    .category-board,
+    .todo-header,
+    .todo-description {
+        font-size: 14px;
+    }
+
+    .todo-description {
+        max-height: 50px;
+    }
+
+    .todo-header {
+        max-height: 35px;
+        overflow-y: auto;
+    }
+
+    .todo-details {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: space-between;
+    }
+
+    .priority {
+        margin-left: 6px;
     }
 }

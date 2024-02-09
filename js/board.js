@@ -157,12 +157,29 @@ function getPriorityHtml(priovalue) {
 }
 
 function renderDescription(task) {
-    return task.description ? `<pre class="todo-description">${task['description']}</pre>` : '';
-    /* if (task.description) {
+    /* return task.description ? `<pre class="todo-description">${task['description']}</pre>` : ''; */
+    if (task.description) {
         return `<pre class="todo-description">${task['description']}</pre>`;
     } else {
-        return '';
-    }; */
+        return `<pre class="todo-description"></pre>`;
+    };
+}
+
+function renderSubtaskBar(toggled, subtasksQty) {
+    if (subtasksQty) {
+        return `
+            <div class="board-subtasks">
+                <div class="subtasks-bar-outer">
+                    <div class="subtasks-bar-inner" style="width:${(toggled/subtasksQty)*100}%"></div>
+                </div>
+                <span class="subtasks-text">${subtasksQty} Subtasks. ${toggled}/${subtasksQty} Done ✔</span>
+            </div>
+        `;
+    } else {
+        return `
+            <div></div>
+        `;
+    }
 }
 
 function getCategoryColor(cat){
@@ -178,13 +195,10 @@ function renderTaskHtml(task, subtasksQty, toggled, coworkersHTML, prioHtml) {
     return `
     <div id="${task['taskid']}" class="todo" draggable="true" ondragstart="drag(event)" onclick="openTaskBig(${task['taskid']})">
         <span class="category-board" style="background-color:${getCategoryColor(task.category)}">${task['category']}</span>
-        <span class="todo-header">${task['title']}</span>
-        ${renderDescription(task)}
-        <div class="board-subtasks">
-            <div class="subtasks-bar-outer">
-                <div class="subtasks-bar-inner" style="width:${(toggled/subtasksQty)*100}%"></div>
-            </div>
-            <span class="subtasks-text">${subtasksQty} Subtasks. ${toggled}/${subtasksQty} Done ✔</span>
+        <div class="todo-details">    
+            <span class="todo-header">${task['title']}</span>
+            ${renderDescription(task)}
+            ${renderSubtaskBar(toggled, subtasksQty)}
         </div>
         <div class="todo-footer">
             <div class="todo-coworkers">${coworkersHTML}</div>
