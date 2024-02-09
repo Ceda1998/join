@@ -239,6 +239,10 @@ pre {
     align-items: center;
 }
 
+.priority {
+    margin-left: 6px;
+}
+
 .priority img {
     width: 18px;
 }

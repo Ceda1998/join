@@ -48,9 +48,10 @@ function deleteInputSubtaskEdit() {
 
 function saveInputSubtaskEdit() {
     let insertSubtaskToolContainer = getField('insertSubtaskToolContainerEdit');
-    let plusImg = getField('plusImgEdit');
-    plusImg.classList.remove('d-none');
+    /* let plusImg = getField('plusImgEdit'); */
+    /* plusImg.classList.remove('d-none'); */
     insertSubtaskToolContainer.classList.add('d-none');
+    addSubtaskEdit();
 }
 
 
