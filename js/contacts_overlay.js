@@ -1,3 +1,17 @@
+let tasks;
+
+(async () => {
+    tasks = JSON.parse(await getItem('tasks'));
+})();
+
+function clearContactIdsFromTasks() {
+    let allContactIds = Array.from(new Set(contacts.map(ct => ct.contactid)));
+    tasks.forEach(task => {
+        task.contactids = task.contactids.filter(id => allContactIds.includes(id));
+    })
+    setItem('tasks', tasks);
+}
+
 function closeOverlay() {
     document.getElementById('overlay').classList.add('d-none');
 }
@@ -103,7 +117,7 @@ function setandSaveContact(id, email, firstname, lastname, fullname, initials, p
         "initials": initials
     }
     contacts.push(contact);
-    saveandShowContact(id);
+    saveandShowContact(id);    
 }
 
 function saveandShowContact(id) {
@@ -122,13 +136,31 @@ function createInitials(firstname, lastname) {
 }
 
 function createNewId() {
-    let arr = [];
-    contacts.forEach(contact => {
-        arr.push(Number(contact.contactid));
-    });
-    arr.sort(function (a, b) { return a - b });
+    if (contacts.length === 0) { return 1; }
+    let arr = contacts.map(contact => Number(contact.contactid));
+    arr.sort((a, b) => a - b);
     let newid = arr[arr.length - 1] + 1;
+    do {
+        newid++
+    } while (!checkIdOnTaskAssignment(newid));
     return newid;
+}
+
+function checkIdOnTaskAssignment(newid) {
+    let arr = getContactIdsfromTasks();
+    return !arr.includes(newid);
+}
+
+function getContactIdsfromTasks() {
+    let arr = [];
+    tasks.forEach(task => {
+        task.contactids.forEach(contactid => {
+            if (!arr.includes(contactid)) {
+                arr.push(contactid);
+            }
+        });
+    });
+    return arr;
 }
 
 /* EDIT Contact Section 👇️ */
@@ -266,6 +298,7 @@ function finalDeleteContact(index) {
     clearUserDetail();
     closeOverlay();
     showMessage('Contact successfully deleted');
+    clearContactIdsFromTasks();
 }
 
 function clearUserDetail() {

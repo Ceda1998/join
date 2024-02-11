@@ -2,7 +2,7 @@
     {
         "taskid": 1,
         "title": "Summary",
-        "description": "In the summary you see the total of the tasks and the numbers of the current stand of the tasks. It includes a greeting of the user.",
+        "description": "In the summary you see the total of the tasks and the numbers of the current stand of the tasks. \n\nIt includes a greeting of the user.",
         "category": "User Story",
         "subtasks": [
             {
@@ -30,7 +30,7 @@
     {
         "taskid": 2,
         "title": "Add Task",
-        "description": "You can fill in a form for the different points in the task. The points are title, description, assigned to, due date, prio, category and subtasks.",
+        "description": "You can fill in a form for the different points in the task. The points are \n\ntitle, \ndescription, \nassigned to, \ndue date, \nprio, \ncategory \nsubtasks.",
         "category": "User Story",
         "subtasks": [
             {
@@ -62,7 +62,7 @@
     {
         "taskid": 3,
         "title": "Board",
-        "description": "On the board are all tasks. The are split in different categories like to do, in progress, await feedback and done. You can shift a task per drag and drop.",
+        "description": "On the board are all tasks. \n\nThe are split in different categories like \n\nto do, \nin progress, \nawait feedback \ndone. \n\nYou can shift a task per drag and drop.",
         "category": "User Story",
         "subtasks": [
             {
@@ -89,7 +89,7 @@
     {
         "taskid": 4,
         "title": "Pop-up addTask on the board",
-        "description": "It has a button add task on the board and plus-buttons. If you click on them a pop-up with the addTask-form gets opened.",
+        "description": "It has a button add task on the board and plus-buttons. \n\nIf you click on them a pop-up with the addTask-form gets opened.",
         "category": "User Story",
         "subtasks": [
             {
@@ -136,8 +136,7 @@
             }
         ],
         "contactids": [
-            5,
-            6
+            5
         ],
         "priority": "medium",
         "progress": "todo",
@@ -176,7 +175,7 @@
     {
         "taskid": 7,
         "title": "Login",
-        "description": "The Login is a form with email and password. You can log in as a guest. It has a button to sign up, too.",
+        "description": "The Login is a form with email and password. \n\nYou can log in as a guest. \n\nIt has a button to sign up, too.",
         "category": "User Story",
         "subtasks": [
             {
@@ -213,7 +212,7 @@
     {
         "taskid": 8,
         "title": "Sign up",
-        "description": "It has a form with following inputs: name, email, password and confirm password.",
+        "description": "It has a form with following inputs: \n\nname, \nemail, \npassword \nconfirm password.",
         "category": "User Story",
         "subtasks": [
             {
@@ -371,10 +370,7 @@
         "description": "",
         "category": "Technical Task",
         "subtasks": [],
-        "contactids": [
-            12,
-            1
-        ],
+        "contactids": [],
         "priority": "medium",
         "progress": "inprogress",
         "duedate": "2024-02-15"

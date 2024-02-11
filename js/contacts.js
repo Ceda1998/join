@@ -93,14 +93,13 @@ function highlightContact(id) {
 
 function removeHighlight(id) {
   if (id) {
-    try {
-      let elem = document.getElementById(`contact-${id}`);
+    let elem = document.getElementById(`contact-${id}`);
+    if (elem) {
       elem.classList.remove('contact-active');
-    } catch (error) {
-      console.error('An error occurred while removing the class:', error);
     }
   }
 }
+
 
 function getBackgroundColor(id) {
   let bgColor;

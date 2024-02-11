@@ -21,6 +21,10 @@
 
 /* End Custom Scrollbar */
 
+body{
+    line-height: 1;
+}
+
 .dragover-active {
     background-color: #e7e7e7;
     border: 1px dashed #a8a8a8;
@@ -166,8 +170,8 @@ pre {
 }
 
 .todo-description {
+    line-height: normal;
     max-height: 120px;
-    min-height: 83px;
     overflow-y: auto;
     margin: 10px 0;
 }
