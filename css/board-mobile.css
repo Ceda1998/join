@@ -165,6 +165,11 @@
     .column {
         flex: 100%;
         max-width: 100%;
+        padding: 20px 0 20px 20px;
+    }
+
+    .col-head {
+        margin-bottom: 0;
     }
 
     .navbar-mobile-bottom {
@@ -175,7 +180,8 @@
         flex-direction: row;
         overflow-x: auto;
         height: unset;
-        padding-bottom: 10px;
+        min-height: 250px;
+        padding-bottom: 16px;
     }
 
     .todo {

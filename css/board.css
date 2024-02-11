@@ -22,7 +22,7 @@
 /* End Custom Scrollbar */
 
 body{
-    line-height: 1;
+    line-height: normal;
 }
 
 .dragover-active {
@@ -155,7 +155,6 @@ pre {
 }
 
 .task-holder {
-    min-height: 300px;
     gap: 10px;
     display: flex;
     flex-direction: column;
