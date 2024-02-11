@@ -299,9 +299,13 @@ textarea::placeholder {
 .contacts-selected-container {
     display: flex;
     margin-top: 64px;
+    padding-bottom: 4px;
+    overflow-x: auto;
+    width: 100%;
 }
 
 .contacts-selected-container .initial-at {
+    min-width: 42px;
     margin-right: 8px;
 }
 
@@ -715,6 +719,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 ::-webkit-scrollbar {
     width: 5px;
+    height: 5px;
     border-radius: 5px;
 }
 

@@ -69,6 +69,11 @@
 
 @media (max-width: 630px) {
 
+    .board-container-add-task {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
     /* title */
 
     h1 {
@@ -81,8 +86,6 @@
 
     .board-container-add-task {
         width: 100%;
-        margin-left: 16px;
-        margin-right: 16px;
     }
 
     .add-task-container {
