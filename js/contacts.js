@@ -93,8 +93,12 @@ function highlightContact(id) {
 
 function removeHighlight(id) {
   if (id) {
-    let elem = document.getElementById(`contact-${id}`);
-    elem.classList.remove('contact-active');
+    try {
+      let elem = document.getElementById(`contact-${id}`);
+      elem.classList.remove('contact-active');
+    } catch (error) {
+      console.error('An error occurred while removing the class:', error);
+    }
   }
 }
 
@@ -104,7 +108,7 @@ function getBackgroundColor(id) {
     let elem = document
       .getElementById(`contact-${id}`)
       .querySelector(".ctc-logo");
-    bgColor = window.getComputedStyle(elem).backgroundColor;    
+    bgColor = window.getComputedStyle(elem).backgroundColor;
   }
   return bgColor;
 }

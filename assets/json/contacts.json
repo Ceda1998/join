@@ -1,6 +1,6 @@
 [
     {
-        "contactid": "1",
+        "contactid": 1,
         "firstname": "Hannes",
         "lastname": "Pirhofer",
         "fullname": "Hannes Pirhofer",
@@ -9,7 +9,7 @@
         "initials": "HP"
     },
     {
-        "contactid": "2",
+        "contactid": 2,
         "firstname": "Pascale",
         "lastname": "Sennhauser",
         "fullname": "Pascale Sennhauser",
@@ -18,7 +18,7 @@
         "initials": "PS"
     },
     {
-        "contactid": "3",
+        "contactid": 3,
         "firstname": "Cedric",
         "lastname": "Daunke",
         "fullname": "Cedric Daunke",
@@ -27,34 +27,25 @@
         "initials": "CD"
     },
     {
-        "contactid": "4",
+        "contactid": 4,
         "firstname": "Max",
-        "lastname": "Mustermann",
-        "fullname": "Max Mustermann",
-        "email": "max.mustermann@gmail.com",
+        "lastname": "Wohlleben",
+        "fullname": "Max Wohlleben",
+        "email": "max789@gmail.com",
         "phone": "+41 123456789",
-        "initials": "MM"
+        "initials": "MW"
     },
     {
-        "contactid": "5",
-        "firstname": "Zerafin",
-        "lastname": "Musterhaus",
-        "fullname": "Zerafin Musterhaus",
-        "email": "zerafin.musterhaus@gmail.com",
+        "contactid": 5,
+        "firstname": "Serafin",
+        "lastname": "Holzknecht",
+        "fullname": "Serafin Holzknecht",
+        "email": "zerafin.hlzknecht@gmail.com",
         "phone": "+41 123456789",
-        "initials": "ZM"
+        "initials": "SH"
     },
     {
-        "contactid": "6",
-        "firstname": "Hanna",
-        "lastname": "Musterfrau",
-        "fullname": "Hanna Musterfrau",
-        "email": "hanna.musterfrau@gmail.com",
-        "phone": "+41 123456789",
-        "initials": "HM"
-    },
-    {
-        "contactid": "7",
+        "contactid": 7,
         "firstname": "Wanda",
         "lastname": "Weber",
         "fullname": "Wanda Weber",
@@ -63,7 +54,7 @@
         "initials": "WW"
     },
     {
-        "contactid": "8",
+        "contactid": 8,
         "firstname": "Mia",
         "lastname": "Meier",
         "fullname": "Mia Meier",
@@ -72,21 +63,39 @@
         "initials": "MM"
     },
     {
-        "contactid": "9",
+        "contactid": 9,
         "firstname": "Beat",
-        "lastname": "Bauer",
-        "fullname": "Beat Bauer",
-        "email": "beat.bauer@gmail.com",
+        "lastname": "Mauer",
+        "fullname": "Beat Mauer",
+        "email": "beat.mauer@gmail.com",
         "phone": "+41 123456789",
-        "initials": "BB"
+        "initials": "BM"
     },
     {
-        "contactid": "10",
+        "contactid": 10,
         "firstname": "Anna",
-        "lastname": "Amann",
-        "fullname": "Anna Amann",
-        "email": "anna.amann@gmail.com",
-        "phone": "+41 123456789",
-        "initials": "AA"
+        "lastname": "Herrmann",
+        "fullname": "Anna Herrmann",
+        "email": "anna.hrmn@gmail.com",
+        "phone": "4568211564",
+        "initials": "AH"
+    },
+    {
+        "contactid": 12,
+        "firstname": "Hanna",
+        "lastname": "Stolz",
+        "fullname": "Hanna Stolz",
+        "email": "hannesstlz@gmail.de",
+        "phone": "+49 325446589",
+        "initials": "HS"
+    },
+    {
+        "contactid": 13,
+        "firstname": "Hanna",
+        "lastname": "Stolz",
+        "fullname": "Hanna Stolz",
+        "email": "hannstlz@gmail.de",
+        "phone": "+0049 25448964112",
+        "initials": "HS"
     }
 ]

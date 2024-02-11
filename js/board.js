@@ -2,6 +2,7 @@
 let tasks;
 let contacts;
 let toDo = 0;
+let filterActive = false;
 
 
 // window.onload = async () =>
@@ -42,8 +43,11 @@ function renderBoard(arr) {
 }
 
 function fetchAndReloadBoard() {
-    getTasksFromServer();
-    renderBoard();
+    if (filterActive) {
+        filterTasks();
+    } else {
+        renderBoard();
+    }
 }
 
 function renderToDo(arr) {
@@ -233,8 +237,12 @@ async function updateTask(newtaskid, newprogress) {
 }
 
 function filterTasks() {
+    filterActive = true;
     let inval = document.getElementById('filterTasks').value;
-    const filteredtasks = tasks.filter((task) => {
+    if (inval == '') {
+        filterActive = false;
+    }
+    filteredtasks = tasks.filter((task) => {
         if (task.title.toLowerCase().includes(inval.toLowerCase()) || task.description.toLowerCase().includes(inval.toLowerCase())) {
             return true;
         } return false;
