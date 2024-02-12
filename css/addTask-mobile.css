@@ -70,6 +70,7 @@
 @media (max-width: 630px) {
 
     .board-container-add-task {
+        width: 100%;
         padding-left: 16px;
         padding-right: 16px;
     }
@@ -83,10 +84,6 @@
     }
 
     /* Add-Task-Container */
-
-    .board-container-add-task {
-        width: 100%;
-    }
 
     .add-task-container {
         width: 100%;
@@ -172,14 +169,10 @@
         line-height: 19.2px;
     }
 
-    .added-subtasks-container {
-        margin-top: 50px;
+    .contacts-selected-container {
+        max-width: calc(100vw - 32px);
     }
 
-    .added-subtasks-container input {
-        padding: 6px 16px 6px 16px !important;
-        height: 32px !important;
-    }
 
     /* Container-Right */
 
@@ -227,6 +220,15 @@
 
     .category-drop-down {
         margin-top: 38px;
+    }
+
+    .added-subtasks-container {
+        margin-top: 50px;
+    }
+
+    .added-subtasks-container input {
+        padding: 6px 16px 6px 16px !important;
+        height: 32px !important;
     }
 
     /* Buttons-Container */
