@@ -46,8 +46,8 @@ function renderInitialsSelectedEdit() {
 function renderContactsAssignedToEdit() {
     let assignedToDropDownWrapper = getField('assignedToDropDownWrapperEdit');
     assignedToDropDownWrapper.innerHTML = '';
-    for (let i = 0; i < contactsAssigendTo.length; i++) {
-        let contact = contactsAssigendTo[i];
+    for (let i = 0; i < contacts.length; i++) {
+        let contact = contacts[i];
         let fullname = contact['fullname'];
         assignedToDropDownWrapper.innerHTML += assignedToContactsTemplateEdit(contact, i);
         renderBackgroundColorInitialsEdit(i);
@@ -75,7 +75,7 @@ function assignedToContactsTemplateEdit(contact, i) {
 /* Selects the person you click on and puts it in the selectedContactsAssignedTo-Array */
 
 function selectPersonEdit(num) {
-    let selectedPerson = contactsAssigendTo[`${num}`];
+    let selectedPerson = contacts[`${num}`];
     selectedContactsAssignedTo.push(selectedPerson);
     checkButtonContactsCheckedEdit(num);
 }
@@ -84,7 +84,7 @@ function selectPersonEdit(num) {
 /* Removes the person you click on and removes it from the selectedContactsAssignedTo-Array*/
 
 function removePersonEdit(num) {
-    let selectedPerson = contactsAssigendTo[`${num}`]['fullname'];
+    let selectedPerson = contacts[`${num}`]['fullname'];
     for (let i=0; i < selectedContactsAssignedTo.length; i++) {
         let contact = selectedContactsAssignedTo[i];
         let name = contact['fullname'];
@@ -113,7 +113,7 @@ function checkButtonContactsCheckedEdit(num) {
 /* Sets the Background Color of the initial-name-container according to the initials */
 
 function renderBackgroundColorInitialsEdit(i) {
-    let initialsSelectedContact = contactsAssigendTo[i]['initials'];
+    let initialsSelectedContact = contacts[i]['initials'];
     let firstLetter = initialsSelectedContact.charAt(0).toLowerCase();
     let initialsField = getField(`initialAtEdit${i}`);
     initialsField.classList.add(`${firstLetter}`);
@@ -163,8 +163,8 @@ function filterNamesEdit() {
 
 function activeSearchInputEdit(search, assignedToDropDownWrapper) {
     assignedToDropDownWrapper.innerHTML = '';
-    for (let i = 0; i < contactsAssigendTo.length; i++) {
-        let contact = contactsAssigendTo[i];
+    for (let i = 0; i < contacts.length; i++) {
+        let contact = contacts[i];
         let fullname = contact['fullname'];
         if (fullname.toLowerCase().includes(search)) {
             assignedToDropDownWrapper.innerHTML += assignedToContactsTemplateEdit(contact, i);

@@ -1,4 +1,3 @@
-let contactsAssigendTo = []; /* contacts fetched from the remote storage */
 let selectedContactsAssignedTo = []; /* gets added to the tasks.json */
 let selectedContactsAssignedToIds= [];
 let isArrowAssignedToRotated = false;
@@ -57,7 +56,7 @@ async function checkPath() {
 
 async function fetchContactsAt() {
     let resp = await getItem('contacts');
-    contactsAssigendTo = JSON.parse(resp);
+    contacts = JSON.parse(resp);
 }
 
 

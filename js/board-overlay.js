@@ -113,9 +113,9 @@ function renderPopUpCardTask(currentTask, index) {
                 <td id="priorityPuBig"></td>
             </tr>
         </table>
-        <span class="pu-big-assigned-to">Assigned to:</span>
+        <span class="pu-big-assigned-to" id="assignedToTaskBig">Assigned to:</span>
         <div class="pu-big-contacts" id="puBigContacts"></div>
-        <span class="pu-big-subtasks">Subtasks</span> 
+        <span class="pu-big-subtasks" id="subtasksTaskBig">Subtasks</span> 
         <div class="pu-big-subtasks-container" id="puBigSubtasksContainer"></div>
         <div class="pu-big-edit-container">
             <div class="pu-big-edit-only" onclick="deleteTask(${index})">
@@ -192,11 +192,26 @@ function renderPrioPu(currentTask, index) {
 function renderassignedToPu(currentTask) {
     let puBigContacts = document.getElementById(`puBigContacts`);
     puBigContacts.innerHTML = '';
-    for (let i = 0; i < currentTask['contactids'].length; i++) {
-        const contactid = currentTask['contactids'][i];
-        const indexContact = getContactPu(contactid);
-        ifElseContact(indexContact, puBigContacts, i);
-    } 
+    let assignedToTitle = document.getElementById('assignedToTaskBig');
+    ifElseToShowContacts(puBigContacts, assignedToTitle, currentTask)
+}
+
+
+/* If the currentTask has contactids, they are shown */
+
+function ifElseToShowContacts(puBigContacts, assignedToTitle, currentTask) {
+    if (currentTask['contactids'].length !== 0) {
+        assignedToTitle.classList.remove('d-none');
+        puBigContacts.classList.remove('d-none');
+        for (let i = 0; i < currentTask['contactids'].length; i++) {
+            const contactid = currentTask['contactids'][i];
+            const indexContact = getContactPu(contactid);
+            ifElseContact(indexContact, puBigContacts, i);
+        } 
+    } else {
+        assignedToTitle.classList.add('d-none');
+        puBigContacts.classList.add('d-none');
+    }
 }
 
 
@@ -252,9 +267,12 @@ function renderBackgroundColorOverlay(initials, i) {
 function renderSubtasksPu(currentTask, index) {
     let subtasksBigContainer = document.getElementById(`puBigSubtasksContainer`);
     subtasksBigContainer.innerHTML = '';
+    let subtasksBigTitle = document.getElementById('subtasksTaskBig');
     if (currentTask['subtasks'] != '') {
+        subtasksBigTitle.classList.remove('d-none');
         getSubtasksPu(currentTask, subtasksBigContainer, index);
     } else {
+        subtasksBigTitle.classList.add('d-none');
         subtasksBigContainer.innerHTML = '';
     }
 }

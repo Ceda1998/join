@@ -15,7 +15,7 @@ function inputAssignedToBlur(nameContainer) {
 /* Selects the person you click on and puts it in the selectedContactsAssignedTo-Array */
 
 function selectPerson(num) {
-    let selectedPerson = contactsAssigendTo[`${num}`];
+    let selectedPerson = contacts[`${num}`];
     selectedContactsAssignedTo.push(selectedPerson);
     checkButtonContactsChecked(num);
 }
@@ -24,7 +24,7 @@ function selectPerson(num) {
 /* Removes the person you click on and removes it from the selectedContactsAssignedTo-Array*/
 
 function removePerson(num) {
-    let selectedPerson = contactsAssigendTo[`${num}`]['fullname'];
+    let selectedPerson = contacts[`${num}`]['fullname'];
     for (let i=0; i < selectedContactsAssignedTo.length; i++) {
         let contact = selectedContactsAssignedTo[i];
         let name = contact['fullname'];
@@ -80,8 +80,8 @@ function ifElseArrow() {
 function renderContactsAssignedTo() {
     let assignedToDropDownWrapper = getField('assignedToDropDownWrapper');
     assignedToDropDownWrapper.innerHTML = '';
-    for (let i = 0; i < contactsAssigendTo.length; i++) {
-        let contact = contactsAssigendTo[i];
+    for (let i = 0; i < contacts.length; i++) {
+        let contact = contacts[i];
         let fullname = contact['fullname'];
         assignedToDropDownWrapper.innerHTML += assignedToContactsTemplate(contact, i);
         renderContactsChecked(fullname, i);
@@ -154,7 +154,7 @@ function renderBackgroundColorInitialsSelected(i) {
 /* Sets the Background Color of the initial-name-container according to the initials */
 
 function renderBackgroundColorInitials(i) {
-    let initialsSelectedContact = contactsAssigendTo[i]['initials'];
+    let initialsSelectedContact = contacts[i]['initials'];
     let firstLetter = initialsSelectedContact.charAt(0).toLowerCase();
     let initialsField = getField(`initialAt${i}`);
     initialsField.classList.add(`${firstLetter}`);
@@ -184,8 +184,8 @@ function filterNames() {
 
 function activeSearchInput(search, assignedToDropDownWrapper) {
     assignedToDropDownWrapper.innerHTML = '';
-    for (let i = 0; i < contactsAssigendTo.length; i++) {
-        let contact = contactsAssigendTo[i];
+    for (let i = 0; i < contacts.length; i++) {
+        let contact = contacts[i];
         let fullname = contact['fullname'];
         if (fullname.toLowerCase().includes(search)) {
             assignedToDropDownWrapper.innerHTML += assignedToContactsTemplate(contact, i);
