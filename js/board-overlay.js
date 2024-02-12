@@ -28,19 +28,22 @@ function addDNone(name) {
 
 /* Pop-up to add a new Task */
     
-function openPopUpAt(progress) {
+async function openPopUpAt(progress) {
+    await getItem('tasks');
     addDNone('popUpTaskBig');
     openPopUpContainer();
     removeDNone('popUpAtField');
     removeDNone('closeButtonPopUpAt');
     subtasks = [];
     currentProgress = progress;
+    console.log(currentProgress);
 }
 
 
 function closePopUpAt() {
     clearTask();
     currentProgress = '';
+    console.log(currentProgress);
     closePopUpContainer();
     addDNone('popUpAtField');
     fetchAndReloadBoard();
@@ -307,8 +310,9 @@ function renderCheckImage(currentSubtask, i) {
 
 async function deleteTask(index) {
     tasks.splice(index, 1);
-    init();
     await closeTaskBig();
+    console.log(tasks);
+    init();
 }
 
 

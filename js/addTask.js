@@ -110,7 +110,7 @@ function setInputClear(inputFields) {
     inputFields.categoryInput.value = '';
     inputFields.subtaskInput.value = '';
     subtasks = [];
-    progress = '';
+    currentProgress = '';
     renderInitialsSelected();
     clearPrioButtons();
     setPrioMedium();
