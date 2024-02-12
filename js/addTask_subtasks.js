@@ -46,12 +46,12 @@ function deleteInputSubtask() {
 
 /* Saves the subtask in the input-field, so it can be added, when clicking on the plus-image */
 
-function saveInputSubtask() {
+/* function saveInputSubtask() {
     let insertSubtaskToolContainer = getField('insertSubtaskToolContainer');
     let plusImg = getField('plusImg');
     plusImg.classList.remove('d-none');
     insertSubtaskToolContainer.classList.add('d-none');
-}
+} */
 
 
 /* Adds the subtask in the list under the subtask-input-field, when clicking on the plus-image */
@@ -64,6 +64,7 @@ function addSubtask() {
         renderSubtasks();
     }
     input.value = '';
+    renderInputSubtaskImg(input.value);
 }
 
 

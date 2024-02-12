@@ -207,8 +207,7 @@ textarea::placeholder {
     right: 20px;
 }
 
-.arrow-drop-down:hover,
-.plus-img:hover {
+.arrow-drop-down:hover {
     cursor: pointer;
 }
 

@@ -46,13 +46,13 @@ function deleteInputSubtaskEdit() {
 
 /* Saves the subtask in the input-field, so it can be added, when clicking on the plus-image */
 
-function saveInputSubtaskEdit() {
+/* function saveInputSubtaskEdit() {
     let insertSubtaskToolContainer = getField('insertSubtaskToolContainerEdit');
-    /* let plusImg = getField('plusImgEdit'); */
-    /* plusImg.classList.remove('d-none'); */
+    let plusImg = getField('plusImgEdit');
+    plusImg.classList.remove('d-none');
     insertSubtaskToolContainer.classList.add('d-none');
     addSubtaskEdit();
-}
+} */
 
 
 /* Adds the subtask in the list under the subtask-input-field, when clicking on the plus-image */
@@ -69,6 +69,7 @@ function addSubtaskEdit() {
         renderSubtasksEdit();
     }
     input.value = '';
+    renderInputSubtaskImgEdit(input.value);
 }
 
 
