@@ -107,8 +107,8 @@ async function saveAndCloseEdit(index) {
     renderContactIds();
     controlIfDescriptionEmtpy(inputFields.description);
     let task = createTaskInstanceEdit(inputFields);
-    tasksAssignedTo[index] = task;
-    tasks = tasksAssignedTo;
+    tasks[index] = task;
+    tasks = tasks;
     await closeTaskEdit();
 }
 

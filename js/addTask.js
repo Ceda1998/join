@@ -24,7 +24,6 @@ let prioButtons = [
 const TOTAL_BUTTONS = 3;
 let isArrowCategoryRotated = false;
 let subtasks = []; /* gets added to the tasks.json */
-let tasksAssignedTo = []; /* tasks fetched from the remote storage */
 let currentProgress;
 
 
@@ -66,7 +65,7 @@ async function fetchContactsAt() {
 
 async function fetchTasksAt() {
     let resp = await getItem('tasks');
-    tasksAssignedTo = JSON.parse(resp);
+    tasks = JSON.parse(resp);
 }
 
 
@@ -332,8 +331,8 @@ async function createTask() {
     renderContactIds();
     controlIfDescriptionEmtpy(inputFields.description);
     let task = createTaskInstance(inputFields);
-    tasksAssignedTo.push(task);
-    await setItem('tasks', tasksAssignedTo);
+    tasks.push(task);
+    await setItem('tasks', tasks);
     clearTask();
     goToBoard();
 }
@@ -384,7 +383,7 @@ function controlIfDescriptionEmtpy(description) {
 /* Function for getting the contactId */
 
 function gettingContactId() {
-    return tasksAssignedTo.length + 1;
+    return tasks.length + 1;
 }
 
 
