@@ -206,11 +206,11 @@ function renderPopUpCardEdit(index) {
                     <label>Subtasks<br>
                         <div class="subtasks-container subtasks-container-edit" id="subtaskContainerEdit">
                         <input type="text" placeholder="Add new Subtask" class="inputField input-field-subtask-edit" id="subtaskInputEdit" onfocus="inputSubtaskFocusEdit()" oninput="inputSubtaskEdit()" onblur="inputSubtaskBlurEdit()">
-                        <img src="./assets/img/plus-black.png" class="plus-img" id="plusImgEdit" onclick="addSubtaskEdit()">
+                        <img src="./assets/img/plus-black.png" class="plus-img" id="plusImgEdit">
                         <div class="insert-subtask-tool-container d-none" id="insertSubtaskToolContainerEdit">
                             <img src="./assets/img/close-img.png" class="close-img" onclick="deleteInputSubtaskEdit()">
                             <div class="tool-separator"></div>
-                            <img src="./assets/img/check-black.png" class="check-black-img" onclick="saveInputSubtaskEdit()">
+                            <img src="./assets/img/check-black.png" class="check-black-img" onclick="addSubtaskEdit()">
                         </div>
                         </div>
                     </label>
