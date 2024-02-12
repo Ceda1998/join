@@ -146,6 +146,16 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 19.2px;
+    overflow-y: auto;
+}
+
+.pu-big-description pre {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
+    max-height: 100px;
+    overflow-y: auto;
+    overflow-x: unset;
 }
 
 table {
