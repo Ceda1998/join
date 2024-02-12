@@ -28,17 +28,19 @@ function addDNone(name) {
 
 /* Pop-up to add a new Task */
     
-function openPopUpAt() {
+function openPopUpAt(progress) {
     addDNone('popUpTaskBig');
     openPopUpContainer();
     removeDNone('popUpAtField');
     removeDNone('closeButtonPopUpAt');
     subtasks = [];
+    currentProgress = progress;
 }
 
 
 function closePopUpAt() {
     clearTask();
+    currentProgress = '';
     closePopUpContainer();
     addDNone('popUpAtField');
     fetchAndReloadBoard();
@@ -147,7 +149,7 @@ function renderColorsCategoryPu(currentTask) {
 function renderDescriptionPu(currentTask) {
     let description = document.getElementById(`puBigDescription`);
     if (currentTask['description'] !== '') {
-        description.innerHTML = currentTask['description'];
+        description.innerHTML = `<pre>${currentTask['description']}</pre>`;
     } else {
         description.innerHTML = '';
     }
@@ -230,6 +232,9 @@ function ifElseContact(indexContact, puBigContacts, i) {
         puBigContacts.innerHTML = '';
     }
 }
+
+
+/* Render the background-color of the initials in the overlay */
 
 
 function renderBackgroundColorOverlay(initials, i) {

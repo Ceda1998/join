@@ -1,13 +1,13 @@
 <div id="board-header" class="board-inner-head">
     <div class="d-flex jc-sb ai-c">
         <span>Board</span>
-        <button class="button-dark add-task-mobile" onclick="openPopUpAt()">
+        <button class="button-dark add-task-mobile" onclick="openPopUpAt('todo')">
             <img class="button-img pl-24" src="./assets/img/plus-white2.png">
         </button>
     </div>
     <div class="d-flex">
         <input class="inputField" placeholder="Find task" id="filterTasks" oninput="filterTasks()">
-        <button class="button-dark add-task-desktop" onclick="openPopUpAt()">
+        <button class="button-dark add-task-desktop" onclick="openPopUpAt('todo')">
             Add task
             <img class="button-img pl-24" src="./assets/img/plus-white2.png">
         </button>
@@ -17,21 +17,21 @@
     <div id="toDoContainer" class="column">
         <div class="col-head">
             <span>To do</span>
-            <img src="./assets/img/plusbutton.png" onclick="openPopUpAt()">
+            <img src="./assets/img/plusbutton.png" onclick="openPopUpAt('todo')">
         </div>
         <div class="task-holder" id="todo" ondrop="drop(event, 'todo')" ondragover="allowDrop(event, 'todo')" ondragleave="removeHighlight('todo')"></div>
     </div>
     <div id="inProgressContainer" class="column">
         <div class="col-head">
             <span>In Progress</span>
-            <img src="./assets/img/plusbutton.png" onclick="openPopUpAt()">
+            <img src="./assets/img/plusbutton.png" onclick="openPopUpAt('inprogress')">
         </div>
         <div class="task-holder" id="inprogress" ondrop="drop(event, 'inprogress')" ondragover="allowDrop(event, 'inprogress')" ondragleave="removeHighlight('inprogress')"></div>
     </div>
     <div id="awaitFeedbackContainer" class="column">
         <div class="col-head">
             <span>Await Feedback</span>
-            <img src="./assets/img/plusbutton.png" onclick="openPopUpAt()">
+            <img src="./assets/img/plusbutton.png" onclick="openPopUpAt('awaitfeedback')">
         </div>
         <div class="task-holder" id="awaitfeedback" ondrop="drop(event, 'awaitfeedback')" ondragover="allowDrop(event, 'awaitfeedback')" ondragleave="removeHighlight('awaitfeedback')"></div>
     </div>

@@ -25,23 +25,31 @@ const TOTAL_BUTTONS = 3;
 let isArrowCategoryRotated = false;
 let subtasks = []; /* gets added to the tasks.json */
 let tasksAssignedTo = []; /* tasks fetched from the remote storage */
+let currentProgress;
 
 
 /* When the side is loaded all Fields get initalized and cleared*/
 
 async function initAddTask() {
     await includeHTML();
+    await checkPath();
+    await fetchContactsAt();
+    await fetchTasksAt();
+    renderAddTask();
+    try {
+        changeInitialsCurrentUser();
+    } catch(e) {
+    }
+}
+
+
+/* If the path is the main addTask page, then the close-button gets removed */
+
+async function checkPath() {
     if (window.location.pathname === "/add_task.html") {
         await removeCloseButton();
     } else {
         await addCloseButton();
-    }
-    await fetchContactsAt();
-    await fetchTasksAt();
-    await renderAddTask();
-    try {
-        changeInitialsCurrentUser();
-    } catch(e) {
     }
 }
 
@@ -64,7 +72,7 @@ async function fetchTasksAt() {
 
 /* Render all the Fields from Add Task */
 
-async function renderAddTask() {
+function renderAddTask() {
     let inputFields = getAllInputFields();
     setInputClear(inputFields);
 }
@@ -102,6 +110,7 @@ function setInputClear(inputFields) {
     inputFields.categoryInput.value = '';
     inputFields.subtaskInput.value = '';
     subtasks = [];
+    progress = '';
     renderInitialsSelected();
     clearPrioButtons();
     setPrioMedium();
@@ -118,8 +127,7 @@ function setArrowRotated() {
     }
     if (isArrowCategoryRotated == true) {
         toggleCategoryDropDown();
-    }
-    
+    }  
 }
 
 
@@ -149,6 +157,7 @@ function addFocus(selectedField) {
 function removeFocus(selectedField) {
     document.getElementById(selectedField).classList.remove('focus');
 }
+
 
 /* Add focus to container from input */
 
@@ -256,7 +265,6 @@ function togglePrio(i, buttonName, prioColor, prioWhite, prio) {
     const selectedImgPrioWhite = getField(`${prioWhite}${i+1}`);
     const selectedPrio = getField(`${prio}${i+1}`);
     const selectedPrioName = selectedPrio.innerHTML.toLowerCase();
-   
 
     selectedButton.classList.toggle(`${selectedPrioName}`);
     selectedButton.classList.toggle('prioTextWhite');
@@ -340,14 +348,15 @@ function collectInputFields() {
     let category = document.getElementById('categoryInput').value;
     let taskId = gettingContactId();
     let priority = getPriority();
+    let progress = getProgress();
 
-    return { title, description, dueDate, category, taskId, priority};
+    return { title, description, dueDate, category, taskId, priority, progress};
 }
 
 
 /* Function to create a task-instance for pushing to the tasks-array */
 
-function createTaskInstance({ title, description, dueDate, category, taskId, priority}) {
+function createTaskInstance({ title, description, dueDate, category, taskId, priority, progress}) {
     return {
         "taskid": taskId,
         "title": title,
@@ -356,7 +365,7 @@ function createTaskInstance({ title, description, dueDate, category, taskId, pri
         "subtasks": subtasks,
         "contactids": selectedContactsAssignedToIds,
         "priority": priority,
-        "progress": 'todo',
+        "progress": progress,
         "duedate": dueDate
     };
 }
@@ -387,6 +396,17 @@ function getPriority() {
         if (isButtonToggled === true) {
                 return prioButtons[i]['name'];
         }
+    }
+}
+
+
+/* Function to get the progress */
+
+function getProgress() {
+    if (currentProgress === '') {
+        return 'todo';
+    } else {
+        return currentProgress;
     }
 }
 
