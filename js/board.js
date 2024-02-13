@@ -5,36 +5,46 @@ let toDo = 0;
 let filterActive = false;
 
 
-// window.onload = async () =>
+/**
+ * Inits when board body onload
+ * Renders HTML templates
+ * Fetches tasks from server
+ * renders the Board with the fetched Tasks
+ */
 async function init() {
-    await includeHTML(); //Renders external templates and waits for it
+    await includeHTML();
     await getTasksFromServer();
     await getContactsFromServer();
     renderBoard();
-    try {
-        changeInitialsCurrentUser();
-    }
-    catch (e) {
-
-    }
 };
 
-//Actually not in use
+/**
+ * This casn be used if we want to work with lcoal data
+ */
 async function getTasksFromFile() {
     let resp = await fetch('./assets/json/tasks.json');
     tasks = await resp.json();
 }
 
+/**
+ * Fetches tasks Array from Server and assigns to tasks
+ */
 async function getTasksFromServer() {
     tasks = JSON.parse(await getItem('tasks'));
 }
 
+/**
+ * Fetches contacts Array from Server and assigns to contacts
+ */
 async function getContactsFromServer() {
     contacts = JSON.parse(await getItem('contacts'));
 }
 
 
-/* Rendering the Board itself, divided by each column seperate rendering for search and drag and drop purpose */
+/**
+ * Calls a function for each column where tasks need to be displayed
+ * @param {Array} arr Not reuired. Filtered tasks for Search. 
+ */
 function renderBoard(arr) {
     renderToDo(arr);
     renderInProgress(arr);
@@ -42,6 +52,9 @@ function renderBoard(arr) {
     renderDone(arr);
 }
 
+/**
+ * This checks if search is active and filter is set- if yes tasks need to be filtered before rendering the Array
+ */
 function fetchAndReloadBoard() {
     if (filterActive) {
         filterTasks();
@@ -50,6 +63,27 @@ function fetchAndReloadBoard() {
     }
 }
 
+/**
+ * This function filters the task array by the Search input and calls renderBoard with a new Array based on the filter criteria
+ */
+function filterTasks() {
+    filterActive = true;
+    let inval = document.getElementById('filterTasks').value;
+    if (inval == '') {
+        filterActive = false;
+    }
+    filteredtasks = tasks.filter((task) => {
+        if (task.title.toLowerCase().includes(inval.toLowerCase()) || task.description.toLowerCase().includes(inval.toLowerCase())) {
+            return true;
+        } return false;
+    });
+    renderBoard(filteredtasks);
+}
+
+/**
+ * This renders the Todo tasks column
+ * @param {Array} arr When filter is active then arr is set 
+ */
 function renderToDo(arr) {
     let todo_tasks;
     if (arr) {
@@ -65,6 +99,10 @@ function renderToDo(arr) {
     }
 }
 
+/**
+ * This renders the In Progress tasks column
+ * @param {Array} arr When filter is active then arr is set 
+ */
 function renderInProgress(arr) {
     let inprogress_tasks;
     if (arr) {
@@ -80,6 +118,10 @@ function renderInProgress(arr) {
     }
 }
 
+/**
+ * This renders the Await Feedback tasks column
+ * @param {Array} arr When filter is active then arr is set 
+ */
 function renderAwaitFeedback(arr) {
     let awaitfeedback_tasks;
     if (arr) {
@@ -95,6 +137,10 @@ function renderAwaitFeedback(arr) {
     }
 }
 
+/**
+ * This renders the Done tasks column
+ * @param {Array} arr When filter is active then arr is set 
+ */
 function renderDone(arr) {
     let done_tasks;
     if (arr) {
@@ -110,20 +156,33 @@ function renderDone(arr) {
     }
 }
 
-function filterTasksByProgress(obj, query) {
-    return obj.filter((task) => task['progress'].includes(query));
+/**
+ * This filter a given task Array and filters them by the given query and returns a new Array
+ * @param {Array} tasks array (can be filtered)  
+ * @param {String} query like todo which defines the progress of a task Object
+ * @returns {Array} filtered Array by the query
+ */
+function filterTasksByProgress(arr, query) {
+    return arr.filter((task) => task['progress'].includes(query));
 }
 
+/**
+ * Renders empty todo
+ * @param {String} id If of the Html element
+ */
 function renderEmptyTodo(id) {
     document.getElementById(id).innerHTML = `<div id="emptyTodo" class="todo-empty">No tasks here</div>`;
 }
 
-/* Render HTML */
+/**
+ * This renders the tasks HTML related to the container
+ * @param {Array} tasks Array
+ * @param {String} id Container Id where tasks will be rendered
+ */
 function renderTasks(tasks, id) {
     let el = document.getElementById(id);
     el.innerHTML = '';
     tasks.forEach((task) => {
-        // If all fields are set in the object
         let coworkerIds = task['contactids'];
         const coworkersHTML = collectAndRenderCoworkers(coworkerIds);
         const subtasksQty = task['subtasks'].length;
@@ -133,6 +192,11 @@ function renderTasks(tasks, id) {
     });
 };
 
+/**
+ * This checks how many subtasks are toggled within the subtasks Array inside Task Object
+ * @param {Array} arr Array Subtasks from Task Object
+ * @returns {Number} qty of toggled tasks
+ */
 function calculateSubtasksToggled(arr) {
     let subtasksToggled = [];
     arr.forEach(st => {
@@ -143,10 +207,21 @@ function calculateSubtasksToggled(arr) {
     return subtasksToggled.length;
 }
 
+/**
+ * Gets the initals from a contactid, maps the HTML of each Initial and joins them together. 
+ * At last it returns complete HTML of all HTML Initials
+ * @param {Arry} coworkerIds Gets an Arry with contactid`s from a specific task Object
+ * @returns {HTML} 
+ */
 function collectAndRenderCoworkers(coworkerIds) {
     return getInitials(coworkerIds).map(coworker => `<div class="todo-coworker">${coworker}</div>`).join('');
 }
 
+/**
+ * This checks for priovalue and returns the img element with the correspondig URL based on the prioValue
+ * @param {String} priovalue Priority Value of the Task 
+ * @returns {HTML} Html if prioValue otherwise empty ''
+ */
 function getPriorityHtml(priovalue) {
     let url;
     if (priovalue) {
@@ -155,13 +230,17 @@ function getPriorityHtml(priovalue) {
                 url = el.img;
             }
         });
-        return `<img src="${url}"></img>`;
+        return `<img src="${url}">`;
     }
     return '';
 }
 
+/**
+ * Renders the task description inside a task card
+ * @param {Obejct} task Task Object 
+ * @returns {HTML} when description set, otherwise ''
+ */
 function renderDescription(task) {
-    /* return task.description ? `<pre class="todo-description">${task['description']}</pre>` : ''; */
     if (task.description) {
         return `<pre class="todo-description">${task['description']}</pre>`;
     } else {
@@ -169,6 +248,12 @@ function renderDescription(task) {
     };
 }
 
+/**
+ * This renders the subtasks bar inside a Task Card
+ * @param {Boolean} toggled Value if subtask is toggled
+ * @param {Number} subtasksQty qty of subtasks inside task 
+ * @returns {HTML} if subtasks otherwise ''
+ */
 function renderSubtaskBar(toggled, subtasksQty) {
     if (subtasksQty) {
         return `
@@ -180,12 +265,15 @@ function renderSubtaskBar(toggled, subtasksQty) {
             </div>
         `;
     } else {
-        return `
-            <div></div>
-        `;
+        return '';
     }
 }
 
+/**
+ * This sets the category color by its value
+ * @param {String} cat Category Value. Default is '#0038FF'
+ * @returns {String} Color in Hex
+ */
 function getCategoryColor(cat){
     if (cat && cat == 'Technical Task') {
         return '#1FD7C1';
@@ -194,7 +282,15 @@ function getCategoryColor(cat){
     }
 }
 
-
+/**
+ * Builds the complete Task card HTML
+ * @param {Object} task Object with task data
+ * @param {Number} subtasksQty Number of subtasks
+ * @param {Number} toggled Number of subtasks toggled
+ * @param {HTML} coworkersHTML Coworkers Initials Html
+ * @param {HTML} prioHtml Priority HTML Image Element
+ * @returns {HTML} with complete HTML task
+ */
 function renderTaskHtml(task, subtasksQty, toggled, coworkersHTML, prioHtml) {
     return `
     <div id="${task['taskid']}" class="todo" draggable="true" ondragstart="drag(event)" onclick="openTaskBig(${task['taskid']})">
@@ -214,7 +310,11 @@ function renderTaskHtml(task, subtasksQty, toggled, coworkersHTML, prioHtml) {
     `;
 }
 
-/* Helper function to retrieve Initials from contacts array */
+/**
+ * This function returns the initials of all coworker ids assigned to a task
+ * @param {Number} coworkerIds all the coworkerIds which are assigned to a task 
+ * @returns {Array} Initials of the coWorker Ids
+ */
 function getInitials(coworkerIds) {
     let initials = [];
     coworkerIds.forEach(id => {
@@ -224,28 +324,4 @@ function getInitials(coworkerIds) {
         }
     });
     return initials;
-}
-
-async function updateTask(newtaskid, newprogress) {
-    tasks.forEach(task => {
-        if (task.taskid == newtaskid) {
-            task.progress = newprogress;
-        }
-    });
-    await setItem('tasks', tasks);
-    fetchAndReloadBoard();
-}
-
-function filterTasks() {
-    filterActive = true;
-    let inval = document.getElementById('filterTasks').value;
-    if (inval == '') {
-        filterActive = false;
-    }
-    filteredtasks = tasks.filter((task) => {
-        if (task.title.toLowerCase().includes(inval.toLowerCase()) || task.description.toLowerCase().includes(inval.toLowerCase())) {
-            return true;
-        } return false;
-    });
-    renderBoard(filteredtasks);
 }

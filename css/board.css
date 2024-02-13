@@ -99,7 +99,7 @@ pre {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 32px;
+    margin: 0 10px 32px 10px;
 }
 
 .col-head span {

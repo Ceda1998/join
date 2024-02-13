@@ -1,11 +1,18 @@
 let menuOpen = false;
 
+/**
+ * This hides the Contacts Detail Container on Mobile so the contact List is visible (for Back Arrow)
+ */
 function hideMobileDetailView() {
-    document.getElementById('contactListContainer').classList.remove('d-none');
-    document.getElementById('contactsDetailContainer').classList.remove('d-flex');
+    if (isMobile()) {
+        document.getElementById('contactListContainer').classList.remove('d-none');
+        document.getElementById('contactsDetailContainer').classList.remove('d-flex');
+    }
 }
 
-/* Attention this need to be adjusted if media queries change! */
+/**
+ * This hides the Contact List on Mobile ad shows the Details Page
+ */
 function handleMobileView() {
     if (isMobile()) {
         document.getElementById('contactListContainer').classList.add('d-none');
@@ -13,6 +20,10 @@ function handleMobileView() {
     }
 }
 
+/**
+ * This show the mobile Menu when clicked on the dots icon
+ * @param {Object} event 
+ */
 function renderContactDetailMenu(event) {
     event.stopPropagation();
     document.getElementById('mobileMenuDots').classList.add('d-none');
@@ -20,6 +31,9 @@ function renderContactDetailMenu(event) {
     menuOpen = true;
 }
 
+/**
+ * This closes the small Menu on the Contact Detail Page rendered only on Mobile, when clicked outside
+ */
 function closeMenu() {
     if (menuOpen) {
         document.getElementById('mobileMenuDots').classList.remove('d-none');
