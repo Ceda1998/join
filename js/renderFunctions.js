@@ -5,7 +5,7 @@ function renderSignUpWindow() {
       <div id="signUpWindow">
         <h1 class="loginHeadline">Sign up</h1>
         <hr class="dividerSolid">
-        <img src="./assets/img/arrow-left-line.png" id="signUpArrowLeft" onclick="returnToLogin()">
+        <img src="./assets/img/arrow-left-line.png" id="signUpArrowLeft" onclick="redirectTo('../index.html')">
         <form action="#" id="SignUpForm" onsubmit="register(event)">
           <div class="inputIcon_container">
             <input type="text" required class="loginInputField" placeholder="Name" id="registerUserName"/>
