@@ -1,4 +1,4 @@
-let selectedContactsAssignedTo = []; /* gets added to the tasks.json */
+let selectedContactsAssignedTo = [];
 let selectedContactsAssignedToIds= [];
 let isArrowAssignedToRotated = false;
 let prioButtons = [
@@ -22,12 +22,13 @@ let prioButtons = [
     ];
 const TOTAL_BUTTONS = 3;
 let isArrowCategoryRotated = false;
-let subtasks = []; /* gets added to the tasks.json */
+let subtasks = [];
 let currentProgress;
 
 
-/* When the side is loaded all Fields get initalized and cleared*/
-
+/**
+ * This function initializes the addTask page and clears all fields
+ */
 async function initAddTask() {
     await includeHTML();
     await checkPath();
@@ -41,8 +42,9 @@ async function initAddTask() {
 }
 
 
-/* If the path is the main addTask page, then the close-button gets removed */
-
+/**
+ * If the path is the main addTask page, the close button gets removed
+ */
 async function checkPath() {
     if (window.location.pathname === "/add_task.html") {
         await removeCloseButton();
@@ -52,32 +54,44 @@ async function checkPath() {
 }
 
 
-/* Load Contacts from JSON later Remote Storage */
-
+/**
+ * This function loads the contacts from the remote storage
+ */
 async function fetchContactsAt() {
     let resp = await getItem('contacts');
     contacts = JSON.parse(resp);
 }
 
 
-/* Load tasks from JSON later Remote Storage */
-
+/**
+ * This function loads the tasks from the remote storage
+ */
 async function fetchTasksAt() {
     let resp = await getItem('tasks');
     tasks = JSON.parse(resp);
 }
 
 
-/* Render all the Fields from Add Task */
-
+/**
+ * This function renders all fields cleared
+ */
 function renderAddTask() {
     let inputFields = getAllInputFields();
     setInputClear(inputFields);
 }
 
 
-/* Function to initialize the fields */
-
+/**
+ * This function gets the input fields
+ * @returns {{
+ * titleInput: HTMLElement,
+ * descriptionInput: HTMLElement,
+ * assignedToInput: HTMLElement,
+ * dueDateInput: HTMLElement,
+ * categoryInput: HTMLElement,
+ * subtaskInput: HTMLElement
+ * }}
+ */
 function getAllInputFields() {
     let titleInput = getField('titleInput');
     let descriptionInput = getField('descriptionInput');
@@ -89,16 +103,21 @@ function getAllInputFields() {
 }
 
 
-/* Function to initialize specific field */
-
+/**
+ * This function gets a specific html element
+ * @param {string} fieldName - This is the id of the specific html element you want to get
+ * @returns {HTMLElement} Returns the specific html element
+ */
 function getField(fieldName) {
     let fieldElement = document.getElementById(`${fieldName}`);
     return fieldElement;
 }
 
 
-/* Function to clear the fields */
-
+/**
+ * This function clears all input fields and arrays
+ * @param {HTMLElement} inputFields - The specific html element you want to clear
+ */
 function setInputClear(inputFields) {
     inputFields.titleInput.value = '';
     inputFields.descriptionInput.value = '';
@@ -117,8 +136,9 @@ function setInputClear(inputFields) {
 }
 
 
-/* Function to setArrowRotated start position */
-
+/**
+ * This sets the arrow of the assignedTo input and the category input to the start position
+ */
 function setArrowRotated() {
     if (isArrowAssignedToRotated == true) {
         toggleAssignedToDropDown();
@@ -129,50 +149,63 @@ function setArrowRotated() {
 }
 
 
-/* Removes the close button */
-
+/**
+ * The close button gets removed
+ */
 async function removeCloseButton() {
     getField('closeButtonPopUpAt').classList.add('d-none');
 }
 
 
-/* Adds the close button */
-
+/**
+ * The close button gets added
+ */
 async function addCloseButton() {
     getField('closeButtonPopUpAt').classList.remove('d-none');
 }
 
 
-/* When a field gets the focus, it gets a blue border */
-
+/**
+ * This function makes a blue border if a input field gets the focus
+ * @param {string} selectedField - The id of the specific html element you want the focus on
+ */
 function addFocus(selectedField) {
     document.getElementById(selectedField).classList.add('focus');
 }
 
 
-/* After clicking away from a field, the blue border gets removed */
-
+/**
+ * This function removes the blue border if the input field doesn't have the focus
+ * @param {string} selectedField - The id of the specific html element you don't want the focus
+ */
 function removeFocus(selectedField) {
     document.getElementById(selectedField).classList.remove('focus');
 }
 
 
-/* Add focus to container from input */
-
+/**
+ * This function makes a blue border to a input field container if it gets the focus
+ * @param {string} selectedField - The id of the specific container
+ */
 function addFocusToContainer(selectedField) {
     document.getElementById(selectedField).classList.add('focus-container');
 }
 
 
-/* Remove focus from container from input */
-
+/**
+ * This function removes the blue border if the input field container doesn't have the focus
+ * @param {string} selectedField - The id of the specific contianer
+ */
 function removeFocusToContainer(selectedField) {
     document.getElementById(selectedField).classList.remove('focus-container');
 }
 
 
-/* After clicking on the title-input it gets checked if there is text in the inputfield */
-
+/**
+ * After clicking on the title-input it gets checked if there is text in the inputfield
+ * @param {string} inputName - The id of the title input field
+ * @param {string} requiredContainerName - The id of the title input field container
+ */
 function checkValueTitle(inputName, requiredContainerName) {
     let titleInput = getField(inputName)
     let titleRequiredContainer = getField(requiredContainerName);
@@ -188,8 +221,10 @@ function checkValueTitle(inputName, requiredContainerName) {
 }
 
 
-/* The min-date is set for today and the max-date is set in a year */
-
+/**
+ * The min-date is set for today and the max-date is set in a year
+ * @param {string} inputName - The id of the date input field
+ */
 function minMaxDate(inputName) {
     let today = new Date();
     document.getElementById(inputName).min = today.toISOString().split('T')[0];
@@ -200,8 +235,11 @@ function minMaxDate(inputName) {
 }
 
 
-/* After clicking on the due-date-input it gets checked if there is text in the inputfield */
-
+/**
+ * After clicking on the dueDate input, it gets checked, if there is text in the input field
+ * @param {string} inputName - The id of the date input field
+ * @param {string} containerName - The id of the date input container
+ */
 function checkValueDueDate(inputName, containerName) {
     let dueDateInput = getField(inputName);
     let dateRequiredContainer = getField(containerName);
@@ -217,8 +255,10 @@ function checkValueDueDate(inputName, containerName) {
 }
 
 
-/* The font color gets changed, when there is a date in the field */
-
+/**
+ * The font color gets changed, when there is a date in the field
+ * @param {string} inputName - The id of the date input field
+ */
 function colorFontInput(inputName) {
     let dateInput = getField(inputName);
     if (dateInput.value !== '') {
@@ -231,8 +271,9 @@ function colorFontInput(inputName) {
 }
 
 
-/* Function to set Prio Medium to start */
-
+/**
+ * Function to set Prio Medium to start
+ */
 function setPrioMedium() {
     try {
         setPrio(2, 'prioButton', 'prioColor', 'prioWhite', 'prio');
@@ -242,8 +283,14 @@ function setPrioMedium() {
 }
 
 
-/* Function to set the Prio */
-
+/**
+ * Function to set the Prio
+ * @param {number} num - The number of the specific prio
+ * @param {string} buttonName - A part of the id to get the button
+ * @param {string} prioColor - A part of the id to get the image in color
+ * @param {string} prioWhite - A part of the id to get the image in white
+ * @param {string} prio - A part of the id to geht the prio name
+ */
 function setPrio(num, buttonName, prioColor, prioWhite, prio) {
     for (let i = 0; i < TOTAL_BUTTONS; i++) {
         let isButtonToggled = prioButtons[i]['toggled'];
@@ -254,8 +301,14 @@ function setPrio(num, buttonName, prioColor, prioWhite, prio) {
 }
 
 
-/* Function to toggle the desired prio-button */
-
+/**
+ * This function toggles the desired prio button
+ * @param {number} i - i+1 is the index of the specific prio button
+ * @param {string} buttonName - A part of the id to get the button
+ * @param {string} prioColor - A part of the id to get the image in color
+ * @param {string} prioWhite - A part of the id to get the image in white
+ * @param {string} prio - A part of the id to geht the prio name
+ */
 function togglePrio(i, buttonName, prioColor, prioWhite, prio) {
     prioButtons[i]['toggled'] = !prioButtons[i]['toggled'];
     const selectedButton = getField(`${buttonName}${i+1}`);
@@ -271,8 +324,9 @@ function togglePrio(i, buttonName, prioColor, prioWhite, prio) {
 }
 
 
-/* Function to clear the prio-buttons when the clear-button gets clicked */
-
+/**
+ * Function to clear the prio buttons when the clear button gets clicked
+ */
 function clearPrioButtons() {
     for (let i = 0; i < TOTAL_BUTTONS; i++) {
         let isButtonToggled = prioButtons[i]['toggled']
@@ -283,8 +337,9 @@ function clearPrioButtons() {
 }
 
 
-/* The category-drop-down gets toggled*/
-
+/**
+ * The category drop-down gets toggled
+ */
 function toggleCategoryDropDown() {
     let categoryDropDown = getField('categoryDropDown');
     let arrowCategory = getField('arrowCategory');
@@ -294,8 +349,10 @@ function toggleCategoryDropDown() {
 }
 
 
-/* The category is written in the input-field */
-
+/**
+ * The selected category is written in the input field
+ * @param {number} num - The number of the selected category
+ */
 function selectCategory(num) {
     let input = getField('categoryInput');
     let selectedCategory = getField(`category${num}`).innerHTML;
@@ -304,8 +361,9 @@ function selectCategory(num) {
 }
 
 
-/* An EventListener when you click outside the category-container, the drop-down gets closed*/
-
+/**
+ * An EventListener, when you click outside the category container, the drop-down gets closed
+ */
 document.addEventListener('click', function(event) {
     let categoryContainer = document.getElementById('categoryInputContainer');
     let categoryDropDown = document.getElementById('categoryDropDown');
@@ -316,15 +374,17 @@ document.addEventListener('click', function(event) {
 })
 
 
-/* Clears all input-fields */
-
+/**
+ * This function clears all the input fields
+ */
 function clearTask() {
     renderAddTask();
 }
 
 
-/* This function creates a Task and saves it into the remote storage */
-
+/**
+ * This function creates a task and saves the task in the remote storage
+ */
 async function createTask() {
     const inputFields = collectInputFields();
     renderContactIds();
@@ -337,8 +397,18 @@ async function createTask() {
 }
 
 
-/* Function to collect the input fields */
-
+/**
+ * This function collects all the input fields
+ * @returns {{
+ * title: string,
+ * description: string,
+ * dueDate: string;
+ * category: string;
+ * taskId: Array<number>,
+ * priority: string,
+ * progress: string,
+ * }}
+ */
 function collectInputFields() {
     let title = getField('titleInput').value;
     let description = document.getElementById('descriptionInput').value;
@@ -352,8 +422,32 @@ function collectInputFields() {
 }
 
 
-/* Function to create a task-instance for pushing to the tasks-array */
-
+/**
+ * This function creates a task instance for pushing to the tasks-array
+ * @param {{
+ * title: string,
+ * description: string,
+ * dueDate: string,
+ * category: string,
+ * taskId: number,
+ * priority: string,
+ * progress: string
+ * }} param0 - The values to create the task
+ * @returns {{
+ * taskId: Array<number>,
+ * title: string,
+ * description: string,
+ * category: string,
+ * subtasks: Array<{
+ *  name: string,
+ *  isToggled: boolean
+ * }>,
+ * selectedContactsAssignedToIds: Array<number>,
+ * priority: string,
+ * progress: string,
+ * dueDate: string
+ * }}
+ */
 function createTaskInstance({ title, description, dueDate, category, taskId, priority, progress}) {
     return {
         "taskid": taskId,
@@ -369,8 +463,11 @@ function createTaskInstance({ title, description, dueDate, category, taskId, pri
 }
 
 
-/* Function to control empty fields */
-
+/**
+ * This function controls if the description field is empty
+ * @param {string} description - The description value
+ * @returns {string} - The description value or an empty value
+ */
 function controlIfDescriptionEmtpy(description) {
     if (description == '') {
         description = '';
@@ -379,15 +476,19 @@ function controlIfDescriptionEmtpy(description) {
 }
 
 
-/* Function for getting the contactId */
-
+/**
+ * This function sets the new taskId
+ * @returns {number} - The new taskId
+ */
 function gettingContactId() {
     return tasks.length + 1;
 }
 
 
-/* Function for getting the prio name */
-
+/**
+ * This function gets the prio name
+ * @returns {string} - The name of the prio 'urgent', 'medium', 'low' or empty
+ */
 function getPriority() {
     for (let i = 0; i < prioButtons.length; i++){
         let isButtonToggled = prioButtons[i]['toggled']
@@ -398,8 +499,10 @@ function getPriority() {
 }
 
 
-/* Function to get the progress */
-
+/**
+ * This function gets the current progress
+ * @returns {string} - The name of the current progress 'todo', 'inprogress' or 'awaitfeedback'
+ */
 function getProgress() {
     if (currentProgress === '') {
         return 'todo';
@@ -409,8 +512,9 @@ function getProgress() {
 }
 
 
-/* Function to get the selected contacts as an array or a empty array*/
-
+/**
+ * This function gets the selected contacts as an array or an empty array
+ */
 function renderContactIds() {
     if (selectedContactsAssignedTo.length > 0) {
         selectedContactsAssignedToIds = selectedContactsAssignedTo.map(contact => parseInt(contact['contactid']));
@@ -420,8 +524,9 @@ function renderContactIds() {
 }
 
 
-/* After the task is created, the board is shown */
-
+/**
+ * After the task is created, the board is shown with all the tasks
+ */
 function goToBoard() {
     window.location.href = './board.html';
 }

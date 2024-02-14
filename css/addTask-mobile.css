@@ -11,7 +11,7 @@
     /* Content Main Add-Task */
 
     .board-container {
-        margin-bottom: 90px;
+        margin-bottom: 220px;
     }
 
     .assigned-to-drop-down {
@@ -234,10 +234,18 @@
 
     .bottom-container {
         padding: 16px;
+        display: flex;
+        flex-direction: column-reverse;
     }
 
     .bottom-container .text-required {
+        width: 100%;
+        height: auto;
         font-size: 10px;
+        margin-top: 0;
+        display: flex;
+        justify-content: flex-start;
+        align-items: unset;
     }
 
     .star-text-required {
@@ -245,17 +253,31 @@
     }
 
     .buttons-container {
-        width: auto;
+        width: 100%;
+        gap: 4px;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .buttons-container img {
+        width: 20px;
+        height: 19px;
     }
 
     .button-clear {
-        display: none;
+        width: 80px;
+        height: 40px;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
     }
 
     .button-create {
-        width: 160px;
-        height: 50px;
-        font-size: 18px;
+        width: 120px;
+        height: 40px;
+        font-size: 14px;
         display: flex;
         align-items: center;
         justify-content: center;

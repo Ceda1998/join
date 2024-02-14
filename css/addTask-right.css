@@ -178,6 +178,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-bottom: 2px;
 }
 
+.added-subtask-container input {
+    padding-right: 20%;
+}
+
 .point {
     margin-left: 16px;
     margin-right: 4px;
@@ -194,13 +198,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: 16px;
     line-height: 19.2px;
     outline: unset;
+    position: relative;
 }
 
 .tool-container {
-    display: flex;
-    height: 32px;
-    margin-right: 16px;
-    margin-left: 8px;
+    position: absolute;
+    right: 8px;
+}
+
+.tools-focus {
+    z-index: 200;
 }
 
 .tools-no-focus,

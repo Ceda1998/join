@@ -44,23 +44,17 @@ function deleteInputSubtask() {
 }
 
 
-/* Saves the subtask in the input-field, so it can be added, when clicking on the plus-image */
-
-/* function saveInputSubtask() {
-    let insertSubtaskToolContainer = getField('insertSubtaskToolContainer');
-    let plusImg = getField('plusImg');
-    plusImg.classList.remove('d-none');
-    insertSubtaskToolContainer.classList.add('d-none');
-} */
-
-
 /* Adds the subtask in the list under the subtask-input-field, when clicking on the plus-image */
 
 function addSubtask() {
     let input = getField('subtaskInput');
     let subtask = input.value;
     if (subtask !== '') {
-        subtasks.push(subtask);
+        const currentSubtask = {
+            "name": subtask,
+            "isToggled": false
+        }
+        subtasks.push(currentSubtask);
         renderSubtasks();
     }
     input.value = '';
@@ -74,7 +68,7 @@ function renderSubtasks() {
     let subtasksContainer = getField('addedSubtasksContainer');
     subtasksContainer.innerHTML = '';
     for (let i = 0; i < subtasks.length; i++) {
-        const subtask = subtasks[i];
+        const subtask = subtasks[i]['name'];
         subtasksContainer.innerHTML += returnSubtaskTemplate(i, subtask);
     }
 }
@@ -84,14 +78,19 @@ function renderSubtasks() {
 
 function returnSubtaskTemplate(i, subtask) {
     return /*html*/`
-        <div class="added-subtask-container" id="addedSubtaskContainer${i}" onblur="inputAddedSubtaskBlur(${i})">
+        <div class="added-subtask-container" id="addedSubtaskContainer${i}">
             <span class="point">•</span>
-            <input class="added-subtask" id="addedSubtask${i}" type="text" value='${subtask}' ondblclick="inputAddedSubtask(${i})" onblur="inputAddedSubtaskBlur(${i})" readonly>
+            <input class="added-subtask" id="addedSubtask${i}" type="text" value='${subtask}' ondblclick="inputAddedSubtaskFocus(${i})" readonly>
             <div class="tool-container" id="toolContainer${i}">
                 <div id="toolsNoFocus${i}" class="tools-no-focus">
-                    <img src="./assets/img/edit.png" class="edit-img" onclick="inputAddedSubtaskWithClickOnImg(${i})">
+                    <img src="./assets/img/edit.png" class="edit-img" onclick="inputAddedSubtaskFocus(${i})">
                     <div class="tool-separator"></div>
                      <img src="./assets/img/delete-img.png" class="delete-img" onclick="deleteAddedSubtask(${i})">
+                </div>
+                <div id="toolsFocus${i}" class="tools-focus d-none">
+                    <img src="./assets/img/delete-img.png" class="delete-img-focus" onclick="deleteAddedSubtask(${i})">
+                    <div class="tool-separator"></div>
+                    <img src="./assets/img/check-black.png" class="check-img-focus" onclick="saveAddedSubtask(${i})">
                 </div>
             </div>
         </div>
@@ -99,54 +98,59 @@ function returnSubtaskTemplate(i, subtask) {
 }
 
 
-/* Changes the tool-images in the addded subtask, when his focused on */
-
-function renderToolContainerFocus(i) {
-    let toolContainer = getField(`toolContainer${i}`);
-    toolContainer.innerHTML = '';
-    toolContainer.innerHTML = /*html*/`
-        <div id="toolsFocus${i}" class="tools-focus">
-            <img src="./assets/img/delete-img.png" class="delete-img-focus" onclick="deleteAddedSubtask(${i})">
-            <div class="tool-separator"></div>
-            <img src="./assets/img/check-black.png" class="check-img-focus" onclick="saveAddedSubtask(${i})">
-        </div>
-    `;
-}
-
-
 /* Doubleclick on subtask, so you can edit the subtask, different tool-images than before */
 
-function inputAddedSubtask(i) {
+function inputAddedSubtaskFocus(i) {
+    renderSubtasks();
     let addedSubtaskContainer = getField(`addedSubtaskContainer${i}`);
+    addedSubtaskContainer.classList.add('added-subtask-focus');
     let input = getField(`addedSubtask${i}`);
     input.removeAttribute('readonly');
-    addedSubtaskContainer.classList.add('added-subtask-focus');
-    renderToolContainerFocus(i);
+    getToolsFocus(i);
+    setFocus(i);
 }
+
+
+function getToolsFocus(i) {
+    let toolsNoFocus = getField(`toolsNoFocus${i}`);
+    let toolsFocus = getField(`toolsFocus${i}`);
+    toolsNoFocus.classList.add('d-none');
+    toolsFocus.classList.remove('d-none');
+}
+
+function setFocus(i) {
+    let input = getField(`addedSubtask${i}`);
+    input.setSelectionRange(input.value.length, input.value.length);
+    input.focus();
+}
+
+document.addEventListener('click', function(event) {
+    let subtasksContainer = document.getElementById('addedSubtasksContainer');
+    if (!subtasksContainer.contains(event.target)) {
+        inputAddedSubtaskBlur();
+    }
+})
+
 
 
 /* If you click outside the current subtask, the backgroundcolor and images change back */
 
-function inputAddedSubtaskBlur(i) {
-    let addedSubtaskContainer = getField(`addedSubtaskContainer${i}`);
-    let input = getField(`addedSubtask${i}`);
-    input.setAttribute('readonly', 'readonly');
-    addedSubtaskContainer.classList.remove('added-subtask-focus');
-    if (input.value == '') {
-        deleteAddedSubtask(i);
+function inputAddedSubtaskBlur() {
+    for (let i = 0; i < subtasks.length; i++) {
+        let addedSubtaskContainer = getField(`addedSubtaskContainer${i}`);
+        let input = getField(`addedSubtask${i}`);
+        input.setAttribute('readonly', 'readonly');
+        addedSubtaskContainer.classList.remove('added-subtask-focus');
+        if (input.value == '') {
+            deleteAddedSubtask(i);
+        }
     }
     renderSubtasks();
 }
 
 
-/* It has a pen-image in the added subtask, when you click on that, you can edit the subtask */
 
-function inputAddedSubtaskWithClickOnImg(i) {
-    inputAddedSubtask(i);
-    let input = getField(`addedSubtask${i}`);
-    input.setSelectionRange(input.value.length, input.value.length);
-    input.focus();
-}
+
 
 
 /* It has a bin-image in the added subtask, when you click on that, you can delete the subtask */
@@ -160,5 +164,7 @@ function deleteAddedSubtask(i) {
 /* When you edit the subtask it has a check-image. If you click on the check image, you save the editted subtask */
 
 function saveAddedSubtask(i) {
-    inputAddedSubtaskBlur(i);
+    let newValue = getField(`addedSubtask${i}`).value;
+    subtasks[i] = newValue;
+    renderSubtasks();
 }
