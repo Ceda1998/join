@@ -49,7 +49,7 @@ function deleteInputSubtask() {
 function addSubtask() {
     let input = getField('subtaskInput');
     let subtask = input.value;
-    if (subtask !== '') {
+    if (subtask.trim() !== '') {
         const currentSubtask = {
             "name": subtask,
             "isToggled": false
@@ -69,18 +69,22 @@ function renderSubtasks() {
     subtasksContainer.innerHTML = '';
     for (let i = 0; i < subtasks.length; i++) {
         const subtask = subtasks[i]['name'];
-        subtasksContainer.innerHTML += returnSubtaskTemplate(i, subtask);
+        subtasksContainer.innerHTML += returnSubtaskTemplate(i);
+    }
+    for (let i = 0; i < subtasks.length; i++) {
+        const subtask = subtasks[i]['name'];
+        getField(`addedSubtask${i}`).value = subtask;
     }
 }
 
 
 /* Subtask Template*/
 
-function returnSubtaskTemplate(i, subtask) {
+function returnSubtaskTemplate(i) {
     return /*html*/`
-        <div class="added-subtask-container" id="addedSubtaskContainer${i}">
+        <div class="added-subtask-container" id="addedSubtaskContainer${i}" onfocus="inputAddedSubtaskFocus(${i})">
             <span class="point">•</span>
-            <input class="added-subtask" id="addedSubtask${i}" type="text" value='${subtask}' ondblclick="inputAddedSubtaskFocus(${i})" readonly>
+            <input class="added-subtask" id="addedSubtask${i}" type="text" onblur="inputAddedSubtaskBlur(${i})" ondblclick="inputAddedSubtaskFocus(${i})" readonly>
             <div class="tool-container" id="toolContainer${i}">
                 <div id="toolsNoFocus${i}" class="tools-no-focus">
                     <img src="./assets/img/edit.png" class="edit-img" onclick="inputAddedSubtaskFocus(${i})">
@@ -101,7 +105,6 @@ function returnSubtaskTemplate(i, subtask) {
 /* Doubleclick on subtask, so you can edit the subtask, different tool-images than before */
 
 function inputAddedSubtaskFocus(i) {
-    renderSubtasks();
     let addedSubtaskContainer = getField(`addedSubtaskContainer${i}`);
     addedSubtaskContainer.classList.add('added-subtask-focus');
     let input = getField(`addedSubtask${i}`);
@@ -124,19 +127,11 @@ function setFocus(i) {
     input.focus();
 }
 
-document.addEventListener('click', function(event) {
-    let subtasksContainer = document.getElementById('addedSubtasksContainer');
-    if (!subtasksContainer.contains(event.target)) {
-        inputAddedSubtaskBlur();
-    }
-})
-
 
 
 /* If you click outside the current subtask, the backgroundcolor and images change back */
 
-function inputAddedSubtaskBlur() {
-    for (let i = 0; i < subtasks.length; i++) {
+function inputAddedSubtaskBlur(i) {
         let addedSubtaskContainer = getField(`addedSubtaskContainer${i}`);
         let input = getField(`addedSubtask${i}`);
         input.setAttribute('readonly', 'readonly');
@@ -144,13 +139,7 @@ function inputAddedSubtaskBlur() {
         if (input.value == '') {
             deleteAddedSubtask(i);
         }
-    }
-    renderSubtasks();
 }
-
-
-
-
 
 
 /* It has a bin-image in the added subtask, when you click on that, you can delete the subtask */
@@ -164,7 +153,7 @@ function deleteAddedSubtask(i) {
 /* When you edit the subtask it has a check-image. If you click on the check image, you save the editted subtask */
 
 function saveAddedSubtask(i) {
-    let newValue = getField(`addedSubtask${i}`).value;
-    subtasks[i] = newValue;
+    console.log(i);
+    subtasks[i]['name'] = getField(`addedSubtask${i}`).value;
     renderSubtasks();
 }
