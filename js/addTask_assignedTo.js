@@ -1,19 +1,25 @@
-/* Add Focus to Assigned to */
-
+/**
+ * This function adds the focus to the assignedTo container
+ * @param {string} nameContainer - This is the id of the specific container
+ */
 function inputAssignedToFocus(nameContainer) {
     addFocusToContainer(nameContainer);
 }
 
 
-/* Remove Focus to Assigned to */
-
+/**
+ * This function removes the focus to the assignedTo container
+ * @param {string} nameContainer - This is the id of the specific container
+ */
 function inputAssignedToBlur(nameContainer) {
     removeFocusToContainer(nameContainer);
 }
 
 
-/* Selects the person you click on and puts it in the selectedContactsAssignedTo-Array */
-
+/**
+ * This function selects the person you click on and puts it in the selectedContactsAssignedTo-array
+ * @param {number} num - This is the index of the contact you selected
+ */
 function selectPerson(num) {
     let selectedPerson = contacts[`${num}`];
     selectedContactsAssignedTo.push(selectedPerson);
@@ -21,8 +27,10 @@ function selectPerson(num) {
 }
 
 
-/* Removes the person you click on and removes it from the selectedContactsAssignedTo-Array*/
-
+/**
+ * This function removes the person you click on and removes the contact from the selectedContactsAssignedTo-array
+ * @param {number} num - This is the index of the contact you selected
+ */
 function removePerson(num) {
     let selectedPerson = contacts[`${num}`]['fullname'];
     for (let i=0; i < selectedContactsAssignedTo.length; i++) {
@@ -36,8 +44,10 @@ function removePerson(num) {
 }
 
 
-/* What happens when a contact gets selected */
-
+/**
+ * When you click a contact, the background in the assignedTo-dropdown changes
+ * @param {number} num - This is the index of the contact you clicked 
+ */
 function checkButtonContactsChecked(num) {
     let button = getField(`button${num}`);
     let checkedButton = getField(`checkedButton${num}`);
@@ -50,8 +60,9 @@ function checkButtonContactsChecked(num) {
 }
 
 
-/* The assigned-to-drop-down gets toggled */
-
+/**
+ * The assignedTo-dropdown gets toggled
+ */
 function toggleAssignedToDropDown() {
     let assignedToDropDown = getField('assignedToDropDown');
     let contactsSelectedContainer = getField('contactsSelectedContainer');
@@ -64,8 +75,9 @@ function toggleAssignedToDropDown() {
 }
 
 
-/* If-else-statement according to the direction of the arrow */
-
+/**
+ * If-else-statement according to the direction of the arrow
+ */
 function ifElseArrow() {
     if (isArrowAssignedToRotated == true) {
         renderContactsAssignedTo();
@@ -75,8 +87,9 @@ function ifElseArrow() {
 }
 
 
-/* If the arrow is rotated the contacts are loaded and shown*/
-
+/**
+ * If the arrow of assignedTo is rotated the contacts are shown
+ */
 function renderContactsAssignedTo() {
     let assignedToDropDownWrapper = getField('assignedToDropDownWrapper');
     assignedToDropDownWrapper.innerHTML = '';
@@ -90,8 +103,9 @@ function renderContactsAssignedTo() {
 }
 
 
-/* If the direction of the arrow is down, all the slected contacts are shown by the initials */
-
+/**
+ * This is the function to show the initials of the contacts
+ */
 function renderInitialsSelected() {
     let contactsSelectedContainer = getField('contactsSelectedContainer');
     contactsSelectedContainer.innerHTML = '';
@@ -105,9 +119,14 @@ function renderInitialsSelected() {
 }
 
 
-/* Template to the renderContactsAssignedTo-function */
-
+/**
+ * This is the template to show the contacts in the dropdown
+ * @param {array} contact - This is the array of a specific contact
+ * @param {number} i - This is the index of the contact 
+ * @returns The html-template gets returned
+ */
 function assignedToContactsTemplate(contact, i) {
+    console.log(contact);
     return /*html*/`
         <div class="drop-down-contacts-container" id="dropDownContactsContainer${i}">
             <div class="initial-name-container">
@@ -121,8 +140,11 @@ function assignedToContactsTemplate(contact, i) {
 }
 
 
-/* The selected contacts get the look of the checked button */
-
+/**
+ * This function sets the look of the selected contacts by comparing the names
+ * @param {string} fullname - This is the fullname of the contact-array
+ * @param {number} i - This is the index of the current contact 
+ */
 function renderContactsChecked(fullname, i) {
     for (let j = 0; j < selectedContactsAssignedTo.length; j++) {
         let contactSelected = selectedContactsAssignedTo[j];
@@ -141,8 +163,10 @@ function renderContactsChecked(fullname, i) {
 }
 
 
-/* Sets the Background Color of the initial-name-container according to the initials */
-
+/**
+ * This sets the background color of the initials of the selected contacts according to the initials
+ * @param {number} i - This is the index of the contact
+ */
 function renderBackgroundColorInitialsSelected(i) {
     let initialsSelectedContact = selectedContactsAssignedTo[i]['initials'];
     let firstLetter = initialsSelectedContact.charAt(0).toLowerCase();
@@ -151,8 +175,10 @@ function renderBackgroundColorInitialsSelected(i) {
 }
 
 
-/* Sets the Background Color of the initial-name-container according to the initials */
-
+/**
+ * This sets the background color of the initials according to the intitals
+ * @param {number} i - This is the current index
+ */
 function renderBackgroundColorInitials(i) {
     let initialsSelectedContact = contacts[i]['initials'];
     let firstLetter = initialsSelectedContact.charAt(0).toLowerCase();
@@ -161,8 +187,9 @@ function renderBackgroundColorInitials(i) {
 }
 
 
-/* You can search for a name */
-
+/**
+ * This function is when you search for a contact
+ */
 function filterNames() {
     let search = getField('assignedToInput').value.toLowerCase();
     let assignedToDropDownWrapper = getField('assignedToDropDownWrapper');
@@ -180,8 +207,11 @@ function filterNames() {
 }
 
 
-/* Active search assigned-to-seach-input */
-
+/**
+ * This function is, when the assignedTo-search-input is active
+ * @param {string} search - This is the search word 
+ * @param {HTMLElement} assignedToDropDownWrapper - This is the wrapper to show the contacts
+ */
 function activeSearchInput(search, assignedToDropDownWrapper) {
     assignedToDropDownWrapper.innerHTML = '';
     for (let i = 0; i < contacts.length; i++) {
@@ -196,8 +226,9 @@ function activeSearchInput(search, assignedToDropDownWrapper) {
 }
 
 
-/* An EventListener when you click outside the assigned-to-container, the drop-down gets closed */
-
+/**
+ * This EventListener is, when you click somewhere outside the assignedTo-container. Then the dropdown gets closed.
+ */
 document.addEventListener('click', function(event) {
     let assignedToContainer = document.getElementById('aTInputContainer');
     let assignedToDropDownWrapper = document.getElementById('assignedToDropDownWrapper');
