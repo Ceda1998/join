@@ -93,9 +93,9 @@ function renderSubtasks() {
  */
 function returnSubtaskTemplate(i) {
     return /*html*/`
-        <div class="added-subtask-container" id="addedSubtaskContainer${i}" onfocus="inputAddedSubtaskFocus(${i})">
+        <div class="added-subtask-container" id="addedSubtaskContainer${i}" onfocus="inputAddedSubtaskFocus(${i})" onblur="inputAddedSubtaskBlur(${i})">
             <span class="point">•</span>
-            <input class="added-subtask" id="addedSubtask${i}" type="text" onblur="inputAddedSubtaskBlur(${i})" ondblclick="inputAddedSubtaskFocus(${i})" readonly>
+            <input class="added-subtask" id="addedSubtask${i}" type="text" ondblclick="inputAddedSubtaskFocus(${i})" readonly>
             <div class="tool-container" id="toolContainer${i}">
                 <div id="toolsNoFocus${i}" class="tools-no-focus">
                     <img src="./assets/img/edit.png" class="edit-img" onclick="inputAddedSubtaskFocus(${i})">
@@ -122,7 +122,7 @@ function inputAddedSubtaskFocus(i) {
     addedSubtaskContainer.classList.add('added-subtask-focus');
     let input = getField(`addedSubtask${i}`);
     input.removeAttribute('readonly');
-    getToolsFocus(i);
+    getTools(i, 'toolsFocus', 'toolsNoFocus');
     setFocus(i);
 }
 
@@ -130,12 +130,14 @@ function inputAddedSubtaskFocus(i) {
 /**
  * This function changes the tool-images
  * @param {Number} i - This is the index of the added subtask
+ * @param {HTMLElement} toolsFocus - HTML element of the focus tools
+ * @param {HTMLElement} toolsNoFocus - HTML element of the no focus tools
  */
-function getToolsFocus(i) {
-    let toolsNoFocus = getField(`toolsNoFocus${i}`);
-    let toolsFocus = getField(`toolsFocus${i}`);
-    toolsNoFocus.classList.add('d-none');
-    toolsFocus.classList.remove('d-none');
+function getTools(i, toolsFocus, toolsNoFocus) {
+    let currentToolsNoFocus = getField(`${toolsNoFocus}${i}`);
+    let currentToolsFocus = getField(`${toolsFocus}${i}`);
+    currentToolsNoFocus.classList.add('d-none');
+    currentToolsFocus.classList.remove('d-none');
 }
 
 
@@ -163,6 +165,9 @@ function inputAddedSubtaskBlur(i) {
         if (input.value == '') {
             deleteAddedSubtask(i);
         }
+        if (subtasks.length !== 0) {
+            getTools(i, 'toolsNoFocus', 'toolsFocus');
+        }   
 }
 
 
