@@ -1,33 +1,45 @@
-/* Remove or Add pop-up-container */
-
+/**
+ * This function opens the main pop-up-container
+ */
 function openPopUpContainer() {
     let popUp = document.getElementById('popUpAtContainer');
     popUp.classList.remove('d-none');
 }
 
 
+/**
+ * This function closes the main pop-up-container
+ */
 function closePopUpContainer() {
     let popUp = document.getElementById('popUpAtContainer');
     popUp.classList.add('d-none');
 }
 
 
-/* Remove or add d-none */
-
+/**
+ * This function removes the d-none of an element
+ * @param {String} name - The id of the specific html element
+ */
 function removeDNone(name) {
     let field = document.getElementById(name)
     field.classList.remove('d-none');
 }
 
 
+/**
+ * This function adds the d-none to an element
+ * @param {String} name - The id of the specific html element 
+ */
 function addDNone(name) {
     let field = document.getElementById(name)
     field.classList.add('d-none');
 }
 
 
-/* Pop-up to add a new Task */
-    
+/**
+ * This function opens the pop-up to add a new task
+ * @param {String} progress - This is the current progress 'todo', 'inprogress' or 'awaitfeedback'
+ */    
 async function openPopUpAt(progress) {
     await getItem('tasks');
     addDNone('popUpTaskBig');
@@ -40,6 +52,9 @@ async function openPopUpAt(progress) {
 }
 
 
+/**
+ * This function closes the pop-up to add a new task
+ */
 function closePopUpAt() {
     clearTask();
     currentProgress = '';
@@ -50,8 +65,10 @@ function closePopUpAt() {
 }
 
 
-/* The pop-up when you click on a specific task on the board */
-
+/**
+ * This function opens the pop-up, when you click on a specific task on the board
+ * @param {Number} id - This is the taskid of the task you click on
+ */
 async function openTaskBig(id) {
     await getTasksFromServer();
     openPopUpContainer();
@@ -65,8 +82,11 @@ async function openTaskBig(id) {
 }
 
 
-/* Function to get the index by the taskid */
-
+/**
+ * This function gets the index by the taskid
+ * @param {Number} id - This is the taskid of the task you click on
+ * @returns The index of the task gets returned or null
+ */
 function getIndexById(id) {
     const index = tasks.findIndex(function(task) {
         return task.taskid === id;
@@ -80,8 +100,12 @@ function getIndexById(id) {
 }
 
 
-/* Render all informations for the task-pop-up */
-
+/**
+ * This runction renders the information for the task-pop-up
+ * @param {HTMLElement} popUp - This is the html element for a white canvas of the pop-up-task 
+ * @param {Object} currentTask - task object
+ * @param {Number} index - This is the index of the current task
+ */
 function renderAlInformationsTaskBig(popUp, currentTask, index) {
     popUp.innerHTML += renderPopUpCardTask(currentTask, index);
     renderColorsCategoryPu(currentTask);
@@ -93,8 +117,12 @@ function renderAlInformationsTaskBig(popUp, currentTask, index) {
 }
 
 
-/* HTML-Template for the task */
-
+/**
+ * This is the html-template for to fill in the pop-up
+ * @param {Object} currentTask - task object
+ * @param {Number} index - This is the index of the current task
+ * @returns The html-template gets returned
+ */
 function renderPopUpCardTask(currentTask, index) {
     return /*html*/`
         <div class="category-close-btn-container">
@@ -132,8 +160,10 @@ function renderPopUpCardTask(currentTask, index) {
 }
 
 
-/* Background-Color of the specific category */
-
+/**
+ * The background color of the specific category
+ * @param {Object} currentTask - task object
+ */
 function renderColorsCategoryPu(currentTask) {
     let currentCategory = currentTask['category'];
     let category = document.getElementById(`categoryPuBig`);
@@ -147,8 +177,10 @@ function renderColorsCategoryPu(currentTask) {
 }
 
 
-/* The description part, when there is a description and when not */
-
+/**
+ * Renders the description part, when there is a description and when not
+ * @param {Object} currentTask - task object
+ */
 function renderDescriptionPu(currentTask) {
     let description = document.getElementById(`puBigDescription`);
     if (currentTask['description'] !== '') {
@@ -160,8 +192,10 @@ function renderDescriptionPu(currentTask) {
 }
 
 
-/* The date gets shown in the correct format */
-
+/**
+ * The date gets shown in the correct format
+ * @param {Object} currentTask - task object
+ */
 function renderDueDatePu(currentTask) {
     let dueDateBig = document.getElementById(`dueDatePuBig`);
     const dateParts = currentTask['duedate'].split('-');
@@ -171,9 +205,11 @@ function renderDueDatePu(currentTask) {
 }
 
 
-/* The priority is shown or not */
-
-function renderPrioPu(currentTask, index) {
+/**
+ * The priority is shown or not
+ * @param {Object} currentTask - task object
+ */
+function renderPrioPu(currentTask) {
     let prioBig = document.getElementById(`priorityPuBig`);
     let priority = currentTask['priority'];
     if (priority !== '') {
@@ -187,8 +223,10 @@ function renderPrioPu(currentTask, index) {
 }
 
 
-/* The selected contacts are shown */
-
+/**
+ * The selected contacts are shown
+ * @param {Object} currentTask - task object
+ */
 function renderassignedToPu(currentTask) {
     let puBigContacts = document.getElementById(`puBigContacts`);
     puBigContacts.innerHTML = '';
@@ -197,8 +235,12 @@ function renderassignedToPu(currentTask) {
 }
 
 
-/* If the currentTask has contactids, they are shown */
-
+/**
+ * The ifElse-statement to show contacts if existing
+ * @param {HTMLElement} puBigContacts - The html-container of the contacts
+ * @param {HTMLElement} assignedToTitle - The html element of the assignedTo-title
+ * @param {Object} currentTask - task object
+ */
 function ifElseToShowContacts(puBigContacts, assignedToTitle, currentTask) {
     if (currentTask['contactids'].length !== 0) {
         assignedToTitle.classList.remove('d-none');
@@ -215,25 +257,27 @@ function ifElseToShowContacts(puBigContacts, assignedToTitle, currentTask) {
 }
 
 
-/* Function to get all selected contacts from the array */
-
+/**
+ * This function gets all selected contacts from the array
+ * @param {Number} contactid - The id of the contact 
+ * @returns If returns all the selected contacts or null
+ */
 function getContactPu(contactid) {
-
     for (let j = 0; j < contacts.length; j++) {
         if (contacts[j].contactid == contactid) {
             return j;
         }
-        /* const contactidContacts = contacts[j]['contactid'];
-        if (contactidContacts === contactid.toString()) {
-            return j;
-        } */
     }
     return null;
 }
 
 
-/* The if-else part, when there are contacts or no contacts */
-
+/**
+ * The if-else-part, when there are contacts or no contacts
+ * @param {Number} indexContact - The index of the contact
+ * @param {HTMLElement} puBigContacts - The html element of the id puBigContacts
+ * @param {Number} i - The index of the current contactId
+ */
 function ifElseContact(indexContact, puBigContacts, i) {
     if (indexContact !== null) {
         const contact = contacts[indexContact];
@@ -252,9 +296,11 @@ function ifElseContact(indexContact, puBigContacts, i) {
 }
 
 
-/* Render the background-color of the initials in the overlay */
-
-
+/**
+ * This runction renders the background color of the initials
+ * @param {String} initials - Those are the initials as a string
+ * @param {Number} i - The index of the current contactId
+ */
 function renderBackgroundColorOverlay(initials, i) {
     let firstLetter = initials.charAt(0).toLowerCase();
     let initialsField = getField(`initialsBig${i}`);
@@ -262,8 +308,11 @@ function renderBackgroundColorOverlay(initials, i) {
 }
 
 
-/* Function to render the subtasks */
-
+/**
+ * This is the function to render the subtasks in the overaly
+ * @param {Object} currentTask - task object
+ * @param {Number} index - This is the index of the current task
+ */
 function renderSubtasksPu(currentTask, index) {
     let subtasksBigContainer = document.getElementById(`puBigSubtasksContainer`);
     subtasksBigContainer.innerHTML = '';
@@ -278,8 +327,12 @@ function renderSubtasksPu(currentTask, index) {
 }
 
 
-/* For-Loop to get all subtasks */
-
+/**
+ * For-loop to get all the subtasks
+ * @param {Object} currentTask - task object
+ * @param {HTMLElement} subtasksBigContainer - This is html element of the subtasks container
+ * @param {Number} index - This is the index of the current task
+ */
 function getSubtasksPu(currentTask, subtasksBigContainer, index) {
     for (let i = 0; i < currentTask['subtasks'].length; i++) {
         let currentSubtask = currentTask['subtasks'][i];
@@ -295,8 +348,11 @@ function getSubtasksPu(currentTask, subtasksBigContainer, index) {
 }
 
 
-/* The value of the isToggled-variable gets changed and the image gets toggled too */
-
+/**
+ * The value of the isToggled vairaible gets changed and the image in the input gets changed
+ * @param {Number} i - The index of the subtask
+ * @param {Number} index - The index of the task
+ */
 function renderFinishedSubtaskPu(i, index) {
     let currentTask = tasks[index];
     let currentSubtask = currentTask['subtasks'][i];
@@ -305,15 +361,21 @@ function renderFinishedSubtaskPu(i, index) {
 }
 
 
-/* When the task gets opend the buttons get renderd  */
-
+/**
+ * This function renders the check-button if the task gets opened
+ * @param {Number} i - The index of the subtask
+ * @param {Object} currentSubtask - subtask object
+ */
 function renderCheckedSubtaskPu(i, currentSubtask) {
     renderCheckImage(currentSubtask, i);
 }
 
 
-/* Function to toggle the image */
-
+/**
+ * This function toggles the check-image
+ * @param {Object} currentSubtask - subtask object
+ * @param {Number} i - The index of the subtask
+ */
 function renderCheckImage(currentSubtask, i) {
     let currentSubtaskImg = document.getElementById(`subtaskImg${i}`);
     if (currentSubtask['isToggled']) {
@@ -324,8 +386,10 @@ function renderCheckImage(currentSubtask, i) {
 }
 
 
-/* This function deletes the task */
-
+/**
+ * This function deletes the task
+ * @param {Number} index - The index of the task
+ */
 async function deleteTask(index) {
     tasks.splice(index, 1);
     await closeTaskBig();
@@ -334,8 +398,9 @@ async function deleteTask(index) {
 }
 
 
-/* The task gets closed */
-
+/**
+ * This function closes the task-pop-up
+ */
 async function closeTaskBig() {
     await setItem('tasks', tasks);
     closePopUpContainer();
@@ -348,8 +413,9 @@ async function closeTaskBig() {
 }
 
 
-/* Function to clear the input fields after closing the task */
-
+/**
+ * This function clears the input fields after closing the task to prepare for the new task, which gets opened
+ */
 function clearInputFieldsTaskBig() {
     getField('titleInputEdit').value = '';
     getField('descriptionInputEdit').value = '';
