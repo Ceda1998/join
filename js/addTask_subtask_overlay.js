@@ -1,20 +1,32 @@
-/* Focus to subtask-container */
-
+/**
+ * This function sets the focus on the subtask container in the edit-form
+ */
 function inputSubtaskFocusEdit() {
     addFocusToContainer('subtaskContainerEdit');
 }
 
 
-/* When you write in the subtask-input-field */
+/**
+ * This function removes the focus on the subtask container in the edit-form
+ */
+function inputSubtaskBlurEdit() {
+    removeFocusToContainer('subtaskContainerEdit');
+}
 
+
+/**
+ * This function gets rendered, when you write in the subtask input field in the edit-form
+ */
 function inputSubtaskEdit() {
     let subtask = getField('subtaskInputEdit').value;
     renderInputSubtaskImgEdit(subtask);
 }
 
 
-/* The images in the input field change, when you have text in it*/
-
+/**
+ * The images in the input field change, when you have text in the input field in the edit-form
+ * @param {String} subtask - This is the value of the subtask input
+ */
 function renderInputSubtaskImgEdit(subtask) {
     let insertSubtaskToolContainer = getField('insertSubtaskToolContainerEdit');
     let plusImg = getField('plusImgEdit');
@@ -28,15 +40,9 @@ function renderInputSubtaskImgEdit(subtask) {
 }
 
 
-/* Remove focus from subtask-container */
-
-function inputSubtaskBlurEdit() {
-    removeFocusToContainer('subtaskContainerEdit');
-}
-
-
-/* Delete the subtask-input */
-
+/**
+ * This function deletes the value of the subtask input in the edit-form
+ */
 function deleteInputSubtaskEdit() {
     let input = getField('subtaskInputEdit');
     input.value = '';
@@ -44,19 +50,9 @@ function deleteInputSubtaskEdit() {
 }
 
 
-/* Saves the subtask in the input-field, so it can be added, when clicking on the plus-image */
-
-/* function saveInputSubtaskEdit() {
-    let insertSubtaskToolContainer = getField('insertSubtaskToolContainerEdit');
-    let plusImg = getField('plusImgEdit');
-    plusImg.classList.remove('d-none');
-    insertSubtaskToolContainer.classList.add('d-none');
-    addSubtaskEdit();
-} */
-
-
-/* Adds the subtask in the list under the subtask-input-field, when clicking on the plus-image */
-
+/**
+ * This function adds the subtask in the list under the subtask-input-field,, when clicking on the plus-image in the edit-form
+ */
 function addSubtaskEdit() {
     let input = getField('subtaskInputEdit');
     let subtask = input.value;
@@ -73,30 +69,43 @@ function addSubtaskEdit() {
 }
 
 
-/* This function shows the added subtask under the subtask-input-field */
-
+/**
+ * This function shows the added subtasks under the subtask-input-field in the edit-form
+ */
 function renderSubtasksEdit() {
     let subtasksContainer = getField('addedSubtasksContainerEdit');
     subtasksContainer.innerHTML = '';
     for (let i = 0; i < subtasks.length; i++) {
         const subtask = subtasks[i]['name'];
-        subtasksContainer.innerHTML += returnSubtaskTemplateEdit(i, subtask);
+        subtasksContainer.innerHTML += returnSubtaskTemplateEdit(i);
+    }
+    for (let i = 0; i < subtasks.length; i++) {
+        const subtask = subtasks[i]['name'];
+        getField(`addedSubtaskEdit${i}`).value = subtask;
     }
 }
 
 
-/* Subtask Template*/
-
-function returnSubtaskTemplateEdit(i, subtask) {
+/**
+ * This is the subtask-template to show the added subtasks in the edit-form
+ * @param {Number} i - This is the index of the added subtask
+ * @returns The html-template gets returned
+ */
+function returnSubtaskTemplateEdit(i) {
     return /*html*/`
-        <div class="added-subtask-container" id="addedSubtaskContainerEdit${i}" onblur="inputAddedSubtaskBlurEdit(${i})">
+        <div class="added-subtask-container" id="addedSubtaskContainerEdit${i}" onfocus="inputAddedSubtaskEdit(${i})">
             <span class="point">•</span>
-            <input class="added-subtask" id="addedSubtaskEdit${i}" type="text" value='${subtask}' ondblclick="inputAddedSubtaskEdit(${i})" onblur="inputAddedSubtaskBlurEdit(${i})" readonly>
+            <input class="added-subtask" id="addedSubtaskEdit${i}" type="text" ondblclick="inputAddedSubtaskEdit(${i})" onblur="inputAddedSubtaskBlurEdit(${i})" readonly>
             <div class="tool-container" id="toolContainerEdit${i}">
                 <div id="toolsNoFocusEdit${i}" class="tools-no-focus">
-                    <img src="./assets/img/edit.png" class="edit-img" onclick="inputAddedSubtaskWithClickOnImgEdit(${i})">
+                    <img src="./assets/img/edit.png" class="edit-img" onclick="inputAddedSubtaskEdit(${i})">
                     <div class="tool-separator"></div>
-                     <img src="./assets/img/delete-img.png" class="delete-img" onclick="deleteAddedSubtaskEdit(${i})">
+                    <img src="./assets/img/delete-img.png" class="delete-img" onclick="deleteAddedSubtaskEdit(${i})">
+                </div>
+                <div id="toolsFocusEdit${i}" class="tools-focus d-none">
+                    <img src="./assets/img/delete-img.png" class="delete-img-focus" onclick="deleteAddedSubtaskEdit(${i})">
+                    <div class="tool-separator"></div>
+                    <img src="./assets/img/check-black.png" class="check-img-focus" onclick="saveAddedSubtaskEdit(${i})">
                 </div>
             </div>
         </div>
@@ -104,65 +113,73 @@ function returnSubtaskTemplateEdit(i, subtask) {
 }
 
 
-/* Doubleclick on subtask, so you can edit the subtask, different tool-images than before */
-
+/**
+ * When you doubleclick on the subtask this function gets rendered or when you click on edit-image in the edit-form
+ * @param {Number} i - This is the index of the added subtask
+ */
 function inputAddedSubtaskEdit(i) {
     let addedSubtaskContainer = getField(`addedSubtaskContainerEdit${i}`);
+    addedSubtaskContainer.classList.add('added-subtask-focus');
     let input = getField(`addedSubtaskEdit${i}`);
     input.removeAttribute('readonly');
-    addedSubtaskContainer.classList.add('added-subtask-focus');
-    renderToolContainerFocusEdit(i);
+    getToolsFocusEdit(i);
+    setFocusEdit(i);
 }
 
 
-/* Changes the tool-images in the addded subtask, when his focused on */
-
-function renderToolContainerFocusEdit(i) {
-    let toolContainer = getField(`toolContainerEdit${i}`);
-    toolContainer.innerHTML = '';
-    toolContainer.innerHTML = /*html*/`
-        <div id="toolsFocusEdit${i}" class="tools-focus">
-            <img src="./assets/img/delete-img.png" class="delete-img-focus" onclick="deleteAddedSubtaskEdit(${i})">
-            <div class="tool-separator"></div>
-            <img src="./assets/img/check-black.png" class="check-img-focus" onclick="saveAddedSubtaskEdit(${i})">
-        </div>
-    `;
+/**
+ * This function changes the tool-images in the edit-form
+ * @param {Number} i - This is the index of the added subtask
+ */
+function getToolsFocusEdit(i) {
+    let toolsNoFocus = getField(`toolsNoFocusEdit${i}`);
+    let toolsFocus = getField(`toolsFocusEdit${i}`);
+    toolsNoFocus.classList.add('d-none');
+    toolsFocus.classList.remove('d-none');
 }
 
 
-/* If you click outside the current subtask, the backgroundcolor and images change back */
-
-function inputAddedSubtaskBlurEdit(i) {
-    let addedSubtaskContainer = getField(`addedSubtaskContainerEdit${i}`);
-    let input = getField(`addedSubtaskEdit${i}`);
-    input.setAttribute('readonly', 'readonly');
-    addedSubtaskContainer.classList.remove('added-subtask-focus');
-    if (input.value == '') {
-        deleteAddedSubtask(i);
-    }
-    renderSubtasksEdit();
-}
-
-/* It has a pen-image in the added subtask, when you click on that, you can edit the subtask */
-
-function inputAddedSubtaskWithClickOnImgEdit(i) {
-    inputAddedSubtaskEdit(i);
+/**
+ * This function sets the cursor at the end of the subtask, so you can edit it in the edit-form
+ * @param {Number} i - This is the index of the added subtask
+ */
+function setFocusEdit(i) {
     let input = getField(`addedSubtaskEdit${i}`);
     input.setSelectionRange(input.value.length, input.value.length);
     input.focus();
 }
 
 
-/* It has a bin-image in the added subtask, when you click on that, you can delete the subtask */
+/**
+ * If you click outside the current subtask, the background color and images change back to no focus in the edit-form
+ * @param {Number} i - This is the index of the added subtask
+ */
+function inputAddedSubtaskBlurEdit(i) {
+    let addedSubtaskContainer = getField(`addedSubtaskContainerEdit${i}`);
+    let input = getField(`addedSubtaskEdit${i}`);
+    input.setAttribute('readonly', 'readonly');
+    addedSubtaskContainer.classList.remove('added-subtask-focus');
+    if (input.value == '') {
+        deleteAddedSubtaskEdit(i);
+    }
+}
 
+
+/**
+ * Whe you click on the bin image in the added subtask, you delete the subtask in the edit-form
+ * @param {Number} i - This is the index of the added subtask
+ */
 function deleteAddedSubtaskEdit(i) {
     subtasks.splice(i, 1);
     renderSubtasksEdit();
 }
 
 
-/* When you edit the subtask it has a check-image. If you click on the check image, you save the editted subtask */
-
+/**
+ * If you click on the check image, you save the editted subtask in the edit-form
+ * @param {Number} i - This is the index of the added subtask
+ */
 function saveAddedSubtaskEdit(i) {
-    inputAddedSubtaskBlurEdit(i);
+    subtasks[i]['name'] = getField(`addedSubtaskEdit${i}`).value;
+    renderSubtasksEdit();
 }

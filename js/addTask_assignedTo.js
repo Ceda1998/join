@@ -1,6 +1,6 @@
 /**
  * This function adds the focus to the assignedTo container
- * @param {string} nameContainer - This is the id of the specific container
+ * @param {String} nameContainer - This is the id of the specific container
  */
 function inputAssignedToFocus(nameContainer) {
     addFocusToContainer(nameContainer);
@@ -9,7 +9,7 @@ function inputAssignedToFocus(nameContainer) {
 
 /**
  * This function removes the focus to the assignedTo container
- * @param {string} nameContainer - This is the id of the specific container
+ * @param {String} nameContainer - This is the id of the specific container
  */
 function inputAssignedToBlur(nameContainer) {
     removeFocusToContainer(nameContainer);
@@ -18,7 +18,7 @@ function inputAssignedToBlur(nameContainer) {
 
 /**
  * This function selects the person you click on and puts it in the selectedContactsAssignedTo-array
- * @param {number} num - This is the index of the contact you selected
+ * @param {Number} num - This is the index of the contact you selected
  */
 function selectPerson(num) {
     let selectedPerson = contacts[`${num}`];
@@ -29,7 +29,7 @@ function selectPerson(num) {
 
 /**
  * This function removes the person you click on and removes the contact from the selectedContactsAssignedTo-array
- * @param {number} num - This is the index of the contact you selected
+ * @param {Number} num - This is the index of the contact you selected
  */
 function removePerson(num) {
     let selectedPerson = contacts[`${num}`]['fullname'];
@@ -46,7 +46,7 @@ function removePerson(num) {
 
 /**
  * When you click a contact, the background in the assignedTo-dropdown changes
- * @param {number} num - This is the index of the contact you clicked 
+ * @param {Number} num - This is the index of the contact you clicked 
  */
 function checkButtonContactsChecked(num) {
     let button = getField(`button${num}`);
@@ -121,8 +121,8 @@ function renderInitialsSelected() {
 
 /**
  * This is the template to show the contacts in the dropdown
- * @param {array} contact - This is the array of a specific contact
- * @param {number} i - This is the index of the contact 
+ * @param {Object} contact - This is the array of a specific contact
+ * @param {Number} i - This is the index of the contact 
  * @returns The html-template gets returned
  */
 function assignedToContactsTemplate(contact, i) {
@@ -142,8 +142,8 @@ function assignedToContactsTemplate(contact, i) {
 
 /**
  * This function sets the look of the selected contacts by comparing the names
- * @param {string} fullname - This is the fullname of the contact-array
- * @param {number} i - This is the index of the current contact 
+ * @param {String} fullname - This is the fullname of the contact-array
+ * @param {Number} i - This is the index of the current contact 
  */
 function renderContactsChecked(fullname, i) {
     for (let j = 0; j < selectedContactsAssignedTo.length; j++) {
@@ -165,7 +165,7 @@ function renderContactsChecked(fullname, i) {
 
 /**
  * This sets the background color of the initials of the selected contacts according to the initials
- * @param {number} i - This is the index of the contact
+ * @param {Number} i - This is the index of the contact
  */
 function renderBackgroundColorInitialsSelected(i) {
     let initialsSelectedContact = selectedContactsAssignedTo[i]['initials'];
@@ -177,7 +177,7 @@ function renderBackgroundColorInitialsSelected(i) {
 
 /**
  * This sets the background color of the initials according to the intitals
- * @param {number} i - This is the current index
+ * @param {Number} i - This is the current index
  */
 function renderBackgroundColorInitials(i) {
     let initialsSelectedContact = contacts[i]['initials'];
@@ -209,7 +209,7 @@ function filterNames() {
 
 /**
  * This function is, when the assignedTo-search-input is active
- * @param {string} search - This is the search word 
+ * @param {String} search - This is the search word 
  * @param {HTMLElement} assignedToDropDownWrapper - This is the wrapper to show the contacts
  */
 function activeSearchInput(search, assignedToDropDownWrapper) {
