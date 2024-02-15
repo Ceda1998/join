@@ -1,17 +1,19 @@
-/* The html-form so you can edit the task */
-
+/**
+ * This function opens the pop-up-edit, renders the html-form, so you can edit the task
+ * @param {Number} index - The index of the task
+ */
 function editTask(index) {
     removeDNone('popUpEdit');
     addDNone('popUpTaskBig');
     let popUp = document.getElementById('popUpEdit');
-    let currentTask = tasks[index];
     popUp.innerHTML = '';
-    renderAllInformationsEditTask(index, currentTask, popUp);
+    renderAllInformationsEditTask(index, popUp);
 }
 
 
-/* The edit-part gets closed without saving the changes */
-
+/**
+ * The edit-part gets closed without saving the changes
+ */
 async function closeTaskEdit() {
     clearPrioButtonsEdit();
     selectedContactsAssignedTo = [];
@@ -20,8 +22,9 @@ async function closeTaskEdit() {
 }
 
 
-/* The prio-buttons are getting cleared, so they are set for the next task or added task-form */
-
+/**
+ * The prio-buttons are getting cleared, so they are set for the next task or addedTask-form
+ */
 function clearPrioButtonsEdit() {
     for (let i = 0; i < prioButtons.length; i++) {
         prioButtons[i]['toggled'] = false;
@@ -29,9 +32,12 @@ function clearPrioButtonsEdit() {
 }
 
 
-/* The input fields in the form are getting field */
-
-function renderAllInformationsEditTask(index, currentTask, popUp) {
+/**
+ * This function filles the input fields in the form
+ * @param {Number} index - The index of the task
+ * @param {HTMLElement} popUp - The html element of the pop-up-edit
+ */
+function renderAllInformationsEditTask(index, popUp) {
     popUp.innerHTML += renderPopUpCardEdit(index);
     renderTitleEdit(index);
     renderDescriptionEdit(index);
@@ -42,8 +48,10 @@ function renderAllInformationsEditTask(index, currentTask, popUp) {
 }
 
 
-/* The title input is getting rendered*/
-
+/**
+ * The title input is getting rendered
+ * @param {Number} index - The index of the task
+ */
 function renderTitleEdit(index) {
     let titleInput = document.getElementById('titleInputEdit');
     let title = tasks[index]['title'];
@@ -51,8 +59,10 @@ function renderTitleEdit(index) {
 }
 
 
-/* The description is getting filled */
-
+/**
+ * The description is getting filled
+ * @param {Number} index - The index of the task
+ */
 function renderDescriptionEdit(index) {
     let descriptionInput = document.getElementById('descriptionInputEdit');
     let description = tasks[index]['description'];
@@ -60,8 +70,10 @@ function renderDescriptionEdit(index) {
 }
 
 
-/* The date is getting filled */
-
+/**
+ * The date is getting filled
+ * @param {Number} index - The index of the task
+ */
 function renderDateEdit(index) {
     let dateInput = document.getElementById('dateInputEdit');
     let date = tasks[index]['duedate'];
@@ -70,8 +82,10 @@ function renderDateEdit(index) {
 }
 
 
-/* The prio is rendered */
-
+/**
+ * The prio is rendered
+ * @param {Number} index - The index of the task
+ */
 function renderPrioEdit(index) {
     let prio = tasks[index]['priority'];
     for (let i = 0; i < prioButtons.length; i++) {
@@ -84,7 +98,10 @@ function renderPrioEdit(index) {
 }
 
 
-/* The background color of the prio-button is set */
+/**
+ * The background color of the prio-button is set
+ * @param {Number} i - The index of the prio button
+ */
 function setBackgroundColorPrioButton(i) {
     const selectedButton = getField(`prioButtonEdit${i+1}`);
     const selectedImgPrioColor = getField(`prioColorEdit${i+1}`);
@@ -98,10 +115,10 @@ function setBackgroundColorPrioButton(i) {
 }
 
 
-
-
-/* When you click on the ok-button the fields are saved and the board gets rendered new, so the changes are shown */
-
+/**
+ * When you click on the ok-button the fields are saved and the board gets rendered new, so the changes are shown
+ * @param {Number} index - The index of the task
+ */
 async function saveAndCloseEdit(index) {
     const inputFields = collectInputFieldsEdit(index);
     renderContactIds();
@@ -113,8 +130,19 @@ async function saveAndCloseEdit(index) {
 }
 
 
-/* The different fields in the form are collected */
-
+/**
+ * The different fields in the form are collected to save the editted task
+ * @param {Number} index - The index of the task
+ * @returns {{
+ * taskId: number,
+ * title: string,
+ * description: string,
+ * category: string,
+ * dueDate: string,
+ * progress: string,
+ * priority: string
+ * }}
+ */
 function collectInputFieldsEdit(index) {
     let taskId = tasks[index]['taskid'];
     let title = getField('titleInputEdit').value;
@@ -128,8 +156,32 @@ function collectInputFieldsEdit(index) {
 }
 
 
-/* The array with the new values */
-
+/**
+ * The array with the new values
+ * @param {{
+* taskId: number,
+* title: string,
+* description: string,
+* category: string,
+* dueDate: string,
+* progress: string,
+* priority: string
+ * }} param0 - The values of the input fields to update the task
+ * @returns {{
+* taskId: Array<number>,
+* title: string,
+* description: string,
+* category: string,
+* subtasks: Array<{
+*  name: string,
+*  isToggled: boolean
+* }>,
+* selectedContactsAssignedToIds: Array<number>,
+* priority: string,
+* progress: string,
+* dueDate: string 
+ * }}
+ */
 function createTaskInstanceEdit({taskId, title, description, category, dueDate, progress, priority}) {
     return {
         "taskid": taskId,
@@ -145,8 +197,11 @@ function createTaskInstanceEdit({taskId, title, description, category, dueDate, 
 }
 
 
-/* The html of the edit form */
-
+/**
+ * The html-template to edit the task
+ * @param {Number} index - The index of the task
+ * @returns The html-template gets returned
+ */
 function renderPopUpCardEdit(index) {
     return /*html*/`
         <img class="close-button-pu-edit" src="./assets/img/close-img.png" onclick="closeTaskEdit()">
