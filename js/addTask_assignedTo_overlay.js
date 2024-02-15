@@ -1,8 +1,9 @@
 let isArrowAssignedToEditRotated = false;
 
 
-/* The assigned-to-drop-down gets toggled */
-
+/**
+ * The assignedTo-dropdown gets toggled in the edit-form
+ */
 function toggleAssignedToDropDownEdit() {
     let assignedToDropDown = getField('assignedToDropDownEdit');
     let contactsSelectedContainer = getField('contactsSelectedContainerEdit');
@@ -15,8 +16,9 @@ function toggleAssignedToDropDownEdit() {
 }
 
 
-/* If-else-statement according to the direction of the arrow */
-
+/**
+ * If-else-statement according to the direction of the arrow in the edit-form
+ */
 function ifElseArrowEdit() {
     if (isArrowAssignedToEditRotated == true) {
         renderContactsAssignedToEdit();
@@ -26,8 +28,9 @@ function ifElseArrowEdit() {
 }
 
 
-/* If the direction of the arrow is down, all the slected contacts are shown by the initials */
-
+/**
+ * This is the function to show the initials of the contacts in the edit-form
+ */
 function renderInitialsSelectedEdit() {
     let contactsSelectedContainer = getField('contactsSelectedContainerEdit');
     contactsSelectedContainer.innerHTML = '';
@@ -41,8 +44,9 @@ function renderInitialsSelectedEdit() {
 }
 
 
-/* If the arrow is rotated the contacts are loaded and shown*/
-
+/**
+ * If the arrow of assignedTo is rotated the contacts are shown in the edit-form
+ */
 function renderContactsAssignedToEdit() {
     let assignedToDropDownWrapper = getField('assignedToDropDownWrapperEdit');
     assignedToDropDownWrapper.innerHTML = '';
@@ -56,8 +60,12 @@ function renderContactsAssignedToEdit() {
 }
 
 
-/* Template to the renderContactsAssignedTo-function */
-
+/**
+ * This is the template to show the contacts in the dropdown in the edit-form
+ * @param {Object} contact - This is the array of a specific contact
+ * @param {Number} i - This is the index of the contact 
+ * @returns The html-template gets returned
+ */
 function assignedToContactsTemplateEdit(contact, i) {
     return /*html*/`
         <div class="drop-down-contacts-container" id="dropDownContactsContainerEdit${i}">
@@ -72,8 +80,10 @@ function assignedToContactsTemplateEdit(contact, i) {
 }
 
 
-/* Selects the person you click on and puts it in the selectedContactsAssignedTo-Array */
-
+/**
+ * This function selects the person you click on and puts it in the selectedContactsAssignedTo-array in the edit-form
+ * @param {Number} num - This is the index of the contact you selected
+ */
 function selectPersonEdit(num) {
     let selectedPerson = contacts[`${num}`];
     selectedContactsAssignedTo.push(selectedPerson);
@@ -81,8 +91,10 @@ function selectPersonEdit(num) {
 }
 
 
-/* Removes the person you click on and removes it from the selectedContactsAssignedTo-Array*/
-
+/**
+ * This function removes the person you click on and removes the contact from the selectedContactsAssignedTo-array in the edit-form
+ * @param {Number} num - This is the index of the contact you selected
+ */
 function removePersonEdit(num) {
     let selectedPerson = contacts[`${num}`]['fullname'];
     for (let i=0; i < selectedContactsAssignedTo.length; i++) {
@@ -96,8 +108,10 @@ function removePersonEdit(num) {
 }
 
 
-/* What happens when a contact gets selected */
-
+/**
+ * When you click a contact, the background in the assignedTo-dropdown changes in the edit-form
+ * @param {Number} num - This is the index of the contact you clicked 
+ */
 function checkButtonContactsCheckedEdit(num) {
     let button = getField(`buttonEdit${num}`);
     let checkedButton = getField(`checkedButtonEdit${num}`);
@@ -110,8 +124,10 @@ function checkButtonContactsCheckedEdit(num) {
 }
 
 
-/* Sets the Background Color of the initial-name-container according to the initials */
-
+/**
+ * This sets the background color of the initials according to the intitals in the edit-form
+ * @param {Number} i - This is the current index
+ */
 function renderBackgroundColorInitialsEdit(i) {
     let initialsSelectedContact = contacts[i]['initials'];
     let firstLetter = initialsSelectedContact.charAt(0).toLowerCase();
@@ -120,8 +136,11 @@ function renderBackgroundColorInitialsEdit(i) {
 }
 
 
-/* The selected contacts get the look of the checked button */
-
+/**
+ * This function sets the look of the selected contacts by comparing the names in the edit-form
+ * @param {String} fullname - This is the fullname of the contact-array
+ * @param {Number} i - This is the index of the current contact 
+ */
 function renderContactsCheckedEdit(fullname, i) {
     for (let j = 0; j < selectedContactsAssignedTo.length; j++) {
         let contactSelected = selectedContactsAssignedTo[j];
@@ -140,8 +159,9 @@ function renderContactsCheckedEdit(fullname, i) {
 }
 
 
-/* You can search for a name */
-
+/**
+ * This function is when you search for a contact in the edit-form
+ */
 function filterNamesEdit() {
     let search = getField('assignedToInputEdit').value.toLowerCase();
     let assignedToDropDownWrapper = getField('assignedToDropDownWrapperEdit');
@@ -159,8 +179,11 @@ function filterNamesEdit() {
 }
 
 
-/* Active search assigned-to-seach-input */
-
+/**
+ * This function is, when the assignedTo-search-input is active in the edit-form
+ * @param {String} search - This is the search word 
+ * @param {HTMLElement} assignedToDropDownWrapper - This is the wrapper to show the contacts
+ */
 function activeSearchInputEdit(search, assignedToDropDownWrapper) {
     assignedToDropDownWrapper.innerHTML = '';
     for (let i = 0; i < contacts.length; i++) {
@@ -175,8 +198,9 @@ function activeSearchInputEdit(search, assignedToDropDownWrapper) {
 }
 
 
-/* An EventListener when you click outside the assigned-to-container, the drop-down gets closed */
-
+/**
+ * This EventListener is, when you click somewhere outside the assignedTo-container in the edit-form. Then the dropdown gets closed.
+ */
 document.addEventListener('click', function(event) {
     let assignedToContainer = document.getElementById('aTInputContainerEdit');
     let assignedToDropDownWrapper = document.getElementById('assignedToDropDownWrapperEdit');
