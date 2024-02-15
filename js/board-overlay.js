@@ -48,7 +48,6 @@ async function openPopUpAt(progress) {
     removeDNone('closeButtonPopUpAt');
     subtasks = [];
     currentProgress = progress;
-    console.log(currentProgress);
 }
 
 
@@ -58,7 +57,6 @@ async function openPopUpAt(progress) {
 function closePopUpAt() {
     clearTask();
     currentProgress = '';
-    console.log(currentProgress);
     closePopUpContainer();
     addDNone('popUpAtField');
     fetchAndReloadBoard();
@@ -136,7 +134,7 @@ function renderPopUpCardTask(currentTask, index) {
                 <td>Due date:</td>
                 <td id="dueDatePuBig"></td>
             </tr>
-            <tr>
+            <tr id="priorityTaskBig">
                 <td>Priority:</td>
                 <td id="priorityPuBig"></td>
             </tr>
@@ -212,13 +210,15 @@ function renderDueDatePu(currentTask) {
 function renderPrioPu(currentTask) {
     let prioBig = document.getElementById(`priorityPuBig`);
     let priority = currentTask['priority'];
+    let priorityTitle = document.getElementById('priorityTaskBig');
     if (priority !== '') {
+        priorityTitle.classList.remove('d-none');
         let priorityUppercase = priority.charAt(0).toUpperCase() + priority.slice(1);
         prioBig.innerHTML = /*html*/`
             ${priorityUppercase}<img src="./assets/img/img-${currentTask['priority']}.png">
         `;
     } else {
-        prioBig.innerHTML = '';
+        priorityTitle.classList.add('d-none');
     }
 }
 
@@ -393,7 +393,6 @@ function renderCheckImage(currentSubtask, i) {
 async function deleteTask(index) {
     tasks.splice(index, 1);
     await closeTaskBig();
-    console.log(tasks);
     init();
 }
 

@@ -106,12 +106,13 @@ function gettingContactId() {
  * @returns {String} - The name of the prio 'urgent', 'medium', 'low' or empty
  */
 function getPriority() {
-    for (let i = 0; i < prioButtons.length; i++){
-        let isButtonToggled = prioButtons[i]['toggled']
-        if (isButtonToggled === true) {
-                return prioButtons[i]['name'];
+        for (let i = 0; i < prioButtons.length; i++){
+            let isButtonToggled = prioButtons[i]['toggled']
+            if (isButtonToggled === true) {
+                    return prioButtons[i]['name'];
+            }
         }
-    }
+        return '';
 }
 
 

@@ -126,7 +126,6 @@ function renderInitialsSelected() {
  * @returns The html-template gets returned
  */
 function assignedToContactsTemplate(contact, i) {
-    console.log(contact);
     return /*html*/`
         <div class="drop-down-contacts-container" id="dropDownContactsContainer${i}">
             <div class="initial-name-container">
