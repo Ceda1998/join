@@ -31,10 +31,6 @@
 
     /* Pop-up task big */
 
-    /* .pop-up-at-container {
-        height: unset;
-    } */
-
     .pop-up-task-big {
         width: 100%;
         height: 100vh;
@@ -47,6 +43,16 @@
 
     .pu-big-contact-container {
         width: 100%;
+    }
+
+    /* Pop-up task big edit */
+
+    .pop-up-task-big-edit {
+        overflow-y: unset;
+    }
+
+    .tool-container {
+        margin-right: 6px;
     }
 }
 
@@ -80,8 +86,8 @@
     
         .field-container-pu-edit {
             margin-top: 10px;
-            /* margin-bottom: 10px; */
             max-height: 70vh;
+            overflow-y: auto;
         }
     
         .field-container-pu-edit label {
