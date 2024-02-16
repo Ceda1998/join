@@ -275,7 +275,6 @@ function colorFontInput(inputName) {
  * Function to set Prio Medium to start
  */
 function setPrioMedium() {
-    console.log("medium");
     try {
         setPrio(2, 'prioButton', 'prioColor', 'prioWhite', 'prio');
     } catch {
