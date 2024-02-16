@@ -1,3 +1,5 @@
+let currentSubtaskFocusEdit;
+
 /**
  * This function sets the focus on the subtask container in the edit-form
  */
@@ -93,7 +95,7 @@ function renderSubtasksEdit() {
  */
 function returnSubtaskTemplateEdit(i) {
     return /*html*/`
-        <div class="added-subtask-container" id="addedSubtaskContainerEdit${i}" onfocus="inputAddedSubtaskEdit(${i})" onblur="inputAddedSubtaskBlurEdit(${i})">
+        <div class="added-subtask-container" id="addedSubtaskContainerEdit${i}" onfocus="inputAddedSubtaskEdit(${i})">
             <span class="point">•</span>
             <input class="added-subtask" id="addedSubtaskEdit${i}" type="text" ondblclick="inputAddedSubtaskEdit(${i})" readonly>
             <div class="tool-container" id="toolContainerEdit${i}">
@@ -149,7 +151,24 @@ function setFocusEdit(i) {
     let input = getField(`addedSubtaskEdit${i}`);
     input.setSelectionRange(input.value.length, input.value.length);
     input.focus();
+    currentSubtaskFocusEdit = i;
 }
+
+
+/**
+ * This EventListener renders the subtasks when you click outside an added subtask in the edit-form
+ */
+document.addEventListener('click', function(event) {
+    for (let i = 0; i < subtasks.length; i++) {
+        if (currentSubtaskFocusEdit === i) {
+            let subtasksContainer = document.getElementById(`addedSubtaskContainerEdit${i}`);
+            if (!subtasksContainer.contains(event.target)) {
+                inputAddedSubtaskBlurEdit(i);
+                currentSubtaskFocusEdit = null;
+            }
+        }
+    }
+});
 
 
 /**
@@ -163,6 +182,8 @@ function inputAddedSubtaskBlurEdit(i) {
     addedSubtaskContainer.classList.remove('added-subtask-focus');
     if (input.value == '') {
         deleteAddedSubtaskEdit(i);
+    } else {
+        saveAddedSubtaskEdit(i);
     }
     if (subtasks.length !== 0) {
         getToolsEdit(i, 'toolsNoFocusEdit', 'toolsFocusEdit');
