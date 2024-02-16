@@ -95,12 +95,12 @@ function renderSubtasksEdit() {
  */
 function returnSubtaskTemplateEdit(i) {
     return /*html*/`
-        <div class="added-subtask-container" id="addedSubtaskContainerEdit${i}" onfocus="inputAddedSubtaskEdit(${i})">
+        <div class="added-subtask-container" id="addedSubtaskContainerEdit${i}">
             <span class="point">•</span>
             <input class="added-subtask" id="addedSubtaskEdit${i}" type="text" ondblclick="inputAddedSubtaskEdit(${i})" readonly>
             <div class="tool-container" id="toolContainerEdit${i}">
                 <div id="toolsNoFocusEdit${i}" class="tools-no-focus">
-                    <img src="./assets/img/edit.png" class="edit-img" onclick="inputAddedSubtaskEdit(${i})">
+                    <img src="./assets/img/edit.png" class="edit-img" onclick="inputAddedSubtaskFocusClickOnImgEdit(event, ${i})">
                     <div class="tool-separator"></div>
                     <img src="./assets/img/delete-img.png" class="delete-img" onclick="deleteAddedSubtaskEdit(${i})">
                 </div>
@@ -112,6 +112,20 @@ function returnSubtaskTemplateEdit(i) {
             </div>
         </div>
     `;
+}
+
+
+/**
+ * This function is for edditing a subtask, when you click on the edit-image in the edit-form
+ * @param {Event} event - This is the event of the event listener
+ * @param {Number} i - This is the index of the current subtask
+ */
+function inputAddedSubtaskFocusClickOnImgEdit(event, i) {
+    event.stopPropagation();
+    if (currentSubtaskFocus !== null) {
+        inputAddedSubtaskBlurEdit(currentSubtaskFocus);
+    }
+    inputAddedSubtaskEdit(i);
 }
 
 

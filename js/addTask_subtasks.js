@@ -75,6 +75,7 @@ function addSubtask() {
  * This function shows the added subtasks under the subtask-input-field
  */
 function renderSubtasks() {
+    currentSubtaskFocus = 0;
     let subtasksContainer = getField('addedSubtasksContainer');
     subtasksContainer.innerHTML = '';
     for (let i = 0; i < subtasks.length; i++) {
@@ -95,12 +96,12 @@ function renderSubtasks() {
  */
 function returnSubtaskTemplate(i) {
     return /*html*/`
-        <div class="added-subtask-container" id="addedSubtaskContainer${i}" onfocus="inputAddedSubtaskFocus(${i})">
+        <div class="added-subtask-container" id="addedSubtaskContainer${i}">
             <span class="point">•</span>
             <input class="added-subtask" id="addedSubtask${i}" type="text" ondblclick="inputAddedSubtaskFocus(${i})" readonly>
             <div class="tool-container" id="toolContainer${i}">
                 <div id="toolsNoFocus${i}" class="tools-no-focus">
-                    <img src="./assets/img/edit.png" class="edit-img" onclick="inputAddedSubtaskFocus(${i})">
+                    <img src="./assets/img/edit.png" class="edit-img" onclick="inputAddedSubtaskFocusClickOnImg(event, ${i})">
                     <div class="tool-separator"></div>
                      <img src="./assets/img/delete-img.png" class="delete-img" onclick="deleteAddedSubtask(${i})">
                 </div>
@@ -112,6 +113,20 @@ function returnSubtaskTemplate(i) {
             </div>
         </div>
     `;
+}
+
+
+/**
+ * This function is for edditing a subtask, when you click on the edit-image
+ * @param {Event} event - This is the event of the event listener
+ * @param {Number} i - This is the index of the current subtask
+ */
+function inputAddedSubtaskFocusClickOnImg(event, i) {
+    event.stopPropagation();
+    if (currentSubtaskFocus !== null) {
+        inputAddedSubtaskBlur(currentSubtaskFocus);
+    }
+    inputAddedSubtaskFocus(i);
 }
 
 
@@ -152,7 +167,6 @@ function setFocus(i) {
     input.setSelectionRange(input.value.length, input.value.length);
     input.focus();
     currentSubtaskFocus = i;
-    
 }
 
 
