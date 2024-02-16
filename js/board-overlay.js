@@ -46,6 +46,7 @@ async function openPopUpAt(progress) {
     openPopUpContainer();
     removeDNone('popUpAtField');
     removeDNone('closeButtonPopUpAt');
+    renderAddTask();
     subtasks = [];
     currentProgress = progress;
 }

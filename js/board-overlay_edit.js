@@ -27,7 +27,10 @@ async function closeTaskEdit() {
  */
 function clearPrioButtonsEdit() {
     for (let i = 0; i < prioButtons.length; i++) {
-        prioButtons[i]['toggled'] = false;
+        let isButtonToggled = prioButtons[i]['toggled'];
+        if (isButtonToggled === true) {
+            togglePrio(i, 'prioButtonEdit', 'prioColorEdit', 'prioWhiteEdit', 'prioEdit');
+        }
     }
 }
 
@@ -106,7 +109,7 @@ function setBackgroundColorPrioButton(i) {
     const selectedButton = getField(`prioButtonEdit${i+1}`);
     const selectedImgPrioColor = getField(`prioColorEdit${i+1}`);
     const selectedImgPrioWhite = getField(`prioWhiteEdit${i+1}`);
-    const selectedPrio = getField(`prio${i+1}`);
+    const selectedPrio = getField(`prioEdit${i+1}`);
     const selectedPrioName = selectedPrio.innerHTML.toLowerCase();
     selectedButton.classList.toggle(`${selectedPrioName}`);
     selectedButton.classList.toggle('prioTextWhite');

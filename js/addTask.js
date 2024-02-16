@@ -78,6 +78,7 @@ async function fetchTasksAt() {
 function renderAddTask() {
     let inputFields = getAllInputFields();
     setInputClear(inputFields);
+    setPrioMedium();
 }
 
 
@@ -130,7 +131,6 @@ function setInputClear(inputFields) {
     currentProgress = '';
     renderInitialsSelected();
     clearPrioButtons();
-    setPrioMedium();
     renderSubtasks();
     setArrowRotated();
 }
@@ -275,6 +275,7 @@ function colorFontInput(inputName) {
  * Function to set Prio Medium to start
  */
 function setPrioMedium() {
+    console.log("medium");
     try {
         setPrio(2, 'prioButton', 'prioColor', 'prioWhite', 'prio');
     } catch {
@@ -329,7 +330,7 @@ function togglePrio(i, buttonName, prioColor, prioWhite, prio) {
  */
 function clearPrioButtons() {
     for (let i = 0; i < TOTAL_BUTTONS; i++) {
-        let isButtonToggled = prioButtons[i]['toggled']
+        let isButtonToggled = prioButtons[i]['toggled'];
         if (isButtonToggled === true) {
             togglePrio(i, 'prioButton', 'prioColor', 'prioWhite', 'prio');
         }
@@ -378,5 +379,6 @@ document.addEventListener('click', function(event) {
  * This function clears all the input fields
  */
 function clearTask() {
-    renderAddTask();
+    let inputFields = getAllInputFields();
+    setInputClear(inputFields);
 }
