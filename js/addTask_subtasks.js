@@ -1,3 +1,5 @@
+let currentSubtaskFocus;
+
 /**
  * This function sets the focus on the subtask container
  */
@@ -93,7 +95,7 @@ function renderSubtasks() {
  */
 function returnSubtaskTemplate(i) {
     return /*html*/`
-        <div class="added-subtask-container" id="addedSubtaskContainer${i}" onfocus="inputAddedSubtaskFocus(${i})" onblur="inputAddedSubtaskBlur(${i})">
+        <div class="added-subtask-container" id="addedSubtaskContainer${i}" onfocus="inputAddedSubtaskFocus(${i})">
             <span class="point">•</span>
             <input class="added-subtask" id="addedSubtask${i}" type="text" ondblclick="inputAddedSubtaskFocus(${i})" readonly>
             <div class="tool-container" id="toolContainer${i}">
@@ -149,8 +151,25 @@ function setFocus(i) {
     let input = getField(`addedSubtask${i}`);
     input.setSelectionRange(input.value.length, input.value.length);
     input.focus();
+    currentSubtaskFocus = i;
+    
 }
 
+
+/**
+ * This EventListener renders the subtasks when you click outside an added subtask
+ */
+document.addEventListener('click', function(event) {
+    for (let i = 0; i < subtasks.length; i++) {
+        if (currentSubtaskFocus === i) {
+            let subtasksContainer = document.getElementById(`addedSubtaskContainer${i}`);
+            if (!subtasksContainer.contains(event.target)) {
+                inputAddedSubtaskBlur(i);
+                currentSubtaskFocus = null;
+            }
+        }
+    }
+});
 
 
 /**
@@ -164,6 +183,8 @@ function inputAddedSubtaskBlur(i) {
         addedSubtaskContainer.classList.remove('added-subtask-focus');
         if (input.value == '') {
             deleteAddedSubtask(i);
+        } else {
+            saveAddedSubtask(i);
         }
         if (subtasks.length !== 0) {
             getTools(i, 'toolsNoFocus', 'toolsFocus');
