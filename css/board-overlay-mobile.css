@@ -50,15 +50,16 @@
     /* Pop-up task big edit */
 
     .pop-up-task-big-edit {
-        max-height: unset;
+        max-height: 100vh;
         height: 100vh;
-        overflow-y: none;
+        overflow-y:unset;
         margin: 0;
     }
 
     .pop-up-task-big-edit form {
         margin-top: 20px;
         width: 100%;
+        height: 70%;
     }
 
     .tool-container {
