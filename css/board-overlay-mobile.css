@@ -49,11 +49,18 @@
     /* Pop-up task big edit */
 
     .pop-up-task-big-edit {
-        overflow-y: unset;
+        max-height: unset;
+        height: 100vh;
+        overflow-y: none;
+        margin: 0;
     }
 
     .tool-container {
         margin-right: 6px;
+    }
+
+    .ok-button-container {
+        margin-top: 10px;
     }
 }
 
