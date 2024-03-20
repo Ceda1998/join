@@ -207,7 +207,9 @@ function createTaskInstanceEdit({taskId, title, description, category, dueDate, 
  */
 function renderPopUpCardEdit(index) {
     return /*html*/`
-        <img class="close-button-pu-edit" src="./assets/img/close-img.png" onclick="closeTaskEdit()">
+        <div class="close-button-container-pu-edit">
+            <img class="close-button-pu-edit" src="./assets/img/close-img.png" onclick="closeTaskEdit()">
+        </div>
         <form onsubmit="saveAndCloseEdit(${index}); return false">
             <div class="field-container-pu-edit">
 

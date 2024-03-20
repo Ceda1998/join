@@ -56,6 +56,11 @@
         margin: 0;
     }
 
+    .pop-up-task-big-edit form {
+        margin-top: 20px;
+        width: 100%;
+    }
+
     .tool-container {
         margin-right: 6px;
     }
@@ -80,6 +85,7 @@
 
         .pop-up-task-big-edit form {
             margin-top: 20px;
+            width: 100%;
         }
 
         .close-button-pu-edit {
